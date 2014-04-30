@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <%= link_to "Adela", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "#{current_user.name}(#{current_user.email})" %></li>
+          <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -19,5 +19,13 @@ module Adela
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.generators do |generator|
+      generator.helper = false
+      generator.stylesheets = false
+      generator.javascripts = false
+      generator.controller_specs = false
+    end
+
+    config.i18n.default_locale = :es
   end
 end

@@ -10,15 +10,17 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'devise'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
+  gem 'factory_girl_rails'
 end
 
 group :test do
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'capybara'
 end

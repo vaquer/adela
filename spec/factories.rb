@@ -5,5 +5,15 @@ FactoryGirl.define do
     f.name 'Rodrigo'
     f.password 'secretpassword'
     f.password_confirmation 'secretpassword'
+    f.association :organization, :factory => :organization
+  end
+
+  factory :organization do |f|
+    f.title "Hacienda"
+  end
+
+  factory :inventory do |f|
+    f.file_location "#{Rails.root}/spec/fixtures/files/inventory.csv"
+    f.association :organization, :factory => :organization
   end
 end

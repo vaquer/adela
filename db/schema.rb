@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429164939) do
+ActiveRecord::Schema.define(version: 20140501202324) do
+
+  create_table "inventories", force: true do |t|
+    t.string   "file_location"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
@@ -27,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140429164939) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

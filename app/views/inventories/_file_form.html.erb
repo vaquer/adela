@@ -1,0 +1,9 @@
+<div class="well well-lg col-xs-8" id="js_inventory_form">
+  <%= form_for(Inventory.new) do |f| %>
+    <%= f.label "Seleccione el archivo a cargar:" %>
+    <br/>
+    <%= f.file_field :file_location %>
+    <small class="help-block">Debe ser formato .csv</small>
+    <%= f.submit "Guardar", :class => "btn btn-info btn-sm" %>
+  <% end %>
+</div>

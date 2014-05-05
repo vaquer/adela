@@ -25,6 +25,5 @@ describe User do
       @user.password_confirmation = "short"
       @user.should_not be_valid
     end
-
   end
 end

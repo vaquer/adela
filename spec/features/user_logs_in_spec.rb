@@ -19,7 +19,7 @@ feature User, 'logs in:' do
 
   scenario "visits root page and sees log in link" do
     visit "/"
-    expect(page).to have_text("Iniciar sesión")
+    expect(page).to have_link("Iniciar sesión")
   end
 
   scenario "sees the log in form" do
@@ -40,7 +40,7 @@ feature User, 'logs in:' do
     fill_the_form_with(@user.email, @user.password)
     click_on("Entrar")
     sees_success_message "Ingreso exitoso."
-    expect(current_path).to eq(user_path(@user.id))
+    expect(current_path).to eq(organization_path(@user.organization.id))
   end
 
   def sees_error_message(message)

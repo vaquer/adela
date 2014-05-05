@@ -16,7 +16,7 @@ feature User, 'manages inventory:' do
     visit new_inventory_path
     click_on("Carga el inventario")
     click_on("Actualizar inventario")
-    find('#inventory_file_location').should_not be_nil
+    find('#inventory_csv_file').should_not be_nil
   end
 
   scenario "succeed to upload a csv file" do
@@ -31,8 +31,8 @@ feature User, 'manages inventory:' do
     visit new_inventory_path
     click_on("Carga el inventario")
     click_on("Actualizar inventario")
-    tries_to_upload_the_file('invalid_inventory.csv')
-    sees_error_message "Ha ocurrido un error. El archivo no es válido."
+    tries_to_upload_the_file('invalid_file.txt')
+    sees_error_message "Archivo no es válido. Debe estar en formato .csv"
   end
 
   def given_logged_in_as(user)
@@ -53,7 +53,7 @@ feature User, 'manages inventory:' do
   end
 
   def tries_to_upload_the_file(file_name)
-    attach_file('inventory_file_location', "#{Rails.root}/spec/fixtures/files/#{file_name}")
+    attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
     click_on("Guardar")
   end
 end

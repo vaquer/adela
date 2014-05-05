@@ -1,0 +1,8 @@
+es:
+  errors:
+    messages:
+      extension_white_list_error: " no es válido. Debe estar en formato .%{allowed_types}"
+  activerecord:
+    attributes:
+      inventory:
+        csv_file: "Archivo"

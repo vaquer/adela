@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :inventory do |f|
-    f.file_location "#{Rails.root}/spec/fixtures/files/inventory.csv"
+    f.csv_file File.new("#{Rails.root}/spec/fixtures/files/inventory.csv")
     f.association :organization, :factory => :organization
   end
 end

@@ -10,8 +10,8 @@ describe Inventory do
       @inventory.should be_valid
     end
 
-    it "should not be valid without a file location" do
-      @inventory.file_location = nil
+    it "should not be valid with an invalid file" do
+      @inventory.csv_file = File.new("#{Rails.root}/spec/fixtures/files/invalid_file.txt")
       @inventory.should_not be_valid
     end
 

@@ -1,5 +1,11 @@
 class Inventory < ActiveRecord::Base
-  validates_presence_of :file_location, :organization
+  mount_uploader :csv_file, FileUploader
+
+  validates_presence_of :organization_id
+  validates_processing_of :csv_file
 
   belongs_to :organization
+
+  def validate_csv_structure
+  end
 end

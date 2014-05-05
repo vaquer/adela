@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature User, 'logs out:' do
-  
+
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)

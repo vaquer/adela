@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature User, 'logs in:' do
-  
+
   background do
     @user = FactoryGirl.create(:user)
   end

@@ -99,6 +99,7 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -191,6 +192,7 @@ DEPENDENCIES
   i18n
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rails (= 4.1)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.3)

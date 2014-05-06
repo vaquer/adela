@@ -1,4 +1,11 @@
-<%= render "layouts/error_messages", :object => @inventory %>
+<%= render "layouts/error_messages", :object => @inventory, :index => nil %>
+<% if @datasets.present? %>
+  <% @datasets.each_with_index do |dataset, index| %>
+    <% unless dataset.valid? %>
+      <%= render "layouts/error_messages", :object => dataset, :index => index %>
+    <% end %>
+  <% end %>
+<% end %>
 <div class="row">
   <div class="col-md-offset-2">
     <div class="col-md-2 text-center">
@@ -16,15 +23,35 @@
 </div>
 <br/>
 <div class="row">
-  <div class="col-md-offset-7">
-    <ul class="list-inline">
+  <div class="col-md-offset-2 col-md-8">
+    <br/>
+    <p></p>
+    <br/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <strong>Inventario de datos</strong> 
+    <% if current_inventory.present? %>
+      (actualizado por última vez hace <%= time_ago_in_words(current_inventory.created_at) %>)
+    <% else %>
+      (no se ha cargado ningún inventario)
+    <% end %>
+    <ul class="list-inline pull-right">
       <li><%= link_to "Actualizar inventario", "#", :id => "js_inventory" %></li>
       <li>|</li>
       <li><%= link_to "Descargar plantilla","#" %></li>
     </ul>
-    <%= render "file_form" %>
+    <hr></hr>
+    <div class="pull-right">
+      <%= render "file_form" %>
+    </div>
   </div>
 </div>
-<% if @inventory.csv_file.present? %>
-  <%= render "file_preview" %>
+<% if display_datasets_preview?(@datasets) %>
+  <div class="row">
+    <div class="col-md-offset-2">
+      <%= render "datasets_preview", :datasets => datasets_to_display(@datasets) %>
+    </div>
+  </div>
 <% end %>

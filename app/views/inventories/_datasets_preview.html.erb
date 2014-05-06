@@ -1,0 +1,22 @@
+<div class="col-md-10">
+  <table class="table table-condensed table-bordered" id="datasets_preview">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Publisher</th>
+        <th>accessURL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% datasets.each do |dataset| %>
+        <tr class=<%= preview_dataset_class(dataset) %>>
+          <td><%= dataset.title %></td>
+          <td><%= dataset.description %></td>
+          <td><%= dataset.publisher %></td>
+          <td><%= dataset.accessUrl %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

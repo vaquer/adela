@@ -1,5 +1,5 @@
-<div class="well well-lg col-md-8" id="js_inventory_form">
-  <%= form_for(@inventory) do |f| %>
+<div class="well well-md" id="js_inventory_form">
+  <%= form_for(Inventory.new) do |f| %>
     <%= f.label "Seleccione el archivo a cargar:" %>
     <br/>
     <%= f.file_field :csv_file %>

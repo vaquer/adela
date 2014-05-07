@@ -19,7 +19,7 @@ class Inventory < ActiveRecord::Base
   def datasets
     datasets = []
     if csv_file.url.present?
-      CSV.foreach(csv_file.url, :headers => true) do |dataset|
+      CSV.new(open(csv_file.url), :headers => :first_row).each do |dataset|
         datasets << DataSet.new({
           :title => dataset["title"],
           :description => dataset["description"],

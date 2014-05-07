@@ -9,14 +9,10 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.new(inventory_params)
+    @datasets = @inventory.datasets
+
     if @inventory.save
-      @datasets = @inventory.datasets
-      if @inventory.csv_structure_valid?
-        redirect_to new_inventory_path, :notice => "El archivo se ha cargado exitosamente."
-      else
-        @inventory.destroy
-        render :action => "new"
-      end
+      redirect_to new_inventory_path, :notice => "El archivo se ha cargado exitosamente."
     else
       render :action => "new"
     end

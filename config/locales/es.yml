@@ -1,4 +1,7 @@
 es:
+  time:
+    formats:
+        default: '%d/%m/%Y'
   datetime:
     distance_in_words:
       about_x_hours:
@@ -39,6 +42,13 @@ es:
     messages:
       extension_white_list_error: " no es válido. Debe estar en formato .%{allowed_types}"
   activerecord:
+    errors:
+      models:
+        inventory:
+          attributes:
+            csv_file:
+              blank: " no fue seleccionado."
+              invalid: " no es válido. Existen errores en su estructura."
     attributes:
       inventory:
         csv_file: "Archivo"

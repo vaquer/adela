@@ -1,10 +1,11 @@
 <div class="col-md-10">
-  <table class="table table-condensed table-bordered" id="datasets_preview">
+  <table class="table table-condensed table-bordered table-striped" id="datasets_preview">
     <thead>
       <tr>
         <th>Title</th>
         <th>Description</th>
         <th>Publisher</th>
+        <th>Modified</th>
         <th>accessURL</th>
       </tr>
     </thead>
@@ -14,6 +15,7 @@
           <td><%= dataset.title %></td>
           <td><%= dataset.description %></td>
           <td><%= dataset.publisher %></td>
+          <td><%= dataset.formatted_modified %></td>
           <td><%= dataset.accessUrl %></td>
         </tr>
       <% end %>

@@ -25,4 +25,10 @@ class DataSet
   def persisted?
     false
   end
+
+  def formatted_modified
+    if modified.present?
+      I18n.l(DateTime.parse(modified), :format => :default)
+    end
+  end
 end

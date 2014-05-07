@@ -35,4 +35,5 @@ end
 
 group :staging do
   gem 'pg'
+  gem 'thin'
 end

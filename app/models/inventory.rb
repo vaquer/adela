@@ -3,19 +3,17 @@ class Inventory < ActiveRecord::Base
 
   validates_presence_of :organization_id, :csv_file
   validates_processing_of :csv_file
-  validate :csv_structure_valid?
+  validate :csv_structure
 
   belongs_to :organization
 
   scope :date_sorted, -> { order("created_at DESC") }
 
   def csv_structure_valid?
-    unless datasets.all? { |dataset| dataset.valid? }
-      errors.add(:csv_file)
-    end
+    datasets.all? { |dataset| dataset.valid? }
   end
 
-  def datasets
+  def process_csv
     datasets = []
     if csv_file.url.present?
       CSV.new(csv_file.read, :headers => :first_row).each do |dataset|
@@ -35,5 +33,15 @@ class Inventory < ActiveRecord::Base
       end
     end
     datasets
+  end
+
+  def datasets
+    @datasets ||= process_csv
+  end
+
+  def csv_structure
+    unless csv_structure_valid?
+      errors.add(:csv_file)
+    end
   end
 end

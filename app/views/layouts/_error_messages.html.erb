@@ -4,9 +4,6 @@
       <ul>
       <% object.errors.full_messages.each do |msg| %>
         <li>
-          <% if index.present? %>
-            <%= "Registro #{index + 1}:" %>
-          <% end %>
           <%= msg %>
         </li>
       <% end %>

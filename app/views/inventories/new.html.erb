@@ -1,11 +1,7 @@
-<% if @datasets.present? %>
-  <% @datasets.each_with_index do |dataset, index| %>
-    <% unless dataset.valid? %>
-      <%= render "layouts/error_messages", :object => dataset, :index => index %>
-    <% end %>
-  <% end %>
+<% if invalid_datasets?(@inventory) %>
+  <%= render "datasets_errors", :datasets => @datasets %>
 <% else %>
-  <%= render "layouts/error_messages", :object => @inventory, :index => nil %>
+  <%= render "layouts/error_messages", :object => @inventory %>
 <% end %>
 <div class="row">
   <div class="col-md-offset-2">

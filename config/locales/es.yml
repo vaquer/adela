@@ -47,7 +47,7 @@ es:
         inventory:
           attributes:
             csv_file:
-              blank: " no fue seleccionado."
+              blank: " no se puede procesar."
               invalid: " no es válido. Existen errores en su estructura."
     attributes:
       inventory:

@@ -20,4 +20,8 @@ module InventoriesHelper
       current_inventory.datasets
     end
   end
+
+  def invalid_datasets?(inventory)
+    inventory.datasets.present? && !inventory.csv_structure_valid?
+  end
 end

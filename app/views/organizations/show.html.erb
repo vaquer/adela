@@ -1,4 +1,11 @@
 <div class="container">
   <h3>Plan de apertura</h3>
   <%= link_to "Inventario de datos",new_inventory_path %>
+  <% if current_inventory.present? %>
+    (actualizado por última vez hace <%= time_ago_in_words(current_inventory.created_at) %>)
+    <hr/>
+    <%= render "inventories/datasets_preview", :datasets => current_inventory.datasets %>
+  <% else %>
+    (no se ha cargado ningún inventario)
+  <% end %>
 </div>

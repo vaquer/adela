@@ -11,20 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505170805) do
+ActiveRecord::Schema.define(version: 20140509160557) do
 
   create_table "inventories", force: true do |t|
     t.string   "csv_file"
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",       default: false
   end
 
   create_table "organizations", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false

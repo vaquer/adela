@@ -19,6 +19,8 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def publish
+  end
 
   private
 

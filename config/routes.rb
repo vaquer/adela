@@ -1,9 +1,18 @@
 Adela::Application.routes.draw do
   devise_for :users
 
+  match ":slug/catalogo" => "organizations#catalog", :as => "organization_catalog", via: :get
   resources :users, only: :show
-  resources :organizations, only: :show
-  resources :inventories
-
   root :to => "home#index"
+
+  resources :organizations, only: :show do
+    member do
+      post "publish_catalog"
+    end
+  end
+  resources :inventories do
+    collection do
+      get "publish"
+    end
+  end
 end

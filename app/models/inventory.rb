@@ -44,4 +44,8 @@ class Inventory < ActiveRecord::Base
       errors.add(:csv_file)
     end
   end
+
+  def publish!
+    update_attribute(:published, true)
+  end
 end

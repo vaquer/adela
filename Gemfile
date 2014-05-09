@@ -14,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'i18n'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'spring'

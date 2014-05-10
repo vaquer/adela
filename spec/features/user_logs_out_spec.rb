@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature User, 'logs out:' do
-
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
@@ -24,17 +23,5 @@ feature User, 'logs out:' do
     visit "/"
     click_on("Cerrar sesión")
     sees_success_message "Usted ha salido del sistema."
-  end
-
-  def given_logged_in_as(user)
-    visit "/users/sign_in"
-    fill_in("Correo electrónico", :with => user.email)
-    fill_in("Contraseña", :with => user.password)
-    click_on("Entrar")
-  end
-
-  def sees_success_message(message)
-    expect(page).to have_text(message)
-    expect(page).to have_css(".alert-success")
   end
 end

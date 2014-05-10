@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature User, 'manages inventory:' do
-  
+
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
@@ -52,23 +52,6 @@ feature User, 'manages inventory:' do
     sees_table_with_datasets
   end
 
-  def given_logged_in_as(user)
-    visit "/users/sign_in"
-    fill_in("Correo electrónico", :with => user.email)
-    fill_in("Contraseña", :with => user.password)
-    click_on("Entrar")
-  end
-
-  def sees_success_message(message)
-    expect(page).to have_text(message)
-    expect(page).to have_css(".alert-success")
-  end
-
-  def sees_error_message(message)
-    expect(page).to have_text(message)
-    expect(page).to have_css(".alert-danger")
-  end
-
   def tries_to_upload_the_file(file_name)
     attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
     click_on("Guardar")
@@ -80,8 +63,10 @@ feature User, 'manages inventory:' do
   end
 
   def sees_table_with_datasets
-    expect(page).to have_css("table#datasets_preview")
-    expect(page).to have_text("Presupuesto de egresos 2013")
-    expect(page).to have_text("Recetas médicas de Octubre")
+    within "table#datasets_preview" do
+      expect(page).to have_text("Presupuesto de egresos 2013")
+      expect(page).to have_text("Recetas médicas de Octubre")
+    end
   end
+
 end

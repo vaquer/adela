@@ -39,11 +39,18 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-  config.before(:each) do        
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
     Capybara.current_driver = :selenium if example.metadata[:js]
   end
 
   config.after(:each) do
+    DatabaseCleaner.clean
     Capybara.use_default_driver if example.metadata[:js]
   end
 end

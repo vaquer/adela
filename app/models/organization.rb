@@ -7,6 +7,10 @@ class Organization < ActiveRecord::Base
   has_many :users
 
   def current_inventory
-    inventories.date_sorted.first
+    inventories.unpublished.first
+  end
+
+  def current_catalog
+    inventories.published.first
   end
 end

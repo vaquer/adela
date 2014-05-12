@@ -15,7 +15,7 @@ feature User, 'publishes catalog:' do
   scenario "can't publish if inventory isn't set" do
     visit new_inventory_path
     click_on("Publica datos abiertos")
-    expect(page).to have_text("No se ha cargado un inventario.")
+    expect(page).to have_text("No se ha cargado un nuevo inventario.")
     expect(page).to have_link("Publica")
     expect(page).to have_css("#publish.disabled")
   end
@@ -40,6 +40,8 @@ feature User, 'publishes catalog:' do
     check_publication_requirements
     click_on "Publicar"
     sees_success_message "El catálogo de datos se ha publicado correctamente."
+    expect(page).to have_text "Publicado por última vez hace menos de 1 minuto"
+    expect(page).to have_text "No se ha cargado un nuevo inventario"
   end
 
   def given_logged_in_as(user)

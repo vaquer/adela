@@ -8,6 +8,8 @@ class Inventory < ActiveRecord::Base
   belongs_to :organization
 
   scope :date_sorted, -> { order("created_at DESC") }
+  scope :unpublished, -> { date_sorted.where(:published => false) }
+  scope :published, -> { date_sorted.where(:published => true) }
 
   def csv_structure_valid?
     datasets.all? { |dataset| dataset.valid? }
@@ -50,6 +52,6 @@ class Inventory < ActiveRecord::Base
   end
 
   def publish!
-    update_attribute(:published, true)
+    update_attributes(:published => true, :publish_date => DateTime.now)
   end
 end

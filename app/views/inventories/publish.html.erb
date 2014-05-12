@@ -63,7 +63,10 @@
 <% else %>
   <div class="col-md-offset-4 col-md-4">
     <div class="well well-lg text-center center-text">
-      <p>No se ha cargado un inventario.</p>
+      <% if current_catalog.present? %>
+        <strong>Publicado por última vez hace <%= time_ago_in_words(current_catalog.publish_date) %>.</strong>
+      <% end %>
+      <p>No se ha cargado un nuevo inventario.</p>
       <a href="#" id="publish" class="btn btn-info btn-md disabled" role="button">Publicar</a>
     </div>
   </div>

@@ -28,7 +28,11 @@ class Inventory < ActiveRecord::Base
           :identifier => dataset["identifier"],
           :accessLevel => dataset["accessLevel"],
           :accessLevelComment => dataset["accessLevelComment"],
-          :accessUrl => dataset["accessURL"]
+          :accessUrl => dataset["accessURL"],
+          :format => dataset["format"],
+          :license => dataset["license"],
+          :spatial => dataset["spatial"],
+          :temporal => dataset["temporal"]
         })
       end
     end

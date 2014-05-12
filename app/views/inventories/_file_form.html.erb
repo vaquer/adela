@@ -4,7 +4,6 @@
     <br/>
     <%= f.file_field :csv_file %>
     <small class="help-block">Debe ser formato .csv</small>
-    <%= hidden_field_tag :inventory_organization_id, current_user.organization_id, :name => "inventory[organization_id]"%>
     <%= f.submit "Guardar", :class => "btn btn-info btn-sm" %>
   <% end %>
 </div>

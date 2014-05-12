@@ -9,6 +9,7 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.new(inventory_params)
+    @inventory.organization_id = current_organization.id
     @datasets = @inventory.datasets
 
     if @inventory.save
@@ -18,8 +19,10 @@ class InventoriesController < ApplicationController
     end
   end
 
+
   private
+
   def inventory_params
-    params.require(:inventory).permit(:csv_file, :organization_id)
+    params.require(:inventory).permit(:csv_file)
   end
 end

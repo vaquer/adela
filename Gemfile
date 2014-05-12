@@ -18,7 +18,7 @@ gem 'i18n'
 group :development, :test do
   gem 'spring'
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails'
   gem 'debugger'
   gem 'factory_girl_rails'
 end

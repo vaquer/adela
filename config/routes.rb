@@ -15,4 +15,12 @@ Adela::Application.routes.draw do
       get "publish"
     end
   end
+
+  namespace :api, defaults: { format: 'json'} do
+    resources :organizations do
+      collection do
+        get "catalogs"
+      end
+    end
+  end
 end

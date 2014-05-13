@@ -6,6 +6,8 @@ class Organization < ActiveRecord::Base
   has_many :inventories
   has_many :users
 
+  scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'") }
+
   def current_inventory
     inventories.unpublished.first
   end

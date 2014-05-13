@@ -1,0 +1,16 @@
+<div class="container alert alert-danger">
+  <ul>
+    <% datasets.each_with_index do |dataset, index| %>
+      <% unless dataset.valid? %>
+        <% dataset.errors.full_messages.each do |msg| %>
+          <li>
+            <% if index.present? %>
+              <%= "Registro #{index + 1}:" %>
+            <% end %>
+            <%= msg %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

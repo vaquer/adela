@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :name
+
+  belongs_to      :organization
+  has_many        :inventories, :through => :organization
 end

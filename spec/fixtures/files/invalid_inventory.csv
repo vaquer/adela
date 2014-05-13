@@ -1,0 +1,3 @@
+title,description,keyword,modified,publisher,contactPoint,mbox,identifier,accessLevel,accessLevelComment,accessURL,format,license,spatial,temporal
+Presupuesto de egresos 2013,Presupuesto de Egresos de la Federación para el 2013.,"presupuesto,egreso",20130222T10:00:00Z,SHCP,Juan Arcadio García Márquez,datos@shcp.gob.mx,pef2013_1,público,,,csv,http://creativecommons.org/licenses/by/2.5/mx/deed.en_US,"32.71862,-114.700699,30.859409,-115.818169",20130101T00:00:00Z/20140101T00:00:00Z
+Recetas médicas de Octubre,Recetas médicas entregadas por todas las delegaciones en el mes de octubre de 2013.,,20131101T10:00:00Z,IMSS,Gabriel Buendía,datos@imss.gob.mx,recetas201310,privado,,,xls,,nacional,20131101T00:00:00Z/20131130T00:00:00Z

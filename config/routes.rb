@@ -1,7 +1,7 @@
 Adela::Application.routes.draw do
   devise_for :users
 
-  match ":slug/catalogo" => "organizations#catalog", :as => "organization_catalog", via: :get
+  get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
   resources :users, only: :show
   root :to => "home#index"
 
@@ -17,9 +17,14 @@ Adela::Application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json'} do
-    resources :organizations do
-      collection do
-        get "catalogs"
+    namespace :v1 do
+
+      get "/catalogs" => "organizations#catalogs"
+
+      resources :organizations do
+        collection do
+          get "catalogs"
+        end
       end
     end
   end

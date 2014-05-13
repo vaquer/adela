@@ -58,7 +58,7 @@ feature "data catalog management" do
     given_there_is_an_inventary_by("CONEVAL", "published")
     given_there_is_an_inventary_by("Presidencia", "published")
     given_there_is_an_inventary_by("Hacienda", "unpublished")
-    get "/api/organizations/catalogs.json"
+    get "/api/v1/organizations/catalogs.json"
     gets_all_catalogs_urls_in response
   end
 

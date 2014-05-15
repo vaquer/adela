@@ -10,7 +10,11 @@ module InventoriesHelper
   end
 
   def current_inventory
-    @current_inventory ||= current_user.inventories.date_sorted.first
+    @current_inventory ||= current_user.inventories.unpublished.first
+  end
+
+  def current_catalog
+    @current_catalog ||= current_user.inventories.published.first
   end
 
   def datasets_to_display(datasets)

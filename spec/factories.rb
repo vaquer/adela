@@ -16,4 +16,8 @@ FactoryGirl.define do
     f.csv_file File.new("#{Rails.root}/spec/fixtures/files/inventory.csv")
     f.association :organization, :factory => :organization
   end
+
+  factory :published_inventory, :parent => :inventory do |f|
+    f.published true
+  end
 end

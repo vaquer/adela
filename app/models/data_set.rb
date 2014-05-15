@@ -1,6 +1,6 @@
 class DataSet
   include ActiveModel::Validations
-  attr_accessor :title, :description, :keyword, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel, :accessLevelComment, :accessUrl
+  attr_accessor :title, :description, :keyword, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel, :accessLevelComment, :accessUrl, :format, :license, :spatial, :temporal
 
   validates_presence_of :title, :description, :keyword, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel
   validates_presence_of :accessLevelComment, :if => :private?
@@ -30,5 +30,9 @@ class DataSet
     if modified.present?
       I18n.l(DateTime.parse(modified), :format => :default)
     end
+  end
+
+  def keywords
+    keyword.split(",")
   end
 end

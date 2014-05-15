@@ -8,6 +8,8 @@ class Inventory < ActiveRecord::Base
   belongs_to :organization
 
   scope :date_sorted, -> { order("created_at DESC") }
+  scope :unpublished, -> { date_sorted.where(:published => false) }
+  scope :published, -> { date_sorted.where(:published => true) }
 
   def csv_structure_valid?
     datasets.all? { |dataset| dataset.valid? }
@@ -28,7 +30,11 @@ class Inventory < ActiveRecord::Base
           :identifier => dataset["identifier"],
           :accessLevel => dataset["accessLevel"],
           :accessLevelComment => dataset["accessLevelComment"],
-          :accessUrl => dataset["accessURL"]
+          :accessUrl => dataset["accessURL"],
+          :format => dataset["format"],
+          :license => dataset["license"],
+          :spatial => dataset["spatial"],
+          :temporal => dataset["temporal"]
         })
       end
     end
@@ -43,5 +49,9 @@ class Inventory < ActiveRecord::Base
     unless csv_structure_valid?
       errors.add(:csv_file)
     end
+  end
+
+  def publish!
+    update_attributes(:published => true, :publish_date => DateTime.now)
   end
 end

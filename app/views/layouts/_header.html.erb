@@ -1,17 +1,22 @@
 <div class="container">
   <div class="navbar navbar-default">
     <div class="navbar-header">
-      <%= link_to "Adela", root_path, class: "navbar-brand" %>
+      <%= link_to "ADELA", root_path, class: "navbar-brand" %>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= link_to "#{current_user.name} (#{current_organization.title})", organization_path(current_organization) %></li>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Cambiar contraseña", edit_user_password_path  %></li>
           <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
-        <% else %>
+        </ul>
+        <div class="navbar-brand pull-right">
+          <small>Tu organización: </small><%= link_to current_organization.title, organization_path(current_organization), :class => "h3" %>
+        </div>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>

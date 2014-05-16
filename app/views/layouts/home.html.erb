@@ -9,6 +9,8 @@
   <body>
     <%= render "layouts/header" %>
     <%= render "layouts/flash_messages", :flash => flash %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

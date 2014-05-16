@@ -1,54 +1,10 @@
-<% if invalid_datasets?(@inventory) %>
-  <%= render "datasets_errors", :datasets => @datasets %>
-<% else %>
-  <%= render "layouts/error_messages", :object => @inventory %>
-<% end %>
-<div class="row">
-  <div class="col-md-offset-2">
-    <div class="col-md-2 text-center">
-      <a href="#" class="btn btn-info">1. Plan de apertura</a>
-    </div>
-    <hr class="col-md-1 label-info hidden-xs"></hr>
-    <div class="col-md-2 text-center">
-      <%= link_to "2. Carga el inventario", new_inventory_path, :class => "btn btn-info"%>
-    </div>
-    <hr class="col-md-1 hidden-xs"></hr>
-    <div class="col-md-2 text-center">
-      <%= link_to "3. Publica datos abiertos", publish_inventories_path, :class => "btn btn-default"%>
-    </div>
+<div class="col-md-6 pull-left disabled-tab">
+  <div class="first-step">
+    <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
   </div>
 </div>
-<br/>
-<div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <br/>
-    <p></p>
-    <br/>
+<div class="col-md-6 pull-right active-tab">
+  <div class="second-step">
+    <h3>Inventario de datos <br/> <small>No tienes un inventario de datos cargado todavía.</small></h3>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <strong>Inventario de datos</strong> 
-    <% if current_inventory.present? %>
-      (actualizado por última vez hace <%= time_ago_in_words(current_inventory.created_at) %>)
-    <% else %>
-      (no se ha cargado ningún inventario)
-    <% end %>
-    <ul class="list-inline pull-right">
-      <li><%= link_to "Actualizar inventario", "#", :id => "js_inventory" %></li>
-      <li>|</li>
-      <li><%= link_to "Descargar plantilla","#" %></li>
-    </ul>
-    <hr></hr>
-    <div class="pull-right">
-      <%= render "file_form" %>
-    </div>
-  </div>
-</div>
-<% if display_datasets_preview?(@datasets) %>
-  <div class="row">
-    <div class="col-md-offset-2">
-      <%= render "datasets_preview", :datasets => datasets_to_display(@datasets) %>
-    </div>
-  </div>
-<% end %>

@@ -1,10 +1,53 @@
-<div class="col-md-6 pull-left disabled-tab">
-  <div class="first-step">
-    <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
+<div class="row">
+  <div class="col-md-6 disabled-tab">
+    <div class="first-step">
+      <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
+    </div>
+  </div>
+  <div class="col-md-6 active-tab">
+    <div class="second-step">
+      <h3>Inventario de datos <br/> <small>No tienes un inventario de datos cargado todavía.</small></h3>
+    </div>
   </div>
 </div>
-<div class="col-md-6 pull-right active-tab">
-  <div class="second-step">
-    <h3>Inventario de datos <br/> <small>No tienes un inventario de datos cargado todavía.</small></h3>
+<br/>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 info-holder text-center">
+    <span class="h4">El siguiente paso es cargar un inventario de datos</span>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-8">
+    <div class="col-md-7 inventory-step">
+      <span class="h4">Paso 1</span>
+      <div class="step-holder col-md-10 pull-right">
+        <%= image_tag 'excel_file.png', :class => "template-file-icon" %>
+        <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download" ) + "Descargar plantilla en blanco"), "https://s3-ap-southeast-1.amazonaws.com/adela-staging/template/plantilla_de_inventario.xlsx", :class => "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-7 inventory-step">
+      <span class="h4">Paso 2</span>
+      <div class="step-holder col-md-10 pull-right">
+        <label>Llena completamente la plantilla con un set de datos cada fila.</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-7 inventory-step inventory-last-step">
+      <span class="h4">Paso 3</span>
+      <div class="step-holder col-md-10 pull-right">
+        <%= form_for(Inventory.new) do |f| %>
+          <%= f.label "Sube tu CSV con el inventario de datos." %>
+          <%= f.file_field :csv_file %>
+          <br/>
+          <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-cloud-upload"></span> Subir inventario
+          </button>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

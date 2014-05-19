@@ -20,12 +20,18 @@ module InventoriesHelper
   def datasets_to_display(datasets)
     if datasets.present?
       datasets
-    else
+    elsif current_inventory.present?
       current_inventory.datasets
     end
   end
 
   def invalid_datasets?(inventory)
     inventory.datasets.present? && !inventory.csv_structure_valid?
+  end
+
+  def file_structure_feedback(datasets)
+    invalid_datasets_count = datasets.map(&:valid?).count(false)
+    valid_datasets_count = datasets.map(&:valid?).count(true)
+    "#{valid_datasets_count} sets de datos completos y #{invalid_datasets_count} sets de datos incompletos."
   end
 end

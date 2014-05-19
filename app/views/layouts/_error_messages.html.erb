@@ -1,13 +1,5 @@
 <% if object.errors.any? %>
-  <div class="container">
-    <div class="alert alert-danger">
-      <ul>
-      <% object.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-      </ul>
-    </div>
+  <div class="md-col-8 alert alert-danger">
+    <%= object.errors.full_messages.first %>
   </div>
 <% end %>

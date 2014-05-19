@@ -4,19 +4,17 @@ class InventoriesController < ApplicationController
   layout 'home'
 
   def new
-    @inventory = Inventory.new
+    @inventory = current_user.inventories.unpublished.first
   end
 
   def create
     @inventory = Inventory.new(inventory_params)
     @inventory.organization_id = current_organization.id
     @datasets = @inventory.datasets
+    @inventory.save
+    @upload_intent = true
 
-    if @inventory.save
-      redirect_to new_inventory_path, :notice => "El archivo se ha cargado exitosamente."
-    else
-      render :action => "new"
-    end
+    render :action => "new"
   end
 
   def publish

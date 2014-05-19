@@ -10,8 +10,8 @@ feature User, 'logs out:' do
     expect(current_path).to eq(organization_path(@user.organization))
   end
 
-  scenario "sees user name" do
-    expect(page).to have_text(@user.name)
+  scenario "sees user organization title" do
+    expect(page).to have_text(@user.organization.title)
   end
 
   scenario "sees the log out link" do

@@ -54,4 +54,8 @@ class Inventory < ActiveRecord::Base
   def publish!
     update_attributes(:published => true, :publish_date => DateTime.now)
   end
+
+  def has_valid_datasets?
+    datasets.map(&:valid?).count(true) >= 1
+  end
 end

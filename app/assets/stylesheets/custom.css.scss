@@ -37,7 +37,7 @@ a:hover {
 
 .inventory-step {
   border-bottom: 1px solid $gray-light;
-  height: 60px;
+  min-height: 60px;
   margin-top: 10px;
   padding: 5px;
 }
@@ -46,6 +46,21 @@ a:hover {
   height: 130px;
 }
 
+.inventory-preview {
+  margin-top: 10px;
+  padding: 5px;
+}
+
 .template-file-icon {
   padding-right: 10px;
+}
+
+.preview-table {
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.inventory-action {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

@@ -3,6 +3,10 @@ $ ->
 
   $("#save_inventory").on("click", show_last_step)
 
+  $("form#new_inventory").on("change", "#inventory_csv_file", () ->
+    $("#upload_file[type=submit]").removeClass("disabled")
+  )
+
 validate_requirements = () ->
   checked_requirements = $("input.requirement:checked")
   if checked_requirements.length == $("input.requirement").length

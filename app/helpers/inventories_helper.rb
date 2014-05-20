@@ -34,4 +34,10 @@ module InventoriesHelper
     valid_datasets_count = datasets.map(&:valid?).count(true)
     "#{valid_datasets_count} sets de datos completos y #{invalid_datasets_count} sets de datos incompletos."
   end
+
+  def display_publish_form?(from_dashboard)
+    unless from_dashboard
+      "hidden"
+    end
+  end
 end

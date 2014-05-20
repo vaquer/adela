@@ -1,8 +1,6 @@
 $ ->
   $("form#requirements").on("change", "input.requirement", validate_requirements)
 
-  $("#publish_inventory").hide()
-
   $("#save_inventory").on("click", show_last_step)
 
 validate_requirements = () ->
@@ -13,8 +11,8 @@ validate_requirements = () ->
     $("input#publish[type=submit]").addClass("disabled")
 
 show_last_step = () ->
-  $("#save_inventory").hide()
+  $("#save_inventory").addClass("hidden")
   $(".preview-table").closest(".step-holder").addClass("inventory-step")
-  $("#publish_inventory").show()
+  $("#publish_inventory").removeClass("hidden")
   $(".checked-step").removeClass("hidden")
   false

@@ -17,6 +17,11 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def publish_later
+    @organization = Organization.friendly.find(params[:id])
+    redirect_to organization_path(@organization), :alert => "OJO: No has completado el último paso que es publicar tu inventario."
+  end
+
   def catalog
     @organization = Organization.friendly.find(params[:slug])
     @published_inventory = @organization.current_catalog

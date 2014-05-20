@@ -7,7 +7,11 @@
   <a href='<%= new_inventory_path %>'>
     <div class="col-md-6 disabled-tab step-tab">
       <div class="second-step">
-        <h3>Inventario de datos <br/> <small>No tienes un inventario de datos cargado todavía.</small></h3>
+        <h3>
+          Inventario de datos
+          <br/>
+          <small>No tienes un inventario de datos cargado todavía.</small>
+        </h3>
       </div>
     </div>
   </a>
@@ -59,5 +63,7 @@
           <small>Set de datos:</small><%= "#{@organization.current_catalog.public_datasets_count} sets públicos y #{@organization.current_catalog.private_datasets_count} sets privados" %>
         </div>
     </div>
+  <% elsif current_inventory.present? %>
+    <%= render "inventories/publish_form", :from_dashboard => true %>
   <% end %>
 </div>

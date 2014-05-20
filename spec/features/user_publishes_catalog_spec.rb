@@ -26,7 +26,7 @@ feature User, 'publishes catalog:' do
   scenario "can publish a catalog", :js => true do
     given_has_uploaded_an_inventory(1.days.ago)
     visit new_inventory_path
-    click_on "Guardar"
+    click_on "Guardar inventario"
     check_publication_requirements
     click_on "Publicar"
     sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
@@ -35,7 +35,15 @@ feature User, 'publishes catalog:' do
     expect(page).to have_text @user.name
     expect(page).to have_link "Subir nueva versión"
     expect(page).to have_link "Descargar esta versión"
+  end
 
+  scenario "can publish a catalog later", :js => true do
+    given_has_uploaded_an_inventory(1.days.ago)
+    visit new_inventory_path
+    click_on "Guardar inventario"
+    click_on "Lo publicaré después, quiero avanzar"
+    expect(page).to have_text "OJO: No has completado el último paso que es publicar tu inventario."
+    expect(page).to have_text "Paso 5"
   end
 
   def given_logged_in_as(user)

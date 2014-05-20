@@ -3,6 +3,7 @@ module ApplicationHelper
     case key
     when "notice" then "success"
     when "alert" then "danger"
+    when "info" then "info"
     end
   end
 end

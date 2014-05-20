@@ -8,6 +8,7 @@ Adela::Application.routes.draw do
   resources :organizations, only: :show do
     member do
       post "publish_catalog"
+      get "publish_later"
     end
   end
   resources :inventories do

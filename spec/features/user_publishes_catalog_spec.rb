@@ -7,36 +7,26 @@ feature User, 'publishes catalog:' do
     given_logged_in_as(@user)
   end
 
-  scenario "sees publish link" do
-    visit new_inventory_path
-    expect(page).to have_link("Publica datos abiertos")
-  end
-
-  scenario "can't publish if inventory isn't set" do
-    visit new_inventory_path
-    click_on("Publica datos abiertos")
-    expect(page).to have_text("No se ha cargado un nuevo inventario.")
-    expect(page).to have_link("Publica")
-    expect(page).to have_css("#publish.disabled")
-  end
-
   scenario "can see a disabled publish link and catalog url" do
     given_has_uploaded_an_inventory(1.day.ago)
-    visit publish_inventories_path
-    expect(page).to have_text("Los datos serán publicados en:")
-    expect(page).to have_text("#{@user.organization.slug}/catalogo.json")
+    visit new_inventory_path
+    expect(page).to have_text("Paso 5")
+    expect(page).to have_text("Publica tu inventario")
     expect(page).to have_css("#publish.disabled")
+    expect(page).to have_link("Lo publicaré después, quiero avanzar")
   end
 
   scenario "sees permissions and publication requirements checkboxes" do
     given_has_uploaded_an_inventory(1.day.ago)
-    visit publish_inventories_path
+    visit new_inventory_path
+    click_on "Guardar"
     sees_data_requirements
   end
 
   scenario "can publish a catalog", :js => true do
     given_has_uploaded_an_inventory(1.days.ago)
-    visit publish_inventories_path
+    visit new_inventory_path
+    pending
     check_publication_requirements
     click_on "Publicar"
     sees_success_message "El catálogo de datos se ha publicado correctamente."

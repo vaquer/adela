@@ -19,7 +19,8 @@
 <br/>
 <div class="row">
   <div class="col-md-8">
-    <div class="col-md-7 inventory-step">
+    <div class="col-md-10 inventory-step">
+      <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
       <span class="h4">Paso 1</span>
       <div class="step-holder col-md-10 pull-right">
         <%= image_tag 'excel_file.png', :class => "template-file-icon" %>
@@ -28,7 +29,8 @@
     </div>
   </div>
   <div class="col-md-8">
-    <div class="col-md-7 inventory-step">
+    <div class="col-md-10 inventory-step">
+      <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
       <span class="h4">Paso 2</span>
       <div class="step-holder col-md-10 pull-right">
         <label>Llena completamente la plantilla con un set de datos cada fila.</label>
@@ -36,7 +38,8 @@
     </div>
   </div>
   <div class="col-md-8">
-    <div class="col-md-7 inventory-step inventory-last-step">
+    <div class="col-md-10 inventory-step inventory-last-step">
+      <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
       <span class="h4">Paso 3</span>
       <div class="step-holder col-md-10 pull-right">
         <%= form_for(Inventory.new) do |f| %>
@@ -52,7 +55,8 @@
   </div>
   <% if display_datasets_preview?(@datasets) || @upload_intent.present? %>
     <div class="col-md-8">
-      <div class="col-md-7 inventory-preview">
+      <div class="col-md-10 inventory-preview">
+        <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
         <span class="h4">Paso 4</span>
         <div class="step-holder col-md-10 pull-right">
           <label>Valida tu inventario</label>
@@ -62,11 +66,12 @@
         <%= render "layouts/error_messages", :object => @inventory %>
         <%= render "datasets_preview", :datasets => datasets_to_display(@datasets) %>
         <% if @inventory.csv_file.present? && @inventory.csv_structure_valid? %>
-          <%= link_to "Guardar inventario", "#", :class => "btn btn-primary inventory-action" %>
+          <%= link_to "Guardar inventario", "#", :class => "btn btn-primary inventory-action", :id => "save_inventory" %>
         <% elsif @inventory.has_valid_datasets? %>
-          <%= link_to "Ignorar incorrectas y guardar inventario", "#", :class => "btn btn-primary inventory-action" %>
+          <%= link_to "Ignorar incorrectas y guardar inventario", "#", :class => "btn btn-primary inventory-action", :id => "save_inventory" %>
         <% end %>
       </div>
     </div>
   <% end %>
 </div>
+<%= render "inventories/publish_form" %>

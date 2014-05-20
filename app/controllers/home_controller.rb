@@ -4,6 +4,9 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
+    if current_user
+      redirect_to organization_path(current_organization)
+    end
   end
 
 end

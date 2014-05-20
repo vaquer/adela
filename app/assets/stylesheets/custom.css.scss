@@ -7,7 +7,7 @@ a:hover {
 
 .disabled-tab {
   background-color: $gray-lighter;
-  border: 2px solid $gray-lighter;
+  border: 2px solid $gray;
   padding: 0 20px 20px 20px;
 }
 
@@ -15,6 +15,11 @@ a:hover {
   background-color: white;
   border: 2px solid $brand-info;
   padding: 0 20px 20px 20px;
+}
+
+.step-tab:hover {
+  background-color: white;
+  border: 2px solid $brand-info;
 }
 
 .first-step {
@@ -64,4 +69,9 @@ a:hover {
 .inventory-action {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.csv-file {
+  height: 100px;
+  padding-right: 15px;
 }

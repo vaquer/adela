@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509201625) do
+ActiveRecord::Schema.define(version: 20140520170420) do
 
   create_table "inventories", force: true do |t|
     t.string   "csv_file"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140509201625) do
     t.datetime "updated_at"
     t.boolean  "published",       default: false
     t.datetime "publish_date"
+    t.string   "author"
   end
 
   create_table "organizations", force: true do |t|

@@ -4,13 +4,14 @@ class OrganizationsController < ApplicationController
   layout 'home'
 
   def show
+    @organization = Organization.friendly.find(params[:id])
   end
 
   def publish_catalog
     @organization = Organization.friendly.find(params[:id])
     if publication_requirements_checked?
       @organization.current_inventory.publish!
-      redirect_to publish_inventories_path, :notice => "El catálogo de datos se ha publicado correctamente."
+      redirect_to organization_path(@organization), :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
     else
       redirect_to publish_inventories_path, :error => "No se pudo publicar el catálogo"
     end

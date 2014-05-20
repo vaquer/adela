@@ -1,11 +1,63 @@
-<div class="container">
-  <h3>Plan de apertura</h3>
-  <%= link_to "Inventario de datos",new_inventory_path %>
-  <% if current_inventory.present? %>
-    (actualizado por última vez hace <%= time_ago_in_words(current_inventory.created_at) %>)
-    <hr/>
-    <%= render "inventories/datasets_preview", :datasets => current_inventory.datasets %>
-  <% else %>
-    (no se ha cargado ningún inventario)
+<div class="row">
+  <div class="col-md-6 disabled-tab">
+    <div class="first-step">
+      <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
+    </div>
+  </div>
+  <a href='<%= new_inventory_path %>'>
+    <div class="col-md-6 disabled-tab step-tab">
+      <div class="second-step">
+        <h3>Inventario de datos <br/> <small>No tienes un inventario de datos cargado todavía.</small></h3>
+      </div>
+    </div>
+  </a>
+</div>
+<br/>
+<%= render "layouts/flash_messages", :flash => flash %>
+<br/>
+<% if @organization.last_file_version.present? %>
+  <div class="row">
+    <div class="col-md-10">
+      <%= image_tag "csv_file_x.png", :class => "pull-left csv-file" %>
+      <div class="h4">
+        <small>Última versión:</small><%= I18n.l(@organization.last_file_version.created_at, :format => :short) %>
+      </div>
+      <div class="h4">
+        <small>Actualizado por:</small><%= @organization.last_file_version.author %>
+      </div>
+      <div class="h4">
+        <small>Set de datos:</small><%= "#{@organization.last_file_version.public_datasets_count} sets públicos y #{@organization.last_file_version.private_datasets_count} sets privados" %>
+      </div>
+      <div class="h4">
+        <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-upload" ) + "Subir nueva versión"), new_inventory_path, :class => "btn btn-default disabled" %>
+        <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download" ) + "Descargar esta versión"), @organization.last_file_version.csv_file.url, :class => "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-6 pull-left">
+    <h4>Versiones Pasadas</h4>
+    <% unless @organization.old_file_versions.any? %>
+      <div class="h4">
+        <small>Todavía no hay más versiones</small>
+      </div>
+    <% end %>
+  </div>
+  <% if @organization.current_catalog.present? %>
+    <div class="col-md-6 pull-right">
+      <h4>Versión Publicada</h4>
+      <br/>
+      <%= image_tag "csv_file_x.png", :class => "pull-left csv-file" %>
+        <div class="h4">
+          <small>Última versión:</small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+        </div>
+        <div class="h4">
+          <small>Actualizado por:</small><%= @organization.current_catalog.author %>
+        </div>
+        <div class="h4">
+          <small>Set de datos:</small><%= "#{@organization.current_catalog.public_datasets_count} sets públicos y #{@organization.current_catalog.private_datasets_count} sets privados" %>
+        </div>
+    </div>
   <% end %>
 </div>

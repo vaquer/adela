@@ -26,12 +26,16 @@ feature User, 'publishes catalog:' do
   scenario "can publish a catalog", :js => true do
     given_has_uploaded_an_inventory(1.days.ago)
     visit new_inventory_path
-    pending
+    click_on "Guardar"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "El catálogo de datos se ha publicado correctamente."
-    expect(page).to have_text "Publicado por última vez hace menos de 1 minuto"
-    expect(page).to have_text "No se ha cargado un nuevo inventario"
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+    expect(page).to have_text "Última versión"
+    expect(page).to have_text "Versión Publicada"
+    expect(page).to have_text @user.name
+    expect(page).to have_link "Subir nueva versión"
+    expect(page).to have_link "Descargar esta versión"
+
   end
 
   def given_logged_in_as(user)
@@ -43,7 +47,7 @@ feature User, 'publishes catalog:' do
 
   def given_has_uploaded_an_inventory(days_ago)
     @inventory = FactoryGirl.create(:inventory)
-    @inventory.update_attributes(:organization_id => @user.organization_id, :created_at => days_ago)
+    @inventory.update_attributes(:author => @user.name, :organization_id => @user.organization_id, :created_at => days_ago)
   end
 
   def sees_data_requirements

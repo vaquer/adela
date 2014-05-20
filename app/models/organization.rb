@@ -15,4 +15,12 @@ class Organization < ActiveRecord::Base
   def current_catalog
     inventories.published.first
   end
+
+  def last_file_version
+    inventories.date_sorted.first
+  end
+
+  def old_file_versions
+    inventories.date_sorted.offset(1)
+  end
 end

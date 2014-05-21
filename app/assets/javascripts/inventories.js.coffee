@@ -10,7 +10,6 @@ $ ->
 validate_requirements = () ->
   checked_requirements = $(this).closest("form#requirements").find("input.requirement:checked")
   submit_button = $(this).closest("form#requirements").find("input#publish[type=submit]")
-  debugger
   if checked_requirements.length == $(this).closest("form#requirements").find("input.requirement").length
     submit_button.removeClass("disabled")
   else

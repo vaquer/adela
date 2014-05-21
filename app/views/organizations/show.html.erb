@@ -41,7 +41,7 @@
         <small>Set de datos:</small><%= "#{@organization.last_file_version.public_datasets_count} sets públicos y #{@organization.last_file_version.private_datasets_count} sets privados" %>
       </div>
       <div class="h4">
-        <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-upload" ) + "Subir nueva versión"), new_inventory_path, :class => "btn btn-default disabled" %>
+        <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-upload" ) + "Subir nueva versión"), new_inventory_path(:new_version => true), :class => "btn btn-default" %>
         <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download" ) + "Descargar esta versión"), @organization.last_file_version.csv_file.url, :class => "btn btn-default" %>
       </div>
     </div>
@@ -50,7 +50,14 @@
 <div class="row">
   <div class="col-md-6 pull-left">
     <h4>Versiones Pasadas</h4>
-    <% unless @organization.old_file_versions.any? %>
+    <% if @organization.old_file_versions.any? %>
+      <% @organization.old_file_versions.each do |inventory| %>
+        <div>
+          <span class="h5"><%= inventory_history(inventory) %></span>
+          <%= link_to content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download"), inventory.csv_file.url %>
+        </div>
+      <% end %>
+    <% else %>
       <div class="h4">
         <small>Todavía no hay más versiones</small>
       </div>

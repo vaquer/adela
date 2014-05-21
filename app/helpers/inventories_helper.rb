@@ -40,4 +40,8 @@ module InventoriesHelper
       "hidden"
     end
   end
+
+  def inventory_history(inventory)
+    "Fecha de captura: #{I18n.l(inventory.created_at, :format => :short)}, por #{inventory.author}."
+  end
 end

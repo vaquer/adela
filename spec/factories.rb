@@ -19,5 +19,6 @@ FactoryGirl.define do
 
   factory :published_inventory, :parent => :inventory do |f|
     f.published true
+    f.publish_date DateTime.now
   end
 end

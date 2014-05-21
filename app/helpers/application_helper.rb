@@ -6,4 +6,10 @@ module ApplicationHelper
     when "info" then "info"
     end
   end
+
+  def step_image_class(new_version)
+    unless new_version
+      "hidden"
+    end
+  end
 end

@@ -28,7 +28,7 @@
 <div class="row">
   <div class="col-md-8">
     <div class="col-md-10 inventory-step">
-      <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
+      <%= image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version])}" %>
       <span class="h4">Paso 1</span>
       <div class="step-holder col-md-10 pull-right">
         <%= image_tag 'excel_file.png', :class => "template-file-icon" %>
@@ -38,7 +38,7 @@
   </div>
   <div class="col-md-8">
     <div class="col-md-10 inventory-step">
-      <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
+      <%= image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version])}" %>
       <span class="h4">Paso 2</span>
       <div class="step-holder col-md-10 pull-right">
         <label>Llena completamente la plantilla con un set de datos cada fila.</label>

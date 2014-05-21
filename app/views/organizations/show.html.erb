@@ -4,7 +4,7 @@
 <% if @organization.last_file_version.present? %>
   <div class="row">
     <div class="col-md-10">
-      <%= image_tag "csv_file_x.png", :class => "pull-left csv-file" %>
+      <%= image_tag "csv_file.png", :class => "pull-left csv-file" %>
       <div class="h4">
         <small>Última versión:</small><%= I18n.l(@organization.last_file_version.created_at, :format => :short) %>
       </div>
@@ -41,7 +41,7 @@
     <div class="col-md-6 pull-right">
       <h4>Versión Publicada</h4>
       <br/>
-      <%= image_tag "csv_file_x.png", :class => "pull-left csv-file" %>
+      <%= image_tag "csv_file.png", :class => "pull-left csv-file" %>
       <div class="h4">
         <small>Última versión:</small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
       </div>

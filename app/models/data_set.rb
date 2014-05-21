@@ -26,12 +26,6 @@ class DataSet
     false
   end
 
-  def formatted_modified
-    if modified.present?
-      I18n.l(DateTime.parse(modified), :format => :default)
-    end
-  end
-
   def keywords
     keyword.split(",")
   end

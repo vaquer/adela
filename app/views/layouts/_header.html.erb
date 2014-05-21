@@ -6,7 +6,7 @@
     <div class="navbar-collapse collapse">
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Cambiar contraseña", edit_user_password_path  %></li>
+          <li><%= link_to "Cambiar contraseña", edit_user_registration_path %></li>
           <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
         </ul>
         <div class="navbar-brand pull-right">

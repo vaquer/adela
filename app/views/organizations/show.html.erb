@@ -48,7 +48,7 @@
   </div>
 <% end %>
 <div class="row">
-  <div class="col-md-6 pull-left">
+  <div class="dashboard-history col-md-6 pull-left">
     <h4>Versiones Pasadas</h4>
     <% if @organization.old_file_versions.any? %>
       <% @organization.old_file_versions.each do |inventory| %>
@@ -68,17 +68,27 @@
       <h4>Versión Publicada</h4>
       <br/>
       <%= image_tag "csv_file_x.png", :class => "pull-left csv-file" %>
-        <div class="h4">
-          <small>Última versión:</small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+      <div class="h4">
+        <small>Última versión:</small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+      </div>
+      <div class="h4">
+        <small>Actualizado por:</small><%= @organization.current_catalog.author %>
+      </div>
+      <div class="h4">
+        <small>Set de datos:</small><%= "#{@organization.current_catalog.public_datasets_count} sets públicos y #{@organization.current_catalog.private_datasets_count} sets privados" %>
+      </div>
+      <% if @organization.last_inventory_is_unpublished? %>
+        <br/>
+        <div class="alert alert-danger">
+          OJO: La versión publicada no es la última versión.
         </div>
-        <div class="h4">
-          <small>Actualizado por:</small><%= @organization.current_catalog.author %>
-        </div>
-        <div class="h4">
-          <small>Set de datos:</small><%= "#{@organization.current_catalog.public_datasets_count} sets públicos y #{@organization.current_catalog.private_datasets_count} sets privados" %>
-        </div>
+        <%= link_to "Publicar última versión", "#", :class => "btn btn-default", :id => "save_inventory" %>
+      <% end %>
     </div>
   <% elsif current_inventory.present? %>
     <%= render "inventories/publish_form", :from_dashboard => true %>
   <% end %>
+  <div class="publish-form-holder hidden">
+    <%= render "inventories/publish_form", :from_dashboard => true %>
+  </div>
 </div>

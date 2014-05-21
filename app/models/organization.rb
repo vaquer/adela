@@ -23,4 +23,8 @@ class Organization < ActiveRecord::Base
   def old_file_versions
     inventories.date_sorted.offset(1)
   end
+
+  def last_inventory_is_unpublished?
+    current_catalog && current_inventory && (current_catalog.id != current_inventory.id)
+  end
 end

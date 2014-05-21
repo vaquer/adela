@@ -19,6 +19,7 @@ gem 'rabl'
 
 group :development, :test do
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'debugger'

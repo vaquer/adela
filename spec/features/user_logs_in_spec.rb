@@ -41,7 +41,7 @@ feature User, 'logs in:' do
     fill_the_form_with(@user.email, @user.password)
     click_on("Entrar")
     sees_success_message "Ingreso exitoso."
-    expect(current_path).to eq(organization_path(@user.organization.slug))
+    expect(current_path).to eq(new_inventory_path)
   end
 
   def fill_the_form_with(email, password)

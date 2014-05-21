@@ -1,5 +1,8 @@
 <br/>
 <%= render "layouts/flash_messages", :flash => flash %>
+<% if @inventory.present? %>
+  <%= render "layouts/error_messages", :object => @inventory %>
+<% end %>
 <br/>
 <div class="row">
   <div class="col-md-8">
@@ -37,7 +40,7 @@
       </div>
     </div>
   </div>
-  <% if display_datasets_preview?(@datasets) || @upload_intent.present? %>
+  <% if @datasets.present? && @upload_intent.present? %>
     <div class="col-md-8">
       <div class="col-md-10 inventory-preview">
         <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
@@ -47,12 +50,11 @@
         </div>
       </div>
       <div class="step-holder col-md-10">
-        <%= render "layouts/error_messages", :object => @inventory %>
         <%= render "datasets_preview", :datasets => datasets_to_display(@datasets) %>
         <% if @inventory.csv_file.present? && @inventory.csv_structure_valid? %>
           <%= link_to "Guardar inventario", "#", :class => "btn btn-primary inventory-action", :id => "save_inventory" %>
         <% elsif @inventory.has_valid_datasets? %>
-          <%= link_to "Ignorar incorrectas y guardar inventario", "#", :class => "btn btn-primary inventory-action", :id => "save_inventory" %>
+          <%= link_to "Ignorar incorrectas y guardar inventario", "#", :class => "btn btn-primary inventory-action disabled", :id => "save_inventory" %>
         <% end %>
       </div>
     </div>

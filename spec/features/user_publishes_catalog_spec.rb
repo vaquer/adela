@@ -10,6 +10,7 @@ feature User, 'publishes catalog:' do
   scenario "can see a disabled publish link and catalog url" do
     given_has_uploaded_an_inventory(1.day.ago)
     visit new_inventory_path
+    tries_to_upload_the_file("inventory.csv")
     expect(page).to have_text("Paso 5")
     expect(page).to have_text("Publica tu inventario")
     expect(page).to have_css("#publish.disabled")
@@ -19,13 +20,14 @@ feature User, 'publishes catalog:' do
   scenario "sees permissions and publication requirements checkboxes" do
     given_has_uploaded_an_inventory(1.day.ago)
     visit new_inventory_path
+    tries_to_upload_the_file("inventory.csv")
     click_on "Guardar"
     sees_data_requirements
   end
 
   scenario "can publish a catalog", :js => true do
-    given_has_uploaded_an_inventory(1.days.ago)
     visit new_inventory_path
+    tries_to_upload_the_file("inventory.csv")
     click_on "Guardar inventario"
     check_publication_requirements
     click_on "Publicar"
@@ -38,8 +40,8 @@ feature User, 'publishes catalog:' do
   end
 
   scenario "can publish a catalog later", :js => true do
-    given_has_uploaded_an_inventory(1.days.ago)
     visit new_inventory_path
+    tries_to_upload_the_file("inventory.csv")
     click_on "Guardar inventario"
     click_on "Lo publicaré después, quiero avanzar"
     expect(page).to have_text "OJO: No has completado el último paso que es publicar tu inventario."
@@ -76,5 +78,10 @@ feature User, 'publishes catalog:' do
   def sees_success_message(message)
     expect(page).to have_text(message)
     expect(page).to have_css(".alert-success")
+  end
+
+  def tries_to_upload_the_file(file_name)
+    attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
+    click_on("Subir inventario")
   end
 end

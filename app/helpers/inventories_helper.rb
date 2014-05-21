@@ -5,10 +5,6 @@ module InventoriesHelper
     end
   end
 
-  def display_datasets_preview?(datasets)
-    datasets.present? || current_inventory.present?
-  end
-
   def current_inventory
     @current_inventory ||= current_user.inventories.unpublished.first
   end

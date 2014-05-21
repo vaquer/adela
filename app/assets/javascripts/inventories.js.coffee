@@ -8,11 +8,13 @@ $ ->
   )
 
 validate_requirements = () ->
-  checked_requirements = $("input.requirement:checked")
-  if checked_requirements.length == $("input.requirement").length
-    $("input#publish[type=submit]").removeClass("disabled")
+  checked_requirements = $(this).closest("form#requirements").find("input.requirement:checked")
+  submit_button = $(this).closest("form#requirements").find("input#publish[type=submit]")
+  debugger
+  if checked_requirements.length == $(this).closest("form#requirements").find("input.requirement").length
+    submit_button.removeClass("disabled")
   else
-    $("input#publish[type=submit]").addClass("disabled")
+    submit_button.addClass("disabled")
 
 show_last_step = () ->
   $("#save_inventory").addClass("hidden")

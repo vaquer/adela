@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_organization
 
   def after_sign_in_path_for(resource)
-    organization_path(current_user.organization)
+    if current_organization.inventories.any?
+      organization_path(current_user.organization)
+    else
+      new_inventory_path
+    end
   end
 
   def current_organization

@@ -48,6 +48,16 @@ feature User, 'publishes catalog:' do
     expect(page).to have_text "Paso 5"
   end
 
+  scenario "can ignore invalid datasets and save inventory", :js => true do
+    visit new_inventory_path
+    tries_to_upload_the_file('partial_invalid_inventory.csv')
+    click_on("Ignorar incorrectas y guardar inventario")
+    expect(page).to have_text "Paso 5"
+    check_publication_requirements
+    click_on "Publicar"
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+  end
+
   def given_logged_in_as(user)
     visit "/users/sign_in"
     fill_in("Correo electrónico", :with => user.email)

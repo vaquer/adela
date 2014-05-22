@@ -29,4 +29,9 @@ class DataSet
   def keywords
     keyword.split(",")
   end
+
+  def values_array
+    [title, description, keyword, modified, publisher, contactPoint, mbox, identifier, accessLevel, accessLevelComment, accessUrl, format, license, spatial, temporal]
+  end
+
 end

@@ -19,6 +19,7 @@ Adela::Application.routes.draw do
   resources :inventories do
     collection do
       get "publish"
+      get "ignore_invalid_and_save"
     end
   end
 

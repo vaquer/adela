@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520170420) do
+ActiveRecord::Schema.define(version: 20140521232246) do
 
   create_table "inventories", force: true do |t|
     t.string   "csv_file"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 20140520170420) do
   end
 
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true
+
+  create_table "topics", force: true do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.string   "owner"
+    t.string   "description"
+    t.integer  "sort_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["organization_id"], name: "index_topics_on_organization_id"
+  add_index "topics", ["sort_order"], name: "index_topics_on_sort_order"
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false

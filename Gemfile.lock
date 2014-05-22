@@ -50,7 +50,6 @@ GEM
     carrierwave-aws (0.4.1)
       aws-sdk (>= 1.29)
       carrierwave (>= 0.7)
-    charlock_holmes (0.7.1)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
@@ -202,7 +201,6 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-aws
-  charlock_holmes
   coffee-rails (~> 4.0.0)
   database_cleaner
   debugger

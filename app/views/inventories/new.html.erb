@@ -54,7 +54,7 @@
         <% if @inventory.csv_file.present? && @inventory.csv_structure_valid? %>
           <%= link_to "Guardar inventario", "#", :class => "btn btn-primary inventory-action", :id => "save_inventory" %>
         <% elsif @inventory.has_valid_datasets? %>
-          <%= link_to "Ignorar incorrectas y guardar inventario", "#", :class => "btn btn-primary inventory-action disabled", :id => "save_inventory" %>
+          <%= link_to "Ignorar incorrectas y guardar inventario", "#", :class => "btn btn-primary inventory-action disabled", :id => "ignore_and_save" %>
         <% end %>
       </div>
     </div>

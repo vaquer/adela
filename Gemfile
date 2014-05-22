@@ -16,7 +16,6 @@ gem 'carrierwave-aws'
 gem 'i18n'
 gem 'friendly_id'
 gem 'rabl'
-gem "charlock_holmes"
 
 group :development, :test do
   gem 'spring'

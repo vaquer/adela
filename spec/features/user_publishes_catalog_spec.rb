@@ -55,11 +55,6 @@ feature User, 'publishes catalog:' do
     click_on("Entrar")
   end
 
-  def given_has_uploaded_an_inventory(days_ago)
-    @inventory = FactoryGirl.create(:inventory)
-    @inventory.update_attributes(:author => @user.name, :organization_id => @user.organization_id, :created_at => days_ago)
-  end
-
   def sees_data_requirements
     expect(page).to have_css("#personal_data")
     expect(page).to have_css("#open_data")
@@ -83,5 +78,10 @@ feature User, 'publishes catalog:' do
   def tries_to_upload_the_file(file_name)
     attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
     click_on("Subir inventario")
+  end
+
+  def given_has_uploaded_an_inventory(days_ago)
+    @inventory = FactoryGirl.create(:inventory)
+    @inventory.update_attributes(:organization_id => @user.organization_id, :created_at => days_ago)
   end
 end

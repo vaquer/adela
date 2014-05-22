@@ -30,6 +30,12 @@ feature User, 'manages inventory:' do
     sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
+  scenario "fails to upload a csv file with an invalid encoding" do
+    visit new_inventory_path
+    tries_to_upload_the_file('invalid_encoding_inventory.csv')
+    sees_error_message "El archivo seleccionado no está codificado en formato UTF-8."
+  end
+
   scenario "fails to upload a csv file with invalid structure" do
     visit new_inventory_path
     tries_to_upload_the_file('invalid_inventory.csv')
@@ -46,7 +52,7 @@ feature User, 'manages inventory:' do
   scenario "sees ignore and save action for uploaded partial invalid csv file" do
     visit new_inventory_path
     tries_to_upload_the_file('partial_invalid_inventory.csv')
-    expect(page).to have_link "Ignorar incorrectas y guardar inventario"
+    expect(page).to have_text "Ignorar incorrectas y guardar inventario"
   end
 
   scenario "sees save action for uploaded valid csv file" do

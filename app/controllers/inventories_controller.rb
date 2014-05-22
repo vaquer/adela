@@ -11,10 +11,12 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(inventory_params)
     @inventory.organization_id = current_organization.id
     @inventory.author = current_user.name
-    @datasets = @inventory.datasets
     @inventory.save
-    @upload_intent = true
 
+    if @inventory.csv_right_encoding?
+      @datasets = @inventory.datasets
+    end
+    @upload_intent = true
     render :action => "new"
   end
 

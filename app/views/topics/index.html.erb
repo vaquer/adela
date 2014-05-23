@@ -40,7 +40,10 @@
       <small>Todavía no tienes áreas o temas agregados.</small>
     </h3>
 
-    <button type="button" class="btn btn-default">
+    <div id="topics-listing"></div>
+    <div id="new-topic-container"></div>
+
+    <button type="button" id="new-topic-button" class="btn btn-default">
       <span class="glyphicon glyphicon-plus"></span>
       Agregar nueva área o tema
     </button>
@@ -72,3 +75,13 @@
     <p><a href="#">Más ayuda sobre el plan de apertura</a></p>
   </div>
 </div>
+
+<script>
+  $(function () {
+    new TopicForm({
+      new_button: "#new-topic-button",
+      form_container: "#new-topic-container",
+      topics_listing: "#topics-listing"
+    });
+  });
+</script>

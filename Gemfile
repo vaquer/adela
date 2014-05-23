@@ -16,6 +16,7 @@ gem 'carrierwave-aws'
 gem 'i18n'
 gem 'friendly_id'
 gem 'rabl'
+gem 'eco'
 
 group :development, :test do
   gem 'spring'

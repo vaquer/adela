@@ -58,6 +58,7 @@ feature User, 'publishes catalog:' do
     sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
   end
 
+  # FIXME Use helper
   def given_logged_in_as(user)
     visit "/users/sign_in"
     fill_in("Correo electrónico", :with => user.email)
@@ -80,6 +81,7 @@ feature User, 'publishes catalog:' do
     page.execute_script("$('#data_policy_requirements').trigger('change');")
   end
 
+  # FIXME Use helper
   def sees_success_message(message)
     expect(page).to have_text(message)
     expect(page).to have_css(".alert-success")

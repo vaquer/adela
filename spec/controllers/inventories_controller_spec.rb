@@ -7,7 +7,7 @@ describe InventoriesController do
     sign_in user
   end
 
-  describe "GET create" do
+  describe "POST create" do
     let(:inventory_file) { fixture_file_upload("files/inventory.csv") }
 
     it "creates a new inventory" do

@@ -1,0 +1,15 @@
+#new-topic-form {
+  @include make-row($gutter: 0);
+
+  .data-controls {
+    padding-top: 1em;
+
+    form {
+      .form-group {
+        .submit-row {
+          button { margin-right: 1em; }
+        }
+      }
+    }
+  }
+}

@@ -18,7 +18,16 @@ describe TopicsController do
       assigns(:topic).organization.should == user.organization
     end
 
-    it "assigns a sort_order"
+    it "assigns a sort_order" do
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner" }, format: "json"
+      assigns(:topic).sort_order.should == 1
+
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner" }, format: "json"
+      assigns(:topic).sort_order.should == 2
+
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner" }, format: "json"
+      assigns(:topic).sort_order.should == 3
+    end
 
     it "responds with a json encoded topic" do
       post_data = { :name => "The name", :owner => "The owner",

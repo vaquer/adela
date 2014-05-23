@@ -76,6 +76,9 @@
   </div>
 </div>
 
+
+<br><br><br><br>
+
 <script>
   $(function () {
     new TopicForm({
@@ -83,5 +86,8 @@
       form_container: "#new-topic-container",
       topics_listing: "#topics-listing"
     });
+
+    var topic_loader = new TopicLoader();
+    topic_loader.load_in("#topics-listing");
   });
 </script>

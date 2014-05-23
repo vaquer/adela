@@ -22,10 +22,27 @@ describe Topic do
       subject.organization = nil
       subject.should_not be_valid
     end
+  end
 
-    it "should not be valid without a sort order" do
-      subject.sort_order = nil
-      subject.should_not be_valid
+  describe "#sort_order" do
+    subject do
+      Topic.new :name => "Topic",
+        :owner => "Owner",
+        :organization => FactoryGirl.create(:organization)
+    end
+
+    it "automatically sets a sort_order when creating" do
+      subject.save!
+      subject.sort_order.should == 1
+    end
+
+    it "sets the sorts_order to be one more than previous one" do
+      FactoryGirl.create :topic, :sort_order => 1
+      FactoryGirl.create :topic, :sort_order => 2
+      FactoryGirl.create :topic, :sort_order => 3
+
+      subject.save!
+      subject.sort_order.should == 4
     end
   end
 end

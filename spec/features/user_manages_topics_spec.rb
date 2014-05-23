@@ -27,4 +27,29 @@ feature User, 'manages topics:' do
       page.should have_content "Descripción de actividades"
     end
   end
+
+  scenario "can see existing topics", :js => true do
+    organization = @user.organization
+
+    3.times do |i|
+      organization.topics.create!(
+        :name => "Topic #{i}", :owner => "Owner #{i}",
+        :description => "Description #{i}"
+      )
+    end
+
+    visit "/topics"
+
+    within "#topics-listing" do
+      page.should have_content "Topic 0"
+      page.should have_content "Owner 0"
+      page.should have_content "Description 0"
+      page.should have_content "Topic 1"
+      page.should have_content "Owner 1"
+      page.should have_content "Description 1"
+      page.should have_content "Topic 2"
+      page.should have_content "Owner 2"
+      page.should have_content "Description 2"
+    end
+  end
 end

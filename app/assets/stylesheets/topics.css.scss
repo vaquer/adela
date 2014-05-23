@@ -13,3 +13,22 @@
     }
   }
 }
+
+
+.topic-infobox {
+  margin-bottom: $padding-large-vertical;
+
+  .sort-order {
+    @include make-lg-column($columns: 1, $gutter: 0);
+    margin-right: $grid-gutter-width/2;
+    line-height: 6em;
+    text-align: right;
+    cursor: move;
+  }
+
+  .topic-data {
+    padding: $padding-base-vertical $padding-base-horizontal;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    border-radius: 5px;
+  }
+}

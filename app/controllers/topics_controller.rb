@@ -7,11 +7,17 @@ class TopicsController < ApplicationController
   layout 'home'
 
   def index
+    respond_to do |format|
+      format.html do
+        # FIXME When do we show this notice?
+        flash[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
+      end
+      format.json { render :json => Topic.all }
+    end
   end
 
   def create
     @topic = Topic.new topic_params
-    @topic.sort_order = 1 # FIXME calculate sort order
     @topic.organization_id = current_organization.id
     @topic.save
 

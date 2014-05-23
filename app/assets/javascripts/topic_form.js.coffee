@@ -25,19 +25,20 @@ class window.TopicForm
   _setup_events: () ->
     @new_button.click (e) =>
       e.preventDefault()
-      @_hide_form()
+      @_show_form()
     @cancel.click (e) =>
       e.preventDefault()
-      @_show_form()
+      @_hide_form()
     @form.submit @_handle_form_submit
 
-  _show_form: () ->
-    @form_container.hide()
-    @new_button.show()
-
   _hide_form: () ->
+    @form_container.hide()
+    @new_button.fadeIn()
+
+  _show_form: () ->
     @new_button.hide()
     @form_container.fadeIn()
+
 
   _handle_form_submit: (e) =>
     e.preventDefault()
@@ -53,8 +54,8 @@ class window.TopicForm
   _post_success: (data, status) =>
     @_clear_field_errors()
     @_clear_form_fields()
-    @_add_new_topic(data)
     @_hide_form()
+    new TopicItem(data, @topics_listing)
 
   _post_fail: (jqXHR, status) =>
     @_clear_field_errors()
@@ -65,12 +66,6 @@ class window.TopicForm
     if errors && errors.owner && errors.owner.length > 0
       @topic_owner.parents(".form-group").addClass("has-error")
       @topic_owner.parent("div").addClass("has-error")
-
-  _add_new_topic: (data) ->
-    new_topic = $ JST["topics/item"](topic: data)
-    new_topic.hide()
-    @topics_listing.append new_topic
-    new_topic.fadeIn()
 
   _clear_field_errors: () ->
     @topic_name.parents(".form-group").removeClass("has-error")

@@ -1,0 +1,19 @@
+<div id="topic-<%= @topic.id %>" class="row topic-infobox">
+  <div class="sort-order col-lg-1"><%= @topic.sort_order %></div>
+  <div class="topic-data col-lg-10">
+    <div class="row">
+      <label class="col-sm-3">Área o tema</label>
+      <div class="col-sm-9">
+        <%= @topic.name %>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-3">Responsable</label>
+      <div class="col-sm-9"><%= @topic.owner %></div>
+    </div>
+    <div class="row">
+      <label class="col-sm-3">Posible proyecto</label>
+      <div class="col-sm-9"><%= @topic.description %></div>
+    </div>
+  </div>
+</div>

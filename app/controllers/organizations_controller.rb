@@ -14,6 +14,7 @@ class OrganizationsController < ApplicationController
   end
 
   def publish_catalog
+    # FIXME Can we use current_organization helper?
     @organization = Organization.friendly.find(params[:id])
     if publication_requirements_checked?
       @organization.current_inventory.publish!
@@ -24,6 +25,7 @@ class OrganizationsController < ApplicationController
   end
 
   def publish_later
+    # FIXME Can we use current_organization helper?
     @organization = Organization.friendly.find(params[:id])
     redirect_to organization_path(@organization), :alert => "OJO: No has completado el último paso que es publicar tu inventario."
   end

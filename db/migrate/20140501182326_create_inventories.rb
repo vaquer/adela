@@ -6,5 +6,6 @@ class CreateInventories < ActiveRecord::Migration
 
       t.timestamps
     end
+    # FIXME We should add an index on :organization_id
   end
 end

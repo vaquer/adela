@@ -1,0 +1,30 @@
+<div id="new-topic-form">
+  <div class="data-controls col-lg-12 bg-success">
+    <form role="form" class="form-horizontal">
+      <div class="form-group">
+        <label for="topic_name" class="control-label col-sm-3">Área o tema</label>
+        <div class="col-sm-9">
+          <input type="text" id="topic_name" class="form-control" name="topic[name]">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="topic_owner" class="control-label col-sm-3">Responsable</label>
+        <div class="col-sm-9">
+          <input type="text" id="topic_owner" class="form-control" name="topic[owner]">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="topic_description" class="control-label col-sm-3">Posible proyecto</label>
+        <div class="col-sm-9">
+          <input type="text" id="topic_description" class="form-control" name="topic[description]">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="submit-row col-sm-offset-3 col-sm-9">
+          <button type="submit" class="btn btn-default">Guardar</button>
+          <a href="#">o cancelar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

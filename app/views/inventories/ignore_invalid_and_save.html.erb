@@ -1,0 +1,56 @@
+<br/>
+<%= render "layouts/flash_messages", :flash => flash %>
+<% if @inventory.present? %>
+  <%= render "layouts/error_messages", :object => @inventory %>
+<% end %>
+<br/>
+<div class="row">
+  <div class="col-md-8">
+    <div class="col-md-10 inventory-step">
+      <%= image_tag "checked_step.png", :class => "checked-step" %>
+      <span class="h4">Paso 1</span>
+      <div class="step-holder col-md-10 pull-right">
+        <%= image_tag 'csv_file.png', :class => "template-file-icon" %>
+        <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download" ) + "Descargar plantilla en blanco"), "https://s3-ap-southeast-1.amazonaws.com/adela-staging/template/plantilla_de_inventario.csv", :class => "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-10 inventory-step">
+      <%= image_tag "checked_step.png", :class => "checked-step" %>
+      <span class="h4">Paso 2</span>
+      <div class="step-holder col-md-10 pull-right">
+        <label>Llena completamente la plantilla con un set de datos cada fila.</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-10 inventory-step inventory-last-step">
+      <%= image_tag "checked_step.png", :class => "checked-step" %>
+      <span class="h4">Paso 3</span>
+      <div class="step-holder col-md-10 pull-right">
+        <%= form_for(Inventory.new) do |f| %>
+          <%= f.label "Sube tu CSV con el inventario de datos." %>
+          <%= f.file_field :csv_file %>
+          <br/>
+          <button type="submit" id="upload_file" class="btn btn-default disabled">
+            <span class="glyphicon glyphicon-cloud-upload"></span> Subir inventario
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-10 inventory-preview">
+      <%= image_tag "checked_step.png", :class => "checked-step" %>
+      <span class="h4">Paso 4</span>
+      <div class="step-holder col-md-10 pull-right">
+        <label>Valida tu inventario</label>
+      </div>
+    </div>
+    <div class="step-holder col-md-10 inventory-step">
+      <%= render "datasets_preview", :datasets => datasets_to_display(@datasets) %>
+    </div>
+  </div>
+</div>
+<%= render "inventories/publish_form", :from_dashboard => true %>

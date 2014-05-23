@@ -31,8 +31,6 @@ class InventoriesController < ApplicationController
     @inventory.author = current_user.name
     @inventory.save
     @datasets = @inventory.datasets
-    @upload_intent = true
-    render :action => "new"
   end
 
   private

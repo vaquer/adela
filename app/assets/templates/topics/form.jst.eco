@@ -1,5 +1,5 @@
 <div id="new-topic-form">
-  <div class="data-controls col-lg-12 bg-success">
+  <div class="data-controls col-lg-offset-1 col-lg-11 bg-success">
     <form role="form" class="form-horizontal">
       <div class="form-group">
         <label for="topic_name" class="control-label col-sm-3">Área o tema</label>

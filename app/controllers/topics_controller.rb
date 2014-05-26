@@ -24,6 +24,16 @@ class TopicsController < ApplicationController
     respond_with @topic
   end
 
+  def update
+    @topic = current_organization.topics.find(params[:id])
+
+    if @topic.update(topic_params)
+      render :json => @topic, :status => :ok
+    else
+      render :json => { :errors => @topic.errors }, :status => :unprocessable_entity
+    end
+  end
+
 
   private
 

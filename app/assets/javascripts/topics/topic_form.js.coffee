@@ -1,10 +1,12 @@
-class window.TopicForm
+class Topics.Form
   template: JST["topics/form"]
 
   constructor: (opts) ->
-    @new_button = $ opts.new_button
+    @show_form_button = $(opts.show_form_button) if opts.show_form_button
     @form_container = $ opts.form_container
-    @topics_listing = $ opts.topics_listing
+    @success_callback = opts.success_callback || (() ->)
+    @cancel_callback = opts.cancel_callback || (() ->)
+    @data = opts.data || {}
 
     @_find_elements()
     @_setup_events()
@@ -19,33 +21,52 @@ class window.TopicForm
     @topic_owner = template.find("#topic_owner")
     @topic_description = template.find("#topic_description")
 
+    @_fill_in_data()
     @form_container.hide()
     @form_container.append(template)
 
   _setup_events: () ->
-    @new_button.click (e) =>
-      e.preventDefault()
-      @_show_form()
+    if @show_form_button
+      @show_form_button.click (e) =>
+        e.preventDefault()
+        @_show_form()
+
     @cancel.click (e) =>
       e.preventDefault()
       @_hide_form()
+      @cancel_callback()
+
     @form.submit @_handle_form_submit
+
+  _fill_in_data: () ->
+    if @data
+      @topic_name.val @data.name
+      @topic_owner.val @data.owner
+      @topic_description.val @data.description
 
   _hide_form: () ->
     @form_container.hide()
-    @new_button.fadeIn()
+    @show_form_button.fadeIn() if @show_form_button
 
   _show_form: () ->
-    @new_button.hide()
+    @show_form_button.hide() if @show_form_button
     @form_container.fadeIn()
 
 
   _handle_form_submit: (e) =>
     e.preventDefault()
-    jqxhr = $.post "/topics", @_post_data(), @_post_success, "json"
+    jqxhr = $.post @_post_url(), @_post_data(), @_post_success, "json"
     jqxhr.fail @_post_fail
 
+  _post_url: () ->
+    if @data && @data.id
+      "/topics/#{@data.id}"
+    else
+      "/topics"
+
   _post_data: () ->
+    method = if @data && @data.id then "patch" else "post"
+    _method: method
     topic:
       name: @topic_name.val().trim()
       owner: @topic_owner.val().trim()
@@ -55,7 +76,7 @@ class window.TopicForm
     @_clear_field_errors()
     @_clear_form_fields()
     @_hide_form()
-    new TopicItem(data, @topics_listing)
+    @success_callback(data)
 
   _post_fail: (jqXHR, status) =>
     @_clear_field_errors()

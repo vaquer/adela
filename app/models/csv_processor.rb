@@ -17,7 +17,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
     dataset_obj = nil
     File.open(temporary_path, "w") do |csv|
       csv << csv_header_fields
-      CSV.foreach(File.open(csv_file), :headers => :first_row).each do |row|
+      CSV.foreach(csv_file, :headers => :first_row).each do |row|
         if dataset?(row)
           dataset_obj = new_dataset(row)
           csv << dataset_obj.values_array.to_csv if dataset_obj.valid?

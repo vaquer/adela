@@ -52,4 +52,30 @@ feature User, 'manages topics:' do
       page.should have_content "Description 2"
     end
   end
+
+  scenario "can edit an existing topic", :js => true do
+    organization = @user.organization
+    topic = organization.topics.create!(:name => "A topic",
+                                        :owner => "By somebody",
+                                        :description => "With description")
+
+    visit "/topics"
+
+    within "#topic-#{topic.id}" do
+      click_link "edit-topic-#{topic.id}-link"
+      fill_in "Área o tema", :with => "Edited topic"
+      fill_in "Responsable", :with => "Edited owner"
+      fill_in "Posible proyecto", :with => "Edited description"
+      click_button "Guardar"
+    end
+
+    visit "/topics"
+    page.should have_content "Edited topic"
+    page.should have_content "Edited owner"
+    page.should have_content "Edited description"
+
+    page.should_not have_content "A topic"
+    page.should_not have_content "By somebody"
+    page.should_not have_content "With description"
+  end
 end

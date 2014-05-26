@@ -81,13 +81,16 @@
 
 <script>
   $(function () {
-    new TopicForm({
-      new_button: "#new-topic-button",
+    new Topics.Form({
+      show_form_button: "#new-topic-button",
       form_container: "#new-topic-container",
-      topics_listing: "#topics-listing"
+      success_callback: function (data) {
+        var item = new Topics.Item(data);
+        item.load_in("#topics-listing");
+      }
     });
 
-    var topic_loader = new TopicLoader();
+    var topic_loader = new Topics.Loader();
     topic_loader.load_in("#topics-listing");
   });
 </script>

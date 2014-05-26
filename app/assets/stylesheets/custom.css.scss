@@ -34,6 +34,12 @@ a:hover {
   height: 70px;
 }
 
+.step-checked {
+  background: image-url("checked.png") left no-repeat;
+  padding-left: 70px;
+  height: 70px;
+}
+
 .info-holder {
   background-color: lighten(#428bca, 35%);
   color: #428bca;

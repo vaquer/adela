@@ -5,6 +5,14 @@ module InventoriesHelper
     end
   end
 
+  def header_step_image
+    if current_catalog.present?
+      "step-checked"
+    else
+      "second-step"
+    end
+  end
+
   def current_inventory
     @current_inventory ||= current_user.inventories.unpublished.first
   end

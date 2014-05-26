@@ -25,6 +25,6 @@ class Organization < ActiveRecord::Base
   end
 
   def last_inventory_is_unpublished?
-    current_catalog && current_inventory && (current_catalog.id != current_inventory.id)
+    current_catalog && last_file_version && (current_catalog.id != last_file_version.id)
   end
 end

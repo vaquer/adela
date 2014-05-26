@@ -1,0 +1,30 @@
+<% if current_organization.present? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 disabled-tab">
+        <div class="first-step">
+          <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
+        </div>
+      </div>
+      <a href='<%= organization_path(current_organization) %>'>
+        <div class="col-md-6 disabled-tab step-tab">
+          <div class='<%= header_step_image %>'>
+            <h3>
+              Inventario de datos
+              <br/>
+              <% if current_organization.last_file_version.present? %>
+                <small>Última actualización: <strong><%= I18n.l(current_organization.last_file_version.created_at, :format => :short) %></strong></small>
+                <% if current_organization.current_catalog.present? %>
+                  <br/>
+                  <small>Última publicación: <strong><%= I18n.l(current_organization.current_catalog.publish_date, :format => :short) %></strong></small>
+                <% end %>
+              <% else %>
+                <small>No tienes un inventario de datos cargado todavía.</small>
+              <% end %>
+            </h3>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+<% end %>

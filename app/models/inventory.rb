@@ -16,34 +16,8 @@ class Inventory < ActiveRecord::Base
     datasets.all? { |dataset| dataset.valid? }
   end
 
-  def process_csv
-    datasets = []
-    if csv_file.url.present?
-      CSV.new(csv_file.read, :headers => :first_row).each do |dataset|
-        datasets << DataSet.new({
-          :title => dataset["title"],
-          :description => dataset["description"],
-          :keyword => dataset["keyword"],
-          :modified => dataset["modified"],
-          :publisher => dataset["publisher"],
-          :contactPoint => dataset["contactPoint"],
-          :mbox => dataset["mbox"],
-          :identifier => dataset["identifier"],
-          :accessLevel => dataset["accessLevel"],
-          :accessLevelComment => dataset["accessLevelComment"],
-          :accessUrl => dataset["accessURL"],
-          :format => dataset["format"],
-          :license => dataset["license"],
-          :spatial => dataset["spatial"],
-          :temporal => dataset["temporal"]
-        })
-      end
-    end
-    datasets
-  end
-
   def datasets
-    @datasets ||= process_csv
+    @datasets ||= CsvProcessor.new(csv_file, organization).process
   end
 
   def csv_structure

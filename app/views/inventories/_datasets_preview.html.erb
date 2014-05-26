@@ -8,7 +8,7 @@
           <th>Description</th>
           <th>Publisher</th>
           <th>Modified</th>
-          <th>accessURL</th>
+          <th>DownloadURL</th>
         </tr>
       </thead>
       <tbody>
@@ -18,8 +18,17 @@
             <td><%= dataset.description %></td>
             <td><%= dataset.publisher %></td>
             <td><%= dataset.modified %></td>
-            <td><%= dataset.accessUrl %></td>
+            <td></td>
           </tr>
+          <% dataset.distributions.each do |distribution| %>
+            <tr class='<%= preview_dataset_class(dataset) %>'>
+              <td><%= distribution.title %></td>
+              <td><%= distribution.description %></td>
+              <td><%= dataset.publisher %></td>
+              <td><%= dataset.modified %></td>
+              <td><%= distribution.downloadURL %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

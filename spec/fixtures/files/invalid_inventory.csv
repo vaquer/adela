@@ -1,3 +1,10 @@
-title,description,keyword,modified,publisher,contactPoint,mbox,identifier,accessLevel,accessLevelComment,accessURL,format,license,spatial,temporal
-Presupuesto de egresos 2013,Presupuesto de Egresos de la Federación para el 2013.,"presupuesto,egreso",20130222T10:00:00Z,SHCP,Juan Arcadio García Márquez,datos@shcp.gob.mx,pef2013_1,público,,,csv,http://creativecommons.org/licenses/by/2.5/mx/deed.en_US,"32.71862,-114.700699,30.859409,-115.818169",20130101T00:00:00Z/20140101T00:00:00Z
-Recetas médicas de Octubre,Recetas médicas entregadas por todas las delegaciones en el mes de octubre de 2013.,,20131101T10:00:00Z,IMSS,Gabriel Buendía,datos@imss.gob.mx,recetas201310,privado,,,xls,,nacional,20131101T00:00:00Z/20131130T00:00:00Z
+ds:identifier,ds:title,ds:description,ds:keyword,ds:modified,ds:contactPoint,ds:mbox,ds:accessLevel,ds:accessLevelComment,ds:license,ds:spatial,rs:spatial,rs:temporal,rs:accrualPeriodicity,rs:title,rs:description,rs:downloadURL,rs:mediaType
+indicadores-pobreza,Indicadores de pobreza,Indicadores de pobreza,"indicadores, pobreza",2013-07-29T09:00:00,Enrique Minor Campa,eeminor@coneval.gob.mx,público,,http://creativecommons.org/licenses/by/2.5/mx/deed.es,nacional,,,,,,,
+indicadores-pobreza,,,,,,,,,,,,,,invalid,,,
+indicadores-pobreza,,,,,,,,,,,,,,invalid,,,
+indicadores-pobreza,,,,,,,,,,,,,,,,,
+rezago-social,Índice de Rezago Social,Índice de Rezago Social,"índice, rezago",2012-16-02T14:45:00,Enrique Minor Campa,eeminor@coneval.gob.mx,público,,http://creativecommons.org/licenses/by/2.5/mx/deed.es,nacional,,,,,,,
+rezago-social,,,,,,,,,,,,,,invalid,,,
+rezago-social,,,,,,,,,,,,,,invalid,,,
+rezago-social,,,,,,,,,,,,,,,,,
+rezago-social,,,,,,,,,,,,,,,,,

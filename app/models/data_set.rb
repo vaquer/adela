@@ -1,12 +1,12 @@
 class DataSet
   include ActiveModel::Validations
-  attr_accessor :title, :description, :keyword, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel, :accessLevelComment, :accessUrl, :format, :license, :spatial, :temporal
+  attr_accessor :distributions, :title, :description, :keyword, :publisher, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel, :accessLevelComment, :license, :spatial
 
-  validates_presence_of :title, :description, :keyword, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel
   validates_presence_of :accessLevelComment, :if => :private?
-  validates_presence_of :accessUrl, :if => :public?
+  validate :distributions_download_url, :if => :public?
 
   def initialize(attributes = {})
+    @distributions = []
     attributes.each do |name, value|
       if value.present?
         send("#{name}=", value.force_encoding(Encoding::UTF_8))
@@ -31,7 +31,16 @@ class DataSet
   end
 
   def values_array
-    [title, description, keyword, modified, publisher, contactPoint, mbox, identifier, accessLevel, accessLevelComment, accessUrl, format, license, spatial, temporal]
+    [identifier, title, description, keyword, modified, contactPoint, mbox, accessLevel, accessLevelComment, license, spatial]
   end
 
+  def download_url?
+    distributions.all? { |distribution| distribution.downloadURL.present? }
+  end
+
+  def distributions_download_url
+    unless download_url?
+      errors.add(:distributions)
+    end
+  end
 end

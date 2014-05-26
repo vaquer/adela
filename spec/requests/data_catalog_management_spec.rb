@@ -4,41 +4,6 @@ feature "data catalog management" do
   
   background do
     @organization = FactoryGirl.create(:organization)
-    @success_response = [
-      {
-        "title"=>"Presupuesto de egresos 2013",
-        "description"=>"Presupuesto de Egresos de la Federación para el 2013.",
-        "modified"=>"20130222T10:00:00Z",
-        "publisher"=>"SHCP",
-        "contactPoint"=>"Juan Arcadio García Márquez",
-        "mbox"=>"datos@shcp.gob.mx",
-        "identifier"=>"pef2013_1",
-        "accessLevel"=>"público",
-        "accessLevelComment"=>nil,
-        "format"=>"csv",
-        "license"=>"http://creativecommons.org/licenses/by/2.5/mx/deed.en_US",
-        "spatial"=>"32.71862,-114.700699,30.859409,-115.818169",
-        "temporal"=>"20130101T00:00:00Z/20140101T00:00:00Z",
-        "keyword"=>["presupuesto", "egreso"],
-        "accessUrl"=>"http://www.transparenciapresupuestaria.gob.mx/ptp/ServletImagen?tipo=csv&idDoc=711"
-      }, 
-      {
-        "title"=>"Recetas médicas de Octubre",
-        "description"=>"Recetas médicas entregadas por todas las delegaciones en el mes de octubre de 2013.",
-        "modified"=>"20131101T10:00:00Z",
-        "publisher"=>"IMSS",
-        "contactPoint"=>"Gabriel Buendía",
-        "mbox"=>"datos@imss.gob.mx",
-        "identifier"=>"recetas201310",
-        "accessLevel"=>"privado",
-        "accessLevelComment"=>"La base de datos contiene información personal. Para fines estadísticos se podrá encontrar una versión con datos acumulados en http://www.imss.gob.mx/datos/201310/nacional/recetasAcumuladas.csv, y una versión anonimizada en http://www.imss.gob.mx/datos/201310/nacional/recetasAnonimizadas.csv",
-        "format"=>"xls",
-        "license"=>nil,
-        "spatial"=>"nacional",
-        "temporal"=>"20131101T00:00:00Z/20131130T00:00:00Z",
-        "keyword"=>["salud", "imss", "recetas"]
-      }
-    ]
     @empty_response = []
   end
 
@@ -69,7 +34,8 @@ feature "data catalog management" do
 
   def gets_catalog_json_data_in(response)
     json_response = JSON.parse(response.body)
-    json_response.should == @success_response
+    json_response[0]["distributions"].size == 3
+    json_response[1]["distributions"].size == 4
   end
 
   def gets_empty(response)

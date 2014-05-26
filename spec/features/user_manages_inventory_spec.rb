@@ -73,9 +73,8 @@ feature User, 'manages inventory:' do
 
   def sees_table_with_datasets
     within "table#datasets_preview" do
-      expect(page).to have_text("Presupuesto de egresos 2013")
-      expect(page).to have_text("Recetas médicas de Octubre")
+      expect(page).to have_text("Indicadores de pobreza")
+      expect(page).to have_text("Índice de Rezago Social")
     end
   end
-
 end

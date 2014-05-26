@@ -23,7 +23,7 @@ describe InventoriesController do
 
     it "redirects to new inventory page" do
       post :create, inventory: { csv_file: inventory_file }
-      response.should redirect_to(new_inventory_url)
+      response.should render_template("new")
     end
 
     it "renders the template again on error" do

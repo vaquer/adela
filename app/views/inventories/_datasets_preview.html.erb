@@ -4,11 +4,13 @@
     <table class="table table-condensed table-bordered table-striped" id="datasets_preview">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Publisher</th>
-          <th>Modified</th>
-          <th>DownloadURL</th>
+          <th>DS:Title</th>
+          <th>DS:Description</th>
+          <th>DS:Publisher</th>
+          <th>DS:Modified</th>
+          <th>RS:Title</th>
+          <th>RS:Description</th>
+          <th>RS:DownloadURL</th>
         </tr>
       </thead>
       <tbody>
@@ -19,13 +21,17 @@
             <td><%= dataset.publisher %></td>
             <td><%= dataset.modified %></td>
             <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <% dataset.distributions.each do |distribution| %>
             <tr class='<%= preview_dataset_class(dataset) %>'>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td><%= distribution.title %></td>
               <td><%= distribution.description %></td>
-              <td><%= dataset.publisher %></td>
-              <td><%= dataset.modified %></td>
               <td><%= distribution.downloadURL %></td>
             </tr>
           <% end %>

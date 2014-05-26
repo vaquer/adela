@@ -5,7 +5,7 @@
 <% end %>
 <br/>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-10">
     <div class="col-md-10 inventory-step">
       <%= image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}" %>
       <span class="h4">Paso 1</span>
@@ -15,7 +15,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-10">
     <div class="col-md-10 inventory-step">
       <%= image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}" %>
       <span class="h4">Paso 2</span>
@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-10">
     <div class="col-md-10 inventory-step inventory-last-step">
       <%= image_tag "checked_step.png", :class => "checked-step #{ step_image_class(@upload_intent)}" %>
       <span class="h4">Paso 3</span>
@@ -41,7 +41,7 @@
     </div>
   </div>
   <% if @datasets.present? && @upload_intent.present? %>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="col-md-10 inventory-preview">
         <%= image_tag "checked_step.png", :class => "checked-step hidden" %>
         <span class="h4">Paso 4</span>

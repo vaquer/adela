@@ -17,7 +17,7 @@
         <% datasets.each do |dataset| %>
           <tr class='<%= preview_dataset_class(dataset) %>'>
             <td><%= dataset.title %></td>
-            <td><%= dataset.description %></td>
+            <td><%= truncate(dataset.description, length: 20) %></td>
             <td><%= dataset.publisher %></td>
             <td><%= dataset.modified %></td>
             <td></td>
@@ -31,7 +31,7 @@
               <td></td>
               <td></td>
               <td><%= distribution.title %></td>
-              <td><%= distribution.description %></td>
+              <td><%= truncate(distribution.description, length: 20) %></td>
               <td><%= distribution.downloadURL %></td>
             </tr>
           <% end %>

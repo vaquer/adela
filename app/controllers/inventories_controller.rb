@@ -24,9 +24,9 @@ class InventoriesController < ApplicationController
   end
 
   def ignore_invalid_and_save
-    @temporary_path = "#{Rails.root}/tmp/inventory.csv"
-    generate_csv
-    @inventory = Inventory.new(:csv_file => File.open(@temporary_path))
+    temporary_path = "#{Rails.root}/tmp/inventory.csv"
+    CsvProcessor.new(params[:csv_file], current_organization).generate_csv(temporary_path)
+    @inventory = Inventory.new(:csv_file => File.open(temporary_path))
     @inventory.organization_id = current_organization.id
     @inventory.author = current_user.name
     @inventory.save
@@ -37,31 +37,5 @@ class InventoriesController < ApplicationController
 
   def inventory_params
     params.require(:inventory).permit(:csv_file)
-  end
-
-  def generate_csv
-    File.open(@temporary_path, "w") do |csv|
-      csv << [:title, :description, :keyword, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel, :accessLevelComment, :accessURL, :format, :license, :spatial, :temporal].to_csv
-      CSV.foreach(File.open(params[:csv_file]), :headers => :first_row).each do |dataset|
-        dataset_obj = DataSet.new({
-          :title => dataset["title"],
-          :description => dataset["description"],
-          :keyword => dataset["keyword"],
-          :modified => dataset["modified"],
-          :publisher => dataset["publisher"],
-          :contactPoint => dataset["contactPoint"],
-          :mbox => dataset["mbox"],
-          :identifier => dataset["identifier"],
-          :accessLevel => dataset["accessLevel"],
-          :accessLevelComment => dataset["accessLevelComment"],
-          :accessUrl => dataset["accessURL"],
-          :format => dataset["format"],
-          :license => dataset["license"],
-          :spatial => dataset["spatial"],
-          :temporal => dataset["temporal"]
-        })
-        csv << dataset_obj.values_array.to_csv if dataset_obj.valid?
-      end
-    end
   end
 end

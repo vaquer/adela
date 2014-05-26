@@ -7,8 +7,8 @@ module ApplicationHelper
     end
   end
 
-  def step_image_class(new_version)
-    unless new_version
+  def step_image_class(show)
+    unless show
       "hidden"
     end
   end

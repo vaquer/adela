@@ -1,11 +1,17 @@
 <% if current_organization.present? %>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 disabled-tab">
-        <div class="first-step">
-          <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
+      <%= link_to topics_path do %>
+        <div class="col-md-6 disabled-tab">
+          <div class="first-step">
+            <h3>
+              Plan de apertura<br/>
+              <small>No tienes un plan de datos todavía.</small>
+            </h3>
+          </div>
         </div>
-      </div>
+      <% end %>
+
       <a href='<%= organization_path(current_organization) %>'>
         <div class="col-md-6 disabled-tab step-tab">
           <div class='<%= header_step_image %>'>

@@ -5,6 +5,8 @@ class Topic < ActiveRecord::Base
 
   before_validation :set_sort_order
 
+  scope :sorted, ->{ order("topics.sort_order ASC") }
+
 
   private
 

@@ -12,13 +12,12 @@ class TopicsController < ApplicationController
         # FIXME When do we show this notice?
         flash[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
       end
-      format.json { render :json => Topic.all }
+      format.json { render :json => Topic.sorted }
     end
   end
 
   def create
-    @topic = Topic.new topic_params
-    @topic.organization_id = current_organization.id
+    @topic = current_organization.topics.build(topic_params)
     @topic.save
 
     respond_with @topic
@@ -32,6 +31,14 @@ class TopicsController < ApplicationController
     else
       render :json => { :errors => @topic.errors }, :status => :unprocessable_entity
     end
+  end
+
+  def sort_order
+    topics = params[:topic].map { |id| current_organization.topics.find(id) }
+    topics.each_with_index { |topic, index|
+      topic.update_column :sort_order, index+1
+    }
+    render :json => {}, :status => :ok
   end
 
 

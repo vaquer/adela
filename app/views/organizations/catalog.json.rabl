@@ -31,8 +31,12 @@ end
 child :datasets => :dataset do |inventory|
   attributes :title, :description, :modified, :contactPoint, :identifier, :accessLevel, :accessLevelComment, :license, :spatial
 
+  node :language do
+    "es"
+  end
+
   node :publisher do |dataset|
-    attributes :publisher => dataset.publisher, :mbox => dataset.mbox
+    attributes :name => dataset.publisher, :mbox => dataset.mbox
   end
 
   node :keyword do |dataset|
@@ -41,5 +45,9 @@ child :datasets => :dataset do |inventory|
 
   child :distributions => :distribution do |dataset|
     attributes :spatial, :temporal, :accrualPeriodicity, :title, :description, :mediaType, :downloadURL
+
+    node :license do
+      "http://datos.gob.mx/tos/"
+    end
   end
 end

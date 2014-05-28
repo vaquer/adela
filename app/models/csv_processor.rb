@@ -24,7 +24,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
         elsif distribution?(row)
           distribution_obj = new_distribution(row)
           dataset_obj.distributions << distribution_obj
-          csv << "#{dataset_obj.identifier},,,,,,,,,,," + distribution_obj.values_array.to_csv if (dataset_obj.valid? || (dataset_obj.public? && distribution_obj.downloadURL))
+          csv << "#{dataset_obj.identifier},,,,,,,,,,,,," + distribution_obj.values_array.to_csv if (dataset_obj.valid? || (dataset_obj.public? && distribution_obj.downloadURL))
         end
       end
     end
@@ -34,36 +34,39 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
 
   def csv_header_fields
     %w[
-      ds:identifier  ds:title  ds:description  ds:keyword  ds:modified ds:contactPoint ds:mbox ds:accessLevel  ds:accessLevelComment ds:license  ds:spatial  rs:spatial  rs:temporal rs:accrualPeriodicity rs:title  rs:description  rs:downloadURL  rs:mediaType
+      ds:identifier ds:title  ds:description  ds:keyword  ds:modified ds:contactPoint ds:mbox ds:accessLevel  ds:accessLevelComment ds:temporal ds:spatial  ds:dataDictionary ds:accrualPeriodicity rs:title  rs:description  rs:downloadURL  rs:mediaType  rs:byteSize rs:temporal rs:spatial  rs:accrualPeriodicity
     ].to_csv
   end
 
   def new_dataset(row)
     DataSet.new({
+      :identifier => row["ds:identifier"],
       :title => row["ds:title"],
       :description => row["ds:description"],
       :keyword => row["ds:keyword"],
       :modified => row["ds:modified"],
-      :publisher => organization.title,
       :contactPoint => row["ds:contactPoint"],
       :mbox => row["ds:mbox"],
-      :identifier => row["ds:identifier"],
       :accessLevel => row["ds:accessLevel"],
       :accessLevelComment => row["ds:accessLevelComment"],
-      :license => row["ds:license"],
-      :spatial => row["ds:spatial"]
+      :temporal => row["ds:temporal"],
+      :spatial => row["ds:spatial"],
+      :dataDictionary => row["ds:dataDictionary"],
+      :accrualPeriodicity => row["accrualPeriodicity"],
+      :publisher => organization.title
     })
   end
 
   def new_distribution(row)
     Distribution.new({
-      :spatial => row["rs:spatial"],
-      :temporal => row["rs:temporal"],
-      :accrualPeriodicity => row["rs:accrualPeriodicity"],
       :title => row["rs:title"],
       :description => row["rs:description"],
       :downloadURL => row["rs:downloadURL"],
-      :mediaType => row["rs:mediaType"]
+      :mediaType => row["rs:mediaType"],
+      :byteSize => row["rs:byteSize"],
+      :temporal => row["rs:temporal"],
+      :spatial => row["rs:spatial"],
+      :accrualPeriodicity => row["rs:accrualPeriodicity"]
     })
   end
 

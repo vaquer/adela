@@ -33,6 +33,8 @@ class OrganizationsController < ApplicationController
     @inventory = @organization.current_catalog
     if @inventory.present?
       Rabl.render(@inventory, "organizations/catalog", :view_path => 'app/views', :format => :json)
+    else
+      render :json => {}
     end
   end
 

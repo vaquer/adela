@@ -1,5 +1,5 @@
 class Distribution
-  attr_accessor :spatial, :temporal, :accrualPeriodicity, :title, :description, :downloadURL, :byteSyze, :mediaType
+  attr_accessor :title, :description, :downloadURL, :mediaType, :byteSize, :temporal, :spatial, :accrualPeriodicity
 
   def initialize(attributes = {})
     attributes.each do |name, value|
@@ -10,6 +10,6 @@ class Distribution
   end
 
   def values_array
-    [spatial, temporal, accrualPeriodicity, title, description, downloadURL, mediaType]
+    [title, description, downloadURL, mediaType, byteSize, temporal, spatial, accrualPeriodicity]
   end
 end

@@ -30,10 +30,9 @@ class OrganizationsController < ApplicationController
 
   def catalog
     @organization = Organization.friendly.find(params[:slug])
-    @published_inventory = @organization.current_catalog
-    if @published_inventory.present?
-      @datasets = @published_inventory.datasets
-      Rabl.render(@datasets, "organizations/catalog", :view_path => 'app/views', :format => :json)
+    @inventory = @organization.current_catalog
+    if @inventory.present?
+      Rabl.render(@inventory, "organizations/catalog", :view_path => 'app/views', :format => :json)
     end
   end
 

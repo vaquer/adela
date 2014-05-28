@@ -1,11 +1,22 @@
 desc 'Create initial users'
 task create_initial_users: :environment do
-  salud = Organization.create(:title => "Salud")
-  sedesol = Organization.create(:title => "Sedesol")
-  
-  User.create(:name => "Muraly Escalona Conchas", :email => "muraly.escalona@sedesol.gob.mx", :organization_id => sedesol.id, :password => "secretpassword", :password_confirmation => "secretpassword")
-  User.create(:name => "José Antolino Orozco Martínez", :email => "jose.orozco@sedesol.gob.mx", :organization_id => sedesol.id, :password => "secretpassword", :password_confirmation => "secretpassword")
+  puts "Number of users to be created:"
+  orgs = STDIN.gets.chomp
 
-  User.create(:name => "Luis Ríos", :email => "luis.rios@salud.gob.mx", :organization_id => salud.id, :password => "secretpassword", :password_confirmation => "secretpassword")
-  User.create(:name => "Juan Carlos Reyes Oropeza", :email => "carlos.reyes@salud.gob.mx", :organization_id => salud.id, :password => "secretpassword", :password_confirmation => "secretpassword")
+  orgs.to_i.times do
+    puts "User name:"
+    name = STDIN.gets.chomp
+    puts "User email:"
+    email = STDIN.gets.chomp
+    puts "User organization title: ie coneval"
+    org = STDIN.gets.chomp
+    organization = Organization.friendly.find(org.downcase)
+
+    user = User.create(:name => name, :email => email, :organization_id => organization.id, :password => "secretpassword", :password_confirmation => "secretpassword")
+    if user
+      puts "*****"
+      puts "User #{user.name} created in #{organization.title}"
+      puts "*****"
+    end
+  end
 end

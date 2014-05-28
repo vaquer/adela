@@ -37,7 +37,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :staging do
+group :staging, :production do
   gem 'pg'
   gem 'thin'
 end

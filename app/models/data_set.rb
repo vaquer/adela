@@ -1,6 +1,6 @@
 class DataSet
   include ActiveModel::Validations
-  attr_accessor :distributions, :title, :description, :keyword, :publisher, :modified, :publisher, :contactPoint, :mbox, :identifier, :accessLevel, :accessLevelComment, :license, :spatial
+  attr_accessor :distributions, :publisher, :identifier, :title, :description, :keyword, :modified, :contactPoint, :mbox, :accessLevel, :accessLevelComment, :temporal, :spatial, :dataDictionary, :accrualPeriodicity
 
   validates_presence_of :accessLevelComment, :if => :private?
   validate :distributions_download_url, :if => :public?
@@ -31,7 +31,7 @@ class DataSet
   end
 
   def values_array
-    [identifier, title, description, keyword, modified, contactPoint, mbox, accessLevel, accessLevelComment, license, spatial]
+    [identifier, title, description, keyword, modified, contactPoint, mbox, accessLevel, accessLevelComment, temporal, spatial, dataDictionary, accrualPeriodicity]
   end
 
   def download_url?

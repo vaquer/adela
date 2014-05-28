@@ -27,4 +27,8 @@ class Organization < ActiveRecord::Base
   def last_inventory_is_unpublished?
     current_catalog && last_file_version && (current_catalog.id != last_file_version.id)
   end
+
+  def first_published_catalog
+    inventories.published.last
+  end
 end

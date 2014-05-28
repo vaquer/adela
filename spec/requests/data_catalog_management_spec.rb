@@ -4,7 +4,7 @@ feature "data catalog management" do
   
   background do
     @organization = FactoryGirl.create(:organization)
-    @empty_response = []
+    @empty_response = {}
   end
 
   scenario "can consume published catalog data" do
@@ -34,8 +34,9 @@ feature "data catalog management" do
 
   def gets_catalog_json_data_in(response)
     json_response = JSON.parse(response.body)
-    json_response[0]["distributions"].size == 3
-    json_response[1]["distributions"].size == 4
+    json_response["title"].should == "Catálogo de datos abiertos de #{@organization.title}"
+    json_response["dataset"][0]["distribution"].size == 3
+    json_response["dataset"][1]["distribution"].size == 4
   end
 
   def gets_empty(response)

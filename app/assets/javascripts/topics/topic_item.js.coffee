@@ -5,6 +5,7 @@ class Topics.Item
     @form # needs to be pre-declared so that ||= works in @_show_form()
     @item = $ @template(topic: @data)
     @_setup_events(@item)
+    @_setup_text_expander(@item)
 
   load_in: (container) ->
     @item.hide()
@@ -23,6 +24,15 @@ class Topics.Item
         $(@).find("strong").hide().delay(100).text(index).fadeIn()
         index += 1
     )
+
+  _setup_text_expander: (item) ->
+    item.find(".expandable").expander({
+      slicePoint: 200,
+      expandSpeed: 0,
+      expandText: 'Ver más',
+      userCollapseText: 'Ver menos'
+    })
+
   _show_form: () ->
     @form ||= new Topics.Form
       data: @data

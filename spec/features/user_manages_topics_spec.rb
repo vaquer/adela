@@ -99,4 +99,22 @@ feature User, 'manages topics:' do
 
     page.should have_button("Agregar nueva área o tema")
   end
+
+  scenario "sees brief topic description", :js => true do
+    organization = @user.organization
+    topic = organization.topics.create!(:name => "A topic",
+                                        :owner => "By somebody",
+                                        :description => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed neque in magna dignissim lobortis eu tincidunt leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris accumsan interdum nisi, ac interdum dui egestas ut. In sagittis, lorem ut dapibus sollicitudin, tellus enim ultrices nunc, eget cursus mi felis at felis. Proin in eros non magna vestibulum aliquam a eget tellus. Phasellus porta nulla ut sapien dignissim vehicula. Ut venenatis risus non eros accumsan tempus. Duis mollis lorem ut adipiscing suscipit. Donec egestas, erat nec sagittis semper, lorem lectus interdum lorem, ut feugiat ante justo eu lectus. Curabitur quis lacinia magna. Vestibulum sit amet interdum mauris.")
+
+    visit "/topics"
+
+    page.should have_link "Ver más"
+    page.should_not have_content "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed neque in magna dignissim lobortis eu tincidunt leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris accumsan interdum nisi, ac interdum dui egestas ut. In sagittis, lorem ut dapibus sollicitudin, tellus enim ultrices nunc, eget cursus mi felis at felis. Proin in eros non magna vestibulum aliquam a eget tellus. Phasellus porta nulla ut sapien dignissim vehicula. Ut venenatis risus non eros accumsan tempus. Duis mollis lorem ut adipiscing suscipit. Donec egestas, erat nec sagittis semper, lorem lectus interdum lorem, ut feugiat ante justo eu lectus. Curabitur quis lacinia magna. Vestibulum sit amet interdum mauris."
+
+    within "#topic-#{topic.id}" do
+      click_link "Ver más"
+    end
+
+    page.should have_content "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed neque in magna dignissim lobortis eu tincidunt leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris accumsan interdum nisi, ac interdum dui egestas ut. In sagittis, lorem ut dapibus sollicitudin, tellus enim ultrices nunc, eget cursus mi felis at felis. Proin in eros non magna vestibulum aliquam a eget tellus. Phasellus porta nulla ut sapien dignissim vehicula. Ut venenatis risus non eros accumsan tempus. Duis mollis lorem ut adipiscing suscipit. Donec egestas, erat nec sagittis semper, lorem lectus interdum lorem, ut feugiat ante justo eu lectus. Curabitur quis lacinia magna. Vestibulum sit amet interdum mauris."
+  end
 end

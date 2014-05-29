@@ -41,6 +41,15 @@ class TopicsController < ApplicationController
     render :json => {}, :status => :ok
   end
 
+  def destroy
+    @topic = current_organization.topics.find(params[:id])
+    if @topic.destroy
+      current_organization.topics.each_with_index { |topic, index|
+        topic.update_column :sort_order, index+1
+      }
+      render :json => {}, :status => :ok
+    end
+  end
 
   private
 

@@ -78,4 +78,25 @@ feature User, 'manages topics:' do
     page.should_not have_content "By somebody"
     page.should_not have_content "With description"
   end
+
+  scenario "can delete an existing topic", :js => true do
+    organization = @user.organization
+    topic = organization.topics.create!(:name => "A topic",
+                                        :owner => "By somebody",
+                                        :description => "With description")
+
+    visit "/topics"
+
+    within "#topic-#{topic.id}" do
+      click_link "delete-topic-#{topic.id}-link"
+      page.driver.browser.switch_to.alert.accept
+    end
+
+    visit "/topics"
+    page.should_not have_content "A topic"
+    page.should_not have_content "By somebody"
+    page.should_not have_content "With description"
+
+    page.should have_button("Agregar nueva área o tema")
+  end
 end

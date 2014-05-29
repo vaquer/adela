@@ -16,7 +16,13 @@ class Topics.Item
       e.preventDefault()
       @_hide_item_data()
       @_show_form()
-
+    item.find(".edit-tools .delete").bind("ajax:success", () ->
+      item.remove()
+      index = 1
+      $("#topics-listing").find(".sort-order").each () ->
+        $(@).find("strong").hide().delay(100).text(index).fadeIn()
+        index += 1
+    )
   _show_form: () ->
     @form ||= new Topics.Form
       data: @data

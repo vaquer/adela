@@ -12,7 +12,7 @@ class TopicsController < ApplicationController
         # FIXME When do we show this notice?
         flash[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
       end
-      format.json { render :json => Topic.sorted }
+      format.json { render :json => current_organization.topics.sorted }
     end
   end
 

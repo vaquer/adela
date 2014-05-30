@@ -32,4 +32,8 @@ class Organization < ActiveRecord::Base
   def first_published_catalog
     inventories.published.last
   end
+
+  def last_updated_topic
+    topics.updated_sorted.first
+  end
 end

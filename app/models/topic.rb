@@ -6,7 +6,7 @@ class Topic < ActiveRecord::Base
   before_validation :set_sort_order
 
   scope :sorted, ->{ order("topics.sort_order ASC") }
-
+  scope :updated_sorted, -> { order("topics.updated_at DESC")}
 
   private
 

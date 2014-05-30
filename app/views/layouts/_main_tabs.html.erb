@@ -6,13 +6,16 @@
           <div class="first-step">
             <h3>
               Plan de apertura<br/>
-              <small>No tienes un plan de datos todavía.</small>
+              <% if current_organization.last_updated_topic.present? %>
+                <small>Última actualización: <strong><%= I18n.l(current_organization.last_updated_topic.updated_at, :format => :short) %></strong></small>
+              <% else %>
+                <small>No tienes un plan de datos todavía.</small>
+              <% end %>
             </h3>
           </div>
         </div>
       <% end %>
-
-      <a href='<%= organization_path(current_organization) %>'>
+      <%= link_to organization_path(current_organization) do %>
         <div class="col-md-6 disabled-tab step-tab">
           <div class='<%= header_step_image %>'>
             <h3>
@@ -30,7 +33,7 @@
             </h3>
           </div>
         </div>
-      </a>
+      <% end %>
     </div>
   </div>
 <% end %>

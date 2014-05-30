@@ -8,9 +8,6 @@ class OrganizationsController < ApplicationController
     if @organization.current_inventory && !@organization.current_catalog
       flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu inventario."
     end
-    unless @organization.inventories.any?
-      redirect_to new_inventory_path
-    end
   end
 
   def publish_catalog

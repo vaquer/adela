@@ -12,10 +12,16 @@
     <div id="topics-listing"></div>
     <div id="new-topic-container"></div>
 
-    <button type="button" id="new-topic-button" class="btn btn-default">
+    <button type="button" id="new-topic-button" class="btn btn-default pull-left">
       <span class="glyphicon glyphicon-plus"></span>
       Agregar nueva área o tema
     </button>
+    <% unless current_organization.topics.any? %>
+      <div id="start_adding_topics" class="col-md-6">
+        <%= image_tag "arrow_left.png", :class => "arrow-left" %>
+        <strong class="h4">Empieza tu plan de apertura</strong>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-md-4 bg-info">

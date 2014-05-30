@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521232246) do
+ActiveRecord::Schema.define(version: 20140530214617) do
 
   create_table "inventories", force: true do |t|
     t.string   "csv_file"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140521232246) do
     t.integer  "organization_id"
     t.string   "name"
     t.string   "owner"
-    t.string   "description"
+    t.text     "description"
     t.integer  "sort_order"
     t.datetime "created_at"
     t.datetime "updated_at"

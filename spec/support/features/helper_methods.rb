@@ -8,13 +8,13 @@ module Features
     end
 
     def sees_success_message(message)
-      within ".alert-success" do
+      within first(".alert-success") do
         expect(page).to have_text(message)
       end
     end
 
     def sees_error_message(message)
-      within ".alert-danger" do
+      within first(".alert-danger") do
         expect(page).to have_text(message)
       end
     end

@@ -60,14 +60,6 @@ feature User, 'publishes catalog:' do
     sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
   end
 
-  # FIXME Use helper
-  def given_logged_in_as(user)
-    visit "/users/sign_in"
-    fill_in("Correo electrónico", :with => user.email)
-    fill_in("Contraseña", :with => user.password)
-    click_on("Entrar")
-  end
-
   def sees_data_requirements
     expect(page).to have_css("#personal_data")
     expect(page).to have_css("#open_data")
@@ -81,12 +73,6 @@ feature User, 'publishes catalog:' do
     check("office_permission")
     check("data_policy_requirements")
     page.execute_script("$('#data_policy_requirements').trigger('change');")
-  end
-
-  # FIXME Use helper
-  def sees_success_message(message)
-    expect(page).to have_text(message)
-    expect(page).to have_css(".alert-success")
   end
 
   def tries_to_upload_the_file(file_name)

@@ -7,15 +7,12 @@ Adela::Application.routes.draw do
   end
 
   get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
-  resources :users, only: :show # FIXME Not being used
   root :to => "home#index"
 
 
   resources :organizations, only: :show do
-    member do
-      post "publish_catalog"
-      get "publish_later"
-    end
+    post "publish_catalog", :on => :member
+    get "publish_later", :on => :member
   end
 
   resources :inventories do
@@ -29,7 +26,6 @@ Adela::Application.routes.draw do
     post :sort_order, :on => :collection
     get :publish, :on => :collection
   end
-
 
   namespace :api, defaults: { format: 'json'} do
     namespace :v1 do

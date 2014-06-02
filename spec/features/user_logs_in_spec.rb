@@ -7,7 +7,7 @@ feature User, 'logs in:' do
   end
 
   scenario "fails to access a protected page" do
-    visit "/users/#{@user.id}/"
+    visit "/inventories/new"
     sees_error_message "Necesita ingresar o registrarse para continuar."
   end
 

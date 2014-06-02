@@ -11,20 +11,16 @@ class OrganizationsController < ApplicationController
   end
 
   def publish_catalog
-    # FIXME Can we use current_organization helper?
-    @organization = Organization.friendly.find(params[:id])
     if publication_requirements_checked?
-      @organization.current_inventory.publish!
-      redirect_to organization_path(@organization), :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+      current_organization.current_inventory.publish!
+      redirect_to organization_path(current_organization), :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
     else
       redirect_to publish_inventories_path, :error => "No se pudo publicar el catálogo"
     end
   end
 
   def publish_later
-    # FIXME Can we use current_organization helper?
-    @organization = Organization.friendly.find(params[:id])
-    redirect_to organization_path(@organization), :alert => "OJO: No has completado el último paso que es publicar tu inventario."
+    redirect_to organization_path(current_organization), :alert => "OJO: No has completado el último paso que es publicar tu inventario."
   end
 
   def catalog

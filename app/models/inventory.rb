@@ -13,7 +13,7 @@ class Inventory < ActiveRecord::Base
   scope :published, -> { date_sorted.where(:published => true) }
 
   def csv_structure_valid?
-    datasets.all? { |dataset| dataset.valid? }
+    datasets.any? && datasets.all? { |dataset| dataset.valid? }
   end
 
   def datasets

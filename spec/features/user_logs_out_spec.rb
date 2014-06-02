@@ -7,7 +7,7 @@ feature User, 'logs out:' do
   end
 
   scenario "sees user home page" do
-    expect(current_path).to eq(new_inventory_path)
+    expect(current_path).to eq(topics_path)
   end
 
   scenario "sees user organization title" do

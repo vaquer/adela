@@ -5,11 +5,12 @@ feature User, 'manages inventory:' do
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
+    @topic = FactoryGirl.create(:topic, :organization => @user.organization, :published => true)
   end
 
   scenario "sees inventory link" do
     expect(page).to have_text("Plan de apertura")
-    expect(page).to have_link("Inventario de datos")
+    expect(page).to have_text("Inventario de datos")
   end
 
   scenario "sees file input", :js => true do
@@ -39,6 +40,12 @@ feature User, 'manages inventory:' do
   scenario "fails to upload a csv file with invalid structure" do
     visit new_inventory_path
     tries_to_upload_the_file('invalid_inventory.csv')
+    sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
+  end
+
+  scenario "fails to upload an empty csv file" do
+    visit new_inventory_path
+    tries_to_upload_the_file('empty_inventory.csv')
     sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 

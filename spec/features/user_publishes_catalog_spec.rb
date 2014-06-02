@@ -4,7 +4,9 @@ feature User, 'publishes catalog:' do
   
   background do
     @user = FactoryGirl.create(:user)
+    @topic = FactoryGirl.create(:topic, :organization => @user.organization, :published => true)
     given_logged_in_as(@user)
+
   end
 
   scenario "can see a disabled publish link and catalog url" do

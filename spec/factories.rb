@@ -27,6 +27,7 @@ FactoryGirl.define do
     f.owner "Don Fulanito de Tal"
     f.description "Información adicional"
     f.sequence(:sort_order)
+    f.published false
     f.association :organization, :factory => :organization
   end
 end

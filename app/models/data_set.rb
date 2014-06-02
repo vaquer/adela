@@ -38,6 +38,10 @@ class DataSet
     distributions.all? { |distribution| distribution.downloadURL.present? }
   end
 
+  def distributions_count
+    distributions.size
+  end
+
   def distributions_download_url
     unless download_url?
       errors.add(:distributions)

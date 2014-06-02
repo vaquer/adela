@@ -28,7 +28,9 @@ module InventoriesHelper
   def file_structure_feedback(datasets)
     invalid_datasets_count = datasets.map(&:valid?).count(false)
     valid_datasets_count = datasets.map(&:valid?).count(true)
-    "#{valid_datasets_count} sets de datos completos y #{invalid_datasets_count} sets de datos incompletos."
+    valid_resources = datasets.map { |dataset| dataset.distributions_count if dataset.valid? }.compact.sum
+    invalid_resources = datasets.map { |dataset| dataset.distributions_count unless dataset.valid? }.compact.sum
+    "#{valid_datasets_count} sets de datos completos con #{valid_resources} recursos y #{invalid_datasets_count} sets de datos incompletos con #{invalid_resources} recursos."
   end
 
   def display_publish_form?(from_dashboard)

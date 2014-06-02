@@ -9,7 +9,7 @@ class DataSet
     @distributions = []
     attributes.each do |name, value|
       if value.present?
-        send("#{name}=", value.force_encoding(Encoding::UTF_8))
+        send("#{name}=", value.force_encoding(Encoding::UTF_8).strip)
       end
     end
   end
@@ -27,7 +27,7 @@ class DataSet
   end
 
   def keywords
-    keyword.split(",")
+    keyword.split(",").map(&:strip)
   end
 
   def values_array

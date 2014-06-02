@@ -7,7 +7,11 @@ class Topic < ActiveRecord::Base
 
   scope :sorted, ->{ order("topics.sort_order ASC") }
   scope :updated_sorted, -> { order("topics.updated_at DESC")}
+  scope :published, -> { where("topics.published" => true) }
 
+  def publish!
+    self.update_attribute(:published, true)
+  end
   private
 
   def set_sort_order

@@ -8,6 +8,9 @@ class InventoriesController < ApplicationController
     unless current_organization.topics.any?
       redirect_to topics_path
     end
+    unless current_organization.inventories.any?
+      flash.now[:notice] = "El siguiente paso es cargar un inventario"
+    end
   end
 
   def create
@@ -21,9 +24,6 @@ class InventoriesController < ApplicationController
     end
     @upload_intent = true
     render :action => "new"
-  end
-
-  def publish
   end
 
   def ignore_invalid_and_save

@@ -36,4 +36,8 @@ class Organization < ActiveRecord::Base
   def last_updated_topic
     topics.updated_sorted.first
   end
+
+  def has_public_topics?
+    topics.published.any?
+  end
 end

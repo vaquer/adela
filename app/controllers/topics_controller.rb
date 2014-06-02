@@ -9,8 +9,9 @@ class TopicsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        # FIXME When do we show this notice?
-        flash[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
+        unless current_organization.has_public_topics?
+          flash[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
+        end
       end
       format.json { render :json => current_organization.topics.sorted }
     end
@@ -49,6 +50,15 @@ class TopicsController < ApplicationController
       }
       render :json => {}, :status => :ok
     end
+  end
+
+  def publish
+    @topics = current_organization.topics
+    @topics.each do |topic|
+      topic.publish!
+    end
+    flash.now[:notice] = "Muy bien, tu plan de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/> El siguiente paso es el <a href='/inventories/new' class='alert-link'>Inventario de datos</a>".html_safe
+    render :index
   end
 
   private

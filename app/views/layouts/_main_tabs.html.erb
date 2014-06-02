@@ -3,7 +3,7 @@
     <div class="row">
       <%= link_to topics_path do %>
         <div class="col-md-6 disabled-tab">
-          <div class="first-step">
+          <div class="<%= header_step_image(1) %>">
             <h3>
               Plan de apertura<br/>
               <% if current_organization.last_updated_topic.present? %>
@@ -15,24 +15,28 @@
           </div>
         </div>
       <% end %>
-      <%= link_to new_inventory_path do %>
-        <div class="col-md-6 disabled-tab step-tab">
-          <div class='<%= header_step_image %>'>
-            <h3>
-              Inventario de datos
-              <br/>
-              <% if current_organization.last_file_version.present? %>
-                <small>Última actualización: <strong><%= I18n.l(current_organization.last_file_version.created_at, :format => :short) %></strong></small>
-                <% if current_organization.current_catalog.present? %>
-                  <br/>
-                  <small>Última publicación: <strong><%= I18n.l(current_organization.current_catalog.publish_date, :format => :short) %></strong></small>
-                <% end %>
-              <% else %>
-                <small>No tienes un inventario de datos cargado todavía.</small>
+      <% if current_organization.has_public_topics? %>
+        <a href="/inventories/new">
+      <% end %>
+      <div class="col-md-6 disabled-tab step-tab">
+        <div class='<%= header_step_image(2) %>'>
+          <h3>
+            Inventario de datos
+            <br/>
+            <% if current_organization.last_file_version.present? %>
+              <small>Última actualización: <strong><%= I18n.l(current_organization.last_file_version.created_at, :format => :short) %></strong></small>
+              <% if current_organization.current_catalog.present? %>
+                <br/>
+                <small>Última publicación: <strong><%= I18n.l(current_organization.current_catalog.publish_date, :format => :short) %></strong></small>
               <% end %>
-            </h3>
-          </div>
+            <% else %>
+              <small>No tienes un inventario de datos cargado todavía.</small>
+            <% end %>
+          </h3>
         </div>
+      </div>
+      <% if current_organization.has_public_topics? %>
+        </a>
       <% end %>
     </div>
   </div>

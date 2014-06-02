@@ -31,4 +31,14 @@ module ApplicationHelper
 
     html.html_safe
   end
+
+  def header_step_image(step)
+    if current_catalog.present? && step == 2 || current_organization.has_public_topics? && step == 1
+      "step-checked"
+    elsif step == 2
+      "second-step"
+    elsif step == 1
+      "first-step"
+    end
+  end
 end

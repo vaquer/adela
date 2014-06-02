@@ -27,6 +27,7 @@ Adela::Application.routes.draw do
 
   resources :topics do
     post :sort_order, :on => :collection
+    get :publish, :on => :collection
   end
 
 

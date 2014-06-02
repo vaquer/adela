@@ -11,6 +11,7 @@ class Topics.Item
     @item.hide()
     $(container).append(@item)
     @item.fadeIn()
+    $("#save_plan").removeClass("hidden")
 
   _setup_events: (item) ->
     item.find(".edit-tools .edit").click (e) =>
@@ -19,6 +20,8 @@ class Topics.Item
       @_show_form()
     item.find(".edit-tools .delete").bind("ajax:success", () ->
       item.remove()
+      if $("#topics-listing").find(".topic-data").length == 0
+        $("#save_plan").addClass("hidden")
       index = 1
       $("#topics-listing").find(".sort-order").each () ->
         $(@).find("strong").hide().delay(100).text(index).fadeIn()

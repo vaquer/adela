@@ -22,6 +22,13 @@
         <strong class="h4">Empieza tu plan de apertura</strong>
       </div>
     <% end %>
+    <div class="col-md-12">
+      <br/><br/>
+      <div id="save_plan" class="col-md-6 col-md-offset-3 <%= 'hidden' unless current_organization.has_public_topics? %>">
+        <%= link_to "¡LISTO!, terminé el plan de apertura", publish_topics_path, :class => "btn btn-primary btn-block" %>
+        <small><em>Esto te lleva al siguiente paso, no te preocupes, siempre puedes regresar a editar tu plan de apertura.</em></small>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-4 bg-info">

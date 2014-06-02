@@ -26,6 +26,8 @@ feature User, 'manages topics:' do
       page.should have_content "Fulanito Perez"
       page.should have_content "Descripción de actividades"
     end
+
+    page.should have_content "¡LISTO!, terminé el plan de apertura"
   end
 
   scenario "can see existing topics", :js => true do

@@ -21,7 +21,7 @@ feature User, 'manages inventory:' do
   scenario "succeed to upload a csv file" do
     visit new_inventory_path
     tries_to_upload_the_file('inventory.csv')
-    expect(page).to have_text "2 sets de datos completos con 7 recursos y 0 sets de datos incompletos con 0 recursos."
+    expect(page).to have_text "2 conjuntos de datos completos con 7 recursos y 0 conjuntos de datos incompletos con 0 recursos."
     sees_table_with_datasets
   end
 
@@ -52,7 +52,7 @@ feature User, 'manages inventory:' do
   scenario "sees a preview of an incorrect uploaded file" do
     visit new_inventory_path
     tries_to_upload_the_file('invalid_inventory.csv')
-    expect(page).to have_text("0 sets de datos completos con 0 recursos y 2 sets de datos incompletos con 7 recursos.")
+    expect(page).to have_text("0 conjuntos de datos completos con 0 recursos y 2 conjuntos de datos incompletos con 7 recursos.")
     sees_table_with_datasets
   end
 

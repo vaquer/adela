@@ -11,6 +11,8 @@ es:
 
   devise:
     failure:
+      user:
+        not_found_in_database: "No se encontró el email del usuario en la base de datos."
       already_authenticated: 'Ya está dentro del sistema.'
       unauthenticated: 'Necesita ingresar o registrarse para continuar.'
       unconfirmed: 'Debe confirmar su cuenta para continuar.'

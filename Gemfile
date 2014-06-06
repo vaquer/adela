@@ -20,7 +20,6 @@ gem 'pg'
 
 group :development, :test do
   gem 'spring'
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'debugger'
   gem 'factory_girl_rails'

@@ -16,6 +16,7 @@ gem 'carrierwave-aws'
 gem 'i18n'
 gem 'friendly_id'
 gem 'rabl'
+gem 'pg'
 
 group :development, :test do
   gem 'spring'
@@ -38,6 +39,5 @@ group :doc do
 end
 
 group :staging, :production do
-  gem 'pg'
   gem 'thin'
 end

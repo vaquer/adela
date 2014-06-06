@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140520170420) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "inventories", force: true do |t|
     t.string   "csv_file"
     t.integer  "organization_id"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140520170420) do
     t.string   "slug"
   end
 
-  add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true
+  add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140520170420) do
     t.integer  "organization_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

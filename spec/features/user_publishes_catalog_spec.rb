@@ -33,7 +33,7 @@ feature User, 'publishes catalog:' do
     click_on "Guardar inventario"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
     expect(page).to have_text "Última versión"
     expect(page).to have_text "Versión Publicada"
     expect(page).to have_text @user.name
@@ -57,7 +57,7 @@ feature User, 'publishes catalog:' do
     expect(page).to have_text "Paso 5"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
   end
 
   def sees_data_requirements

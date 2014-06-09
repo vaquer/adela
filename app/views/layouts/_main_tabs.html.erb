@@ -5,11 +5,11 @@
         <div class="col-md-6 disabled-tab">
           <div class="<%= header_step_image(1) %>">
             <h3>
-              Plan de apertura<br/>
+              Programa de apertura<br/>
               <% if current_organization.last_updated_topic.present? %>
                 <small>Última actualización: <strong><%= I18n.l(current_organization.last_updated_topic.updated_at, :format => :short) %></strong></small>
               <% else %>
-                <small>No tienes un plan de datos todavía.</small>
+                <small>No tienes un programa de datos todavía.</small>
               <% end %>
             </h3>
           </div>

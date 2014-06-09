@@ -40,7 +40,7 @@ feature User, 'logs in:' do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, @user.password)
     click_on("Entrar")
-    sees_success_message "Bienvenido, el primer paso es crear tu plan de apertura"
+    sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
     expect(current_path).to eq(topics_path)
   end
 

@@ -37,9 +37,9 @@ describe Topic do
     end
 
     it "sets the sorts_order to be one more than previous one" do
-      FactoryGirl.create :topic, :sort_order => 1
-      FactoryGirl.create :topic, :sort_order => 2
-      FactoryGirl.create :topic, :sort_order => 3
+      FactoryGirl.create :topic, :sort_order => 1, :organization_id => subject.organization_id
+      FactoryGirl.create :topic, :sort_order => 2, :organization_id => subject.organization_id
+      FactoryGirl.create :topic, :sort_order => 3, :organization_id => subject.organization_id
 
       subject.save!
       subject.sort_order.should == 4

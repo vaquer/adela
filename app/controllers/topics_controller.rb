@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html do
         unless current_organization.has_public_topics?
-          flash.now[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
+          flash.now[:notice] = "Bienvenido, el primer paso es crear tu programa de apertura"
         end
       end
       format.json { render :json => current_organization.topics.sorted }
@@ -57,7 +57,7 @@ class TopicsController < ApplicationController
     @topics.each do |topic|
       topic.publish!
     end
-    flash.now[:notice] = "Muy bien, tu plan de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/> El siguiente paso es el <a href='/inventories/new' class='alert-link'>Inventario de datos</a>".html_safe
+    flash.now[:notice] = "Muy bien, tu programa de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/> El siguiente paso es el <a href='/inventories/new' class='alert-link'>Inventario de datos</a>".html_safe
     render :index
   end
 

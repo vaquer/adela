@@ -13,7 +13,7 @@ class OrganizationsController < ApplicationController
   def publish_catalog
     if publication_requirements_checked?
       current_organization.current_inventory.publish!
-      redirect_to organization_path(current_organization), :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+      redirect_to organization_path(current_organization), :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
     else
       redirect_to publish_inventories_path, :error => "No se pudo publicar el catálogo"
     end

@@ -6,12 +6,12 @@ feature User, 'manages topics:' do
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
-    click_link "Plan de apertura"
+    click_link "Programa de apertura"
   end
 
   scenario "can see a button and a message to add first topic" do
     page.should have_button("Agregar nueva área o tema")
-    sees_success_message "Bienvenido, el primer paso es crear tu plan de apertura"
+    sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
   end
 
   scenario "can add a new topic", :js => true do
@@ -27,7 +27,7 @@ feature User, 'manages topics:' do
       page.should have_content "Descripción de actividades"
     end
 
-    page.should have_content "¡LISTO!, terminé el plan de apertura"
+    page.should have_content "¡LISTO!, terminé el programa de apertura"
   end
 
   scenario "can see existing topics", :js => true do

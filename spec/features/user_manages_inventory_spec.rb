@@ -9,7 +9,7 @@ feature User, 'manages inventory:' do
   end
 
   scenario "sees inventory link" do
-    expect(page).to have_text("Plan de apertura")
+    expect(page).to have_text("Programa de apertura")
     expect(page).to have_text("Inventario de datos")
   end
 

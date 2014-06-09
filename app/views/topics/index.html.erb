@@ -19,20 +19,20 @@
     <% unless current_organization.topics.any? %>
       <div id="start_adding_topics" class="col-md-6">
         <%= image_tag "arrow_left.png", :class => "arrow-left" %>
-        <strong class="h4">Empieza tu plan de apertura</strong>
+        <strong class="h4">Empieza tu programa de apertura</strong>
       </div>
     <% end %>
     <div class="col-md-12">
       <br/><br/>
       <div id="save_plan" class="col-md-6 col-md-offset-3 <%= 'hidden' unless current_organization.has_public_topics? %>">
-        <%= link_to "¡LISTO!, terminé el plan de apertura", publish_topics_path, :class => "btn btn-primary btn-block" %>
-        <small><em>Esto te lleva al siguiente paso, no te preocupes, siempre puedes regresar a editar tu plan de apertura.</em></small>
+        <%= link_to "¡LISTO!, terminé el programa de apertura", publish_topics_path, :class => "btn btn-primary btn-block" %>
+        <small><em>Esto te lleva al siguiente paso, no te preocupes, siempre puedes regresar a editar tu programa de apertura.</em></small>
       </div>
     </div>
   </div>
 
   <div class="col-md-4 bg-info">
-    <h4>¿Qué es un plan de apertura?</h4>
+    <h4>¿Qué es un programa de apertura?</h4>
     <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet
     consectetur adipisci velit</p>
 
@@ -42,7 +42,7 @@
       </p>
     </div>
 
-    <h4>¿Para qué sirve un plan de apertura?</h4>
+    <h4>¿Para qué sirve un programa de apertura?</h4>
     <p>Sed ut perspiciatis, unde omnis iste natus error sit
     voluptatem accusantium doloremque laudantium, totam rem aperiam
     eaque ipsa, quae ab illo inventore veritatis et quasi architecto
@@ -54,7 +54,7 @@
       </p>
     </div>
 
-    <p><a href="#">Más ayuda sobre el plan de apertura</a></p>
+    <p><a href="#">Más ayuda sobre el programa de apertura</a></p>
   </div>
 </div>
 

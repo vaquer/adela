@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html do
         unless current_organization.has_public_topics?
-          flash[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
+          flash.now[:notice] = "Bienvenido, el primer paso es crear tu plan de apertura"
         end
       end
       format.json { render :json => current_organization.topics.sorted }

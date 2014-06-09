@@ -46,7 +46,7 @@ feature User, 'manages inventory:' do
   scenario "fails to upload an empty csv file" do
     visit new_inventory_path
     tries_to_upload_the_file('empty_inventory.csv')
-    sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
+    sees_error_message "Debe existir al menos un conjunto de datos en el archivo."
   end
 
   scenario "sees a preview of an incorrect uploaded file" do

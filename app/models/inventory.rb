@@ -4,7 +4,7 @@ class Inventory < ActiveRecord::Base
 
   validates_presence_of :organization_id, :csv_file
   validates_processing_of :csv_file
-  validate :csv_encoding, :csv_structure
+  validate :csv_encoding, :csv_structure, :csv_datasets
 
   belongs_to :organization
 
@@ -13,7 +13,13 @@ class Inventory < ActiveRecord::Base
   scope :published, -> { date_sorted.where(:published => true) }
 
   def csv_structure_valid?
-    datasets.any? && datasets.all? { |dataset| dataset.valid? }
+    datasets.all? { |dataset| dataset.valid? }
+  end
+
+  def csv_datasets
+    unless datasets.present?
+      errors[:base] << I18n.t("activerecord.errors.models.inventory.attributes.datasets.blank")
+    end
   end
 
   def datasets

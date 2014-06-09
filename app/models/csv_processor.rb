@@ -40,7 +40,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
 
   def new_dataset(row)
     DataSet.new({
-      :identifier => row["ds:identifier"],
+      :identifier => row["ds:identifier"] || row[0],
       :title => row["ds:title"],
       :description => row["ds:description"],
       :keyword => row["ds:keyword"],
@@ -71,10 +71,10 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
   end
 
   def dataset?(row)
-    row["ds:identifier"] && row["ds:title"]
+    (row["ds:identifier"].present? || row[0].present?) && row["ds:title"].present?
   end
 
   def distribution?(row)
-    row["ds:identifier"] && row["rs:title"]
+    (row["ds:identifier"].present? || row[0].present?) && row["rs:title"].present?
   end
 end

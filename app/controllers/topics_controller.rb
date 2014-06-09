@@ -57,8 +57,7 @@ class TopicsController < ApplicationController
     @topics.each do |topic|
       topic.publish!
     end
-    flash.now[:notice] = "Muy bien, tu programa de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/> El siguiente paso es el <a href='/inventories/new' class='alert-link'>Inventario de datos</a>".html_safe
-    render :index
+    redirect_to new_inventory_path, :notice  => "Muy bien, tu programa de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/>El siguiente paso es subir un inventario de datos."
   end
 
   private

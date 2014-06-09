@@ -12,9 +12,10 @@ class Topic < ActiveRecord::Base
   def publish!
     self.update_attribute(:published, true)
   end
+
   private
 
   def set_sort_order
-    self.sort_order ||= (Topic.maximum("sort_order") || 0) + 1
+    self.sort_order ||= (Topic.where("topics.organization_id = #{self.organization_id}").maximum("sort_order") || 0) + 1
   end
 end

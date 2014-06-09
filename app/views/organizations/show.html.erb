@@ -6,13 +6,13 @@
     <div class="col-md-10">
       <%= image_tag "csv_file.png", :class => "pull-left csv-file" %>
       <div class="h4">
-        <small>Última versión:</small><%= I18n.l(@organization.last_file_version.created_at, :format => :short) %>
+        <small>Última versión: </small><%= I18n.l(@organization.last_file_version.created_at, :format => :short) %>
       </div>
       <div class="h4">
-        <small>Actualizado por:</small><%= @organization.last_file_version.author %>
+        <small>Actualizado por: </small><%= @organization.last_file_version.author %>
       </div>
       <div class="h4">
-        <small>Set de datos:</small><%= "#{@organization.last_file_version.public_datasets_count} sets públicos y #{@organization.last_file_version.private_datasets_count} sets privados" %>
+        <small>Conjuntos de datos: </small><%= about_datasets(@organization.last_file_version) %>
       </div>
       <div class="h4">
         <%= link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-upload" ) + "Subir nueva versión"), new_inventory_path(:new_version => true), :class => "btn btn-default" %>
@@ -43,13 +43,13 @@
       <br/>
       <%= image_tag "csv_file.png", :class => "pull-left csv-file" %>
       <div class="h4">
-        <small>Última versión:</small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+        <small>Última versión: </small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
       </div>
       <div class="h4">
-        <small>Actualizado por:</small><%= @organization.current_catalog.author %>
+        <small>Actualizado por: </small><%= @organization.current_catalog.author %>
       </div>
       <div class="h4">
-        <small>Set de datos:</small><%= "#{@organization.current_catalog.public_datasets_count} sets públicos y #{@organization.current_catalog.private_datasets_count} sets privados" %>
+        <small>Conjuntos de datos: </small><%= about_datasets(@organization.current_catalog) %>
       </div>
       <% if @organization.last_inventory_is_unpublished? %>
         <br/>

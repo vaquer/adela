@@ -42,4 +42,10 @@ module InventoriesHelper
   def inventory_history(inventory)
     "Fecha de captura: #{I18n.l(inventory.created_at, :format => :short)}, por #{inventory.author}."
   end
+
+  def about_datasets(inventory)
+    public_datasets_count = inventory.datasets.map(&:public?).count(true)
+    private_datasets_count = inventory.datasets.map(&:private?).count(true)
+    "#{inventory.public_datasets_count} conjuntos de datos públicos <br/> con #{public_datasets_count} recursos y #{inventory.private_datasets_count} conjuntos de datos privados con #{private_datasets_count} recursos".html_safe
+  end
 end

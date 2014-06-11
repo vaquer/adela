@@ -1,0 +1,11 @@
+<p>Bienvenido a <strong>ADELA</strong>.</p>
+
+<p>Tus credenciales para iniciar sesión son:</p>
+
+<span>Correo electrónico: </span><strong><%= @user.email %></strong>
+<br/>
+<span>Contraseña: </span><strong><%= @password %></strong>
+
+<p>Te recomendamos ampliamente cambiar la contraseña temporal recibida, a través del siguiente link: </p> 
+
+<%= link_to "Cambiar contraseña", edit_user_registration_url %>

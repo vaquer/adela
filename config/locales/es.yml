@@ -114,3 +114,6 @@ es:
               blank: "no puede estar en blanco si la base de datos es Pública."
             accessLevelComment:
               blank: "no puede estar en blanco si la base de datos es Privada o Restringida."
+  mailers:
+    user:
+      notificate_user_account_subject: "Nuevo usuario en ADELA"

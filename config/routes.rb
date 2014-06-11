@@ -39,4 +39,9 @@ Adela::Application.routes.draw do
       end
     end
   end
+
+  namespace :admin do
+    get '/', to: 'base#index', as: 'root'
+    post "/create_users", to: 'base#create_users', as: "create_users"
+  end
 end

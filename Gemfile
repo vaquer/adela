@@ -16,10 +16,10 @@ gem 'carrierwave-aws'
 gem 'i18n'
 gem 'friendly_id'
 gem 'rabl'
+gem 'pg'
 
 group :development, :test do
   gem 'spring'
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'debugger'
   gem 'factory_girl_rails'
@@ -38,6 +38,5 @@ group :doc do
 end
 
 group :staging, :production do
-  gem 'pg'
   gem 'thin'
 end

@@ -19,6 +19,7 @@ gem 'friendly_id'
 gem 'rabl'
 gem 'pg'
 gem 'eco'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'spring'

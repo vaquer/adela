@@ -29,5 +29,6 @@ module Adela
     end
 
     config.i18n.default_locale = :es
+    config.eager_load_paths += ["#{config.root}/workers"]
   end
 end

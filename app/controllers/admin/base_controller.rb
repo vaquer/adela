@@ -24,10 +24,10 @@ class Admin::BaseController < ApplicationController
     CSV.new(file_content.force_encoding('UTF-8'), :headers => :first_row).each do |row|
       organization = Organization.where(:title => row["organizacion"]).first_or_create
       password = Devise.friendly_token.first(8)
-      user = User.create(name: row["nombre"], email: row["email"], password: password, password_confirmation: password, organization_id: organization.id)
-      if user
+      user = User.new(name: row["nombre"], email: row["email"], password: password, password_confirmation: password, organization_id: organization.id)
+      if user.save
         @users << user
-        UserMailer.notificate_user_account(user, password)
+        UserAccountWorker.perform_async(user.id, password)
       end
     end
   end

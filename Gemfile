@@ -19,7 +19,9 @@ gem 'friendly_id'
 gem 'rabl'
 gem 'pg'
 gem 'eco'
+gem 'redis'
 gem 'sidekiq'
+gem 'thin'
 
 group :development, :test do
   gem 'spring'
@@ -42,5 +44,5 @@ group :doc do
 end
 
 group :staging, :production do
-  gem 'thin'
+  gem 'unicorn'
 end

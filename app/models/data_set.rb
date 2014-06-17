@@ -20,7 +20,7 @@ class DataSet
   end
 
   def public?
-    ["público", "publico"].include? accessLevel
+    ["público"].include? accessLevel || accessLevel.blank?
   end
 
   def persisted?

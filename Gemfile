@@ -21,7 +21,7 @@ gem 'pg'
 gem 'eco'
 gem 'redis'
 gem 'sidekiq'
-gem 'thin'
+gem 'figaro'
 
 group :development, :test do
   gem 'spring'
@@ -30,6 +30,7 @@ group :development, :test do
   gem 'debugger'
   gem 'factory_girl_rails'
   gem 'letter_opener'
+  gem 'thin'
 end
 
 group :test do

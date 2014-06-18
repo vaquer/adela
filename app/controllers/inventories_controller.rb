@@ -4,7 +4,10 @@ class InventoriesController < ApplicationController
   layout 'home'
 
   def new
-    @inventory = current_user.inventories.unpublished.first
+    @inventory = Inventory.new
+    unless current_organization.topics.any?
+      redirect_to topics_path
+    end
   end
 
   def create
@@ -18,9 +21,6 @@ class InventoriesController < ApplicationController
     end
     @upload_intent = true
     render :action => "new"
-  end
-
-  def publish
   end
 
   def ignore_invalid_and_save

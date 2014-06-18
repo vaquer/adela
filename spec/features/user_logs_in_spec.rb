@@ -7,7 +7,7 @@ feature User, 'logs in:' do
   end
 
   scenario "fails to access a protected page" do
-    visit "/users/#{@user.id}/"
+    visit "/inventories/new"
     sees_error_message "Necesita ingresar o registrarse para continuar."
   end
 
@@ -40,8 +40,8 @@ feature User, 'logs in:' do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, @user.password)
     click_on("Entrar")
-    sees_success_message "Ingreso exitoso."
-    expect(current_path).to eq(new_inventory_path)
+    sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
+    expect(current_path).to eq(topics_path)
   end
 
   def fill_the_form_with(email, password)

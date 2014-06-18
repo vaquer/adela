@@ -5,11 +5,12 @@ feature User, 'manages inventory:' do
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
+    @topic = FactoryGirl.create(:topic, :organization => @user.organization, :published => true)
   end
 
   scenario "sees inventory link" do
-    expect(page).to have_text("Plan de apertura")
-    expect(page).to have_link("Inventario de datos")
+    expect(page).to have_text("Programa de apertura")
+    expect(page).to have_text("Inventario de datos")
   end
 
   scenario "sees file input", :js => true do
@@ -20,7 +21,7 @@ feature User, 'manages inventory:' do
   scenario "succeed to upload a csv file" do
     visit new_inventory_path
     tries_to_upload_the_file('inventory.csv')
-    expect(page).to have_text "2 sets de datos completos y 0 sets de datos incompletos."
+    expect(page).to have_text "2 conjuntos de datos completos con 7 recursos y 0 conjuntos de datos incompletos con 0 recursos."
     sees_table_with_datasets
   end
 
@@ -42,10 +43,16 @@ feature User, 'manages inventory:' do
     sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
+  scenario "fails to upload an empty csv file" do
+    visit new_inventory_path
+    tries_to_upload_the_file('empty_inventory.csv')
+    sees_error_message "Debe existir al menos un conjunto de datos en el archivo."
+  end
+
   scenario "sees a preview of an incorrect uploaded file" do
     visit new_inventory_path
     tries_to_upload_the_file('invalid_inventory.csv')
-    expect(page).to have_text("0 sets de datos completos y 2 sets de datos incompletos.")
+    expect(page).to have_text("0 conjuntos de datos completos con 0 recursos y 2 conjuntos de datos incompletos con 7 recursos.")
     sees_table_with_datasets
   end
 

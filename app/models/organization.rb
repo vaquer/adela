@@ -5,6 +5,7 @@ class Organization < ActiveRecord::Base
 
   has_many :inventories
   has_many :users
+  has_many :topics
 
   scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'").uniq }
 
@@ -30,5 +31,13 @@ class Organization < ActiveRecord::Base
 
   def first_published_catalog
     inventories.published.last
+  end
+
+  def last_updated_topic
+    topics.updated_sorted.first
+  end
+
+  def has_public_topics?
+    topics.published.any?
   end
 end

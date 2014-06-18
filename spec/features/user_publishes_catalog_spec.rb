@@ -4,7 +4,9 @@ feature User, 'publishes catalog:' do
   
   background do
     @user = FactoryGirl.create(:user)
+    @topic = FactoryGirl.create(:topic, :organization => @user.organization, :published => true)
     given_logged_in_as(@user)
+
   end
 
   scenario "can see a disabled publish link and catalog url" do
@@ -31,7 +33,7 @@ feature User, 'publishes catalog:' do
     click_on "Guardar inventario"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
     expect(page).to have_text "Última versión"
     expect(page).to have_text "Versión Publicada"
     expect(page).to have_text @user.name
@@ -55,14 +57,7 @@ feature User, 'publishes catalog:' do
     expect(page).to have_text "Paso 5"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura e inventario de datos al día."
-  end
-
-  def given_logged_in_as(user)
-    visit "/users/sign_in"
-    fill_in("Correo electrónico", :with => user.email)
-    fill_in("Contraseña", :with => user.password)
-    click_on("Entrar")
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
   end
 
   def sees_data_requirements
@@ -78,11 +73,6 @@ feature User, 'publishes catalog:' do
     check("office_permission")
     check("data_policy_requirements")
     page.execute_script("$('#data_policy_requirements').trigger('change');")
-  end
-
-  def sees_success_message(message)
-    expect(page).to have_text(message)
-    expect(page).to have_css(".alert-success")
   end
 
   def tries_to_upload_the_file(file_name)

@@ -8,8 +8,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_organization.inventories.any?
       organization_path(current_user.organization)
-    else
+    elsif current_organization.topics.any?
       new_inventory_path
+    else
+      topics_path
     end
   end
 

@@ -21,4 +21,13 @@ FactoryGirl.define do
     f.published true
     f.publish_date DateTime.now
   end
+
+  factory :topic do |f|
+    f.name "Un tema de apertura"
+    f.owner "Don Fulanito de Tal"
+    f.description "Información adicional"
+    f.sequence(:sort_order)
+    f.published false
+    f.association :organization, :factory => :organization
+  end
 end

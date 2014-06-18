@@ -17,11 +17,6 @@ a:hover {
   padding: 0 20px 20px 20px;
 }
 
-.step-tab:hover {
-  background-color: white;
-  border: 2px solid $brand-info;
-}
-
 .first-step {
   background: image-url("step-1.png") left no-repeat;
   padding-left: 70px;
@@ -84,4 +79,8 @@ a:hover {
 
 .dashboard-history {
   min-height: 250px;
+}
+
+.arrow-left {
+  width: 45px;
 }

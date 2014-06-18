@@ -1,30 +1,43 @@
 <% if current_organization.present? %>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 disabled-tab">
-        <div class="first-step">
-          <h3>Plan de apertura <br/> <small>No tienes un plan de datos todavía.</small></h3>
-        </div>
-      </div>
-      <a href='<%= organization_path(current_organization) %>'>
-        <div class="col-md-6 disabled-tab step-tab">
-          <div class='<%= header_step_image %>'>
+      <%= link_to topics_path do %>
+        <div class="col-md-6 disabled-tab">
+          <div class="<%= header_step_image(1) %>">
             <h3>
-              Inventario de datos
-              <br/>
-              <% if current_organization.last_file_version.present? %>
-                <small>Última actualización: <strong><%= I18n.l(current_organization.last_file_version.created_at, :format => :short) %></strong></small>
-                <% if current_organization.current_catalog.present? %>
-                  <br/>
-                  <small>Última publicación: <strong><%= I18n.l(current_organization.current_catalog.publish_date, :format => :short) %></strong></small>
-                <% end %>
+              Programa de apertura<br/>
+              <% if current_organization.last_updated_topic.present? %>
+                <small>Última actualización: <strong><%= I18n.l(current_organization.last_updated_topic.updated_at, :format => :short) %></strong></small>
               <% else %>
-                <small>No tienes un inventario de datos cargado todavía.</small>
+                <small>No tienes un programa de datos todavía.</small>
               <% end %>
             </h3>
           </div>
         </div>
-      </a>
+      <% end %>
+      <% if current_organization.has_public_topics? %>
+        <a href="/inventories/new">
+      <% end %>
+      <div class="col-md-6 disabled-tab step-tab">
+        <div class='<%= header_step_image(2) %>'>
+          <h3>
+            Inventario de datos
+            <br/>
+            <% if current_organization.last_file_version.present? %>
+              <small>Última actualización: <strong><%= I18n.l(current_organization.last_file_version.created_at, :format => :short) %></strong></small>
+              <% if current_organization.current_catalog.present? %>
+                <br/>
+                <small>Última publicación: <strong><%= I18n.l(current_organization.current_catalog.publish_date, :format => :short) %></strong></small>
+              <% end %>
+            <% else %>
+              <small>No tienes un inventario de datos cargado todavía.</small>
+            <% end %>
+          </h3>
+        </div>
+      </div>
+      <% if current_organization.has_public_topics? %>
+        </a>
+      <% end %>
     </div>
   </div>
 <% end %>

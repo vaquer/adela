@@ -5,14 +5,6 @@ module InventoriesHelper
     end
   end
 
-  def header_step_image
-    if current_catalog.present?
-      "step-checked"
-    else
-      "second-step"
-    end
-  end
-
   def current_inventory
     @current_inventory ||= current_user.inventories.unpublished.first
   end
@@ -36,7 +28,9 @@ module InventoriesHelper
   def file_structure_feedback(datasets)
     invalid_datasets_count = datasets.map(&:valid?).count(false)
     valid_datasets_count = datasets.map(&:valid?).count(true)
-    "#{valid_datasets_count} sets de datos completos y #{invalid_datasets_count} sets de datos incompletos."
+    valid_resources = datasets.map { |dataset| dataset.distributions_count if dataset.valid? }.compact.sum
+    invalid_resources = datasets.map { |dataset| dataset.distributions_count unless dataset.valid? }.compact.sum
+    "#{valid_datasets_count} conjuntos de datos completos con #{valid_resources} recursos y #{invalid_datasets_count} conjuntos de datos incompletos con #{invalid_resources} recursos."
   end
 
   def display_publish_form?(from_dashboard)
@@ -47,5 +41,11 @@ module InventoriesHelper
 
   def inventory_history(inventory)
     "Fecha de captura: #{I18n.l(inventory.created_at, :format => :short)}, por #{inventory.author}."
+  end
+
+  def about_datasets(inventory)
+    public_datasets_count = inventory.datasets.map(&:public?).count(true)
+    private_datasets_count = inventory.datasets.map(&:private?).count(true)
+    "#{inventory.public_datasets_count} conjuntos de datos públicos <br/> con #{public_datasets_count} recursos y #{inventory.private_datasets_count} conjuntos de datos privados con #{private_datasets_count} recursos".html_safe
   end
 end

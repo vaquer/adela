@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520170420) do
+ActiveRecord::Schema.define(version: 20140602222316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140520170420) do
     t.string   "author"
   end
 
+  add_index "inventories", ["organization_id"], name: "index_inventories_on_organization_id", using: :btree
+
   create_table "organizations", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
@@ -34,6 +36,20 @@ ActiveRecord::Schema.define(version: 20140520170420) do
   end
 
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
+
+  create_table "topics", force: true do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.string   "owner"
+    t.text     "description"
+    t.integer  "sort_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "published",       default: false
+  end
+
+  add_index "topics", ["organization_id"], name: "index_topics_on_organization_id", using: :btree
+  add_index "topics", ["sort_order"], name: "index_topics_on_sort_order", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
@@ -53,6 +69,7 @@ ActiveRecord::Schema.define(version: 20140520170420) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

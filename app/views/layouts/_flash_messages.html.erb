@@ -1,5 +1,5 @@
 <div class="container">
   <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "alert alert-#{bootstrap_flash_class(key)}") %>
+    <%= content_tag(:div, value.html_safe, class: "alert alert-#{bootstrap_flash_class(key)}") %>
   <% end %>
 </div>

@@ -36,5 +36,5 @@ Adela::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { :host => ENV['HOST'], :port => 3000 }
+  config.action_mailer.default_url_options = { :host => 'localhols', :port => 3000 }
 end

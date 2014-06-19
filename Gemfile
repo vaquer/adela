@@ -22,6 +22,7 @@ gem 'eco'
 gem 'redis'
 gem 'sidekiq'
 gem 'figaro'
+gem 'will_paginate', '~> 3.0'
 
 group :development, :test do
   gem 'spring'

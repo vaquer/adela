@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
 
+  scope :created_at_sorted, -> { order("created_at DESC") }
+
   belongs_to      :organization
   has_many        :inventories, :through => :organization
 end

@@ -28,6 +28,7 @@ FactoryGirl.define do
     f.description "Información adicional"
     f.sequence(:sort_order)
     f.published false
+    f.publish_date DateTime.now
     f.association :organization, :factory => :organization
   end
 end

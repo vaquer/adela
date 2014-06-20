@@ -28,7 +28,8 @@ describe Topic do
     subject do
       Topic.new :name => "Topic",
         :owner => "Owner",
-        :organization => FactoryGirl.create(:organization)
+        :organization => FactoryGirl.create(:organization),
+        :publish_date => DateTime.now
     end
 
     it "automatically sets a sort_order when creating" do

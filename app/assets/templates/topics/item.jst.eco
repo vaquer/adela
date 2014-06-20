@@ -20,6 +20,10 @@
         </div>
       </div>
       <div class="row">
+        <label class="col-sm-3">Fecha de apertura </label>
+        <div class="col-sm-9 expandable"><%= @topic.formatted_publish_date %></div>
+      </div>
+      <div class="row">
         <label class="col-sm-3">Responsable</label>
         <div class="col-sm-9"><%= @topic.owner %></div>
       </div>

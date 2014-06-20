@@ -13,6 +13,10 @@ class Admin::BaseController < ApplicationController
     end
   end
 
+  def users
+    @users = User.created_at_sorted.paginate(:page => params[:page], :per_page => 30)
+  end
+
   private
 
   def file_params

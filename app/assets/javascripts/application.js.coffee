@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.sortable
+//= require jquery.ui.datepicker
+//= require jquery.ui.datepicker-es
 //= require jquery.expander
 //= require bootstrap
 //= require_self

@@ -4,7 +4,7 @@ task create_organizations: :environment do
   orgs = STDIN.gets.chomp
 
   orgs.split(',').each do |title|
-    org = Organization.create(:title => title)
+    org = Organization.create(:title => title.strip)
     if org
       puts "#{org.title} created with id: #{org.id}"
     end

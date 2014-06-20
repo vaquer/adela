@@ -5,9 +5,6 @@ class InventoriesController < ApplicationController
 
   def new
     @inventory = Inventory.new
-    unless current_organization.topics.any?
-      redirect_to topics_path
-    end
   end
 
   def create

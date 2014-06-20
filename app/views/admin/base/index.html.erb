@@ -1,10 +1,14 @@
 <div class="container">
+  <h2>IMPORTAR USUARIOS</h2>
   <%= form_tag(admin_create_users_path, :method => :post, multipart: true) do |f| %>
-    <%= label_tag "CSV con usuarios" %>
+    <%= label_tag "Archivo CSV" %>
     <br/>
-    <small>Asegúrate de que contengan las columnas: <strong>"nombre", "email", "organizacion"</strong></small>
+    <small>Asegúrate de que contenga las columnas: <strong>"nombre", "email", "organizacion"</strong></small>
     <%= file_field_tag :csv_file %>
     <br/>
-    <%= submit_tag "Crear usuarios del archivo", :class => "btn btn-primary" %>
+    <%= submit_tag "Importar usuarios", :class => "btn btn-primary" %>
   <% end %>
+  <hr/>
+  <h2>USUARIOS REGISTRADOS</h2>
+  <%= link_to "Ver usuarios registrados", admin_users_path, :class => "btn btn-primary" %>
 </div>

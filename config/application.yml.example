@@ -1,0 +1,25 @@
+# See documentation at https://github.com/laserlemon/figaro
+
+# ActionMailer credentials
+MAILER_ADDRESS: ''
+MAILER_USERNAME: ''
+MAILER_PASSWORD: ''
+MAILER_DOMAIN: ''
+
+# Admin credentials
+ADMIN_AUTH_NAME: ''
+ADMIN_AUTH_PASSWORD: ''
+
+# Mails 'from' field
+MAILER_FROM: ''
+
+# App host
+HOST: ''
+
+# Redis server URL
+REDISTOGO_URL: ''
+
+# AWS S3 credentials
+S3_BUCKET_NAME: ''
+AMAZON_ACCESS_KEY: ''
+AMAZON_SECRET_KEY ''

@@ -1,11 +1,11 @@
 if Rails.env.production? or Rails.env.staging?
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
+    :address        => ENV['MAILER_ADDRESS'],
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com'
+    :user_name      => ENV['MAILER_USERNAME'],
+    :password       => ENV['MAILER_PASSWORD'],
+    :domain         => ENV['MAILER_DOMAIN']
   }
   ActionMailer::Base.delivery_method = :smtp
 end

@@ -18,6 +18,7 @@ class Topics.Form
     @submit_button = template.find("button[type=submit]")
     @cancel = template.find("a")
     @topic_name = template.find("#topic_name")
+    @topic_publish_date =  template.find("#topic_publish_date")
     @topic_owner = template.find("#topic_owner")
     @topic_description = template.find("#topic_description")
 
@@ -36,11 +37,14 @@ class Topics.Form
       @_hide_form()
       @cancel_callback()
 
+    @topic_publish_date.datepicker($.datepicker.regional["es"])
+
     @form.submit @_handle_form_submit
 
   _fill_in_data: () ->
     if @data
       @topic_name.val @data.name
+      @topic_publish_date.val @data.formatted_publish_date
       @topic_owner.val @data.owner
       @topic_description.val @data.description
 
@@ -69,6 +73,7 @@ class Topics.Form
     _method: method
     topic:
       name: @topic_name.val().trim()
+      publish_date: @topic_publish_date.val().trim()
       owner: @topic_owner.val().trim()
       description: @topic_description.val().trim()
 
@@ -87,14 +92,21 @@ class Topics.Form
     if errors && errors.owner && errors.owner.length > 0
       @topic_owner.parents(".form-group").addClass("has-error")
       @topic_owner.parent("div").addClass("has-error")
+    if errors && errors.publish_date && errors.publish_date.length > 0
+      @topic_publish_date.parents(".form-group").addClass("has-error")
+      @topic_publish_date.parent("div").addClass("has-error")
 
   _clear_field_errors: () ->
     @topic_name.parents(".form-group").removeClass("has-error")
     @topic_name.parent("div").removeClass("has-error")
     @topic_owner.parents(".form-group").removeClass("has-error")
     @topic_owner.parent("div").removeClass("has-error")
+    @topic_publish_date.parents(".form-group").removeClass("has-error")
+    @topic_publish_date.parent("div").removeClass("has-error")
 
   _clear_form_fields: () ->
     @topic_name.val ""
+    @topic_publish_date.val ""
     @topic_owner.val ""
     @topic_description.val ""
+

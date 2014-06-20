@@ -29,7 +29,7 @@ node :license do
 end
 
 child :datasets => :dataset do |inventory|
-  attributes :title, :description, :modified, :contactPoint, :identifier, :accessLevel, :accessLevelComment, :license, :spatial
+  attributes :title, :description, :modified, :contactPoint, :identifier, :accessLevel, :accessLevelComment, :spatial
 
   node :language do
     "es"

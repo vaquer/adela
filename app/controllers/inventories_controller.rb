@@ -11,7 +11,10 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(inventory_params)
     @inventory.organization_id = current_organization.id
     @inventory.author = current_user.name
-    @inventory.save
+
+    if @inventory.save
+      record_activity "actualizó su inventario de datos."
+    end
 
     if @inventory.csv_right_encoding?
       @datasets = @inventory.datasets
@@ -26,8 +29,10 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(:csv_file => File.open(temporary_path))
     @inventory.organization_id = current_organization.id
     @inventory.author = current_user.name
-    @inventory.save
-    @datasets = @inventory.datasets
+    if @inventory.save
+      record_activity "actualizó su inventario de datos."
+      @datasets = @inventory.datasets
+    end
   end
 
   private

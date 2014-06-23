@@ -23,6 +23,7 @@ feature User, 'manages inventory:' do
     tries_to_upload_the_file('inventory.csv')
     expect(page).to have_text "2 conjuntos de datos y 7 recursos."
     sees_table_with_datasets
+    activity_log_created_with_msg "actualizó su inventario de datos."
   end
 
   scenario "fails to upload an invalid csv file" do

@@ -18,5 +18,11 @@ module Features
         expect(page).to have_text(message)
       end
     end
+
+    def activity_log_created_with_msg(message)
+      @activity = ActivityLog.last
+      @activity.should_not be_nil
+      @activity.description.should == message
+    end
   end
 end

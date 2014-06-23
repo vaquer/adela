@@ -57,6 +57,7 @@ class TopicsController < ApplicationController
     @topics.each do |topic|
       topic.publish!
     end
+    record_activity "actualizó su programa de apertura."
     redirect_to new_inventory_path, :notice  => "Muy bien, tu programa de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/>El siguiente paso es subir un inventario de datos."
   end
 

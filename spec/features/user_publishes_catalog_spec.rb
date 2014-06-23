@@ -39,6 +39,8 @@ feature User, 'publishes catalog:' do
     expect(page).to have_text @user.name
     expect(page).to have_link "Subir nueva versión"
     expect(page).to have_link "Descargar esta versión"
+    @catalog = @user.organization.current_catalog
+    activity_log_created_with_msg "publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos."
   end
 
   scenario "can publish a catalog later", :js => true do

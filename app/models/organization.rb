@@ -6,6 +6,7 @@ class Organization < ActiveRecord::Base
   has_many :inventories
   has_many :users
   has_many :topics
+  has_many :activity_logs
 
   scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'").uniq }
 

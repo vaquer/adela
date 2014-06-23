@@ -48,3 +48,6 @@ end
 group :staging, :production do
   gem 'unicorn'
 end
+
+# Dev tools and plugins
+gem 'coveralls', require: false

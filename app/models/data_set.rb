@@ -27,7 +27,9 @@ class DataSet
   end
 
   def keywords
-    keyword.split(",").map(&:strip)
+    if keyword.present?
+      keyword.split(",").map(&:strip)
+    end
   end
 
   def values_array

@@ -49,6 +49,7 @@ feature "data catalog management" do
     json_response["title"].should == "Catálogo de datos abiertos de #{@organization.title}"
     json_response["dataset"][0]["distribution"].size == 3
     json_response["dataset"][1]["distribution"].size == 4
+    json_response["dataset"][1]["identifier"] == "indice-rezago-social"
   end
 
   def gets_empty(response)

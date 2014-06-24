@@ -40,7 +40,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
 
   def new_dataset(row)
     DataSet.new({
-      :identifier => row["ds:identifier"] || row[0],
+      :identifier => I18n.transliterate((row["ds:identifier"] || row[0]).force_encoding('utf-8')),
       :title => row["ds:title"],
       :description => row["ds:description"],
       :keyword => row["ds:keyword"],

@@ -28,7 +28,7 @@ module InventoriesHelper
   def file_structure_feedback(datasets)
     distributions_count = datasets.map(&:distributions_count).compact.sum
     "Se detectaron #{datasets.size} conjuntos de datos y #{distributions_count} recursos."
-  end
+ end
 
   def display_publish_form?(from_dashboard)
     unless from_dashboard

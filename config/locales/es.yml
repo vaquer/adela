@@ -1,4 +1,11 @@
 es:
+  plural:
+    datasets:
+      one: "1 conjunto de datos"
+      other: "%{count} conjuntos de datos"
+    distributions:
+      one: "1 recurso"
+      other: "%{count} recursos"
   will_paginate:
     previous_label: "&#8592; Anterior"
     next_label: "Siguiente &#8594;"

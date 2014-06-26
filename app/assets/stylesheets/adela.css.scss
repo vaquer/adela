@@ -7,3 +7,52 @@
 .nav-actions {
   padding: 14px 0;
 }
+
+.signin-wrapper {
+  background-color: $blue;
+  color: $white;
+  font-weight: bold;
+  height: 100%;
+}
+
+.signin-form {
+  margin-top: 120px;
+  padding: 0 70px;
+
+  .button {
+    border-radius: 0;
+    background-color: $gray;
+    font-weight: bold;
+
+    &:hover {
+      color: $white;
+      background-color: $gray1;
+    }
+  }
+
+  form {
+    padding: 0 15px;
+  }
+
+  input[type="email"], input[type="password"] {
+    font-weight: normal;
+    padding: 3px;
+    margin-bottom: 3px;
+    width: 100%;
+  }
+
+  label, a {
+    font-size: 14px;
+    font-weight: normal;
+    color: $gray1;
+  }
+
+  a:hover {
+    color: $white;
+  }
+}
+
+.signin-form-heading {
+  margin-bottom: 45px;
+  text-align: center;
+}

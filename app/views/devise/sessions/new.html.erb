@@ -1,21 +1,18 @@
-<div class="container">
+<div class="signin-wrapper">
   <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4">
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
-        <h2 class="form-signing-heading">Iniciar sesión</h2>
-        <%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder => "Correo electrónico" %>
-        <br/>
-        <%= f.password_field :password, :class => "form-control", :placeholder => "Contraseña" %>
+    <div class="col-md-4"></div>
+    <div class="signin-form col-md-4">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => ""}) do |f| %>
+        <h2 class="signin-form-heading">ADELA</h2>
+        <%= f.email_field :email, :autofocus => true, :class => "", :placeholder => "Correo electrónico" %>
+        <%= f.password_field :password, :class => "", :placeholder => "Contraseña" %>
+        <%= render "devise/shared/links" %>
+        <div><%= f.submit "ENTRAR", :class => "btn button btn-block" %></div>
         <% if devise_mapping.rememberable? -%>
           <div><%= f.check_box :remember_me %> <%= f.label :remember_me, "No cerrar sesión" %></div>
         <% end -%>
-
-        <div><%= f.submit "Entrar", :class => "btn btn-lg btn-primary btn-block" %></div>
       <% end %>
-
-      <%= render "devise/shared/links" %>
     </div>
-    <div class="col-xs-4"></div>
+    <div class="col-md-4"></div>
   </div>
 </div>

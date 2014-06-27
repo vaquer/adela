@@ -4,7 +4,7 @@ module Features
       visit "/users/sign_in"
       fill_in("Correo electrónico", :with => user.email)
       fill_in("Contraseña", :with => user.password)
-      click_on("Entrar")
+      click_on("ENTRAR")
     end
 
     def sees_success_message(message)

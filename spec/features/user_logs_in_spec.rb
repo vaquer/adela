@@ -32,14 +32,14 @@ feature User, 'logs in:' do
   scenario "fails to log in with an invalid account" do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, "wrong_password")
-    click_on("Entrar")
+    click_on("ENTRAR")
     sees_error_message "Correo o contraseña inválidos."
   end
 
   scenario "succeed to log in with a valid account" do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, @user.password)
-    click_on("Entrar")
+    click_on("ENTRAR")
     sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
     expect(current_path).to eq(topics_path)
   end

@@ -40,8 +40,8 @@ feature User, 'logs in:' do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, @user.password)
     click_on("ENTRAR")
-    sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
-    expect(current_path).to eq(topics_path)
+    sees_success_message "Ingreso exitoso"
+    expect(current_path).to eq(organization_path(@user.organization))
   end
 
   def fill_the_form_with(email, password)

@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.friendly.find(params[:id])
-    if @organization.current_inventory && !@organization.current_catalog
+    if current_organization.present? && @organization.current_inventory && !@organization.current_catalog
       flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu inventario."
     end
   end

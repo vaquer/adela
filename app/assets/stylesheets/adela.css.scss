@@ -66,14 +66,50 @@
   color: $white;
   background-color: $blue;
   padding: 70px;
+}
 
-  .heading {
-    font-size: 36px;
-  }
+.heading {
+  font-size: 36px;
 }
 
 .dashboard-wrapper {
   background-color: $white;
+}
+
+// Organization Dashboard
+
+.org-header {
+  padding-right: 0;
+}
+
+.org-data {
+  background-color: $black;
+  border-right: 1px solid $gray1;
+  color: $white;
+  font-size: 12px;
+  padding: 8px;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.org-about {
+  background-color: $gray;
+  color: $white;
+  padding: 35px;
+}
+
+.button {
+  background-color: $blue;
+  color: $white;
+  font-size: 13px;
+  padding: 10px 15px;
+
+  &:hover {
+    background-color: $blue1;
+    color: $white;
+  }
 }
 
 // Activity Feed
@@ -88,6 +124,11 @@
 
 .organization-icon {
   background: image-url("organization.png") left no-repeat;
+  padding: 10px 60px;
+}
+
+.inventory-icon {
+  background: image-url("inventory.png") left no-repeat;
   padding: 10px 60px;
 }
 

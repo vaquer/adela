@@ -7,7 +7,7 @@ feature User, 'logs out:' do
   end
 
   scenario "sees user home page" do
-    expect(current_path).to eq(topics_path)
+    expect(current_path).to eq(organization_path(@user.organization))
   end
 
   scenario "sees user organization title" do

@@ -8,11 +8,7 @@ class TopicsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html do
-        unless current_organization.has_public_topics?
-          flash.now[:notice] = "Bienvenido, el primer paso es crear tu programa de apertura"
-        end
-      end
+      format.html { }
       format.json { render :json => current_organization.topics.sorted }
     end
   end

@@ -1,6 +1,45 @@
-<br/>
 <%= render "layouts/flash_messages", :flash => flash %>
 <br/>
+<div class="container">
+  <% if user_signed_in? %>
+    <div class="org-header row col-md-4 col-md-offset-8">
+      <span class="org-data col-md-4 col-md-offset-1"><%= @organization.title.upcase %></span>
+      <span class="org-data col-md-6"><%= current_user.name%></span>
+      <span class="org-data col-md-1"><%= image_tag "white-arrow.png" %></span>
+    </div>
+  <% end %>
+  <div class="org-about col-md-12">
+    <div class="col-md-3 col-md-offset-2 text-left">
+      <span class="heading"><%= @organization.title %></span>
+    </div>
+    <div class="col-md-5">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel ante diam. Mauris non felis tortor. Sed ut imperdiet arcu.</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="dashboard-wrapper">
+    <div class="section-heading">
+      <span class="activity-icon h4">Actividad reciente</span>
+    </div>
+    <div class="section-content">
+    </div>
+    <div class="section-heading">
+      <span class="inventory-icon h4">Inventario de datos</span>
+    </div>
+    <div class="section-content">
+      <%= link_to "Cargar nuevo inventario", new_inventory_path, :class => "btn button" %>
+    </div>
+    <div class="section-heading">
+      <span class="calendar-icon h4">Programa de apertura</span>
+    </div>
+    <div class="section-content">
+      <%= link_to "Programa de apertura", topics_path, :class => "btn button" %>
+    </div>
+  </div>
+</div>
+
+
 <% if @organization.last_file_version.present? %>
   <div class="row">
     <div class="col-md-10">

@@ -11,7 +11,6 @@ feature User, 'manages topics:' do
 
   scenario "can see a button and a message to add first topic" do
     page.should have_button("Agregar nueva área o tema")
-    sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
   end
 
   scenario "can add a new topic", :js => true do

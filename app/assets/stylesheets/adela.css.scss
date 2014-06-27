@@ -60,6 +60,42 @@
   text-align: center;
 }
 
+// Dashboard
+
+.app-description {
+  color: $white;
+  background-color: $blue;
+  padding: 70px;
+
+  .heading {
+    font-size: 36px;
+  }
+}
+
+.dashboard-wrapper {
+  background-color: $white;
+}
+
+// Activity Feed
+.section-heading {
+  padding: 45px 140px;
+}
+
+.activity-icon {
+  background: image-url("big-clock.png") left no-repeat;
+  padding: 10px 60px;
+}
+
+.organization-icon {
+  background: image-url("organization.png") left no-repeat;
+  padding: 10px 60px;
+}
+
+.calendar-icon {
+  background: image-url("calendar.png") left no-repeat;
+  padding: 10px 60px;
+}
+
 // Alerts
 .alert {
   margin-bottom: 0;

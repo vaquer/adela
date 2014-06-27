@@ -23,6 +23,17 @@
       <span class="activity-icon h4">Actividad reciente</span>
     </div>
     <div class="section-content">
+      <table class="activity-logs">
+        <% @organization.activity_logs.date_sorted.each do |activity| %>
+          <tr class="">
+            <td></td>
+            <td class="icon"><%= image_tag "mini-clock.png" %></td>
+            <td class="date"><%= "Hace #{time_ago_in_words(activity.done_at)}" %></td>
+            <td class="text"><%= "#{@organization.title} #{activity.description}" %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
     <div class="section-heading">
       <span class="inventory-icon h4">Inventario de datos</span>

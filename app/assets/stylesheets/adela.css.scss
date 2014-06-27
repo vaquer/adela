@@ -137,6 +137,34 @@
   padding: 10px 60px;
 }
 
+.activity-logs {
+  width: 100%;
+
+  .icon {
+    width: 45px;
+  }
+
+  .date {
+    color: $gray1;
+  }
+
+  .text {
+    color: $blue;
+  }
+
+  td {
+    padding: 10px 0;
+  }
+
+  td:first-child, td:last-child {
+    width: 150px;
+  }
+
+  tr:nth-child(odd) {
+    background-color: $gray2;
+  }
+}
+
 // Alerts
 .alert {
   margin-bottom: 0;

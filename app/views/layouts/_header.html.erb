@@ -1,9 +1,9 @@
 <div class="header">
-  <div class="logo col-md-2 pull-left">
-    <%= link_to root_path do %>
-      <%= image_tag "adela-logo.png" %>
-    <% end %>
-  </div>
+  <%= link_to root_path, {:class => "logo-text"} do %>
+    <div class="logo col-md-2 pull-left">
+      <span class="logo-text">Abrir para <strong>innovar</strong></span>
+    </div>
+  <% end %>
   <div class="nav-actions col-md-2 pull-right">
     <% if user_signed_in? %>
       <%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %>

@@ -1,7 +1,21 @@
 .header {
   background-color: $black;
   height: 120px;
-  padding: 40px 30px;
+  padding: 30px;
+}
+
+.logo {
+  background: image-url("adela-logo.png") left no-repeat;
+  min-width: 280px;
+  min-height: 50px;
+  padding: 26px 15px 0 60px;
+}
+
+a.logo-text {
+  font-size: 16px;
+  &:hover {
+    color: $white;
+  }
 }
 
 .nav-actions {

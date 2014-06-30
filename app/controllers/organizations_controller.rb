@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
     if publication_requirements_checked?
       @catalog = current_organization.current_inventory
       @catalog.publish!
-      record_activity "publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos."
+      record_activity("publish","publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos.")
       redirect_to organization_path(current_organization), :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
     end
   end

@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
     current_user && current_user.organization
   end
 
-  def record_activity(description)
+  def record_activity(category, description)
     if current_organization.present?
-      @activity = ActivityLog.new(:description => description, :organization_id => current_organization.id, :done_at => DateTime.now)
+      @activity = ActivityLog.new(:category => category, :description => description, :organization_id => current_organization.id, :done_at => DateTime.now)
       @activity.save
     end
   end

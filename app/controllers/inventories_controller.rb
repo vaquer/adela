@@ -13,7 +13,7 @@ class InventoriesController < ApplicationController
     @inventory.author = current_user.name
 
     if @inventory.save
-      record_activity "actualizó su inventario de datos."
+      record_activity("update", "actualizó su inventario de datos.")
     end
 
     if @inventory.csv_right_encoding?
@@ -30,7 +30,7 @@ class InventoriesController < ApplicationController
     @inventory.organization_id = current_organization.id
     @inventory.author = current_user.name
     if @inventory.save
-      record_activity "actualizó su inventario de datos."
+      record_activity("update", "actualizó su inventario de datos.")
       @datasets = @inventory.datasets
     end
   end

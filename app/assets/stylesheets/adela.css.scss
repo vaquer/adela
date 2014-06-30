@@ -62,6 +62,15 @@
 
 // Dashboard
 
+.dashboard-link {
+  color: $gray1;
+  font-size: 11px;
+
+  &:hover {
+    font-size: 11px;
+  }
+}
+
 .app-description {
   color: $white;
   background-color: $blue;

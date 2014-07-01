@@ -160,31 +160,46 @@ a.logo-text {
   padding: 10px 60px;
 }
 
-.activity-logs {
+.expanded-table {
   width: 100%;
 
   .icon {
     width: 45px;
   }
+  td {
+    border: 0;
+    padding: 10px 0;
+  }
 
+  td:first-child, td:last-child, th:first-child, th:last-child {
+    width: 150px;
+  }
+
+  thead {
+    background-color: $white;
+    border-bottom: 1px solid $gray1;
+  }
+
+  th {
+    background-color: $white;
+    font-size: 14px;
+    font-weight: normal;
+    width: 160px;
+  }
+
+  tr:nth-child(odd) {
+    background-color: $gray2;
+  }
+
+}
+
+.activity-logs {
   .date {
     color: $gray1;
   }
 
   .text {
     color: $blue;
-  }
-
-  td {
-    padding: 10px 0;
-  }
-
-  td:first-child, td:last-child {
-    width: 150px;
-  }
-
-  tr:nth-child(odd) {
-    background-color: $gray2;
   }
 }
 
@@ -201,4 +216,36 @@ span.danger {
 .alert-danger {
   color: $red;
   background-color: $red1;
+}
+
+// Pagination
+
+.pagination {
+
+  .current {
+    background-color: $gray2;
+    color: $blue;
+    padding: 3px 5px;
+  }
+
+  a {
+    padding: 3px 5px;
+    background-color: $gray1;
+    color: $white;
+
+    &:hover {
+      background-color: $gray2;
+      color: $blue;
+    }
+  }
+
+  a:first-child, a:last-child, .disabled {
+    background-color: $white;
+    color: $gray1;
+
+    &:hover {
+      background-color: $white;
+      color: $gray1;
+    }
+  }
 }

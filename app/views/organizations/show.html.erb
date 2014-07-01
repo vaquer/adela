@@ -22,8 +22,8 @@
     <div class="section-heading">
       <span class="activity-icon h4">Actividad reciente</span>
     </div>
-    <div class="section-content">
-      <table class="activity-logs">
+    <div class="section-content table-responsive">
+      <table class="expanded-table activity-logs table">
         <% @organization.activity_logs.first_block.each do |activity| %>
           <tr>
             <td></td>
@@ -57,8 +57,51 @@
     <div class="section-heading">
       <span class="inventory-icon h4">Inventario de datos</span>
     </div>
-    <div class="section-content">
-      <%= link_to "Cargar nuevo inventario", new_inventory_path, :class => "btn button" %>
+    <div class="section-content table-responsive">
+      <table class="expanded-table inventories-list table">
+        <thead>
+          <th></th>
+          <th class="icon"></th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Conjuntos de datos</th>
+          <th>Recursos</th>
+          <th>Descargar</th>
+          <th></th>
+        </thead>
+        <tbody>
+        <% if @organization.current_catalog.present? %>
+          <tr>
+            <td></td>
+            <td><%= image_tag "mini-inventory.png" %></td>
+            <td><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %></td>
+            <td><%= I18n.l(@organization.current_catalog.created_at, :format => :hour) %></td>
+            <td><%= @organization.current_catalog.datasets_count %></td>
+            <td><%= @organization.current_catalog.distributions_count %></td>
+            <td><%= link_to image_tag("download.png"), @organization.current_catalog.csv_file.url %></td>
+            <td></td>
+          </tr>
+        <% end %>
+        <% @inventories.each do |inventory| %>
+          <tr>
+            <td></td>
+            <td><%= image_tag "update-log.png" %></td>
+            <td><%= I18n.l(inventory.created_at, :format => :short) %></td>
+            <td><%= I18n.l(inventory.created_at, :format => :hour) %></td>
+            <td><%= inventory.datasets_count %></td>
+            <td><%= inventory.distributions_count %></td>
+            <td><%= link_to image_tag("download.png"), inventory.csv_file.url %></td>
+            <td></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4 col-md-offset-6">
+      <%= will_paginate @inventories, :class => "pagination pull-right" %>
+    </div>
+    <div class="col-md-4 col-md-offset-6">
+      <%= link_to "Cargar nuevo inventario", new_inventory_path, :class => "btn button pull-right" %>
     </div>
     <div class="section-heading">
       <span class="calendar-icon h4">Programa de apertura</span>

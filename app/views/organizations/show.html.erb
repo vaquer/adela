@@ -97,17 +97,25 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-4 col-md-offset-6">
-      <%= will_paginate @inventories, :class => "pagination pull-right" %>
+    <div class="section-links">
+      <div class="col-md-4 col-md-offset-6">
+        <%= will_paginate @inventories, :class => "pagination pull-right" %>
+      </div>
     </div>
-    <div class="col-md-4 col-md-offset-6">
-      <%= link_to "Cargar nuevo inventario", new_inventory_path, :class => "btn button pull-right" %>
+    <div class="section-links">
+      <div class="col-md-4 col-md-offset-6">
+        <%= link_to "Cargar nuevo inventario", new_inventory_path, :class => "btn button pull-right" %>
+      </div>
     </div>
     <div class="section-heading">
       <span class="calendar-icon h4">Programa de apertura</span>
     </div>
     <div class="section-content">
-      <%= link_to "Programa de apertura", topics_path, :class => "btn button" %>
+    </div>
+    <div class="section-links">
+      <div class="col-md-4 col-md-offset-6">
+        <%= link_to "Programa de apertura", topics_path, :class => "btn button pull-right" %>
+      </div>
     </div>
   </div>
 </div>

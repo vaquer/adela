@@ -22,6 +22,16 @@ a.logo-text {
   padding: 14px 0;
 }
 
+.footer {
+  background-color: $gray1;
+  min-height: 120px;
+  padding: 20px 180px;
+
+  .contact {
+    color: $white;
+    margin-top: 20px;
+  }
+}
 // Sign In
 
 .signin-wrapper {
@@ -97,6 +107,7 @@ a.logo-text {
 
 .dashboard-wrapper {
   background-color: $white;
+  padding-bottom: 15px;
 }
 
 // Organization Dashboard
@@ -138,6 +149,11 @@ a.logo-text {
 // Activity Feed
 .section-heading {
   padding: 45px 140px;
+}
+
+.section-links {
+  margin-bottom: 15px;
+  height: 40px;
 }
 
 .activity-icon {

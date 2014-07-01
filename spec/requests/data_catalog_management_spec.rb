@@ -27,6 +27,18 @@ feature "data catalog management" do
     gets_all_catalogs_urls_in response
   end
 
+  scenario "can consume catalog data even with inventory empty fields" do
+    inventory_file = File.new("#{Rails.root}/spec/fixtures/files/inventory_with_blanks.csv")
+    inventory =  FactoryGirl.create(:published_inventory, :publish_date => 1.day.ago, :csv_file => inventory_file)
+    inventory.update_attributes(:organization_id => @organization.id)
+
+    get "/hacienda/catalogo.json"
+
+    json_response = JSON.parse(response.body)
+    json_response["dataset"].size == 2
+    json_response["dataset"][0]["keywords"].should be_nil
+  end
+
   def given_there_is_a_catalog_published(days_ago)
     @inventory = FactoryGirl.create(:published_inventory, :publish_date => days_ago)
     @inventory.update_attributes(:organization_id => @organization.id)
@@ -37,6 +49,7 @@ feature "data catalog management" do
     json_response["title"].should == "Catálogo de datos abiertos de #{@organization.title}"
     json_response["dataset"][0]["distribution"].size == 3
     json_response["dataset"][1]["distribution"].size == 4
+    json_response["dataset"][1]["identifier"] == "indice-rezago-social"
   end
 
   def gets_empty(response)

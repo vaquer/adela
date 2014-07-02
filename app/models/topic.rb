@@ -22,6 +22,13 @@ class Topic < ActiveRecord::Base
     super(args.merge!(:methods =>[:name, :owner, :organization_id, :sort_order, :formatted_publish_date, :description]))
   end
 
+  def self.month_range
+    self.pluck("to_char(publish_date, 'MM-YYYY')").uniq
+  end
+
+  def self.by_month(month_year = DateTime.now.strftime("%m-%Y"))
+    self.where("to_char(publish_date, 'MM-YYYY') ='#{month_year}'")
+  end
   private
 
   def set_sort_order

@@ -7,6 +7,11 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new
   end
 
+  def index
+    @organization = current_organization
+    @inventories = current_organization.inventories
+  end
+
   def create
     @inventory = Inventory.new(inventory_params)
     @inventory.organization_id = current_organization.id

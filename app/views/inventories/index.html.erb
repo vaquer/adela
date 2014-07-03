@@ -1,0 +1,57 @@
+<%= render "layouts/flash_messages", :flash => flash %>
+<br/>
+<%= render "layouts/org_header" %>
+<div class="container">
+  <div class="dashboard-wrapper">
+    <div class="section-heading">
+      <span class="inventory-icon h4">Inventario de datos</span>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <span class="version-icon h5">Última versión</span>
+        <% if @organization.last_file_version.present? %>
+        <% end %>
+      </div>
+      <div class="col-md-5">
+        <span class="version-icon h5">Versión publicada</span>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <% if @organization.current_catalog.present? %>
+    <div class="col-md-6 pull-right">
+      <h4>Versión Publicada</h4>
+      <br/>
+      <%= image_tag "csv_file.png", :class => "pull-left csv-file" %>
+      <div class="h4">
+        <small>Última versión: </small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+      </div>
+      <div class="h4">
+        <small>Actualizado por: </small><%= @organization.current_catalog.author %>
+      </div>
+      <div class="h4">
+        <small>Conjuntos de datos: </small><%= about_datasets(@organization.current_catalog) %>
+      </div>
+      <% if @organization.last_inventory_is_unpublished? %>
+        <br/>
+        <div class="alert alert-danger">
+          OJO: La versión publicada no es la última versión.
+        </div>
+        <%= link_to "Publicar última versión", "#", :class => "btn btn-default", :id => "save_inventory" %>
+      <% else %>
+        <br/>
+        <div class="alert alert-success">
+          Muy bien. La última versión está publicada.
+        </div>
+      <% end %>
+    </div>
+  <% elsif current_inventory.present? %>
+    <%= render "inventories/publish_form", :from_dashboard => true %>
+  <% end %>
+  <div class="publish-form-holder hidden">
+    <%= render "inventories/publish_form", :from_dashboard => true %>
+  </div>
+</div>

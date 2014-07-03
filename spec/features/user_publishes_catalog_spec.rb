@@ -34,13 +34,10 @@ feature User, 'publishes catalog:' do
     check_publication_requirements
     click_on "Publicar"
     sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
-    # FIX ME - Pending while implementing desig
-    pending
     expect(page).to have_text "Última versión"
-    expect(page).to have_text "Versión Publicada"
+    expect(page).to have_text "Versión publicada"
     expect(page).to have_text @user.name
     expect(page).to have_link "Subir nueva versión"
-    expect(page).to have_link "Descargar esta versión"
     @catalog = @user.organization.current_catalog
     activity_log_created_with_msg "publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos."
   end
@@ -49,11 +46,8 @@ feature User, 'publishes catalog:' do
     visit new_inventory_path
     tries_to_upload_the_file("inventory.csv")
     click_on "Guardar inventario"
-    # FIX ME - Pending while implementing desig
-    pending
     click_on "Lo publicaré después, quiero avanzar"
     expect(page).to have_text "OJO: No has completado el último paso que es publicar tu inventario."
-    expect(page).to have_text "Paso 5"
   end
 
   scenario "can ignore invalid datasets and save inventory", :js => true do

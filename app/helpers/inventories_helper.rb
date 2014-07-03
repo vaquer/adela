@@ -39,8 +39,4 @@ module InventoriesHelper
   def inventory_history(inventory)
     "Fecha de captura: #{I18n.l(inventory.created_at, :format => :short)}, por #{inventory.author}."
   end
-
-  def about_datasets(inventory)
-    "#{I18n.t("plural.datasets", :count => inventory.datasets_count)} y #{I18n.t("plural.distributions", :count => inventory.distributions_count)}."
-  end
 end

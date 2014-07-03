@@ -271,3 +271,40 @@ span.danger {
   background: image-url("clock.png") left no-repeat;
   padding: 10px 0px 10px 40px;
 }
+
+.catalog-icon {
+  background: image-url("publication.png") left no-repeat;
+  padding: 10px 0px 10px 40px;
+}
+
+.no-icon {
+  padding: 10px 0px 10px 40px;
+}
+
+.version-data {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 20px;
+
+  .label {
+    color: $gray1;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  img {
+    padding: 10px;
+  }
+}
+
+.last-version {
+  background-color: $gray2;
+}
+
+.last-catalog {
+  background-color: $blue2;
+}
+
+.pull-down {
+  margin-top: 50px;
+}

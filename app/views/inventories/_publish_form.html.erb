@@ -1,38 +1,36 @@
 <div class="row">
-  <div class="col-md-6 <%= display_publish_form?(from_dashboard) %>" id="publish_inventory">
-    <div class="col-md-10 inventory-step">
-      <span class="h4">Paso 5</span>
-      <div class="step-holder col-md-10 pull-right">
-        <label>Publica tu inventario.</label>
-        <%= form_tag(publish_catalog_organization_path(current_user.organization), method: "post", id: "requirements") do %>
-          <div class="checkbox">
-            <label class="center-block">
-              <%= check_box_tag(:personal_data, 1, false, :class => "requirement") %>
-              Los conjuntos de datos no violan los lineamientos de protección de datos personales.
-            </label>
-          </div>
-          <div class="checkbox">
-            <label class="center-block">
-              <%= check_box_tag(:open_data, 1, false, :class => "requirement") %>
-              Los conjuntos de datos cumplen con las características de datos abiertos.
-            </label>
-          </div>
-          <div class="checkbox">
-            <label class="center-block">
-              <%= check_box_tag(:office_permission, 1, false, :class => "requirement") %>
-              Se validó con la oficina de enlace de transparencia, que las bases de datos se puedan publicar.
-            </label>
-          </div>
-          <div class="checkbox">
-            <label class="center-block">
-              <%= check_box_tag(:data_policy_requirements, 1, false, :class => "requirement") %>
-              Confirmo que lo que se publicará cumple con los lineamientos de la Política de Datos Abiertos.
-            </label>
-          </div> 
-          <%= submit_tag("Publicar", :class => "btn btn-primary disabled", :id => "publish") %>
-          <%= link_to "Lo publicaré después, quiero avanzar", publish_later_organization_path(current_user.organization) unless from_dashboard %>
-        <% end %>
-      </div>
+  <div class="<%= display_publish_form?(from_dashboard) %>" id="publish_inventory">
+    <span class="h4">Paso 5</span>
+    <div class="step-holder col-md-10 pull-right">
+      <span>Publica tu inventario.</span>
+      <%= form_tag(publish_catalog_organization_path(current_user.organization), method: "post", id: "requirements") do %>
+        <div class="checkbox">
+          <label class="center-block">
+            <%= check_box_tag(:personal_data, 1, false, :class => "requirement") %>
+            Los conjuntos de datos no violan los lineamientos de protección de datos personales.
+          </label>
+        </div>
+        <div class="checkbox">
+          <label class="center-block">
+            <%= check_box_tag(:open_data, 1, false, :class => "requirement") %>
+            Los conjuntos de datos cumplen con las características de datos abiertos.
+          </label>
+        </div>
+        <div class="checkbox">
+          <label class="center-block">
+            <%= check_box_tag(:office_permission, 1, false, :class => "requirement") %>
+            Se validó con la oficina de enlace de transparencia, que las bases de datos se puedan publicar.
+          </label>
+        </div>
+        <div class="checkbox">
+          <label class="center-block">
+            <%= check_box_tag(:data_policy_requirements, 1, false, :class => "requirement") %>
+            Confirmo que lo que se publicará cumple con los lineamientos de la Política de Datos Abiertos.
+          </label>
+        </div> 
+        <%= submit_tag("Publicar", :class => "btn button disabled", :id => "publish") %>
+        <%= link_to "Lo publicaré después, quiero avanzar", publish_later_organization_path(current_user.organization) unless from_dashboard %>
+      <% end %>
     </div>
   </div>
 </div>

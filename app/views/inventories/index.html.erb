@@ -4,54 +4,69 @@
 <div class="container">
   <div class="dashboard-wrapper">
     <div class="section-heading">
-      <span class="inventory-icon h4">Inventario de datos</span>
+      <span class="inventory-icon h4">Cargar nuevo inventario</span>
     </div>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-5">
+      <div class="version-holder col-md-5">
         <span class="version-icon h5">Última versión</span>
         <% if @organization.last_file_version.present? %>
+          <div class="version-data last-version">
+            <%= image_tag "file.png", :class => "pull-left" %>
+            <div>
+              <span class="label">Fecha: </span><%= I18n.l(@organization.last_file_version.created_at, :format => :short) %>
+              <br/>
+              <span class="label">Actualizado por: </span><%= @organization.last_file_version.author %>
+              <br/>
+              <span class="label">Conjuntos de datos: </span><%= @organization.last_file_version.datasets_count %>
+              <br/>
+              <span class="label">Recursos: </span><%= @organization.last_file_version.distributions_count %>
+            </div>
+          </div>
         <% end %>
+        <%= link_to "Subir nueva versión", new_inventory_path(:new_version => true), :class => "btn button" %>
       </div>
-      <div class="col-md-5">
-        <span class="version-icon h5">Versión publicada</span>
+      <div class="version-holder col-md-5">
+        <span class="catalog-icon h5">Versión publicada</span>
+        <% if @organization.current_catalog.present? %>
+          <div class="version-data last-catalog">
+            <%= image_tag "file.png", :class => "pull-left" %>
+            <div class="">
+              <span class="label">Fecha: </span><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+              <br/>
+              <span class="label">Actualizado por: </span><%= @organization.current_catalog.author %>
+              <br/>
+              <span class="label">Conjuntos de datos: </span><%= @organization.current_catalog.datasets_count %>
+              <br/>
+              <span class="label">Recursos: </span><%= @organization.current_catalog.distributions_count %>
+            </div>
+          </div>
+          <% if @organization.last_inventory_is_unpublished? %>
+            <div class="alert alert-danger">
+              <span class="danger"></span>La versión publicada no es la última versión.
+            </div>
+            <br/>
+            <%= link_to "Publicar última versión", "#", :class => "btn button", :id => "save_inventory" %>
+          <% else %>
+            <div class="alert alert-success">
+              Muy bien. La última versión está publicada.
+            </div>
+          <% end %>
+        <% end %>
+        <div class="publish-form-holder hidden">
+          <%= render "inventories/publish_form", :from_dashboard => true %>
+        </div>
       </div>
       <div class="col-md-1"></div>
     </div>
-  </div>
-</div>
-<div class="row">
-  <% if @organization.current_catalog.present? %>
-    <div class="col-md-6 pull-right">
-      <h4>Versión Publicada</h4>
-      <br/>
-      <%= image_tag "csv_file.png", :class => "pull-left csv-file" %>
-      <div class="h4">
-        <small>Última versión: </small><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %>
+    <div class="pull-down row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <span class="no-icon h5">Versiones pasadas</span>
       </div>
-      <div class="h4">
-        <small>Actualizado por: </small><%= @organization.current_catalog.author %>
-      </div>
-      <div class="h4">
-        <small>Conjuntos de datos: </small><%= about_datasets(@organization.current_catalog) %>
-      </div>
-      <% if @organization.last_inventory_is_unpublished? %>
-        <br/>
-        <div class="alert alert-danger">
-          OJO: La versión publicada no es la última versión.
-        </div>
-        <%= link_to "Publicar última versión", "#", :class => "btn btn-default", :id => "save_inventory" %>
-      <% else %>
-        <br/>
-        <div class="alert alert-success">
-          Muy bien. La última versión está publicada.
-        </div>
-      <% end %>
+      <div class="col-md-1"></div>
     </div>
-  <% elsif current_inventory.present? %>
-    <%= render "inventories/publish_form", :from_dashboard => true %>
-  <% end %>
-  <div class="publish-form-holder hidden">
-    <%= render "inventories/publish_form", :from_dashboard => true %>
+    <br/>
+    <%= render "inventories/inventories_list" %>
   </div>
 </div>

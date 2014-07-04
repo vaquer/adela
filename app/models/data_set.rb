@@ -27,7 +27,7 @@ class DataSet
   end
 
   def keywords
-    keyword.to_s.split(",").map(&:strip)
+    keyword.to_s.split(",").map(&:strip).reject{ |k| k.empty? }
   end
 
   def values_array

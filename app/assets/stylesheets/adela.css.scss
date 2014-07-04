@@ -323,3 +323,36 @@ span.danger {
   background-color: $white;
   padding: 5px 65px;
 }
+
+.inventory-step {
+  border-bottom: 1px solid $gray-light;
+  min-height: 60px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.inventory-last-step {
+  border: none;
+  height: 130px;
+  margin-bottom: 0;
+}
+
+.inventory-preview {
+  border-top: 1px solid $gray-light;
+  padding: 15px 5px;
+}
+
+.template-file-icon {
+  padding-right: 10px;
+}
+
+.preview-table {
+  margin-bottom: 10px;
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.inventory-action {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

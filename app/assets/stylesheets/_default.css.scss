@@ -9,11 +9,12 @@ body {
 }
 
 a {
-  color: $white;
+  color: $blue1;
 }
 
 a:hover {
-  color: $blue;
+  color: $gray1;
+  text-decoration: none;
 }
 
 small {

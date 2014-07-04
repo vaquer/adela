@@ -12,10 +12,15 @@
 }
 
 a.logo-text {
+  color: $white;
   font-size: 16px;
   &:hover {
     color: $white;
   }
+}
+
+.nav li a:hover {
+  background-color: $black;
 }
 
 .nav-actions {
@@ -182,6 +187,11 @@ a.logo-text {
   .icon {
     width: 45px;
   }
+
+  tr.table-footer td {
+    background-color: $white;
+  }
+
   td {
     padding: 10px 0;
   }
@@ -307,4 +317,9 @@ span.danger {
 
 .pull-down {
   margin-top: 50px;
+}
+
+.steps-wrapper {
+  background-color: $white;
+  padding: 5px 65px;
 }

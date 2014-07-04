@@ -2,7 +2,7 @@
   <div class="<%= display_publish_form?(from_dashboard) %>" id="publish_inventory">
     <span class="h4">Paso 5</span>
     <div class="step-holder col-md-10 pull-right">
-      <span>Publica tu inventario.</span>
+      <label>Publica tu inventario.</label>
       <%= form_tag(publish_catalog_organization_path(current_user.organization), method: "post", id: "requirements") do %>
         <div class="checkbox">
           <label class="center-block">

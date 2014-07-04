@@ -27,7 +27,7 @@
           </tr>
         <% end %>
         <% if @organization.activity_logs.last_block.any? %>
-          <tr>
+          <tr class="table-footer">
             <td></td>
             <td class="icon"></td>
             <td><%= link_to "Ver más actividad", "#", :id => "view_more", :class => "dashboard-link" %>

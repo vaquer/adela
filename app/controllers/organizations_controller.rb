@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: :catalog
+  before_action :authenticate_user!, except: [:catalog, :show]
 
   layout 'home'
 

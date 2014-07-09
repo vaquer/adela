@@ -17,6 +17,15 @@
     </div>
     <div class="section-content table-content">
       <table class="expanded-table activity-logs">
+        <% unless  @logs.any? %>
+          <tr class="table-footer">
+            <td></td>
+            <td class="icon"></td>
+            <td></td>
+            <td><em>No existe actividad reciente.</em></td>
+            <td></td>
+          </tr>
+        <% end %>
         <% @logs.first_block.each do |activity| %>
           <tr>
             <td></td>

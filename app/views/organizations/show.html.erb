@@ -8,6 +8,15 @@
     </div>
     <div class="section-content table-responsive">
       <table class="expanded-table activity-logs">
+        <% unless  @organization.activity_logs.any? %>
+          <tr class="table-footer">
+            <td></td>
+            <td class="icon"></td>
+            <td></td>
+            <td><em>No existe actividad reciente.</em></td>
+            <td></td>
+          </tr>
+        <% end %>
         <% @organization.activity_logs.first_block.each do |activity| %>
           <tr>
             <td></td>

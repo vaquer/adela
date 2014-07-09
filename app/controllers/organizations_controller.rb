@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.friendly.find(params[:id])
-    @inventories = @organization.inventories.date_sorted.offset(1).paginate(:page => params[:page], :per_page => 5)
+    @inventories = @organization.inventories.published.date_sorted.paginate(:page => params[:page], :per_page => 5)
     if current_organization.present? && @organization.current_inventory && !@organization.current_catalog
       flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu inventario."
     end

@@ -32,13 +32,11 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def header_step_image(step)
-    if current_catalog.present? && step == 2 || current_organization.has_public_topics? && step == 1
-      "step-checked"
-    elsif step == 2
-      "second-step"
-    elsif step == 1
-      "first-step"
+  def last_activity(organization)
+    if activity_at = organization.last_activity_at
+      "Hace #{time_ago_in_words(activity_at)}"
+    else
+      "Sin actividad"
     end
   end
 end

@@ -356,3 +356,15 @@ span.danger {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+// Organizations table
+.organizations-table {
+
+  a {
+    color: $gray;
+  }
+
+  a:hover {
+    color: $blue;
+  }
+}

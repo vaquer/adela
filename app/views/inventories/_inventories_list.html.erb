@@ -11,22 +11,16 @@
       <th></th>
     </thead>
     <tbody>
-    <% if @organization.current_catalog.present? %>
-      <tr>
-        <td></td>
-        <td><%= image_tag "mini-inventory.png" %></td>
-        <td><%= I18n.l(@organization.current_catalog.created_at, :format => :short) %></td>
-        <td><%= I18n.l(@organization.current_catalog.created_at, :format => :hour) %></td>
-        <td><%= @organization.current_catalog.datasets_count %></td>
-        <td><%= @organization.current_catalog.distributions_count %></td>
-        <td><%= link_to image_tag("download.png"), @organization.current_catalog.csv_file.url %></td>
-        <td></td>
-      </tr>
-    <% end %>
     <% @inventories.each do |inventory| %>
       <tr>
         <td></td>
-        <td><%= image_tag "update-log.png" %></td>
+        <td>
+          <% if inventory == @organization.current_catalog %>
+            <%= image_tag "mini-inventory.png" %>
+          <% else %>
+            <%= image_tag "update-log.png" %>
+          <% end %>
+        </td>
         <td><%= I18n.l(inventory.created_at, :format => :short) %></td>
         <td><%= I18n.l(inventory.created_at, :format => :hour) %></td>
         <td><%= inventory.datasets_count %></td>

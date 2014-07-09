@@ -15,7 +15,37 @@
     <div class="section-heading">
       <span class="activity-icon h4">Actividad reciente</span>
     </div>
-    <div class="section-content">
+    <div class="section-content table-content">
+      <table class="expanded-table activity-logs">
+        <% @logs.first_block.each do |activity| %>
+          <tr>
+            <td></td>
+            <td class="icon"><%= image_tag "#{activity.category}-log.png" %></td>
+            <td class="date"><%= "Hace #{time_ago_in_words(activity.done_at)}" %></td>
+            <td class="text"><%= "#{activity.organization.title} #{activity.description}" %></td>
+            <td></td>
+          </tr>
+        <% end %>
+        <% @logs.last_block.each do |activity| %>
+          <tr class="more-activities hidden">
+            <td></td>
+            <td class="icon"><%= image_tag "#{activity.category}-log.png" %></td>
+            <td class="date"><%= "Hace #{time_ago_in_words(activity.done_at)}" %></td>
+            <td class="text"><%= "#{activity.organization.title} #{activity.description}" %></td>
+            <td></td>
+          </tr>
+        <% end %>
+        <% if @logs.last_block.any? %>
+          <tr class="table-footer">
+            <td></td>
+            <td class="icon"></td>
+            <td><%= link_to "Ver más actividad", "#", :id => "view_more", :class => "dashboard-link" %>
+            <%= link_to "Ver menos actividad", "#", :id => "view_less", :class => "dashboard-link more-activities hidden" %></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
     <div class="section-heading">
       <span class="organization-icon h4">Instituciones</span>

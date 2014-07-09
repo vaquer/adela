@@ -5,6 +5,6 @@ class HomeController < ApplicationController
 
   def index
     @logs = ActivityLog.date_sorted
-    @organizations = Organization.paginate(:page => params[:page], :per_page => 5)
+    @organizations = Organization.includes(:activity_logs).paginate(:page => params[:page], :per_page => 5)
   end
 end

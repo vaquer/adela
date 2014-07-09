@@ -41,4 +41,8 @@ class Organization < ActiveRecord::Base
   def has_public_topics?
     topics.published.any?
   end
+
+  def last_activity_at
+    activity_logs.date_sorted.first.done_at if activity_logs.any?
+  end
 end

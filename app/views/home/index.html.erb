@@ -59,7 +59,40 @@
     <div class="section-heading">
       <span class="organization-icon h4">Instituciones</span>
     </div>
-    <div class="section-content">
+    <div class="section-content table-content">
+      <table class="expanded-table organizations-table">
+        <thead>
+          <th></th>
+          <th class="icon"></th>
+          <th>Institución</th>
+          <th>Última actividad</th>
+          <th>Conjuntos de datos</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @organizations.each do |organization| %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><%= organization.title %></td>
+              <td><%= last_activity(organization) %></td>
+              <td>
+                <% if organization.current_inventory.present? %>
+                  <%= organization.current_inventory.datasets_count %>
+                <% else %>
+                  Ninguno
+                <% end %>
+              </td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-links">
+      <div class="col-md-4 col-md-offset-6">
+        <%= will_paginate @organizations, :class => "pagination pull-right" %>
+      </div>
     </div>
     <div class="section-heading">
       <span class="calendar-icon h4">Programa de apertura</span>

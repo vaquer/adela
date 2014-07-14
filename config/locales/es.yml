@@ -12,7 +12,10 @@ es:
   date:
     formats:
         default: '%d/%m/%Y'
+        params: "%d-%m-%Y"
         short: "%d %B %Y"
+        month: "%B"
+        month_year: "%B, %Y"
     month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
   time:

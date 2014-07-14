@@ -1,0 +1,49 @@
+<div class="section-content">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2 class="calendar-heading"><%= I18n.l(Date.parse(@current_month), :format => :month) %></h2>
+      <ul class="list-inline">
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <% if previous_month(@current_month).present? %>
+        <%= link_to organization_path(:id => @organization.id, :month => previous_month(@current_month).to_date.strftime("01-%m-%Y")), :class => "pull-right calendar-navigation-link" do %>
+          <%= image_tag "left-arrow.png", :class => "calendar-navigation" %>
+          <%= I18n.l(previous_month(@current_month).to_date, :format => :month_year) %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <% if @topics.any? %>
+        <% @topics.group_by(&:publication_month_day).sort.each do |day, topics| %>
+          <div id='<%= "day-#{day}" %>' class="day-holder">
+            <div class="day-group col-md-2">
+              <h2><%= day %></h2>
+            </div>
+            <div class="day-topics-holder">
+              <% topics.each do |topic| %>
+                <div class="topic-item">
+                  <span><%= topic.name %></span><br/>
+                  <span class="topic-label">Responsable: <%= topic.owner %></span><br/>
+                  <span><%= topic.description %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p><em>No hay áreas o temas programados.</em></p>
+      <% end %>
+    </div>
+    <div class="col-md-2">
+      <% if next_month(@current_month).present? %>
+        <%= link_to organization_path(:id => @organization.id, :month => next_month(@current_month).to_date.strftime("01-%m-%Y")), :class => "calendar-navigation-link" do %>
+          <span class="next"><%= I18n.l(next_month(@current_month).to_date, :format => :month_year) %></span>
+          <%= image_tag "right-arrow.png", :class => "calendar-navigation" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

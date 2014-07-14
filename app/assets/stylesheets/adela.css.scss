@@ -112,7 +112,7 @@ a.logo-text {
 
 .dashboard-wrapper {
   background-color: $white;
-  padding-bottom: 15px;
+  padding-bottom: 45px;
 }
 
 // Organization Dashboard
@@ -366,5 +366,45 @@ span.danger {
 
   a:hover {
     color: $blue;
+  }
+}
+
+//  Topics section
+
+.calendar-heading {
+  color: $gray1;
+}
+
+.calendar-navigation {
+  padding: 0 5px 5px 5px;
+}
+
+.calendar-navigation-link {
+  color: $gray1;
+}
+
+.day-holder {
+  background-color: $gray2;
+  border-bottom: 4px solid $white;
+  min-height:  70px;
+  overflow:  auto;
+}
+
+.day-topics-holder {
+  overflow: auto;
+}
+
+.topic-item {
+  border-left: 4px solid $white;
+  border-bottom: 4px solid $white;
+  min-height:  70px;
+  padding: 10px;
+
+  .topic-label {
+    color: $gray1;
+  }
+
+  &:last-child {
+    border-bottom: none;
   }
 }

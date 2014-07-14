@@ -36,14 +36,22 @@ class Topic < ActiveRecord::Base
     self.where("to_char(publish_date, '01-MM-YYYY') ='#{month_year}'")
   end
 
-  def self.next_month_with_topics(current)
+  def self.next_month_with_topics(current, organization = nil)
     current_month = Date.parse(current)
-    sorted.where("date(topics.publish_date) > '#{current_month.end_of_month}'").pluck("publish_date").first
+    if organization.present?
+      sorted.where("topics.organization_id = #{organization} AND date(topics.publish_date) > '#{current_month.end_of_month}'").pluck("publish_date").first
+    else
+      sorted.where("date(topics.publish_date) > '#{current_month.end_of_month}'").pluck("publish_date").first
+    end
   end
 
-  def self.previous_month_with_topics(current)
+  def self.previous_month_with_topics(current, organization = nil)
     current_month = Date.parse(current)
-    publish_date_sorted.where("date(topics.publish_date) < '#{current_month.beginning_of_month}'").pluck("publish_date").first
+    if organization.present?
+      publish_date_sorted.where("topics.organization_id = #{organization} AND date(topics.publish_date) < '#{current_month.beginning_of_month}'").pluck("publish_date").first
+    else
+      publish_date_sorted.where("date(topics.publish_date) < '#{current_month.beginning_of_month}'").pluck("publish_date").first
+    end
   end
   private
 

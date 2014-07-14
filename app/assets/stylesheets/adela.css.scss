@@ -407,4 +407,12 @@ span.danger {
   &:last-child {
     border-bottom: none;
   }
+
+  &.light {
+    color: $gray1;
+  }
+
+  a {
+    color: $gray;
+  }
 }

@@ -40,27 +40,31 @@ module ApplicationHelper
     end
   end
 
-  def activity_months_range
-    months ||= Topic.publish_date_sorted.month_range
+  def activity_months_range(organization)
+    if organization.present?
+      months = Topic.publish_date_sorted.where("topics.organization_id = #{organization}").month_range
+    else
+      months = Topic.publish_date_sorted.month_range
+    end
   end
 
-  def previous_month(current)
-    current_index = activity_months_range.index(current)
+  def previous_month(current, organization = nil)
+    current_index = activity_months_range(organization).index(current)
     if current_index && current_index > 0
-      activity_months_range[current_index - 1]
+      activity_months_range(organization)[current_index - 1]
     elsif !current_index || current_index.zero?
-      Topic.previous_month_with_topics(current)
+      Topic.previous_month_with_topics(current, organization)
     else
       ""
     end
   end
 
-  def next_month(current)
-    current_index = activity_months_range.index(current)
-    if current_index && current_index <= (activity_months_range.size - 1)
-      activity_months_range[current_index + 1]
-    elsif !current_index || current_index == (activity_months_range.size - 1)
-      Topic.next_month_with_topics(current)
+  def next_month(current, organization = nil)
+    current_index = activity_months_range(organization).index(current)
+    if current_index && current_index <= (activity_months_range(organization).size - 1)
+      activity_months_range(organization)[current_index + 1]
+    elsif !current_index || current_index == (activity_months_range(organization).size - 1)
+      Topic.next_month_with_topics(current, organization)
     else
       ""
     end

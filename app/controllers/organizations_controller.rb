@@ -6,6 +6,8 @@ class OrganizationsController < ApplicationController
   def show
     @organization = Organization.friendly.find(params[:id])
     @inventories = @organization.inventories.published.date_sorted.paginate(:page => params[:page], :per_page => 5)
+    @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
+    @topics = @organization.topics.published.by_month(@current_month.to_date)
     if current_organization.present? && @organization.current_inventory && !@organization.current_catalog
       flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu inventario."
     end

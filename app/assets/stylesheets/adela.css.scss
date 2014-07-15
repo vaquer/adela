@@ -383,6 +383,19 @@ span.danger {
   color: $gray1;
 }
 
+.calendar-nav-bar {
+  margin-top: 20px;
+
+  .button {
+    padding: 5px 10px;
+    background-color: $gray1;
+  }
+
+  .button:hover, .button.active {
+    background-color: $blue;
+  }
+}
+
 .day-holder {
   background-color: $gray2;
   border-bottom: 4px solid $white;

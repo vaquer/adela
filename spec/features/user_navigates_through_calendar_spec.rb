@@ -38,4 +38,16 @@ feature User, 'navigates through calendar:' do
       expect(page).to have_text topic.description
     end
   end
+
+  scenario "sees distinct years with topics" do
+    topic1 = FactoryGirl.create(:published_topic, :publish_date => 1.year.from_now, :organization => @organization)
+    topic2 = FactoryGirl.create(:published_topic, :publish_date => 2.year.from_now, :organization => @organization)
+
+    visit organization_path(@organization.id)
+
+    within all(".section-content").last do
+      expect(page).to have_link 1.year.from_now.strftime("%Y")
+      expect(page).to have_text 2.year.from_now.strftime("%Y")
+    end
+  end
 end

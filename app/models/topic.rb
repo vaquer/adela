@@ -31,7 +31,14 @@ class Topic < ActiveRecord::Base
     self.pluck("to_char(publish_date, '01-MM-YYYY')").uniq
   end
 
-  def self.by_month(publish_date = DateTime.now)
+  def self.year_range
+    self.select("DISTINCT ON (to_char(topics.publish_date, 'YYYY')) topics.publish_date")
+    .group("topics.publish_date")
+    .order("to_char(topics.publish_date, 'YYYY') ASC, publish_date ASC")
+    .map{ |topic| topic.publish_date.strftime("01-%m-%Y") }
+  end
+
+  def self.by_month(publish_date = Date.today)
     month_year = publish_date.strftime("01-%m-%Y")
     self.where("to_char(publish_date, '01-MM-YYYY') ='#{month_year}'")
   end

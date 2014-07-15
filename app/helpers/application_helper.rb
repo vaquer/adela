@@ -69,4 +69,18 @@ module ApplicationHelper
       ""
     end
   end
+
+  def activity_years_range(organization = nil)
+    if organization.present?
+      months = Topic.where("topics.organization_id = #{organization}").year_range
+    else
+      months = Topic.year_range
+    end
+  end
+
+  def calendar_button_class(current_month, year)
+    if current_month.to_date.strftime("%Y") == year.to_date.strftime("%Y")
+      "active"
+    end
+  end
 end

@@ -1,8 +1,11 @@
 <div class="section-content">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h2 class="calendar-heading"><%= I18n.l(Date.parse(@current_month), :format => :month) %></h2>
-      <ul class="list-inline">
+      <h2 class="calendar-heading col-md-4"><%= I18n.l(Date.parse(@current_month), :format => :month) %></h2>
+      <ul class="calendar-nav-bar list-inline col-md-8 text-right">
+        <% activity_years_range.each do |year| %>
+          <li><%= link_to year.to_date.strftime("%Y"), root_path(:month => year.to_date.strftime("01-%m-%Y")), :class => "btn button #{calendar_button_class(@current_month, year)}" %></li>
+        <% end %>
       </ul>
     </div>
   </div>

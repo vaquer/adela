@@ -65,7 +65,10 @@
     <% if current_organization == @organization %>
       <div class="section-links">
         <div class="col-md-4 col-md-offset-6">
-          <%= link_to "Programa de apertura", topics_path, :class => "btn button pull-right" %>
+          <button type="button" id="new-topic-button" class="btn button pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            Agregar nueva área o tema
+          </button>
         </div>
       </div>
     <% end %>

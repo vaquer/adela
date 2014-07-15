@@ -15,7 +15,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-md-8">
+    <div id="topics-list" class="col-md-8">
       <% if @topics.any? %>
         <% @topics.group_by(&:publication_month_day).sort.each do |day, topics| %>
           <div id='<%= "day-#{day}" %>' class="day-holder">
@@ -24,8 +24,19 @@
             </div>
             <div class="day-topics-holder">
               <% topics.each do |topic| %>
-                <div class="topic-item">
-                  <span><%= topic.name %></span><br/>
+                <div id="topic-<%= topic.id %>" class="topic-item">
+                  <span><%= topic.name %></span>
+                  <% if current_organization == @organization %>
+                    <span class="edit-tools pull-right">
+                      <a class="edit" id="edit-topic-<%= topic.id %>-link" href="#">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </a>
+                      <a class="delete" href="/topics/<%= topic.id%>" data-confirm="Esta acción no es reversible. ¿Estás seguro que deseas eliminar esta entrada?" data-method="delete" id="delete-topic-<%= topic.id %>-link" data-remote="true">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </a>
+                    </span>
+                  <% end %>
+                  <br/>
                   <span class="topic-label">Responsable: <%= topic.owner %></span><br/>
                   <span><%= topic.description %></span>
                 </div>
@@ -47,3 +58,19 @@
     </div>
   </div>
 </div>
+
+<br><br><br><br>
+<div id="topics-listing"></div>
+<div id="new-topic-container"></div>
+<script>
+  $(function () {
+    new Topics.Form({
+      show_form_button: "#new-topic-button",
+      form_container: "#new-topic-container",
+      success_callback: function (data) {
+        var item = new Topics.Item(data);
+        item.load_in("#topics-listing");
+      }
+    });
+  });
+</script>

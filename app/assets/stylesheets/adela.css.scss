@@ -404,6 +404,10 @@ span.danger {
     color: $gray1;
   }
 
+  .edit-tools a {
+    color: $blue;
+  }
+
   &:last-child {
     border-bottom: none;
   }
@@ -415,4 +419,8 @@ span.danger {
   a {
     color: $gray;
   }
+}
+
+.topic-form-holder {
+  background-color: $green;
 }

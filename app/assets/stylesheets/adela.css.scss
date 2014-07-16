@@ -394,6 +394,10 @@ span.danger {
   .button:hover, .button.active {
     background-color: $blue;
   }
+
+  li {
+    padding: 0 1px;
+  }
 }
 
 .day-holder {

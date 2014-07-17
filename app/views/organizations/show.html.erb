@@ -5,6 +5,10 @@
   <div class="dashboard-wrapper">
     <div class="section-heading">
       <span class="activity-icon h4">Actividad reciente</span>
+      <div class="legends col-md-4 pull-right">
+        <span class="publication-legend"><small>Publicaciones</small></span>
+        <span class="update-legend"><small>Actualizaciones</small></span>
+      </div>
     </div>
     <div class="section-content table-responsive">
       <table class="expanded-table activity-logs">
@@ -49,6 +53,9 @@
     </div>
     <div class="section-heading">
       <span class="inventory-icon h4">Inventario de datos</span>
+      <div class="legends col-md-4 pull-right">
+        <span class="published-legend"><small>Inventario publicado</small></span>
+      </div>
     </div>
     <%= render "inventories/inventories_list" %>
     <% if current_organization == @organization %>

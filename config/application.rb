@@ -30,5 +30,6 @@ module Adela
 
     config.i18n.default_locale = :es
     config.eager_load_paths += ["#{config.root}/workers"]
+    config.middleware.use Rack::Pjax
   end
 end

@@ -13,7 +13,13 @@ feature User, 'logs in:' do
 
   scenario "visits root page and sees landing page" do
     visit "/"
-    pending "Missing landing page"
+    within ".app-description" do
+      expect(page).to have_text "ADELA"
+    end
+
+    expect(page).to have_text "Actividad reciente"
+    expect(page).to have_text "Instituciones"
+    expect(page).to have_text "Programa de apertura"
   end
 
   scenario "visits root page and sees log in link" do

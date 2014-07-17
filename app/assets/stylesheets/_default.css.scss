@@ -20,3 +20,10 @@ a:hover {
 small {
 	color: $gray1;
 }
+
+.form-group {
+  input {
+    border: none;
+    border-radius: 0;
+  }
+}

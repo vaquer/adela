@@ -115,6 +115,26 @@ a.logo-text {
   padding-bottom: 45px;
 }
 
+.legends {
+
+  .publication-legend {
+    background: image-url("publish-log.png") left no-repeat;
+  }
+
+  .update-legend {
+    background: image-url("update-log.png") left no-repeat;
+  }
+
+  .published-legend {
+    background: image-url("mini-inventory.png") left no-repeat;
+  }
+
+  span {
+    margin-right: 15px;
+    padding: 10px 10px 10px 20px;
+  }
+}
+
 // Organization Dashboard
 
 .org-header {
@@ -145,9 +165,13 @@ a.logo-text {
   font-size: 13px;
   padding: 10px 15px;
 
-  &:hover {
+  &:hover, &.cancel:hover {
     background-color: $blue1;
     color: $white;
+  }
+
+  &.cancel {
+    background-color: $gray1;
   }
 }
 
@@ -394,6 +418,10 @@ span.danger {
   .button:hover, .button.active {
     background-color: $blue;
   }
+
+  li {
+    padding: 0 1px;
+  }
 }
 
 .day-holder {
@@ -421,6 +449,10 @@ span.danger {
     color: $blue;
   }
 
+  .more-link, .less-link {
+    color: $blue1;
+  }
+
   &:last-child {
     border-bottom: none;
   }
@@ -436,4 +468,17 @@ span.danger {
 
 .topic-form-holder {
   background-color: $green;
+
+  .button {
+    padding: 5px 10px;
+  }
+
+  .calendar {
+    padding: 6px;
+  }
+
+  label {
+    font-weight: normal;
+    color: $gray1;
+  }
 }

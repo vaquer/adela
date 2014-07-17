@@ -6,11 +6,9 @@ class TopicsController < ApplicationController
 
   layout 'home'
 
-  def index
-    respond_to do |format|
-      format.html { }
-      format.json { render :json => current_organization.topics.sorted }
-    end
+  def show
+    @topic = Topic.find(params[:id])
+    respond_with @topic
   end
 
   def create

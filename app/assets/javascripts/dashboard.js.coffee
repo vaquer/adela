@@ -11,3 +11,5 @@ $ ->
     $(this).addClass("hidden")
     $("#view_more").removeClass("hidden")
   )
+
+  $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')

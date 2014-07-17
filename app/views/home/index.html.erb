@@ -6,7 +6,7 @@
       <span class="heading">ADELA</span>
     </div>
     <div class="description">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel ante diam. Mauris non felis tortor. Sed ut imperdiet arcu. Nam viverra, orci ac gravida interdum, risus tortor rutrum magna, eu interdum felis tortor in eros.</p>
+      <p><%= ENV['APP_DESCRIPTION'] %></p>
     </div>
   </div>
 </div>
@@ -14,6 +14,10 @@
   <div class="dashboard-wrapper">
     <div class="section-heading">
       <span class="activity-icon h4">Actividad reciente</span>
+      <div class="legends col-md-4 pull-right">
+        <span class="publication-legend"><small>Publicaciones</small></span>
+        <span class="update-legend"><small>Actualizaciones</small></span>
+      </div>
     </div>
     <div class="section-content table-content">
       <table class="expanded-table activity-logs">

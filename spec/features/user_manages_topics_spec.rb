@@ -54,7 +54,6 @@ feature User, 'manages topics:' do
   end
 
   scenario "can edit an existing topic", :js => true do
-    pending # WIP
     organization = @user.organization
     topic = organization.topics.create!(:name => "A topic",
                                         :owner => "By somebody",
@@ -62,9 +61,9 @@ feature User, 'manages topics:' do
                                         :description => "With description")
 
     visit organization_path(:id => @user.organization.id)
+    click_link "edit-topic-#{topic.id}-link"
 
-    within "#topic-#{topic.id}" do
-      click_link "edit-topic-#{topic.id}-link"
+    within "#edit-topic-container" do
       fill_in "Área o tema", :with => "Edited topic"
       fill_in "Fecha de apertura", :with => "#{I18n.l(Date.tomorrow)}"
       fill_in "Responsable", :with => "Edited owner"
@@ -76,7 +75,6 @@ feature User, 'manages topics:' do
     page.should have_content "Edited topic"
     page.should have_content "Edited owner"
     page.should have_content "Edited description"
-    page.should have_content "#{I18n.l(Date.tomorrow, :format => :short)}"
 
     page.should_not have_content "A topic"
     page.should_not have_content "By somebody"

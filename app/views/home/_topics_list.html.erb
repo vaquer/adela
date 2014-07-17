@@ -30,7 +30,7 @@
                 <div class="topic-item light">
                   <%= link_to topic.organization.title.upcase, organization_path(:id => topic.organization) %><br/>
                   <span><%= topic.name %></span><br/>
-                  <span><%= topic.description %></span>
+                  <span class="expandable"><%= topic.description %></span>
                 </div>
               <% end %>
             </div>

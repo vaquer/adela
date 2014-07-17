@@ -30,6 +30,7 @@ class Topics.Form
     if @show_form_button
       @show_form_button.click (e) =>
         e.preventDefault()
+        $("#edit-topic-container").html("")
         @_show_form()
 
     @cancel.click (e) =>
@@ -51,6 +52,7 @@ class Topics.Form
   _hide_form: () ->
     @form_container.hide()
     @show_form_button.fadeIn() if @show_form_button
+    $("#edit-topic-container").html("")
 
   _show_form: () ->
     @show_form_button.hide() if @show_form_button
@@ -59,7 +61,7 @@ class Topics.Form
   _load_topic_list: (data) ->
     $.pjax({
       url: "/organizations/" + data.organization_id,
-      data: { month: data.formatted_publish_date },
+      data: { month: data.publish_date_param },
       container: '[data-pjax-container]'
     })
 

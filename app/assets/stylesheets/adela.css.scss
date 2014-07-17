@@ -425,6 +425,10 @@ span.danger {
     color: $blue;
   }
 
+  .more-link, .less-link {
+    color: $blue1;
+  }
+
   &:last-child {
     border-bottom: none;
   }

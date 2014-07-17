@@ -14,8 +14,12 @@ class Topic < ActiveRecord::Base
     self.update_attribute(:published, true)
   end
 
-  def formatted_publish_date
+  def publish_date_param
     publish_date.strftime('01-%m-%Y')
+  end
+
+  def formatted_publish_date
+    I18n.l(publish_date, :format => :default)
   end
 
   def publication_month_day
@@ -24,7 +28,7 @@ class Topic < ActiveRecord::Base
 
   def as_json(args={})
     args ||= {}
-    super(args.merge!(:methods =>[:name, :owner, :organization_id, :sort_order, :formatted_publish_date, :description]))
+    super(args.merge!(:methods =>[:name, :owner, :organization_id, :sort_order, :formatted_publish_date, :description, :publish_date_param]))
   end
 
   def self.month_range

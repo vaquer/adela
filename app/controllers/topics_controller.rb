@@ -13,6 +13,11 @@ class TopicsController < ApplicationController
     end
   end
 
+  def show
+    @topic = Topic.find(params[:id])
+    respond_with @topic
+  end
+
   def create
     @topic = current_organization.topics.build(topic_params)
     @topic.save

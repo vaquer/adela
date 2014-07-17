@@ -1,10 +1,17 @@
 #= require topics/initializer
 #= require topics/topic_form
-#= require topics/topic_loader
 
 $ ->
-  $('.edit-tools a.edit').on("click", (e) ->
+
+  $(document).on("click", '.edit-tools a.edit', (e) ->
     e.preventDefault()
+    $("#edit-topic-container").html("")
+    topic_id = $(this).attr("id").split("-")[2]
+    $.getJSON "/topics/" + topic_id, (data) =>
+      form = new Topics.Form
+        data: data
+        form_container: "#edit-topic-container"
+      form._show_form()
   )
 
   $(document).on("ajax:success", '.edit-tools a.delete', () ->

@@ -13,3 +13,6 @@ $ ->
   )
 
   $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')
+  $(document).on("pjax:timeout", () ->
+    false
+  )

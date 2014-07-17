@@ -56,6 +56,12 @@ class Topics.Form
     @show_form_button.hide() if @show_form_button
     @form_container.fadeIn()
 
+  _load_topic_list: (data) ->
+    $.pjax({
+      url: "/organizations/" + data.organization_id,
+      data: { month: data.formatted_publish_date },
+      container: '[data-pjax-container]'
+    })
 
   _handle_form_submit: (e) =>
     e.preventDefault()
@@ -81,7 +87,7 @@ class Topics.Form
     @_clear_field_errors()
     @_clear_form_fields()
     @_hide_form()
-    @success_callback(data)
+    @_load_topic_list(data)
 
   _post_fail: (jqXHR, status) =>
     @_clear_field_errors()

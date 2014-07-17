@@ -15,7 +15,7 @@ class Topic < ActiveRecord::Base
   end
 
   def formatted_publish_date
-    I18n.l(publish_date, :format => :short)
+    publish_date.strftime('01-%m-%Y')
   end
 
   def publication_month_day

@@ -13,6 +13,7 @@
         <div class="col-sm-6">
           <input type="text" id="topic_publish_date" class="form-control" name="topic[publish_date]">
         </div>
+        <img src="/assets/mini-calendar.png" class="calendar">
       </div>
       <div class="form-group">
         <label for="topic_owner" class="control-label col-sm-3">Responsable</label>
@@ -27,9 +28,9 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="submit-row col-sm-offset-3 col-sm-9">
-          <button type="submit" class="btn btn-default">Guardar</button>
-          <a href="#">o cancelar</a>
+        <div class="submit-row col-sm-offset-3 col-sm-9 text-right">
+          <button type="submit" class="btn button">Guardar</button>
+          <a href="#" class="btn button cancel">Cancelar</a>
         </div>
       </div>
     </form>

@@ -12,7 +12,13 @@ $ ->
     $("#view_more").removeClass("hidden")
   )
 
-  $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')
   $(document).on("pjax:timeout", () ->
     false
   )
+
+  $("#calendar").on("pjax:start", () ->
+    spinner = new Spinner({color:'#999999', lines: 11, width: 2}).spin()
+    $("#calendar").html(spinner.el)
+  )
+
+  $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')

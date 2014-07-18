@@ -40,8 +40,8 @@ a.logo-text {
 // Sign In
 
 .signin-wrapper {
-  background-color: $blue;
-  color: $white;
+  background-color: $gray2;
+  color: $blue;
   font-weight: bold;
   height: 100%;
 }
@@ -57,7 +57,7 @@ a.logo-text {
 
     &:hover {
       color: $white;
-      background-color: $gray1;
+      background-color: $blue;
     }
   }
 
@@ -66,21 +66,25 @@ a.logo-text {
   }
 
   input[type="email"], input[type="password"] {
-    color: $gray;
+    color: $gray1;
     font-weight: normal;
     padding: 3px;
     margin-bottom: 3px;
     width: 100%;
+
+    &:focus {
+      outline-color: $gray1;
+    }
   }
 
   label, a {
     font-size: 14px;
     font-weight: normal;
-    color: $gray1;
+    color: $gray;
   }
 
   a:hover {
-    color: $white;
+    color: $blue;
   }
 }
 

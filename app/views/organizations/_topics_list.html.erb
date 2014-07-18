@@ -1,6 +1,6 @@
-<div class="section-content" data-pjax-container>
+<div id="calendar" class="section-content" data-pjax-container>
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div id="calendar-header" class="col-md-8 col-md-offset-2">
       <h2 class="calendar-heading col-md-4"><%= I18n.l(Date.parse(@current_month), :format => :month) %></h2>
       <ul class="calendar-nav-bar list-inline col-md-8 text-right">
         <% activity_years_range(@organization.id).each do |year| %>
@@ -18,7 +18,7 @@
         <% end %>
       <% end %>
     </div>
-    <div id="topics-list" class="col-md-8">
+    <div id="calendar-content" class="col-md-8">
       <% if @topics.any? %>
         <% @topics.group_by(&:publication_month_day).sort.each do |day, topics| %>
           <div id='<%= "day-#{day}" %>' class="day-holder">

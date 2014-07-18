@@ -18,6 +18,7 @@ $ ->
 
   $("#calendar").on("pjax:start", () ->
     spinner = new Spinner({color:'#999999', lines: 11, width: 3}).spin()
+    $("#calendar-header").html("")
     $("#calendar-content").html(spinner.el)
   )
 

@@ -1,6 +1,6 @@
 <div class="section-content" id="calendar" data-pjax-container>
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div id="calendar-header" class="col-md-8 col-md-offset-2">
       <h2 class="calendar-heading col-md-4"><%= I18n.l(Date.parse(@current_month), :format => :month) %></h2>
       <ul class="calendar-nav-bar list-inline col-md-8 text-right">
         <% activity_years_range.each do |year| %>

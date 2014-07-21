@@ -37,16 +37,16 @@ a.logo-text {
     margin-top: 20px;
   }
 }
-// Sign In
+// Sign In and Edit password
 
-.signin-wrapper {
+.user-form-wrapper {
   background-color: $gray2;
   color: $blue;
   font-weight: bold;
   height: 100%;
 }
 
-.signin-form {
+.user-form {
   margin-top: 120px;
   padding: 0 70px;
 
@@ -86,9 +86,13 @@ a.logo-text {
   a:hover {
     color: $blue;
   }
+
+  small {
+    font-weight: normal;
+  }
 }
 
-.signin-form-heading {
+.user-form-heading {
   margin-bottom: 45px;
   text-align: center;
 }

@@ -1,11 +1,11 @@
-<div class="signin-wrapper">
+<div class="user-form-wrapper">
   <div class="row">
     <div class="col-md-4"></div>
-    <div class="signin-form col-md-4">
+    <div class="user-form col-md-4">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => ""}) do |f| %>
-        <h2 class="signin-form-heading">ADELA</h2>
-        <%= f.email_field :email, :autofocus => true, :class => "", :placeholder => "Correo electrónico" %>
-        <%= f.password_field :password, :class => "", :placeholder => "Contraseña" %>
+        <h2 class="user-form-heading">ADELA</h2>
+        <%= f.email_field :email, :autofocus => true, :placeholder => "Correo electrónico" %>
+        <%= f.password_field :password, :placeholder => "Contraseña" %>
         <%= render "devise/shared/links" %>
         <div><%= f.submit "ENTRAR", :class => "btn button btn-block" %></div>
         <% if devise_mapping.rememberable? -%>

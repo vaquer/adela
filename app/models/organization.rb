@@ -9,7 +9,7 @@ class Organization < ActiveRecord::Base
   has_many :activity_logs
 
   scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'").uniq }
-
+  scope :title_sorted, -> { order("organizations.title ASC") }
   def current_inventory
     inventories.unpublished.first
   end

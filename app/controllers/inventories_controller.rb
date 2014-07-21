@@ -9,7 +9,7 @@ class InventoriesController < ApplicationController
 
   def index
     @organization = current_organization
-    @inventories = current_organization.inventories.paginate(:page => params[:page], :per_page => 5)
+    @inventories = current_organization.inventories.date_sorted.paginate(:page => params[:page], :per_page => 5)
   end
 
   def create

@@ -27,22 +27,24 @@
             </div>
             <div class="day-topics-holder">
               <% topics.each do |topic| %>
-                <div id="topic-<%= topic.id %>" class="topic-item">
-                  <span><%= topic.name %></span>
-                  <% if current_organization == @organization %>
-                    <span class="edit-tools pull-right">
-                      <a class="edit" id="edit-topic-<%= topic.id %>-link" href="#">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                      </a>
-                      <a class="delete" href="/topics/<%= topic.id%>" data-confirm="Esta acción no es reversible. ¿Estás seguro que deseas eliminar esta entrada?" data-method="delete" id="delete-topic-<%= topic.id %>-link" data-remote="true">
-                        <span class="glyphicon glyphicon-trash"></span>
-                      </a>
-                    </span>
-                  <% end %>
-                  <br/>
-                  <span class="topic-label">Responsable: <%= topic.owner %></span><br/>
-                  <span class="expandable"><%= topic.description %></span>
-                </div>
+                <% cache ['topics', topic] do %>
+                  <div id="topic-<%= topic.id %>" class="topic-item">
+                    <span><%= topic.name %></span>
+                    <% if current_organization == @organization %>
+                      <span class="edit-tools pull-right">
+                        <a class="edit" id="edit-topic-<%= topic.id %>-link" href="#">
+                          <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a class="delete" href="/topics/<%= topic.id%>" data-confirm="Esta acción no es reversible. ¿Estás seguro que deseas eliminar esta entrada?" data-method="delete" id="delete-topic-<%= topic.id %>-link" data-remote="true">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                      </span>
+                    <% end %>
+                    <br/>
+                    <span class="topic-label">Responsable: <%= topic.owner %></span><br/>
+                    <span class="expandable"><%= topic.description %></span>
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>

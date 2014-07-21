@@ -10,20 +10,10 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
-
-        <div class="form-group">
-          <%= f.password_field :password, autocomplete: "off", :placeholder => "Nueva contraseña" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirmar nueva contraseña" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.password_field :current_password, autocomplete: "off", :placeholder => "Contraseña actual" %>
-          <small>Necesitamos tu contraseña actual para realizar el cambio.</small>
-        </div>
-
+        <%= f.password_field :password, autocomplete: "off", :placeholder => "Nueva contraseña" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirmar nueva contraseña" %>
+        <%= f.password_field :current_password, autocomplete: "off", :placeholder => "Contraseña actual" %>
+        <small>Necesitamos tu contraseña actual para realizar el cambio.</small>
         <div><%= f.submit "Cambiar contraseña", :class => "btn button btn-block" %></div>
       <% end %>
     </div>

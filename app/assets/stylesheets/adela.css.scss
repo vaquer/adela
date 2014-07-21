@@ -69,7 +69,7 @@ a.logo-text {
     color: $gray1;
     font-weight: normal;
     padding: 3px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     width: 100%;
 
     &:focus {
@@ -205,6 +205,11 @@ a.logo-text {
 .section-links {
   margin-bottom: 15px;
   height: 40px;
+}
+
+.section-content {
+  min-height: 200px;
+  position: relative;
 }
 
 .activity-icon {

@@ -63,7 +63,7 @@
     <div class="section-heading">
       <span class="organization-icon h4">Instituciones</span>
     </div>
-    <div class="section-content table-content">
+    <div id="organizations" class="section-content table-content">
       <table class="expanded-table organizations-table">
         <thead>
           <th></th>
@@ -92,10 +92,10 @@
           <% end %>
         </tbody>
       </table>
-    </div>
-    <div class="section-links">
-      <div class="col-md-4 col-md-offset-6">
-        <%= will_paginate @organizations, :class => "pagination pull-right" %>
+      <div id="organizations_links" class="section-links">
+        <div class="col-md-4 col-md-offset-6">
+          <%= will_paginate @organizations, :class => "pagination pull-right" %>
+        </div>
       </div>
     </div>
     <div class="section-heading">

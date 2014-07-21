@@ -22,4 +22,10 @@ $ ->
     $("#calendar-content").html(spinner.el)
   )
 
+  $("#organizations").on("pjax:start", () ->
+    spinner = new Spinner({color:'#999999', lines: 11, width: 3}).spin()
+    $("#organizations").html(spinner.el)
+  )
+
   $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')
+  $(document).pjax("#organizations_links .pagination a", '#organizations')

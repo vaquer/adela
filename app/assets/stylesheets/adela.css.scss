@@ -157,6 +157,20 @@ a.logo-text {
   }
 }
 
+.dropdown-menu {
+  background-color: $black;
+  font-size: 12px;
+
+  li a {
+    color: $white;
+  }
+
+  li a:hover {
+    background-color: $gray;
+    color: $white;
+  }
+}
+
 .org-about {
   background-color: $gray;
   color: $white;

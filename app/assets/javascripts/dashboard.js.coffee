@@ -27,5 +27,11 @@ $ ->
     $("#organizations").html(spinner.el)
   )
 
+  $("#inventories").on("pjax:start", () ->
+    spinner = new Spinner({color:'#999999', lines: 11, width: 3}).spin()
+    $("#inventories").html(spinner.el)
+  )
+
   $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')
   $(document).pjax("#organizations_links .pagination a", '#organizations')
+  $(document).pjax("#inventories_links .pagination a", '#inventories')

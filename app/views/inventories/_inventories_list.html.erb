@@ -32,14 +32,14 @@
       <% end %>
       </tbody>
     </table>
+    <div id="inventories_links" class="section-links">
+      <div class="col-md-4 col-md-offset-6">
+        <%= will_paginate @inventories, :class => "pagination pull-right" %>
+      </div>
+    </div>
   <% else %>
     <div class="col-md-5 col-md-offset-2">
       <em>Aún no existen inventarios.</em>
     </div>
   <% end %>
-</div>
-<div class="section-links">
-  <div class="col-md-4 col-md-offset-6">
-    <%= will_paginate @inventories, :class => "pagination pull-right" %>
-  </div>
 </div>

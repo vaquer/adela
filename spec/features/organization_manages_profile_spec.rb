@@ -18,4 +18,15 @@ feature Organization, 'manages profile:' do
     expect(page).to have_text "Descripción"
     expect(page).to have_text "URL Logo"
   end
+
+  scenario "edit description and logo url", :js => true do
+    visit profile_organization_path(@organization)
+
+    fill_in "Descripción", :with => "Esta es una descripción de una institución"
+    fill_in "URL Logo", :with => "http://www.imageurl.com"
+    click_button "Guardar"
+
+    expect(page).to have_text "El perfil se ha actualizado con éxito."
+    expect(page).to have_text "Esta es una descripción de una institución"
+  end
 end

@@ -10,7 +10,7 @@ Adela::Application.routes.draw do
   root :to => "home#index"
 
 
-  resources :organizations, only: :show do
+  resources :organizations, only: [:show, :update] do
     post "publish_catalog", :on => :member
     get "publish_later", :on => :member
     get "profile", :on => :member

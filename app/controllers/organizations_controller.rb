@@ -44,9 +44,24 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def update
+    @organization = Organization.friendly.find(params[:id])
+
+    if @organization.update(organization_params)
+      redirect_to profile_organization_path(@organization), :notice => "El perfil se ha actualizado con éxito."
+    else
+      redirect_to profile_organization_path(@organization), :error => "Ha ocurrido un error al actualizar el perfil."
+    end
+  end
+
   private
+
   def publication_requirements_checked?
     requirements = [params[:personal_data], params[:open_data], params[:office_permission], params[:data_policy_requirements]]
     requirements.all? { |r| r == "1"}
+  end
+
+  def organization_params
+    params.require(:organization).permit(:description, :logo_url)
   end
 end

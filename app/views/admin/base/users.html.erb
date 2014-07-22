@@ -1,6 +1,5 @@
 <div class="container">
   <h2>Usuarios registrados</h2>
-
   <table class="table table-condensed table-bordered table-striped">
     <thead>
       <tr>
@@ -18,7 +17,6 @@
           <td><%= user.email %></td>
           <td><%= I18n.l(user.created_at, :format => :short) %></td>
           <td><%= I18n.l(user.updated_at, :format => :short) %></td>
-          
           <td>
             <% if user.last_sign_in_at.present? %>
               <%= time_ago_in_words(user.last_sign_in_at) %>

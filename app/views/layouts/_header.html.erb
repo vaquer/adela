@@ -15,3 +15,10 @@
     <% end %>
   </div>
 </div>
+<% if session[:from_admin]%>
+  <div class="alert alert-danger">
+    <span class="danger"></span>
+    Estás en ADELA como <strong><%= "#{current_user.name} de #{current_organization.title.upcase}." %></strong>
+    <%= link_to "Volver al administrador", admin_stop_acting_path, :method => :post, :class => "pull-right" %>
+  </div>
+<% end %>

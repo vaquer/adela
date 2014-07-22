@@ -17,6 +17,26 @@ class Admin::BaseController < ApplicationController
     @users = User.created_at_sorted.paginate(:page => params[:page], :per_page => 30)
   end
 
+  def organizations
+    @organizations = Organization.includes(:users).title_sorted.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def acting_as
+    @user = User.find(params[:user_id])
+
+    session[:from_admin] = true
+    sign_in(@user)
+
+    redirect_to root_path
+  end
+
+  def stop_acting_as
+    session[:from_admin] = false
+    sign_out(current_user)
+
+    redirect_to admin_root_path
+  end
+
   private
 
   def file_params

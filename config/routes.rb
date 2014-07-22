@@ -43,6 +43,9 @@ Adela::Application.routes.draw do
   namespace :admin do
     get '/', to: 'base#index', as: 'root'
     get "/users", to: 'base#users', as: 'users'
+    get "/organizations", to: 'base#organizations', as: 'organizations'
+    get "/acting/:user_id", to: 'base#acting_as', as: 'acting_as'
+    post "/stop_acting", to: 'base#stop_acting_as', as: 'stop_acting'
     post "/create_users", to: 'base#create_users', as: "create_users"
   end
 end

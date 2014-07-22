@@ -292,6 +292,9 @@ span.danger {
 .alert-danger {
   color: $red;
   background-color: $red1;
+  a {
+    color: $red;
+  }
 }
 
 // Pagination

@@ -4,14 +4,9 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    if current_organization
-      if current_organization.topics.any? && current_organization.inventories.any?
-        redirect_to organization_path(current_organization)
-      elsif current_organization.topics.any?
-        redirect_to new_inventory_path
-      else
-        redirect_to topics_path
-      end
-    end
+    @logs = ActivityLog.date_sorted
+    @organizations = Organization.title_sorted.includes(:activity_logs).paginate(:page => params[:page], :per_page => 5)
+    @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
+    @topics = Topic.by_month(@current_month.to_date)
   end
 end

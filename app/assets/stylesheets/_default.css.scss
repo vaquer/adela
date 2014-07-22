@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  background-color: $gray2;
+}
+
+a {
+  color: $blue1;
+}
+
+a:hover {
+  color: $gray1;
+  text-decoration: none;
+}
+
+small {
+	color: $gray1;
+}
+
+.form-group {
+  input {
+    border: none;
+    border-radius: 0;
+  }
+}

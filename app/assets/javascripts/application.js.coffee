@@ -4,6 +4,9 @@
 //= require jquery.ui.datepicker
 //= require jquery.ui.datepicker-es
 //= require jquery.expander
+//= require jquery.pjax
+//= require spin
+//= require jquery.spin
 //= require bootstrap
 //= require_self
 //= require_tree ../templates

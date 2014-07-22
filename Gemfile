@@ -23,6 +23,7 @@ gem 'redis'
 gem 'sidekiq'
 gem 'figaro'
 gem 'will_paginate', '~> 3.0'
+gem 'rack-pjax'
 
 group :development, :test do
   gem 'spring'

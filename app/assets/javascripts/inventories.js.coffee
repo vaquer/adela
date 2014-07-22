@@ -17,7 +17,6 @@ validate_requirements = () ->
 
 show_last_step = () ->
   $("#save_inventory").addClass("hidden")
-  $(".preview-table").closest(".step-holder").addClass("inventory-step")
   $("#publish_inventory, .publish-form-holder").removeClass("hidden")
   $(".checked-step").removeClass("hidden")
   false

@@ -6,16 +6,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_organization
 
   def after_sign_in_path_for(resource)
-    if current_organization.inventories.any?
-      organization_path(current_user.organization)
-    elsif current_organization.topics.any?
-      new_inventory_path
-    else
-      topics_path
-    end
+    organization_path(current_organization)
   end
 
   def current_organization
     current_user && current_user.organization
+  end
+
+  def record_activity(category, description)
+    if current_organization.present?
+      @activity = ActivityLog.new(:category => category, :description => description, :organization_id => current_organization.id, :done_at => DateTime.now)
+      @activity.save
+    end
   end
 end

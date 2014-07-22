@@ -27,8 +27,8 @@ module InventoriesHelper
 
   def file_structure_feedback(datasets)
     distributions_count = datasets.map(&:distributions_count).compact.sum
-    "Se detectaron #{datasets.size} conjuntos de datos y #{distributions_count} recursos."
-  end
+    "Se detectaron #{I18n.t("plural.datasets", :count => datasets.size)} y #{I18n.t("plural.distributions", :count => distributions_count)}."
+ end
 
   def display_publish_form?(from_dashboard)
     unless from_dashboard
@@ -38,11 +38,5 @@ module InventoriesHelper
 
   def inventory_history(inventory)
     "Fecha de captura: #{I18n.l(inventory.created_at, :format => :short)}, por #{inventory.author}."
-  end
-
-  def about_datasets(inventory)
-    public_datasets_count = inventory.datasets.map(&:public?).count(true)
-    private_datasets_count = inventory.datasets.map(&:private?).count(true)
-    "#{inventory.public_datasets_count} conjuntos de datos públicos <br/> con #{public_datasets_count} recursos y #{inventory.private_datasets_count} conjuntos de datos privados con #{private_datasets_count} recursos".html_safe
   end
 end

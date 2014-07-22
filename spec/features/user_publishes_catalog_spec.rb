@@ -35,10 +35,11 @@ feature User, 'publishes catalog:' do
     click_on "Publicar"
     sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
     expect(page).to have_text "Última versión"
-    expect(page).to have_text "Versión Publicada"
+    expect(page).to have_text "Versión publicada"
     expect(page).to have_text @user.name
     expect(page).to have_link "Subir nueva versión"
-    expect(page).to have_link "Descargar esta versión"
+    @catalog = @user.organization.current_catalog
+    activity_log_created_with_msg "publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos."
   end
 
   scenario "can publish a catalog later", :js => true do
@@ -47,7 +48,6 @@ feature User, 'publishes catalog:' do
     click_on "Guardar inventario"
     click_on "Lo publicaré después, quiero avanzar"
     expect(page).to have_text "OJO: No has completado el último paso que es publicar tu inventario."
-    expect(page).to have_text "Paso 5"
   end
 
   scenario "can ignore invalid datasets and save inventory", :js => true do

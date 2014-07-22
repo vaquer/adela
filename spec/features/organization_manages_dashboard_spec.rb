@@ -11,6 +11,7 @@ feature Organization, 'manages dashboard:' do
   scenario "sees the last inventory version" do
     given_has_uploaded_an_inventory 10.days.ago
     visit organization_path(@organization)
+    click_on "Actualizar inventario"
     expect(page).to have_text "Última versión"
     expect(page).to have_text "#{I18n.l(10.days.ago, :format => :short)}"
   end
@@ -19,15 +20,17 @@ feature Organization, 'manages dashboard:' do
     given_has_uploaded_an_inventory 10.days.ago
     given_has_published_an_inventory 5.days.ago
     visit organization_path(@organization)
-    expect(page).to have_text "Versiones Pasadas"
-    expect(page).to have_text "Fecha de captura: #{I18n.l(10.days.ago, :format => :short)}, por #{@user.name}"
+    click_on "Actualizar inventario"
+    expect(page).to have_text "Versiones pasadas"
+    expect(page).to have_text "#{I18n.l(10.days.ago, :format => :short)}"
   end
 
   scenario "can publish last inventory version", :js => true do
     given_has_uploaded_an_inventory 5.days.ago
     given_has_published_an_inventory 10.days.ago
     visit organization_path(@organization)
-    expect(page).to have_text "OJO: La versión publicada no es la última versión."
+    click_on "Actualizar inventario"
+    expect(page).to have_text "La versión publicada no es la última versión."
     click_on "Publicar última versión"
     expect(page).to have_text "Paso 5"
     check_publication_requirements

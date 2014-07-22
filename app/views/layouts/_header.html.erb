@@ -1,22 +1,17 @@
-<div class="container-fluid">
-  <div class="navbar navbar-default">
-    <div class="navbar-header">
-      <%= link_to "ADELA", root_path, class: "navbar-brand" %>
+<div class="header">
+  <%= link_to root_path, {:class => "logo-text"} do %>
+    <div class="logo col-md-2 pull-left">
+      <span class="logo-text">Abrir para <strong>innovar</strong></span>
     </div>
-    <div class="navbar-collapse collapse">
-      <% if user_signed_in? %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Cambiar contraseña", edit_user_registration_path %></li>
-          <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
-        </ul>
-        <div class="navbar-brand pull-right">
-          <small>Tu organización: </small><%= link_to current_organization.title, organization_path(current_organization), :class => "h3" %>
-        </div>
-      <% else %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
-        </ul>
-      <% end %>
-    </div>
+  <% end %>
+  <div class="nav-actions col-md-3 pull-right">
+    <% if user_signed_in? %>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Mi organización", organization_path(current_organization) %></li>
+        <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
+      </ul>
+    <% else %>
+      <%= link_to "Iniciar sesión", new_user_session_path %>
+    <% end %>
   </div>
 </div>

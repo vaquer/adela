@@ -2,8 +2,10 @@
  *= require_self
  */
 
+ @import "palette";
  @import "bootstrap";
- @import "custom";
+ @import "default";
+ @import "adela";
  @import "topics";
  @import "jquery.ui.core";
  @import "jquery.ui.theme";

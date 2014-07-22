@@ -31,4 +31,9 @@ FactoryGirl.define do
     f.publish_date DateTime.now
     f.association :organization, :factory => :organization
   end
+
+  factory :published_topic, :parent => :topic do |f|
+    f.published true
+    f.publish_date DateTime.now
+  end
 end

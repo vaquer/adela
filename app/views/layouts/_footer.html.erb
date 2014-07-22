@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="footer">
+    <span>Contactos</span>
+    <br/>
+    <% if @organization.present? %>
+      <% @organization.users.each do |contact| %>
+        <div class="contact col-md-6">
+          <span><%= contact.name %></span>
+          <br/>
+          <span><%= contact.email %></span>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="contact">
+        <span>adela@datos.gob.mx</span>
+      </div>
+    <% end %>
+  </div>
+</div>

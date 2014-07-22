@@ -13,7 +13,13 @@ feature User, 'logs in:' do
 
   scenario "visits root page and sees landing page" do
     visit "/"
-    pending "Missing landing page"
+    within ".app-description" do
+      expect(page).to have_text "ADELA"
+    end
+
+    expect(page).to have_text "Actividad reciente"
+    expect(page).to have_text "Instituciones"
+    expect(page).to have_text "Programa de apertura"
   end
 
   scenario "visits root page and sees log in link" do
@@ -32,16 +38,16 @@ feature User, 'logs in:' do
   scenario "fails to log in with an invalid account" do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, "wrong_password")
-    click_on("Entrar")
+    click_on("ENTRAR")
     sees_error_message "Correo o contraseña inválidos."
   end
 
   scenario "succeed to log in with a valid account" do
     visit "/users/sign_in"
     fill_the_form_with(@user.email, @user.password)
-    click_on("Entrar")
-    sees_success_message "Bienvenido, el primer paso es crear tu programa de apertura"
-    expect(current_path).to eq(topics_path)
+    click_on("ENTRAR")
+    sees_success_message "Ingreso exitoso"
+    expect(current_path).to eq(organization_path(@user.organization))
   end
 
   def fill_the_form_with(email, password)

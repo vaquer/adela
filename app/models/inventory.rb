@@ -58,4 +58,12 @@ class Inventory < ActiveRecord::Base
       errors[:base] << I18n.t("activerecord.errors.models.inventory.attributes.csv_file.encoding")
     end
   end
+
+  def datasets_count
+    datasets.size
+  end
+
+  def distributions_count
+    datasets.map(&:distributions_count).compact.sum
+  end
 end

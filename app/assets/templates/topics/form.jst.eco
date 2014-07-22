@@ -1,5 +1,6 @@
 <div id="new-topic-form">
-  <div class="data-controls col-lg-offset-1 col-lg-11 bg-success">
+  <div class="col-md-2"></div>
+  <div class="data-controls topic-form-holder col-md-8">
     <form role="form" class="form-horizontal">
       <div class="form-group">
         <label for="topic_name" class="control-label col-sm-3">Área o tema</label>
@@ -9,9 +10,10 @@
       </div>
       <div class="form-group">
         <label for="topic_publish_date" class="control-label col-sm-3">Fecha de apertura </label>
-        <div class="col-sm-9">
+        <div class="col-sm-6">
           <input type="text" id="topic_publish_date" class="form-control" name="topic[publish_date]">
         </div>
+        <img src="/assets/mini-calendar.png" class="calendar">
       </div>
       <div class="form-group">
         <label for="topic_owner" class="control-label col-sm-3">Responsable</label>
@@ -26,11 +28,12 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="submit-row col-sm-offset-3 col-sm-9">
-          <button type="submit" class="btn btn-default">Guardar</button>
-          <a href="#">o cancelar</a>
+        <div class="submit-row col-sm-offset-3 col-sm-9 text-right">
+          <button type="submit" class="btn button">Guardar</button>
+          <a href="#" class="btn button cancel">Cancelar</a>
         </div>
       </div>
     </form>
   </div>
+  <div class="col-md-2"></div>
 </div>

@@ -6,15 +6,9 @@ class TopicsController < ApplicationController
 
   layout 'home'
 
-  def index
-    respond_to do |format|
-      format.html do
-        unless current_organization.has_public_topics?
-          flash.now[:notice] = "Bienvenido, el primer paso es crear tu programa de apertura"
-        end
-      end
-      format.json { render :json => current_organization.topics.sorted }
-    end
+  def show
+    @topic = Topic.find(params[:id])
+    respond_with @topic
   end
 
   def create
@@ -57,6 +51,7 @@ class TopicsController < ApplicationController
     @topics.each do |topic|
       topic.publish!
     end
+    record_activity("update", "actualizó su programa de apertura.")
     redirect_to new_inventory_path, :notice  => "Muy bien, tu programa de apertura está listo. De cualquier forma siempre puedes regresar a editarlo.<br/>El siguiente paso es subir un inventario de datos."
   end
 

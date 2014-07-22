@@ -36,6 +36,14 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def profile
+    @organization = Organization.friendly.find(params[:id])
+
+    if @organization != current_organization
+      redirect_to organization_path(@organization)
+    end
+  end
+
   private
   def publication_requirements_checked?
     requirements = [params[:personal_data], params[:open_data], params[:office_permission], params[:data_policy_requirements]]

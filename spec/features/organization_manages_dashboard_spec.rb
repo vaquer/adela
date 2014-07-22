@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature Organization, 'manages dashboard:' do
-  
   background do
     @user = FactoryGirl.create(:user)
     @organization = @user.organization

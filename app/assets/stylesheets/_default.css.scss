@@ -22,8 +22,9 @@ small {
 }
 
 .form-group {
-  input {
+  input, textarea {
     border: none;
     border-radius: 0;
+    box-shadow: none;
   }
 }

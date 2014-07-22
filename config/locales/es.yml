@@ -99,6 +99,9 @@ es:
         password: "Nueva contraseña"
         password_confirmation: "Confirmación de contraseña"
         current_password: "Contraseña actual"
+      organization:
+        description: "Descripción"
+        logo_url: "URL Logo"
   activemodel:
     errors:
       models:

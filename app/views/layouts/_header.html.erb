@@ -5,14 +5,14 @@
     </div>
   <% end %>
   <div class="nav-actions col-md-3 pull-right">
-    <% if user_signed_in? %>
-      <ul class="nav navbar-nav navbar-left">
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
         <li><%= link_to "Mi organización", organization_path(current_organization) %></li>
         <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
-      </ul>
-    <% else %>
-      <%= link_to "Iniciar sesión", new_user_session_path %>
-    <% end %>
+      <% else %>
+        <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+      <% end %>
+    </ul>
   </div>
 </div>
 <% if session[:from_admin]%>

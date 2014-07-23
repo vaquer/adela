@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: [:catalog, :show]
+  before_action :authenticate_user!, except: [:catalog, :show, :search]
 
   layout 'home'
 
@@ -52,6 +52,15 @@ class OrganizationsController < ApplicationController
     else
       redirect_to profile_organization_path(@organization), :error => "Ha ocurrido un error al actualizar el perfil."
     end
+  end
+
+  def search
+    @organizations = Organization.search_by(params[:q]).sort_by(&:current_datasets_count).reverse.paginate(:page => params[:page], :per_page => 5)
+    @logs = ActivityLog.date_sorted
+    @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
+    @topics = Topic.by_month(@current_month.to_date)
+
+    render "home/index"
   end
 
   private

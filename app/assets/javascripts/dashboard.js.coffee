@@ -32,6 +32,13 @@ $ ->
     $("#inventories").html(spinner.el)
   )
 
+  $("form.search").submit (e) ->
+    $.pjax({
+      url: this.action + '?' + $(this).serialize(),
+      container: '#organizations'
+    })
+    false
+
   $(document).pjax(".calendar-nav-bar a, a.calendar-navigation-link", '[data-pjax-container]')
   $(document).pjax("#organizations_links .pagination a", '#organizations')
   $(document).pjax("#inventories_links .pagination a", '#inventories')

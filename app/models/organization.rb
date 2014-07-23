@@ -54,4 +54,12 @@ class Organization < ActiveRecord::Base
       0
     end
   end
+
+  def self.search_by(q)
+    if q.present?
+      where("organizations.title ~* '#{q}'")
+    else
+      self.all
+    end
+  end
 end

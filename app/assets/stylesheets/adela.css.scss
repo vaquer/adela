@@ -143,6 +143,27 @@ a.logo-text {
   }
 }
 
+.search {
+  margin-bottom: 20px;
+
+  .search-submit {
+    position: absolute;
+    top: 3px;
+    right: 0px;
+    padding: 4px;
+  }
+
+  input[type="text"] {
+    background-color: $gray2;
+    border: none;
+    padding: 5px;
+  }
+
+  input:focus {
+    outline-color: $gray2;
+  }
+}
+
 // Organization Dashboard
 
 .org-header {

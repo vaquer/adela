@@ -53,8 +53,16 @@
     </div>
     <div class="section-heading">
       <span class="inventory-icon h4">Inventario de datos</span>
-      <div class="legends col-md-4 pull-right">
+      <div class="legends col-md-5 pull-right">
         <span class="published-legend"><small>Inventario publicado</small></span>
+        <span class="page-legend">
+          <small>
+            <%= link_to gov_link(@organization) do %>
+              <%= image_tag "catalog.png" %>
+              Ver en datos.gob.mx
+            <% end %>
+          </small>
+        </span>
       </div>
     </div>
     <%= render "inventories/inventories_list" %>

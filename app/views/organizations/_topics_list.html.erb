@@ -29,7 +29,7 @@
               <% topics.each do |topic| %>
                 <% cache ['topics', topic] do %>
                   <div id="topic-<%= topic.id %>" class="topic-item">
-                    <span><%= topic.name %></span>
+                    <span class="topic-label">Conjunto de datos: </span><%= topic.name %>
                     <% if current_organization == @organization %>
                       <span class="edit-tools pull-right">
                         <a class="edit" id="edit-topic-<%= topic.id %>-link" href="#">
@@ -41,8 +41,10 @@
                       </span>
                     <% end %>
                     <br/>
-                    <span class="topic-label">Responsable: <%= topic.owner %></span><br/>
-                    <span class="expandable"><%= topic.description %></span>
+                    <span class="topic-label">Responsable: </span><%= topic.owner %><br/>
+                    <% if topic.description.present? %>
+                      <span class="topic-label">Posible proyecto: </span><span class="expandable"><%= topic.description %></span>
+                    <% end %>
                   </div>
                 <% end %>
               <% end %>

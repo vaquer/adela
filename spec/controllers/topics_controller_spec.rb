@@ -9,23 +9,23 @@ describe TopicsController do
 
   describe "POST create" do
     it "creates a new topic" do
-      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json"
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json", :locale => "en"
       assigns(:topic).should be_persisted
     end
 
     it "assigns the topic to the current organization" do
-      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json"
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json", :locale => "en"
       assigns(:topic).organization.should == user.organization
     end
 
     it "assigns a sort_order" do
-      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json"
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json", :locale => "en"
       assigns(:topic).sort_order.should == 1
 
-      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json"
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json", :locale => "en"
       assigns(:topic).sort_order.should == 2
 
-      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json"
+      xhr :post, :create, :topic => { :name => "Name", :owner => "Owner", :publish_date => DateTime.now }, :format => "json", :locale => "en"
       assigns(:topic).sort_order.should == 3
     end
 
@@ -34,7 +34,7 @@ describe TopicsController do
                     :description => "The description", :publish_date => DateTime.now}
       formatted_publish_date = I18n.l(DateTime.now, :format => :short)
 
-      xhr :post, :create, :topic => post_data, :format => "json"
+      xhr :post, :create, :topic => post_data, :format => "json", :locale => "en"
 
       topic = JSON.parse(response.body)
       topic["name"].should == post_data[:name]
@@ -56,7 +56,7 @@ describe TopicsController do
     end
 
     it "updates the topic" do
-      xhr :patch, :update, { :id => topic.id, :topic => data }, :format => "json"
+      xhr :patch, :update, { :id => topic.id, :topic => data }, :locale => "en"
 
       topic.reload
       topic.name.should == "Edited name"

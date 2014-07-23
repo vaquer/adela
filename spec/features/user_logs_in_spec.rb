@@ -7,7 +7,7 @@ feature User, 'logs in:' do
   end
 
   scenario "fails to access a protected page" do
-    visit "/inventories/new"
+    visit new_inventory_path
     sees_error_message "Necesita ingresar o registrarse para continuar."
   end
 
@@ -36,14 +36,14 @@ feature User, 'logs in:' do
   end
 
   scenario "fails to log in with an invalid account" do
-    visit "/users/sign_in"
+    visit new_user_session_path
     fill_the_form_with(@user.email, "wrong_password")
     click_on("ENTRAR")
     sees_error_message "Correo o contraseña inválidos."
   end
 
   scenario "succeed to log in with a valid account" do
-    visit "/users/sign_in"
+    visit new_user_session_path
     fill_the_form_with(@user.email, @user.password)
     click_on("ENTRAR")
     sees_success_message "Ingreso exitoso"

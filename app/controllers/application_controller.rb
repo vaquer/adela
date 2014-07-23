@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_locale
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -18,5 +19,9 @@ class ApplicationController < ActionController::Base
       @activity = ActivityLog.new(:category => category, :description => description, :organization_id => current_organization.id, :done_at => DateTime.now)
       @activity.save
     end
+  end
+
+  def set_locale
+    I18n.locale = :es
   end
 end

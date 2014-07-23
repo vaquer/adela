@@ -10,11 +10,11 @@ feature User, 'manages topics:' do
   end
 
   scenario "can see a button and a message to add first topic" do
-    page.should have_button("Agregar nueva área o tema")
+    page.should have_button("Agregar nueva actividad")
   end
 
   scenario "can add a new topic", :js => true do
-    click_button "Agregar nueva área o tema"
+    click_button "Agregar nueva actividad"
     fill_in "Área o tema", :with => "El nombre del tema"
     fill_in "Fecha de apertura", :with => "#{I18n.l(2.months.from_now.to_date)}"
     fill_in "Responsable", :with => "Fulanito Perez"
@@ -100,7 +100,7 @@ feature User, 'manages topics:' do
     page.should_not have_content "By somebody"
     page.should_not have_content "With description"
 
-    page.should have_button("Agregar nueva área o tema")
+    page.should have_button("Agregar nueva actividad")
   end
 
   scenario "sees brief topic description", :js => true do

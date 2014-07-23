@@ -10,6 +10,7 @@ class Organization < ActiveRecord::Base
 
   scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }
+
   def current_inventory
     inventories.unpublished.first
   end
@@ -44,5 +45,13 @@ class Organization < ActiveRecord::Base
 
   def last_activity_at
     activity_logs.date_sorted.first.done_at if activity_logs.any?
+  end
+
+  def current_datasets_count
+    if current_inventory.present?
+      current_inventory.datasets_count
+    else
+      0
+    end
   end
 end

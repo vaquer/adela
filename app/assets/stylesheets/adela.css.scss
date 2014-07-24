@@ -186,6 +186,10 @@ a.logo-text {
   &:last-child:hover {
     background-color: $gray;
   }
+
+  a {
+    color: $white;
+  }
 }
 
 .dropdown-menu {

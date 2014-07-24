@@ -3,7 +3,7 @@
   <div class="data-controls topic-form-holder col-md-8">
     <form role="form" class="form-horizontal">
       <div class="form-group">
-        <label for="topic_name" class="control-label col-sm-3">Área o tema</label>
+        <label for="topic_name" class="control-label col-sm-3">Actividad</label>
         <div class="col-sm-9">
           <input type="text" id="topic_name" class="form-control" name="topic[name]">
         </div>

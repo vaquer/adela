@@ -15,7 +15,7 @@ feature User, 'manages topics:' do
 
   scenario "can add a new topic", :js => true do
     click_button "Agregar nueva actividad"
-    fill_in "Área o tema", :with => "El nombre del tema"
+    fill_in "Actividad", :with => "El nombre del tema"
     fill_in "Fecha de apertura", :with => "#{I18n.l(2.months.from_now.to_date)}"
     fill_in "Responsable", :with => "Fulanito Perez"
     fill_in "Posible proyecto", :with => "Descripción de actividades"
@@ -64,7 +64,7 @@ feature User, 'manages topics:' do
     click_link "edit-topic-#{topic.id}-link"
 
     within "#edit-topic-container" do
-      fill_in "Área o tema", :with => "Edited topic"
+      fill_in "Actividad", :with => "Edited topic"
       fill_in "Fecha de apertura", :with => "#{I18n.l(Date.tomorrow)}"
       fill_in "Responsable", :with => "Edited owner"
       fill_in "Posible proyecto", :with => "Edited description"

@@ -1,0 +1,63 @@
+
+#header {
+  background-color: #000;
+}
+#header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#logo {
+  float: left;
+  display: inline;
+}
+#logo-base {
+  display: block;
+  width: 250px;
+  height: 110px;
+  margin: 0;
+}
+#logo-base a {
+  display: block;
+  width: 250px;
+  height: 110px;
+  background: image-url("adela-logo.png") no-repeat center center;
+  text-indent: -9999em;
+}
+#logo #tagline {
+  position: absolute;
+  left: 70px;
+  top: 58px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #FFF;
+}
+#logo #tagline>span {
+  display: inline;
+  float: left;
+  line-height: 20px;
+  height: 20px;
+  overflow: hidden;
+  margin-right: 5px;
+}
+#logo #tagline .tagline-mask {
+  display: inline;
+  float: left;
+  line-height: 20px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+}
+#logo #tagline .tagline-mask ul {
+  animation: change 7s 1s ease-in-out infinite;
+  -webkit-animation: change 7s 1s ease-in-out infinite;
+  -moz-animation: change 7s 1s ease-in-out infinite;
+  -o-animation: change 7s 1s ease-in-out infinite;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+#logo #tagline .tagline-mask ul li {
+  font-weight: bold;
+  line-height: 20px;
+}

@@ -1,7 +1,6 @@
 .header {
   background-color: $black;
   height: 120px;
-  padding: 30px;
 }
 
 .logo {
@@ -24,7 +23,7 @@ a.logo-text {
 }
 
 .nav-actions {
-  padding: 14px 0;
+  padding: 30px 20px;
 }
 
 .footer {
@@ -408,7 +407,7 @@ span.danger {
 }
 
 .inventory-step {
-  border-bottom: 1px solid $gray-light;
+  border-bottom: 1px solid $gray1;
   min-height: 60px;
   margin-bottom: 10px;
   padding: 5px;
@@ -421,7 +420,7 @@ span.danger {
 }
 
 .inventory-preview {
-  border-top: 1px solid $gray-light;
+  border-top: 1px solid $gray1;
   padding: 15px 5px;
 }
 

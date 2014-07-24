@@ -1,9 +1,21 @@
-<div class="header">
-  <%= link_to root_path, {:class => "logo-text"} do %>
-    <div class="logo col-md-2 pull-left">
-      <span class="logo-text">Abrir para <strong>innovar</strong></span>
+<header id="header" class="header">
+  <div id="logo" class="col-md-3">
+    <h1 id="logo-base"><%= link_to "", root_path %></h1>
+    <div id="tagline">
+      <span>Abrir para</span>
+      <div class="tagline-mask">
+        <ul>
+          <li>innovar</li>
+          <li>emprender</li>
+          <li>transparentar</li>
+          <li>participar</li>
+          <li>ahorrar</li>
+          <li>evaluar</li>
+          <li>eficientar</li>
+        </ul>
+      </div>
     </div>
-  <% end %>
+  </div>
   <div class="nav-actions col-md-3 pull-right">
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
@@ -14,7 +26,7 @@
       <% end %>
     </ul>
   </div>
-</div>
+</header>
 <% if session[:from_admin]%>
   <div class="alert alert-danger">
     <span class="danger"></span>

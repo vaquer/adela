@@ -29,4 +29,14 @@ feature Organization, 'manages profile:' do
     expect(page).to have_text "El perfil se ha actualizado con éxito."
     expect(page).to have_text "Esta es una descripción de una institución"
   end
+
+  scenario "can't see or edit another organization" do
+    @not_my_organization = FactoryGirl.create(:organization)
+
+    visit profile_organization_path(@not_my_organization)
+
+    page.should_not have_content "Descripción"
+    page.should_not have_content "URL Logo"
+    expect(current_path).to eq(organization_path(@not_my_organization))
+  end
 end

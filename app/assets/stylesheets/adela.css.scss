@@ -54,6 +54,7 @@ a.logo-text {
     border-radius: 0;
     background-color: $gray;
     font-weight: bold;
+    margin-bottom: 5px;
 
     &:hover {
       color: $white;
@@ -66,14 +67,15 @@ a.logo-text {
   }
 
   input[type="email"], input[type="password"] {
-    color: $gray1;
+    border: none;
+    color: $gray;
     font-weight: normal;
-    padding: 3px;
-    margin-bottom: 5px;
+    padding: 4px;
+    margin-bottom: 10px;
     width: 100%;
 
     &:focus {
-      outline-color: $gray1;
+      outline-color: $white;
     }
   }
 

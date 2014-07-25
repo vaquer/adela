@@ -29,9 +29,11 @@
               <% topics.each do |topic| %>
                 <% cache ['topics', topic] do %>
                   <div class="topic-item light">
-                    <%= link_to topic.organization.title.upcase, organization_path(:id => topic.organization) %><br/>
-                    <span><%= topic.name %></span><br/>
-                    <span class="expandable"><%= topic.description %></span>
+                    <span class="topic-label">Institución: </span><%= link_to topic.organization.title.upcase, organization_path(:id => topic.organization) %><br/>
+                    <span class="topic-label">Conjunto de datos: <%= topic.name %></span><br/>
+                    <% if topic.description.present? %>
+                      <span class="expandable">Posible proyecto: <%= topic.description %></span>
+                    <% end %>
                   </div>
                 <% end %>
               <% end %>

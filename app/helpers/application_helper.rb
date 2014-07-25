@@ -83,4 +83,8 @@ module ApplicationHelper
       "active"
     end
   end
+
+  def gov_link(organization)
+    "#{ENV['CATALOG_URL']}#{organization.slug}"
+  end
 end

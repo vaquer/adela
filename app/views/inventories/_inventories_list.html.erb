@@ -8,29 +8,40 @@
         <th>Hora</th>
         <th>Conjuntos de datos</th>
         <th>Recursos</th>
-        <th>Descargar</th>
+        <th class="view">Descargar</th>
         <th></th>
       </thead>
       <tbody>
       <% @inventories.each do |inventory| %>
-        <% cache ['inventories', inventory] do %>
-          <tr>
-            <td></td>
-            <td>
-              <% if inventory == @organization.current_catalog %>
-                <%= image_tag "mini-inventory.png" %>
-              <% else %>
-                <%= image_tag "update-log.png" %>
-              <% end %>
-            </td>
+        <tr>
+          <td></td>
+          <td>
+            <% if inventory == @organization.current_catalog %>
+              <%= image_tag "mini-inventory.png" %>
+            <% else %>
+              <%= image_tag "update-log.png" %>
+            <% end %>
+          </td>
+          <% cache ['inventories', inventory] do %>
             <td><%= I18n.l(inventory.created_at, :format => :short) %></td>
             <td><%= I18n.l(inventory.created_at, :format => :hour) %></td>
             <td><%= inventory.datasets_count %></td>
             <td><%= inventory.distributions_count %></td>
-            <td><%= link_to image_tag("download.png"), inventory.csv_file.url %></td>
-            <td></td>
-          </tr>
-        <% end %>
+            <td>
+              <%= link_to image_tag("download.png"), inventory.csv_file.url %>
+            </td>
+          <% end %>
+          <td>
+            <% if inventory == @organization.current_catalog %>
+              <small>
+                <%= link_to gov_link(@organization) do %>
+                  <%= image_tag "catalog.png" %>
+                  Ver en datos.gob.mx
+                <% end %>
+              </small>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
       </tbody>
     </table>

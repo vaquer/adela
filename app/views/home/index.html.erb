@@ -63,6 +63,12 @@
     <div class="section-heading">
       <span class="organization-icon h4">Instituciones</span>
     </div>
+    <div class="row">
+      <%= form_tag(search_organizations_path, :method => :get, :class => "search col-md-2 col-md-offset-2") do %>
+        <%= text_field_tag :q, params[:q] %>
+        <%= image_submit_tag("search_icon.png", :id => "search", :class => "search-submit") %>
+      <% end %>
+    </div>
     <div id="organizations" class="section-content table-content">
       <table class="expanded-table organizations-table">
         <thead>

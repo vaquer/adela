@@ -10,12 +10,12 @@ feature User, 'manages topics:' do
   end
 
   scenario "can see a button and a message to add first topic" do
-    page.should have_button("Agregar nueva área o tema")
+    page.should have_button("Agregar nueva actividad")
   end
 
   scenario "can add a new topic", :js => true do
-    click_button "Agregar nueva área o tema"
-    fill_in "Área o tema", :with => "El nombre del tema"
+    click_button "Agregar nueva actividad"
+    fill_in "Actividad", :with => "El nombre del tema"
     fill_in "Fecha de apertura", :with => "#{I18n.l(2.months.from_now.to_date)}"
     fill_in "Responsable", :with => "Fulanito Perez"
     fill_in "Posible proyecto", :with => "Descripción de actividades"
@@ -64,7 +64,7 @@ feature User, 'manages topics:' do
     click_link "edit-topic-#{topic.id}-link"
 
     within "#edit-topic-container" do
-      fill_in "Área o tema", :with => "Edited topic"
+      fill_in "Actividad", :with => "Edited topic"
       fill_in "Fecha de apertura", :with => "#{I18n.l(Date.tomorrow)}"
       fill_in "Responsable", :with => "Edited owner"
       fill_in "Posible proyecto", :with => "Edited description"
@@ -100,7 +100,7 @@ feature User, 'manages topics:' do
     page.should_not have_content "By somebody"
     page.should_not have_content "With description"
 
-    page.should have_button("Agregar nueva área o tema")
+    page.should have_button("Agregar nueva actividad")
   end
 
   scenario "sees brief topic description", :js => true do

@@ -60,7 +60,7 @@ class Topics.Form
 
   _load_topic_list: (data) ->
     $.pjax({
-      url: "/organizations/" + data.organization_id,
+      url: "/instituciones/" + data.organization_id,
       data: { month: data.publish_date_param },
       container: '[data-pjax-container]'
     })

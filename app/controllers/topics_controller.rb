@@ -15,6 +15,7 @@ class TopicsController < ApplicationController
     @topic = current_organization.topics.build(topic_params)
     @topic.save
 
+    record_activity("update", "actualizó su programa de apertura.")
     respond_with @topic
   end
 
@@ -46,6 +47,8 @@ class TopicsController < ApplicationController
     end
   end
 
+  # FIX ME: Used when topics may be public or private.
+  # Currently every topic is public by default.
   def publish
     @topics = current_organization.topics
     @topics.each do |topic|

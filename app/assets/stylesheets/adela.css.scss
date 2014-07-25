@@ -1,7 +1,6 @@
 .header {
   background-color: $black;
   height: 120px;
-  padding: 30px;
 }
 
 .logo {
@@ -24,7 +23,7 @@ a.logo-text {
 }
 
 .nav-actions {
-  padding: 14px 0;
+  padding: 30px 20px;
 }
 
 .footer {
@@ -54,6 +53,7 @@ a.logo-text {
     border-radius: 0;
     background-color: $gray;
     font-weight: bold;
+    margin-bottom: 5px;
 
     &:hover {
       color: $white;
@@ -66,14 +66,15 @@ a.logo-text {
   }
 
   input[type="email"], input[type="password"] {
-    color: $gray1;
+    border: none;
+    color: $gray;
     font-weight: normal;
-    padding: 3px;
-    margin-bottom: 5px;
+    padding: 4px;
+    margin-bottom: 10px;
     width: 100%;
 
     &:focus {
-      outline-color: $gray1;
+      outline-color: $white;
     }
   }
 
@@ -143,6 +144,27 @@ a.logo-text {
   }
 }
 
+.search {
+  margin-bottom: 20px;
+
+  .search-submit {
+    position: absolute;
+    top: 3px;
+    right: 0px;
+    padding: 4px;
+  }
+
+  input[type="text"] {
+    background-color: $gray2;
+    border: none;
+    padding: 5px;
+  }
+
+  input:focus {
+    outline-color: $gray2;
+  }
+}
+
 // Organization Dashboard
 
 .org-header {
@@ -158,6 +180,15 @@ a.logo-text {
 
   &:last-child {
     border-right: none;
+    cursor: pointer;
+  }
+
+  &:last-child:hover {
+    background-color: $gray;
+  }
+
+  a {
+    color: $white;
   }
 }
 
@@ -235,7 +266,7 @@ a.logo-text {
 .expanded-table {
   width: 100%;
 
-  .icon {
+  .icon, .view {
     width: 45px;
   }
 
@@ -292,6 +323,9 @@ span.danger {
 .alert-danger {
   color: $red;
   background-color: $red1;
+  a {
+    color: $red;
+  }
 }
 
 // Pagination
@@ -367,7 +401,8 @@ span.danger {
 }
 
 .pull-down {
-  margin-top: 50px;
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 
 .steps-wrapper {
@@ -376,7 +411,7 @@ span.danger {
 }
 
 .inventory-step {
-  border-bottom: 1px solid $gray-light;
+  border-bottom: 1px solid $gray1;
   min-height: 60px;
   margin-bottom: 10px;
   padding: 5px;
@@ -389,7 +424,7 @@ span.danger {
 }
 
 .inventory-preview {
-  border-top: 1px solid $gray-light;
+  border-top: 1px solid $gray1;
   padding: 15px 5px;
 }
 
@@ -504,8 +539,24 @@ span.danger {
     padding: 6px;
   }
 
+  &.data-controls {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
   label {
     font-weight: normal;
     color: $gray1;
   }
+}
+
+// Profile form
+
+.logo-preview {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.logo-round {
+  border-radius: 50%;
 }

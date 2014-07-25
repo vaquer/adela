@@ -24,6 +24,7 @@ gem 'sidekiq'
 gem 'figaro'
 gem 'will_paginate', '~> 3.0'
 gem 'rack-pjax'
+gem 'route_translator'
 
 group :development, :test do
   gem 'spring'

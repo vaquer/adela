@@ -355,6 +355,16 @@ span.danger {
 
     &:hover {
       background-color: $white;
+      color: $blue1;
+    }
+  }
+
+  .disabled {
+    background-color: $white;
+    color: $gray1;
+
+    &:hover {
+      background-color: $white;
       color: $gray1;
     }
   }

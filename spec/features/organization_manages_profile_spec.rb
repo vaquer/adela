@@ -12,8 +12,8 @@ feature Organization, 'manages profile:' do
 
     find("#user_actions").click
 
-    expect(page).to have_link "Perfil #{@organization.title}"
-    click_on "Perfil #{@organization.title}"
+    expect(page).to have_link "Editar Perfil"
+    click_on "Editar Perfil"
 
     expect(page).to have_text "Descripción"
     expect(page).to have_text "URL Logo"

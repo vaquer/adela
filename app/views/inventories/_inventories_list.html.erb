@@ -8,7 +8,7 @@
         <th>Hora</th>
         <th>Conjuntos de datos</th>
         <th>Recursos</th>
-        <th>Descargar</th>
+        <th class="view">Descargar</th>
         <th></th>
       </thead>
       <tbody>
@@ -27,9 +27,20 @@
             <td><%= I18n.l(inventory.created_at, :format => :hour) %></td>
             <td><%= inventory.datasets_count %></td>
             <td><%= inventory.distributions_count %></td>
-            <td><%= link_to image_tag("download.png"), inventory.csv_file.url %></td>
+            <td>
+              <%= link_to image_tag("download.png"), inventory.csv_file.url %>
+            </td>
           <% end %>
-          <td></td>
+          <td>
+            <% if inventory == @organization.current_catalog %>
+              <small>
+                <%= link_to gov_link(@organization) do %>
+                  <%= image_tag "catalog.png" %>
+                  Ver en datos.gob.mx
+                <% end %>
+              </small>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </tbody>

@@ -83,7 +83,7 @@
           <% @organizations.each do |organization| %>
             <tr>
               <td></td>
-              <td></td>
+              <td><%= image_tag(organization.logo_url, :class => "logo-thumbnail logo-round") if organization.logo_url.present? %></td>
               <td><%= link_to organization.title, organization_path(organization) %></td>
               <td><%= last_activity(organization) %></td>
               <td>

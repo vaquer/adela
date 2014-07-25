@@ -563,10 +563,15 @@ span.danger {
 // Profile form
 
 .logo-preview {
-  max-width: 80px;
-  max-height: 80px;
+  width: 80px;
+  height: 80px;
 }
 
 .logo-round {
   border-radius: 50%;
+}
+
+.logo-thumbnail {
+  width: 30px;
+  height: 30px;
 }

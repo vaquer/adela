@@ -1,6 +1,8 @@
 class Admin::BaseController < ApplicationController
   layout 'application'
-  http_basic_authenticate_with name: ENV['ADMIN_AUTH_NAME'], password: ENV['ADMIN_AUTH_PASSWORD'] unless Rails.env.test?
+
+  before_action :set_admin_session unless Rails.env.test?
+  before_action :check_admin_session unless Rails.env.test?
 
   def create_users
     uploader = UsersUploader.new
@@ -37,6 +39,15 @@ class Admin::BaseController < ApplicationController
     redirect_to admin_root_path
   end
 
+  def set_admin_session
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['ADMIN_AUTH_NAME'] && password == ENV['ADMIN_AUTH_PASSWORD']
+    end
+    unless session[:admin_logs_in]
+      session[:admin_logs_in] = Time.now
+    end
+  end
+
   private
 
   def file_params
@@ -54,5 +65,21 @@ class Admin::BaseController < ApplicationController
         UserAccountWorker.perform_async(user.id, password)
       end
     end
+  end
+
+  def check_admin_session
+    if session[:admin_logs_in].present? && time_exceeded?
+      session[:admin_logs_in] = nil
+      expire_admin_session
+    end
+  end
+
+  def time_exceeded?
+    current_session_time = Time.now - session[:admin_logs_in].to_time
+    current_session_time >= 900.seconds
+  end
+
+  def expire_admin_session
+    authenticate_or_request_with_http_basic { false }
   end
 end

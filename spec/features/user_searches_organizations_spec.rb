@@ -30,4 +30,16 @@ feature User, 'searches organizations:' do
       page.should have_content @organization2.title
     end
   end
+
+  scenario "cant search with a dangerous term" do
+    visit root_path
+
+    fill_in "q", :with => "'; DROP TABLE organizations"
+    click_on "search"
+
+    within find("#organizations") do
+      page.should_not have_content @organization1.title
+      page.should_not have_content @organization2.title
+    end
+  end
 end

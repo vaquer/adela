@@ -31,8 +31,7 @@ describe TopicsController do
 
     it "responds with a json encoded topic" do
       post_data = { :name => "The name", :owner => "The owner",
-                    :description => "The description", :publish_date => DateTime.now}
-      formatted_publish_date = I18n.l(DateTime.now, :format => :short)
+                    :description => "The description", :publish_date => DateTime.now.beginning_of_day}
 
       xhr :post, :create, :topic => post_data, :format => "json", :locale => "en"
 

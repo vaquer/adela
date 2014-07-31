@@ -35,7 +35,7 @@ feature User, 'manages topics:' do
       organization.topics.create!(
         :name => "Topic #{i}", :owner => "Owner #{i}",
         :description => "Description #{i}",
-        :publish_date => i.days.from_now
+        :publish_date => DateTime.now
       )
     end
 
@@ -65,7 +65,7 @@ feature User, 'manages topics:' do
 
     within "#edit-topic-container" do
       fill_in "Actividad", :with => "Edited topic"
-      fill_in "Fecha de apertura", :with => "#{I18n.l(Date.tomorrow)}"
+      fill_in "Fecha de apertura", :with => "#{I18n.l(Date.today, :format => :default)}"
       fill_in "Responsable", :with => "Edited owner"
       fill_in "Posible proyecto", :with => "Edited description"
       click_button "Guardar"

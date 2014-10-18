@@ -44,14 +44,18 @@ feature "data catalog management" do
     inventory =  FactoryGirl.create(:published_inventory, :publish_date => 1.day.ago, :csv_file => inventory_file)
     inventory.update_attributes(:organization_id => @organization.id)
 
-    get "/hacienda/catalogo.json"
-
     dcat_keys = %w{ title description homepage issued modified language license dataset }
     dcat_dataset_keys = %w{ title description modified contactPoint identifier accessLevel accessLevelComment spatial language publisher keyword distribution }
 
+    get "/hacienda/catalogo.json"
     json_response = JSON.parse(response.body)
     json_response.keys.should eq(dcat_keys)
     json_response["dataset"].last.keys.should eq(dcat_dataset_keys)
+
+    # Makes damn sure that no foreign attributes are set in the model
+    # See: https://github.com/mxabierto/adela/issues/106
+    dataset = ActiveSupport::JSON.decode(inventory.datasets.last.to_json)
+    dataset.keys.include?("erick.maldonado@indesol.gob.mx").should eq(false)
   end
 
   def given_there_is_a_catalog_published(days_ago)

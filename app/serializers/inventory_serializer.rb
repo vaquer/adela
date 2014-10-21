@@ -9,7 +9,7 @@ class InventorySerializer < ActiveModel::Serializer
     data[:issued] = "#{object.organization.first_published_catalog.publish_date}"
     data[:modified] = "#{object.organization.current_catalog.publish_date}"
     data[:language] = "es"
-    data[:license] = "http://datos.gob.mx/tos/"
+    data[:license] = "http://datos.gob.mx/libreusomx/"
     data.merge super
   end
 end

@@ -14,6 +14,8 @@ GEM
       activesupport (= 4.1.0)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    active_model_serializers (0.9.0)
+      activemodel (>= 3.2)
     activemodel (4.1.0)
       activesupport (= 4.1.0)
       builder (~> 3.1)
@@ -137,8 +139,6 @@ GEM
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
-    rabl (0.9.3)
-      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-pjax (0.7.0)
       nokogiri (~> 1.5)
@@ -254,6 +254,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   bootstrap-sass
   capybara
   carrierwave
@@ -273,7 +274,6 @@ DEPENDENCIES
   jquery-ui-sass-rails
   letter_opener
   pg
-  rabl
   rack-pjax
   rails (= 4.1)
   redis

@@ -30,7 +30,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.friendly.find(params[:slug])
     @inventory = @organization.current_catalog
     if @inventory.present?
-      Rabl.render(@inventory, "organizations/catalog", :view_path => 'app/views', :format => :json)
+      respond_to do |format|
+        format.json { render json: @inventory, root: false }
+      end
     else
       render :json => {}
     end
@@ -73,4 +75,5 @@ class OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(:description, :logo_url)
   end
+
 end

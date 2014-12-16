@@ -4,6 +4,7 @@ class DistributionSerializer < ActiveModel::Serializer
               :license,
               :downloadURL,
               :mediaType,
+              :format,
               :byteSize,
               # These are dcat:Dataset fields we're adding to dcat:Distribution
               :temporal,

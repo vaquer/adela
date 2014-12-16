@@ -46,7 +46,7 @@ feature "data catalog management" do
 
     dcat_keys = %w{ title description homepage issued modified language license dataset }
     dcat_dataset_keys = %w{ title description modified contactPoint identifier accessLevel accessLevelComment spatial language publisher keyword distribution }
-    dcat_distribution_keys = %w{ title description license downloadURL mediaType byteSize temporal spatial accrualPeriodicity }
+    dcat_distribution_keys = %w{ title description license downloadURL mediaType format byteSize temporal spatial accrualPeriodicity }
 
     get "/hacienda/catalogo.json"
     json_response = JSON.parse(response.body)

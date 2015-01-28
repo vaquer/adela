@@ -30,7 +30,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
-  gem 'debugger'
+  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'letter_opener'
   gem 'thin'

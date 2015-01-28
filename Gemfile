@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.1.2'
 
 gem 'rails', '4.1'
 
@@ -30,7 +30,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
-  gem 'debugger'
+  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'letter_opener'
   gem 'thin'

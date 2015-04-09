@@ -6,6 +6,14 @@ FactoryGirl.define do
     f.password 'secretpassword'
     f.password_confirmation 'secretpassword'
     f.association :organization, :factory => :organization
+
+    factory :admin do
+      after(:create) { |user| user.add_role(:admin) }
+    end
+
+    factory :supervisor do
+      after(:create) { |user| user.add_role(:supervisor) }
+    end
   end
 
   factory :organization do |f|

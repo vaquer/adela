@@ -25,6 +25,8 @@ gem 'figaro'
 gem 'will_paginate', '~> 3.0'
 gem 'rack-pjax'
 gem 'route_translator'
+gem 'cancancan'
+gem 'rolify'
 
 group :development, :test do
   gem 'spring'

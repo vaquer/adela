@@ -36,6 +36,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'letter_opener'
   gem 'thin'
+  gem 'timecop'
 end
 
 group :test do

@@ -17,6 +17,10 @@ describe Admin::BaseController do
         get :index
       end
 
+      after :each do
+        Timecop.return
+      end
+
       it "has 200 status" do
         expect(response.status).to eq(200)
       end

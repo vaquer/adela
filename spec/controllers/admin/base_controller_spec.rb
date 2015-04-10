@@ -65,4 +65,53 @@ describe Admin::BaseController do
       end
     end
   end
+
+  describe "GET acting_as" do
+    
+    before :each do
+      sign_in admin
+      get :acting_as, user_id: user.id
+    end
+
+    it "stores original_user_id in session" do
+      session[:original_user_id].should eql(admin.id)
+    end
+
+    it "sets from_admin session value true" do
+      session[:from_admin].should be_true
+    end
+
+    it "has 302 status" do
+      expect(response.status).to eq(302)
+    end
+
+    it "redirects to root_path" do
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe "GET stop_acting_as" do
+
+    before :each do
+      sign_in admin
+      get :acting_as, user_id: user.id
+      get :stop_acting_as
+    end
+
+    it "sets from_admin session value false" do
+      session[:from_admin].should be_false
+    end
+
+    it "destroys original_user_id from session" do
+      session[:original_user_id].should be_nil
+    end
+
+    it "has 302 status" do
+      expect(response.status).to eq(302)
+    end
+
+    it "redirects to admin_root_path" do
+      expect(response).to redirect_to(admin_root_path)
+    end
+  end
 end

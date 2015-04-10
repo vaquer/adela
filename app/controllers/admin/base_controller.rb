@@ -27,16 +27,18 @@ class Admin::BaseController < ApplicationController
 
   def acting_as
     @user = User.find(params[:user_id])
-
     session[:from_admin] = true
+    session[:original_user_id] = current_user.id 
     sign_in(@user)
 
     redirect_to root_path
   end
 
   def stop_acting_as
+    user = User.find(session[:original_user_id])
     session[:from_admin] = false
-    sign_out(current_user)
+    session.delete(:original_user_id)
+    sign_in(user)
 
     redirect_to admin_root_path
   end
@@ -49,9 +51,13 @@ class Admin::BaseController < ApplicationController
   end
 
   def authorize_access
-    unless current_user.has_roles?([ :admin, :supervisor ])
+    unless is_authorized? 
       redirect_to root_path
     end
+  end
+
+  def is_authorized?
+    session[:from_admin] || current_user.has_roles?([ :admin, :supervisor ])
   end
 
   def file_params
@@ -83,7 +89,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def expire_admin_session
-    session[:admin_logs_in] = nil
+    session.delete(:admin_logs_in)
     sign_out(current_user)
     redirect_to user_session_es_path
   end

@@ -27,3 +27,15 @@ describe User do
     end
   end
 end
+
+describe User, '#has_roles?' do
+  before(:each) do
+    @admin = FactoryGirl.create(:admin)
+  end
+
+  it 'checks ig the user has any of the listed roles' do
+    @admin.has_roles?([:admin, :supervisor]).should be_true
+    @admin.has_roles?([:supervisor]).should be_false
+    @admin.has_roles?([]).should be_false
+  end
+end

@@ -25,6 +25,8 @@ gem 'figaro'
 gem 'will_paginate', '~> 3.0'
 gem 'rack-pjax'
 gem 'route_translator'
+gem 'cancancan'
+gem 'rolify'
 
 group :development, :test do
   gem 'spring'
@@ -34,6 +36,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'letter_opener'
   gem 'thin'
+  gem 'timecop'
 end
 
 group :test do

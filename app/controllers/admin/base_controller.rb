@@ -1,8 +1,10 @@
 class Admin::BaseController < ApplicationController
   layout 'application'
 
-  before_action :set_admin_session unless Rails.env.test?
-  before_action :check_admin_session unless Rails.env.test?
+  before_action :authenticate_user!
+  before_action :authorize_access
+  before_action :set_admin_session
+  before_action :check_admin_session
 
   def create_users
     uploader = UsersUploader.new
@@ -25,30 +27,38 @@ class Admin::BaseController < ApplicationController
 
   def acting_as
     @user = User.find(params[:user_id])
-
     session[:from_admin] = true
+    session[:original_user_id] = current_user.id 
     sign_in(@user)
 
     redirect_to root_path
   end
 
   def stop_acting_as
+    user = User.find(session[:original_user_id])
     session[:from_admin] = false
-    sign_out(current_user)
+    session.delete(:original_user_id)
+    sign_in(user)
 
     redirect_to admin_root_path
   end
 
+  private
   def set_admin_session
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['ADMIN_AUTH_NAME'] && password == ENV['ADMIN_AUTH_PASSWORD']
-    end
     unless session[:admin_logs_in]
       session[:admin_logs_in] = Time.now
     end
   end
 
-  private
+  def authorize_access
+    unless is_authorized? 
+      redirect_to root_path
+    end
+  end
+
+  def is_authorized?
+    session[:from_admin] || current_user.has_roles?([ :admin, :supervisor ])
+  end
 
   def file_params
     params.require(:csv_file)
@@ -69,7 +79,6 @@ class Admin::BaseController < ApplicationController
 
   def check_admin_session
     if session[:admin_logs_in].present? && time_exceeded?
-      session[:admin_logs_in] = nil
       expire_admin_session
     end
   end
@@ -80,6 +89,8 @@ class Admin::BaseController < ApplicationController
   end
 
   def expire_admin_session
-    authenticate_or_request_with_http_basic { false }
+    session.delete(:admin_logs_in)
+    sign_out(current_user)
+    redirect_to user_session_es_path
   end
 end

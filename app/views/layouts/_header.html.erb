@@ -19,8 +19,7 @@
   <div class="nav-actions col-md-3 pull-right">
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li><%= link_to "Mi organización", organization_path(current_organization) %></li>
-        <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
+        <%= render partial: "/layouts/shared/signed_in_menu" %>
       <% else %>
         <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
       <% end %>

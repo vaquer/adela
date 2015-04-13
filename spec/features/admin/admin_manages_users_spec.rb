@@ -3,6 +3,11 @@ require 'sidekiq/testing'
 
 feature Admin, 'manages users:' do
 
+  background do
+    @admin = FactoryGirl.create(:admin)
+    given_logged_in_as(@admin)
+  end
+
   scenario "can add users from csv file" do
     visit "/admin"
 
@@ -10,8 +15,8 @@ feature Admin, 'manages users:' do
     upload_the_file "adela-users.csv"
 
     sees_success_message "Los usuarios se crearon exitosamente."
-    User.count.should == 2
-    User.all.map(&:name).should == ["Octavio Pérez", "Enrique Pena"]
+    User.count.should == 3
+    User.all.map(&:name).should == [ "Rodrigo", "Octavio Pérez", "Enrique Pena" ]
   end
 
   scenario "sees registered users" do

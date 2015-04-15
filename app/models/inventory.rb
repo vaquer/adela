@@ -1,5 +1,7 @@
 # encoding: utf-8
 class Inventory < ActiveRecord::Base
+  String.include CoreExtensions::String::Transcoding
+
   mount_uploader :csv_file, FileUploader
 
   validates_presence_of :organization_id, :csv_file
@@ -49,7 +51,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def csv_right_encoding?
-    csv_content = csv_file.read || ""
+    csv_content = csv_file.blank? ? "" : csv_file.read.to_utf8
     csv_content.force_encoding("utf-8").valid_encoding?
   end
 

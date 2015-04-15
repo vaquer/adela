@@ -59,6 +59,7 @@ GEM
       carrierwave (>= 0.7)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    charlock_holmes (0.7.3)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
@@ -264,6 +265,7 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-aws
+  charlock_holmes
   coffee-rails (~> 4.0.0)
   coveralls
   database_cleaner

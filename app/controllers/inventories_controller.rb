@@ -21,9 +21,7 @@ class InventoriesController < ApplicationController
       record_activity("update", "actualizó su inventario de datos.")
     end
 
-    if @inventory.csv_right_encoding?
-      @datasets = @inventory.datasets
-    end
+    @datasets = @inventory.datasets
     @upload_intent = true
     render :action => "new"
   end

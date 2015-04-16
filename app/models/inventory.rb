@@ -6,7 +6,7 @@ class Inventory < ActiveRecord::Base
 
   validates_presence_of :organization_id, :csv_file
   validates_processing_of :csv_file
-  validate :csv_encoding, :csv_structure, :csv_datasets
+  validate :csv_structure, :csv_datasets
 
   belongs_to :organization
 
@@ -29,7 +29,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def csv_structure
-    unless csv_right_encoding? && csv_structure_valid?
+    unless csv_structure_valid?
       errors.add(:csv_file)
     end
   end
@@ -48,17 +48,6 @@ class Inventory < ActiveRecord::Base
 
   def private_datasets_count
     datasets.map(&:private?).count(true)
-  end
-
-  def csv_right_encoding?
-    csv_content = csv_file.blank? ? "" : csv_file.read.to_utf8
-    csv_content.force_encoding("utf-8").valid_encoding?
-  end
-
-  def csv_encoding
-    unless csv_right_encoding?
-      errors[:base] << I18n.t("activerecord.errors.models.inventory.attributes.csv_file.encoding")
-    end
   end
 
   def datasets_count

@@ -3,6 +3,8 @@ class InventoriesController < ApplicationController
 
   layout 'home'
 
+  rescue_from Exceptions::UnknownEncodingError, with: :unable_to_detect_encoding
+
   def new
     @inventory = Inventory.new
   end
@@ -42,5 +44,10 @@ class InventoriesController < ApplicationController
 
   def inventory_params
     params.require(:inventory).permit(:csv_file)
+  end
+
+  def unable_to_detect_encoding
+    flash[:alert] = I18n.t("activerecord.errors.models.inventory.attributes.csv_file.encoding")
+    redirect_to inventories_path
   end
 end

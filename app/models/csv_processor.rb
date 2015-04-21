@@ -1,8 +1,10 @@
 class CsvProcessor < Struct.new(:csv_file, :organization)
+  String.include CoreExtensions::String::Transcoding
+
   def process
     datasets = []
     if csv_file.url.present?
-      CSV.new(csv_file.read, :headers => :first_row).each do |row|
+      CSV.new(csv_file.read.to_utf8, :headers => :first_row).each do |row|
         if dataset?(row)
           datasets << new_dataset(row)
         elsif distribution?(row)

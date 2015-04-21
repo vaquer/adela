@@ -27,6 +27,7 @@ gem 'rack-pjax'
 gem 'route_translator'
 gem 'cancancan'
 gem 'rolify'
+gem 'charlock_holmes'
 
 group :development, :test do
   gem 'spring'

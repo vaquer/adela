@@ -32,12 +32,6 @@ feature User, 'manages inventory:' do
     sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
-  scenario "fails to upload a csv file with an invalid encoding" do
-    visit new_inventory_path
-    tries_to_upload_the_file('invalid_encoding_inventory.csv')
-    sees_error_message "El archivo seleccionado no está codificado en formato UTF-8."
-  end
-
   scenario "fails to upload a csv file with invalid structure" do
     visit new_inventory_path
     tries_to_upload_the_file('invalid_inventory.csv')

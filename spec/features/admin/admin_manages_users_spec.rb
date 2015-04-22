@@ -16,7 +16,7 @@ feature Admin, 'manages users:' do
 
     sees_success_message "Los usuarios se crearon exitosamente."
     User.count.should == 3
-    User.all.map(&:name).should == [ "Rodrigo", "Octavio Pérez", "Enrique Pena" ]
+    User.all.map(&:name).sort.should == [ "Rodrigo", "Octavio Pérez", "Enrique Pena" ].sort
   end
 
   scenario "sees registered users" do

@@ -6,7 +6,12 @@ class Admin::BaseController < ApplicationController
   before_action :set_admin_session
   before_action :check_admin_session
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to admin_root_path, :alert => I18n.t("errors.messages.access_denied")
+  end
+
   def create_users
+    authorize! :create, User
     uploader = UsersUploader.new
     uploader.store!(file_params)
     create_users_from_file(uploader.read)
@@ -18,14 +23,17 @@ class Admin::BaseController < ApplicationController
   end
 
   def users
+    authorize! :read, User
     @users = User.created_at_sorted.paginate(:page => params[:page], :per_page => 30)
   end
 
   def organizations
+    authorize! :read, Organization
     @organizations = Organization.includes(:users).title_sorted.paginate(:page => params[:page], :per_page => 30)
   end
 
   def acting_as
+    authorize! :act_as, User
     @user = User.find(params[:user_id])
     session[:from_admin] = true
     session[:original_user_id] = current_user.id 

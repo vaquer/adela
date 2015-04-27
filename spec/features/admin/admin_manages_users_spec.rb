@@ -8,11 +8,7 @@ feature Admin, 'manages users:' do
     click_on("Importar usuarios")
   end
 
-  context "as an admin" do
-    background do
-      @admin = FactoryGirl.create(:admin)
-      given_logged_in_as(@admin)
-    end
+  shared_examples "an authorized user" do
 
     scenario "can add users from csv file" do
       visit "/admin"
@@ -24,6 +20,16 @@ feature Admin, 'manages users:' do
       User.count.should == 3
       User.all.map(&:name).sort.should == [ "Rodrigo", "Octavio Pérez", "Enrique Pena" ].sort
     end
+  end
+
+  context "as an admin" do
+
+    background do
+      @admin = FactoryGirl.create(:admin)
+      given_logged_in_as(@admin)
+    end
+
+    it_behaves_like "an authorized user"
 
     scenario "sees registered users" do
       visit "/admin"
@@ -64,15 +70,6 @@ feature Admin, 'manages users:' do
       given_logged_in_as(@supervisor)
     end
 
-    scenario "can add users from csv file" do
-      visit "/admin"
-
-      expect(page).to have_text "Archivo csv"
-      upload_the_file "adela-users.csv"
-
-      sees_success_message "Los usuarios se crearon exitosamente."
-      User.count.should == 3
-      User.all.map(&:name).sort.should == [ "Rodrigo", "Octavio Pérez", "Enrique Pena" ].sort
-    end
+    it_behaves_like "an authorized user"
   end
 end

@@ -28,6 +28,7 @@ gem 'route_translator'
 gem 'cancancan'
 gem 'rolify'
 gem 'charlock_holmes'
+gem 'csvlint'
 
 group :development, :test do
   gem 'spring'

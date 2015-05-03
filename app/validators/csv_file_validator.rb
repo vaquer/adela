@@ -3,7 +3,7 @@ class CsvFileValidator < ActiveModel::EachValidator
     validator = csv_validator(value)
     unless validator.valid?
       validator.errors.each do |error|
-        errors[:base] << message(error)
+        record.errors[:base] << message(error)
       end
     end
   end

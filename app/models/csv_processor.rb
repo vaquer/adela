@@ -22,7 +22,10 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       CSV.foreach(csv_file, :headers => :first_row).each do |row|
         if dataset?(row)
           dataset_obj = new_dataset(row)
-          csv << dataset_obj.values_array.to_csv if dataset_obj.valid?
+          ds_columns = dataset_obj.values_array
+          rs_columns = [nil, nil, nil, nil, nil, nil, nil, nil]
+          csv_row = ds_columns + rs_columns
+          csv << csv_row.to_csv if dataset_obj.valid?
         elsif distribution?(row)
           distribution_obj = new_distribution(row)
           dataset_obj.distributions << distribution_obj

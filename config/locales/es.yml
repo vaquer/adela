@@ -75,6 +75,7 @@ es:
         inventory:
           attributes:
             csv_file:
+              blank_file: "El archivo se encuentra vacío."
               wrong_content_type: "El content-type del archivo no es 'text/csv'."
               ragged_rows: "La fila %{row} tiene un número diferente de columnas a la primera fila en el archivo."
               blank_rows: "La fila %{row} esta completamente vacía."

@@ -8,12 +8,21 @@ describe Admin::BaseController do
   let(:user) { FactoryGirl.create(:user) }
 
   describe "GET index" do
-    context "as an admin" do
+
+    def init_time
+      @admin_login_time = Time.now
+      @seconds_to_expire_session = 900.seconds
+    end
+
+    def freeze_time(time)
+      Timecop.freeze(time)
+    end
+    
+    shared_examples "an authorized user" do
       before :each do
-        @admin_login_time = Time.now
-        @seconds_to_expire_session = 900.seconds
-        Timecop.freeze(@admin_login_time)
-        sign_in admin
+        init_time
+        freeze_time(@admin_login_time)
+        sign_in user
         get :index
       end
 
@@ -40,35 +49,15 @@ describe Admin::BaseController do
       end
     end
 
+    context "as an admin" do
+      it_behaves_like "an authorized user" do
+        let(:user) { FactoryGirl.create(:admin) }
+      end
+    end
+
     context "as a supervisor" do
-      before :each do
-        @admin_login_time = Time.now
-        @seconds_to_expire_session = 900.seconds
-        Timecop.freeze(@admin_login_time)
-        sign_in supervisor
-        get :index
-      end
-
-      after :each do
-        Timecop.return
-      end
-
-      it "has 200 status" do
-        expect(response.status).to eq(200)
-      end
-
-      it "renders the index template" do
-        expect(response).to render_template("index")
-      end
-
-      it "stores login time in session" do
-        session[:admin_logs_in].should eql(@admin_login_time)
-      end
-
-      it "expires admin session" do
-        Timecop.travel(@admin_login_time + @seconds_to_expire_session)
-        get :index
-        expect(response).to redirect_to(new_user_session_es_path)
+      it_behaves_like "an authorized user" do
+        let(:user) { FactoryGirl.create(:supervisor) }
       end
     end
 

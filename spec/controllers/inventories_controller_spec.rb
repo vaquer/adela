@@ -9,9 +9,7 @@ describe InventoriesController do
 
   describe "POST create" do
 
-    context "UTF-8 file" do
-      let(:inventory_file) { fixture_file_upload("files/inventory.csv") }
-
+    shared_examples "a valid inventory file" do
       it "creates a new inventory" do
         post :create, inventory: { csv_file: inventory_file }, :locale => "es"
         assigns(:inventory).should be_kind_of(Inventory)
@@ -29,23 +27,15 @@ describe InventoriesController do
       end
     end
 
+    context "UTF-8 file" do
+      it_behaves_like "a valid inventory file" do
+        let(:inventory_file) { fixture_file_upload("files/inventory.csv") }
+      end
+    end
+
     context "ISO 8859-1 file" do
-      let(:inventory_file) { fixture_file_upload("files/inventory-latin-1.csv") }
-
-      it "creates a new inventory" do
-        post :create, inventory: { csv_file: inventory_file }, :locale => "es"
-        assigns(:inventory).should be_kind_of(Inventory)
-        assigns(:inventory).should be_persisted
-      end
-
-      it "assigns the inventory to the current organization" do
-        post :create, inventory: { csv_file: inventory_file }, :locale => "es"
-        assigns(:inventory).organization.should == user.organization
-      end
-
-      it "redirects to new inventory page" do
-        post :create, inventory: { csv_file: inventory_file }, :locale => "es"
-        response.should render_template("new")
+      it_behaves_like "a valid inventory file" do
+        let(:inventory_file) { fixture_file_upload("files/inventory-latin-1.csv") }
       end
     end
 

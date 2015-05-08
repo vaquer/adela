@@ -7,6 +7,7 @@ class Inventory < ActiveRecord::Base
   validates_presence_of :organization_id, :csv_file
   validates_processing_of :csv_file
   validate :csv_structure, :csv_datasets
+  validates :csv_file, csv_file: true
 
   belongs_to :organization
 

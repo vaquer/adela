@@ -75,6 +75,17 @@ es:
         inventory:
           attributes:
             csv_file:
+              blank_file: "El archivo se encuentra vacío."
+              wrong_content_type: "El content-type del archivo no es 'text/csv'."
+              ragged_rows: "La fila %{row} tiene un número diferente de columnas a la primera fila en el archivo."
+              blank_rows: "La fila %{row} esta completamente vacía."
+              invalid_encoding: "El archivo seleccionado no está codificado en formato UTF-8."
+              not_found: "No se encontro el archivo."
+              stray_quote: "Las comillas de la fila %{row} no estan balanceadas."
+              unclosed_quote: "Las comillas de la fila %{row} no estan balanceadas."
+              whitespace: "La fila %{row}, contiene espacios en blanco antes o después de una columna citada en comillas."
+              line_breaks: "Los saltos de linea son inconsistentes en el archivo."
+              undeclared_header: "El archivo no cuenta con el encabezado 'Content-Type'."
               blank: " no se puede procesar."
               invalid: " no es válido. Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
               encoding: "El archivo seleccionado no está codificado en formato UTF-8."

@@ -51,12 +51,6 @@ feature User, 'manages inventory:' do
     sees_table_with_datasets
   end
 
-  scenario "sees ignore and save action for uploaded partial invalid csv file" do
-    visit new_inventory_path
-    tries_to_upload_the_file('partial_invalid_inventory.csv')
-    expect(page).to have_text "Ignorar incorrectas y guardar inventario"
-  end
-
   scenario "sees save action for uploaded valid csv file" do
     visit new_inventory_path
     tries_to_upload_the_file('inventory.csv')

@@ -39,13 +39,7 @@ describe InventoriesController do
       end
     end
 
-    context "file with invalid encoding" do
-      before do
-        def controller.create
-          raise Exceptions::UnknownEncodingError
-        end
-      end
-
+    shared_examples "an invalid inventory file" do
       it "redirects to inventories_path" do
         post :create, inventory: { csv_file: "" }, :locale => "es"
         expect(response).to redirect_to(inventories_path)
@@ -58,12 +52,34 @@ describe InventoriesController do
 
       it "shows invalid encoding message" do
         post :create, inventory: { csv_file: "" }, :locale => "es"
-        expect(flash[:alert]).to eq(I18n.t("activerecord.errors.models.inventory.attributes.csv_file.encoding"))
+        expect(flash[:alert]).to eq(error_message)
       end
 
       it "raises Exceptions::UnknownEncodingError" do
         bypass_rescue
-        expect { post :create, inventory: { csv_file: "" }, :locale => "es" }.to raise_error(Exceptions::UnknownEncodingError)
+        expect { post :create, inventory: { csv_file: "" }, :locale => "es" }.to raise_error
+      end
+    end
+
+    context "file with invalid encoding" do
+      before do
+        def controller.create
+          raise Exceptions::UnknownEncodingError
+        end
+      end
+      it_behaves_like "an invalid inventory file" do
+        let(:error_message) { I18n.t("activerecord.errors.models.inventory.attributes.csv_file.encoding") }
+      end
+    end
+
+    context "malformed csv file" do
+      before do
+        def controller.create
+          raise CSV::MalformedCSVError
+        end
+      end
+      it_behaves_like "an invalid inventory file" do
+        let(:error_message) { I18n.t("activerecord.errors.models.inventory.attributes.csv_file.malformed") }
       end
     end
 

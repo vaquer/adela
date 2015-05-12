@@ -89,6 +89,7 @@ es:
               blank: " no se puede procesar."
               invalid: " no es válido. Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
               encoding: "El archivo seleccionado no está codificado en formato UTF-8."
+              malformed: "El archivo csv se encuentra malformado."
             datasets:
               blank: "Debe existir al menos un conjunto de datos en el archivo."
         user:

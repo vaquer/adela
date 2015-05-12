@@ -34,6 +34,12 @@ describe Inventory do
       end
     end
 
+    context "an inventory file with a null download url" do
+      it_behaves_like "an invalid inventory file" do
+        let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-null-download-url.csv" }
+      end
+    end
+
     context "blank file" do
       it_behaves_like "an invalid inventory file" do
         let(:csv_file) { "#{Rails.root}/spec/fixtures/files/invalid_file.txt" }

@@ -28,6 +28,12 @@ describe Inventory do
       end
     end
 
+    context "an inventory with non alphanumeric keywords in dataset" do
+      it_behaves_like "an invalid inventory file" do
+        let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-non-alphanumeric.csv" }
+      end
+    end
+
     context "blank file" do
       it_behaves_like "an invalid inventory file" do
         let(:csv_file) { "#{Rails.root}/spec/fixtures/files/invalid_file.txt" }

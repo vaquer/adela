@@ -50,8 +50,6 @@
         <%= render "datasets_preview", :datasets => datasets_to_display(@datasets) %>
         <% if @inventory.valid? && @inventory.csv_file.present? && @inventory.csv_structure_valid? %>
           <%= link_to "Guardar inventario", "#", :class => "btn button inventory-action", :id => "save_inventory" %>
-        <% elsif @inventory.has_valid_datasets? %>
-          <%= link_to "Ignorar incorrectas y guardar inventario", ignore_invalid_and_save_inventories_path(:csv_file => @inventory.csv_file.current_path), :class => "btn button inventory-action", :id => "ignore_and_save" %>
         <% end %>
       </div>
     <% end %>

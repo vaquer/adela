@@ -41,7 +41,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def has_valid_datasets?
-    datasets.map(&:valid?).count(true) >= 1
+    datasets.map(&:valid?).uniq.exclude?(false)
   end
 
   def public_datasets_count

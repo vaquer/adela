@@ -127,6 +127,7 @@ es:
               blank: "no puede estar en blanco."
             title:
               blank: "no puede estar en blanco."
+              duplicated: "no puede contener titulos duplicados."
             description:
               blank: "no puede estar en blanco."
             modified:

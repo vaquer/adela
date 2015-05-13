@@ -123,6 +123,7 @@ es:
             description:
               blank: "no puede estar en blanco."
             keyword:
+              invalid_characters: "no puede contener símbolos distintos a -_."
               blank: "no puede estar en blanco."
             title:
               blank: "no puede estar en blanco."

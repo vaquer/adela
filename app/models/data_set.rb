@@ -4,6 +4,7 @@ class DataSet
 
   validates_presence_of :accessLevelComment, :if => :private?
   validate :distributions_download_url, :if => :public?
+  validates :keywords, keywords: true
 
   def initialize(attributes = {})
     @distributions = []

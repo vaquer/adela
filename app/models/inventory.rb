@@ -44,14 +44,6 @@ class Inventory < ActiveRecord::Base
     datasets.map(&:valid?).uniq.exclude?(false)
   end
 
-  def public_datasets_count
-    datasets.map(&:public?).count(true)
-  end
-
-  def private_datasets_count
-    datasets.map(&:private?).count(true)
-  end
-
   def datasets_count
     datasets.size
   end

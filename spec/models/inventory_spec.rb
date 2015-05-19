@@ -14,6 +14,10 @@ describe Inventory do
       @inventory.organization_id = nil
       @inventory.should_not be_valid
     end
+
+    it 'should contain valid datasets' do
+      @inventory.has_valid_datasets?.should be_true
+    end
   end
 
   context 'invalid inventories' do

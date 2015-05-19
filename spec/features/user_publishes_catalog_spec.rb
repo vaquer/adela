@@ -50,16 +50,6 @@ feature User, 'publishes catalog:' do
     expect(page).to have_text "OJO: No has completado el último paso que es publicar tu inventario."
   end
 
-  scenario "can ignore invalid datasets and save inventory", :js => true do
-    visit new_inventory_path
-    tries_to_upload_the_file('partial_invalid_inventory.csv')
-    click_on("Ignorar incorrectas y guardar inventario")
-    expect(page).to have_text "Paso 5"
-    check_publication_requirements
-    click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
-  end
-
   def sees_data_requirements
     expect(page).to have_css("#personal_data")
     expect(page).to have_css("#open_data")

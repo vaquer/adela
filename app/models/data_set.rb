@@ -27,10 +27,6 @@ class DataSet
     keyword.to_s.split(",").map(&:strip).reject{ |k| k.empty? }
   end
 
-  def values_array
-    [identifier, title, description, keyword, modified, contactPoint, mbox, accessLevel, accessLevelComment, temporal, spatial, dataDictionary, accrualPeriodicity]
-  end
-
   def download_url?
     distributions.all? { |distribution| distribution.downloadURL.present? }
   end

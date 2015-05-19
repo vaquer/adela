@@ -8,8 +8,4 @@ class Distribution
       end
     end
   end
-
-  def values_array
-    [title, description, downloadURL, mediaType, byteSize, temporal, spatial, accrualPeriodicity]
-  end
 end

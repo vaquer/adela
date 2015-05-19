@@ -15,36 +15,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
     datasets
   end
 
-  def generate_csv(temporary_path)
-    dataset_obj = nil
-    File.open(temporary_path, "w") do |csv|
-      csv << csv_header_fields
-      CSV.foreach(csv_file, :headers => :first_row).each do |row|
-        if dataset?(row)
-          dataset_obj = new_dataset(row)
-          csv << dataset_csv_row(dataset_obj) if dataset_obj.valid?
-        elsif distribution?(row)
-          distribution_obj = new_distribution(row)
-          dataset_obj.distributions << distribution_obj
-          csv << "#{dataset_obj.identifier},,,,,,,,,,,,," + distribution_obj.values_array.to_csv if (dataset_obj.valid? || (dataset_obj.public? && distribution_obj.downloadURL))
-        end
-      end
-    end
-  end
-
   private
-
-  def csv_header_fields
-    %w[
-      ds:identifier ds:title  ds:description  ds:keyword  ds:modified ds:contactPoint ds:mbox ds:accessLevel  ds:accessLevelComment ds:temporal ds:spatial  ds:dataDictionary ds:accrualPeriodicity rs:title  rs:description  rs:downloadURL  rs:mediaType  rs:byteSize rs:temporal rs:spatial  rs:accrualPeriodicity
-    ].to_csv
-  end
-
-  def dataset_csv_row(dataset)
-    ds_columns = dataset.values_array
-    rs_columns = [nil, nil, nil, nil, nil, nil, nil, nil]
-    (ds_columns + rs_columns).to_csv
-  end
 
   def new_dataset(row)
     DataSet.new({

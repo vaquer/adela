@@ -52,7 +52,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :staging, :production do
+group :production do
   gem 'unicorn'
 end
 

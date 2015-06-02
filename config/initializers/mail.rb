@@ -1,4 +1,4 @@
-if Rails.env.production? or Rails.env.staging?
+if Rails.env.production?
   ActionMailer::Base.smtp_settings = {
     :address        => ENV['MAILER_ADDRESS'],
     :port           => '587',

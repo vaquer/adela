@@ -13,13 +13,6 @@ test:
   <<: *default
   database: adela_test
 
-staging:
-  <<: *default
-  database: adela_staging
-  username: postgres
-  host: postgres
-  password:
-
 production:
   <<: *default
   database: adela_production

@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mxabierto/adela.png?label=ready&title=Ready)](https://waffle.io/mxabierto/adela)
 adela
 =====
 

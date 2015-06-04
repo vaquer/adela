@@ -1,0 +1,17 @@
+.container
+  .dashboard-wrapper
+    %h2 Organizaciones
+    %table.table.table-condensed.table-bordered.table-striped
+      %thead
+        %tr
+          %th Nombre
+          %th Acceder como miembro
+      %tbody
+        - @organizations.each do |org|
+          %tr
+            %td= org.title
+            %td
+              %ul.list-unstyled
+                - org.users.each do |member|
+                  %li= link_to "Acceder como #{member.name}(#{member.email})", admin_acting_as_path(:user_id => member.id)
+    = will_paginate @organizations

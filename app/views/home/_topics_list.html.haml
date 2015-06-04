@@ -1,0 +1,40 @@
+#calendar.section-content{"data-pjax-container" => ""}
+  .row
+    #calendar-header.col-md-8.col-md-offset-2
+      %h2.calendar-heading.col-md-4= I18n.l(Date.parse(@current_month), :format => :month)
+      %ul.calendar-nav-bar.list-inline.col-md-8.text-right
+        - activity_years_range.each do |year|
+          %li= link_to year.to_date.strftime("%Y"), root_path(:month => year.to_date.strftime("01-%m-%Y")), :class => "btn button #{calendar_button_class(@current_month, year)}"
+  .row
+    .col-md-2
+      - if previous_month(@current_month).present?
+        = link_to root_path(:month => previous_month(@current_month).to_date.strftime("01-%m-%Y")), :class => "pull-right calendar-navigation-link" do
+          = image_tag "left-arrow.png", :class => "calendar-navigation"
+          = I18n.l(previous_month(@current_month).to_date, :format => :month_year)
+    #calendar-content.col-md-8
+      - if @topics.any?
+        - @topics.group_by(&:publication_month_day).sort.each do |day, topics|
+          .day-holder{:id => "day-#{day}"}
+            .day-group.col-md-2
+              %h2= day
+            .day-topics-holder
+              - topics.each do |topic|
+                - cache ['topics', topic] do
+                  .topic-item.light
+                    %span.topic-label Institución:
+                    = link_to topic.organization.title.upcase, organization_path(:id => topic.organization)
+                    %br/
+                    %span.topic-label
+                      Conjunto de datos: #{topic.name}
+                    %br/
+                    - if topic.description.present?
+                      %span.expandable
+                        Posible proyecto: #{topic.description}
+      - else
+        %p
+          %em No hay áreas o temas programados.
+    .col-md-2
+      - if next_month(@current_month).present?
+        = link_to root_path(:month => next_month(@current_month).to_date.strftime("01-%m-%Y")), :class => "calendar-navigation-link" do
+          %span.next= I18n.l(next_month(@current_month).to_date, :format => :month_year)
+          = image_tag "right-arrow.png", :class => "calendar-navigation"

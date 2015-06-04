@@ -1,0 +1,27 @@
+= render "layouts/flash_messages", :flash => flash
+%br/
+= render "layouts/org_header"
+.container
+  .dashboard-wrapper
+    .section-heading
+      %span.organization-icon.h4
+        Editar perfil #{@organization.title.upcase}
+    .row
+      .col-md-2
+      .col-md-8.topic-form-holder.data-controls
+        = form_for(@organization, html: {class: "form-horizontal"}) do |f|
+          .form-group.text-right
+            = f.label :description, :class => "control-label col-sm-3"
+            .col-sm-9
+              = f.text_area :description, :class => "form-control"
+          .form-group.text-right
+            = f.label :logo_url, :class => "control-label col-sm-3"
+            .col-sm-9
+              = f.text_field :logo_url, :class => "form-control"
+              - if @organization.logo_url.present?
+                %br/
+                = image_tag @organization.logo_url, :class => "logo-preview logo-round pull-left"
+          .form-group
+            .submit-row.col-sm-offset-3.col-sm-9.text-right
+              = f.button "Guardar", :type => "submit", :class => "btn button"
+      .col-md-2

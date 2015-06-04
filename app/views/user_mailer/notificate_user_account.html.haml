@@ -1,0 +1,12 @@
+%p
+  Bienvenido a
+  = succeed "." do
+    %strong ADELA
+%p Tus credenciales para iniciar sesión son:
+%span Correo electrónico:
+%strong= @user.email
+%br/
+%span Contraseña:
+%strong= @password
+%p Te recomendamos ampliamente cambiar la contraseña temporal recibida, a través del siguiente link:
+= link_to "Cambiar contraseña", edit_user_registration_url

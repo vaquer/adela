@@ -1,0 +1,4 @@
+- if object.errors.any?
+  .md-col-8.alert.alert-danger
+    %span.danger
+    = object.errors.full_messages.first

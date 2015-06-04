@@ -1,0 +1,71 @@
+= render "layouts/flash_messages", :flash => flash
+%br/
+= render "layouts/org_header"
+.container
+  .dashboard-wrapper
+    .section-heading
+      %span.inventory-icon.h4 Cargar nuevo inventario
+    .row
+      .col-md-1
+      .version-holder.col-md-5
+        %span.version-icon.h5 Última versión
+        .version-data.last-version
+          - if @organization.last_file_version.present?
+            = image_tag "file.png", :class => "pull-left"
+            %div
+              %span.label Fecha:
+              = I18n.l(@organization.last_file_version.created_at, :format => :short)
+              %br/
+              %span.label Actualizado por:
+              = @organization.last_file_version.author
+              %br/
+              %span.label Conjuntos de datos:
+              = @organization.last_file_version.datasets_count
+              %br/
+              %span.label Recursos:
+              = @organization.last_file_version.distributions_count
+          - else
+            %em No tienes ningún inventario.
+        = link_to "Subir nueva versión", new_inventory_path(:new_version => true), :class => "btn button"
+      .version-holder.col-md-5
+        %span.catalog-icon.h5 Versión publicada
+        - if @organization.current_catalog.present?
+          .version-data.last-catalog
+            = image_tag "file.png", :class => "pull-left"
+            %div
+              %span.label Fecha:
+              = I18n.l(@organization.current_catalog.created_at, :format => :short)
+              %br/
+              %span.label Actualizado por:
+              = @organization.current_catalog.author
+              %br/
+              %span.label Conjuntos de datos:
+              = @organization.current_catalog.datasets_count
+              %br/
+              %span.label Recursos:
+              = @organization.current_catalog.distributions_count
+          - if @organization.last_inventory_is_unpublished?
+            .alert.alert-danger
+              %span.danger>
+              La versión publicada no es la última versión.
+            %br/
+            = link_to "Publicar última versión", "#", :class => "btn button", :id => "save_inventory"
+          - else
+            .alert.alert-success
+              Muy bien. La última versión está publicada.
+        - else
+          .version-data.last-catalog
+            %em No tienes ningún inventario publicado.
+        .publish-form-holder.hidden
+          = render "inventories/publish_form", :from_dashboard => true
+      .col-md-1
+    .pull-down.row
+      .col-md-1
+      .col-md-10
+        %span.no-icon.h5 Versiones pasadas
+      .col-md-1
+    .legends.col-md-5.pull-right
+      %span.published-legend
+        %small Inventario publicado
+    .pull-down
+      = render "inventories/inventories_list"

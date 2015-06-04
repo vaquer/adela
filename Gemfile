@@ -29,6 +29,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'charlock_holmes'
 gem 'csvlint'
+gem 'haml'
 
 group :development, :test do
   gem 'spring'

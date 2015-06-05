@@ -14,7 +14,7 @@ class Admin::BaseController < ApplicationController
     authorize! :create, User
     uploader = UsersUploader.new
     uploader.store!(file_params)
-    create_users_from_file(uploader.read)
+    create_users_from_file(uploader.read.to_utf8)
     if @users.any?
       redirect_to admin_root_path, :notice => "Los usuarios se crearon exitosamente."
     else
@@ -36,7 +36,7 @@ class Admin::BaseController < ApplicationController
     authorize! :act_as, User
     @user = User.find(params[:user_id])
     session[:from_admin] = true
-    session[:original_user_id] = current_user.id 
+    session[:original_user_id] = current_user.id
     sign_in(@user)
 
     redirect_to root_path
@@ -59,7 +59,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def authorize_access
-    unless is_authorized? 
+    unless is_authorized?
       redirect_to root_path
     end
   end

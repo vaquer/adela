@@ -1,0 +1,32 @@
+- if datasets.present?
+  .col-md-12.preview-table
+    %strong= file_structure_feedback(datasets)
+    %table#datasets_preview.table.table-condensed.table-bordered.table-striped
+      %thead
+        %tr
+          %th DS:Title
+          %th DS:Description
+          %th DS:Publisher
+          %th DS:Modified
+          %th RS:Title
+          %th RS:Description
+          %th RS:DownloadURL
+      %tbody
+        - datasets.each do |dataset|
+          %tr{:class => "#{preview_dataset_class(dataset)}"}
+            %td= dataset.title
+            %td= truncate(dataset.description, length: 20)
+            %td= dataset.publisher
+            %td= dataset.modified
+            %td
+            %td
+            %td
+          - dataset.distributions.each do |distribution|
+            %tr{:class => "#{preview_dataset_class(dataset)}"}
+              %td
+              %td
+              %td
+              %td
+              %td= distribution.title
+              %td= truncate(distribution.description, length: 20)
+              %td= distribution.downloadURL

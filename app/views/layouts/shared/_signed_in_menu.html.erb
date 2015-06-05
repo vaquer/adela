@@ -1,5 +1,0 @@
-<% if current_user.has_roles? [ :admin, :supervisor ] %>
-  <li><%= link_to "Administrador", admin_root_path %></li>
-<% end %>
-<li><%= link_to "Mi organización", organization_path(current_organization) %></li>
-<li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>

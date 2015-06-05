@@ -1,0 +1,27 @@
+%body
+  %header#header
+    #logo.col-md-3
+      %h1#logo-base= link_to "", root_path
+      #tagline
+        %span Abrir para
+        .tagline-mask
+          %ul
+            %li innovar
+            %li emprender
+            %li transparentar
+            %li participar
+            %li ahorrar
+            %li evaluar
+            %li eficientar
+    .nav-actions.col-md-3.pull-right
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          = render partial: "/layouts/shared/signed_in_menu"
+        - else
+          %li= link_to "Iniciar sesión", new_user_session_path
+  - if session[:from_admin]
+    .alert.alert-danger
+      %span.danger
+      Estás en ADELA como
+      %strong= "#{current_user.name} de #{current_organization.title.upcase}."
+      = link_to "Volver al administrador", admin_stop_acting_path, :method => :post, :class => "pull-right"

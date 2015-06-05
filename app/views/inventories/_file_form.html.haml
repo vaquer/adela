@@ -1,0 +1,7 @@
+#js_inventory_form.well.well-md
+  = form_for(Inventory.new) do |f|
+    = f.label "Seleccione el archivo a cargar:"
+    %br/
+    = f.file_field :csv_file
+    %small.help-block Debe ser formato .csv
+    = f.submit "Guardar", :class => "btn btn-info btn-sm"

@@ -1,0 +1,13 @@
+.container
+  .footer
+    %span Contactos
+    %br/
+    - if @organization.present?
+      - @organization.users.each do |contact|
+        .contact.col-md-6
+          %span= contact.name
+          %br/
+          %span= contact.email
+    - else
+      .contact
+        %span adela@datos.gob.mx

@@ -24,10 +24,7 @@ Adela::Application.routes.draw do
       end
     end
   end
-  resources :topics do
-    post :sort_order, :on => :collection
-    get :publish, :on => :collection
-  end
+
   namespace :api, defaults: { format: 'json'} do
     namespace :v1 do
 

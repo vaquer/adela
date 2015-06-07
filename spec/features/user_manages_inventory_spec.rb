@@ -5,7 +5,6 @@ feature User, 'manages inventory:' do
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
-    @topic = FactoryGirl.create(:topic, :organization => @user.organization, :published => true)
   end
 
   scenario "sees inventory link" do

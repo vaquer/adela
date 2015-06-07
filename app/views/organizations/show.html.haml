@@ -56,9 +56,3 @@
     .section-heading
       %span.calendar-icon.h4 Programa de apertura
     = render "organizations/topics_list"
-    - if current_organization == @organization
-      .section-links
-        .col-md-4.col-md-offset-6
-          %button#new-topic-button.btn.button.pull-right{:type => "button"}
-            %span.glyphicon.glyphicon-plus
-            Agregar nueva actividad

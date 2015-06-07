@@ -23,12 +23,6 @@
                   .topic-item{:id => "topic-#{topic.id}"}
                     %span.topic-label Conjunto de datos:
                     = topic.name
-                    - if current_organization == @organization
-                      %span.edit-tools.pull-right
-                        %a.edit{:href => "#", :id => "edit-topic-#{topic.id}-link"}
-                          %span.glyphicon.glyphicon-pencil
-                        %a.delete{"data-confirm" => "Esta acción no es reversible. ¿Estás seguro que deseas eliminar esta entrada?", "data-method" => "delete", "data-remote" => "true", :href => "/topics/#{topic.id}", :id => "delete-topic-#{topic.id}-link"}
-                          %span.glyphicon.glyphicon-trash
                     %br/
                     %span.topic-label Responsable:
                     = topic.owner
@@ -44,19 +38,3 @@
         = link_to organization_path(:id => @organization.id, :month => next_month(@current_month, @organization.id).to_date.strftime("01-%m-%Y")), :class => "calendar-navigation-link" do
           %span.next= I18n.l(next_month(@current_month, @organization.id).to_date, :format => :month_year)
           = image_tag "right-arrow.png", :class => "calendar-navigation"
-%br/
-%br/
-%br/
-%br/
-#edit-topic-container
-#new-topic-container
-:javascript
-  $(function () {
-    new Topics.Form({
-      show_form_button: "#new-topic-button",
-      form_container: "#new-topic-container",
-      success_callback: function (data) {
-        var item = new Topics.Item(data);
-      }
-    });
-  });

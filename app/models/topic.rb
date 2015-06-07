@@ -10,25 +10,8 @@ class Topic < ActiveRecord::Base
   scope :published, -> { where("topics.published" => true) }
   scope :publish_date_sorted, -> { order("topics.publish_date ASC") }
 
-  def publish!
-    self.update_attribute(:published, true)
-  end
-
-  def publish_date_param
-    publish_date.strftime('01-%m-%Y')
-  end
-
-  def formatted_publish_date
-    I18n.l(publish_date, :format => :default)
-  end
-
   def publication_month_day
     publish_date.strftime('%e').to_i
-  end
-
-  def as_json(args={})
-    args ||= {}
-    super(args.merge!(:methods =>[:name, :owner, :organization_id, :sort_order, :formatted_publish_date, :description, :publish_date_param]))
   end
 
   def self.month_range

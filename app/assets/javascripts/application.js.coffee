@@ -9,6 +9,4 @@
 //= require jquery.spin
 //= require bootstrap
 //= require_self
-//= require_tree ../templates
-//= require topics/topics
 //= require_directory .

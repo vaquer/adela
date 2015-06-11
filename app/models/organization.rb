@@ -5,8 +5,8 @@ class Organization < ActiveRecord::Base
 
   has_many :inventories
   has_many :users
-  has_many :topics
   has_many :activity_logs
+  has_many :opening_plans, dependent: :destroy
 
   scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }

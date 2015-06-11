@@ -12,24 +12,23 @@
           = image_tag "left-arrow.png", :class => "calendar-navigation"
           = I18n.l(previous_month(@current_month, @organization.id).to_date, :format => :month_year)
     #calendar-content.col-md-8
-      - if @topics.any?
-        - @topics.group_by(&:publication_month_day).sort.each do |day, topics|
+      - if @opening_plans.any?
+        - @opening_plans.group_by(&:publication_month_day).sort.each do |day, opeing_plans|
           .day-holder{:id => "day-#{day}"}
             .day-group.col-md-2
               %h2= day
             .day-topics-holder
-              - topics.each do |topic|
-                - cache ['topics', topic] do
-                  .topic-item{:id => "topic-#{topic.id}"}
-                    %span.topic-label Conjunto de datos:
-                    = topic.name
+              - opeing_plans.each do |opening_plan|
+                - cache ['opeing_plans', opening_plan] do
+                  .topic-item{:id => "topic-#{opening_plan.id}"}
+                    %span.topic-label Visión institucional de datos abiertos:
+                    = opening_plan.vision
+                    %span.topic-label Conjuntos de datos priorizados:
+                    = opening_plan.name
                     %br/
-                    %span.topic-label Responsable:
-                    = topic.owner
-                    %br/
-                    - if topic.description.present?
-                      %span.topic-label Posible proyecto:
-                      %span.expandable= topic.description
+                    - if opening_plan.description.present?
+                      %span.topic-label Descripción de los conjuntos:
+                      %span.expandable= opening_plan.description
       - else
         %p
           %em No hay áreas o temas programados.

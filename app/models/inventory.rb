@@ -8,7 +8,7 @@ class Inventory < ActiveRecord::Base
   validates_processing_of :csv_file
   validate :csv_structure, :csv_datasets
   validates :csv_file, csv_file: true
-  validates :datasets, datasets_titles: true
+  validates :datasets, datasets: true
 
   belongs_to :organization
 

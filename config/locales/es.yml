@@ -140,6 +140,7 @@ es:
               blank: "no puede estar en blanco."
             identifier:
               blank: "no puede estar en blanco."
+              duplicated: "no puede contener títulos duplicados."
             accessLevel:
               blank: "no puede estar en blanco."
             accessUrl:

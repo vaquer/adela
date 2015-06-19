@@ -59,3 +59,4 @@ end
 
 # Dev tools and plugins
 gem 'coveralls', require: false
+gem 'foreman', require: false

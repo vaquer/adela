@@ -23,6 +23,7 @@ config/secrets.yml
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 .ruby-version
+.vagrant
 
 # Ignore application configuration
 /config/application.yml

@@ -1,0 +1,38 @@
+# Vagrant versions
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.require_version ">= 1.6"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.define "default", primary: true do |default|
+    ### Virtual machine configuration
+    default.vm.box = "pixative/debian-wheezy-64"
+    default.vm.box_check_update = true
+    default.vm.hostname = "adela"
+    default.vm.box_download_checksum_type = "sha1"
+    default.vm.box_download_checksum = "557f80a108fc480e04808185c2316024354693df"
+    
+    ### SSH
+    default.ssh.username = "vagrant"
+    default.ssh.forward_agent = false
+    default.ssh.forward_x11 = false
+    default.ssh.insert_key = false
+    
+    ### Networking
+    default.vm.network "forwarded_port", guest: 22, host: 2222, auto_correct: true, id: "ssh"
+    default.vm.network "forwarded_port", guest: 3000, host: 3000, auto_correct: true
+    
+    ### Sync resources
+    default.vm.synced_folder ".", "/home/vagrant/source"
+    
+    ### Provisioning
+    default.vm.provision "shell", path: "_provision/setup.sh"
+    
+    ### Providers
+    default.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.name = "adela"
+      vb.memory = 512
+      vb.cpus = 1
+    end
+  end
+end

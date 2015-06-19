@@ -7,7 +7,6 @@ default: &default
 development:
   <<: *default
   database: adela_development
-  host: localhost
 
 test:
   <<: *default

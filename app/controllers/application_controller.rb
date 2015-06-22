@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_organization
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, :alert => I18n.t("errors.messages.access_denied")
+  end
+
   def after_sign_in_path_for(resource)
     current_organization ? organization_path(current_organization) : root_path
   end

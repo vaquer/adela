@@ -65,7 +65,9 @@ a.logo-text {
     padding: 0 15px;
   }
 
-  input[type="email"], input[type="password"] {
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
     border: none;
     color: $gray;
     font-weight: normal;

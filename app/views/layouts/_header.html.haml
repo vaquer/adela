@@ -18,6 +18,7 @@
         - if user_signed_in?
           = render partial: "/layouts/shared/signed_in_menu"
         - else
+          %li= link_to "Regístrate", new_user_registration_path
           %li= link_to "Iniciar sesión", new_user_session_path
   - if session[:from_admin]
     .alert.alert-danger

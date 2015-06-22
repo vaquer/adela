@@ -20,6 +20,26 @@ describe Inventory do
     end
   end
 
+  context 'inventory with an opening plan' do
+    before(:each) do
+      file = File.new("#{Rails.root}/spec/fixtures/files/inventory-with-opening-plan.csv")
+      @inventory = FactoryGirl.create(:published_inventory, csv_file: file)
+    end
+
+    it 'should be valid with mandatory fields' do
+      @inventory.should be_valid
+    end
+
+    it 'should create an opening plan' do
+      OpeningPlan.count.should eql(1)
+    end
+
+    it 'should delete previus opening plan' do
+      @inventory.save
+      OpeningPlan.count.should eql(1)
+    end
+  end
+
   context 'invalid inventories' do
     shared_examples 'an invalid inventory file' do
       before(:each) do

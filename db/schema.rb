@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331032757) do
+ActiveRecord::Schema.define(version: 20150609053948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,30 @@ ActiveRecord::Schema.define(version: 20150331032757) do
 
   add_index "inventories", ["organization_id"], name: "index_inventories_on_organization_id", using: :btree
 
+  create_table "officials", force: true do |t|
+    t.integer  "opening_plan_id"
+    t.string   "name"
+    t.string   "position"
+    t.integer  "kind"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "officials", ["opening_plan_id"], name: "index_officials_on_opening_plan_id", using: :btree
+
+  create_table "opening_plans", force: true do |t|
+    t.integer  "organization_id"
+    t.text     "vision"
+    t.text     "name"
+    t.text     "description"
+    t.date     "publish_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "opening_plans", ["organization_id"], name: "index_opening_plans_on_organization_id", using: :btree
+
   create_table "organizations", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
@@ -59,29 +83,14 @@ ActiveRecord::Schema.define(version: 20150331032757) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
-  create_table "topics", force: true do |t|
-    t.integer  "organization_id"
-    t.string   "name"
-    t.string   "owner"
-    t.text     "description"
-    t.integer  "sort_order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "published",       default: false
-    t.datetime "publish_date"
-  end
-
-  add_index "topics", ["organization_id"], name: "index_topics_on_organization_id", using: :btree
-  add_index "topics", ["sort_order"], name: "index_topics_on_sort_order", using: :btree
-
   create_table "users", force: true do |t|
-    t.string   "name",                   default: "",    null: false
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "name",                   default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

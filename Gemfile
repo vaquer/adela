@@ -30,6 +30,7 @@ gem 'rolify'
 gem 'charlock_holmes'
 gem 'csvlint'
 gem 'haml'
+gem 'httparty'
 
 group :development, :test do
   gem 'spring'

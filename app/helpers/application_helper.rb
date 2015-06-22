@@ -42,9 +42,9 @@ module ApplicationHelper
 
   def activity_months_range(organization)
     if organization.present?
-      months = Topic.publish_date_sorted.where("topics.organization_id = #{organization}").month_range
+      months = OpeningPlan.publish_date_sorted.where("opening_plans.organization_id = #{organization}").month_range
     else
-      months = Topic.publish_date_sorted.month_range
+      months = OpeningPlan.publish_date_sorted.month_range
     end
   end
 
@@ -53,7 +53,7 @@ module ApplicationHelper
     if current_index && current_index > 0
       activity_months_range(organization)[current_index - 1]
     elsif !current_index || current_index.zero?
-      Topic.previous_month_with_topics(current, organization)
+      OpeningPlan.previous_month_with_topics(current, organization)
     else
       ""
     end
@@ -64,7 +64,7 @@ module ApplicationHelper
     if current_index && current_index <= (activity_months_range(organization).size - 1)
       activity_months_range(organization)[current_index + 1]
     elsif !current_index || current_index == (activity_months_range(organization).size - 1)
-      Topic.next_month_with_topics(current, organization)
+      OpeningPlan.next_month_with_topics(current, organization)
     else
       ""
     end
@@ -72,9 +72,9 @@ module ApplicationHelper
 
   def activity_years_range(organization = nil)
     if organization.present?
-      months = Topic.where("topics.organization_id = #{organization}").year_range
+      months = OpeningPlan.where("opening_plans.organization_id = #{organization}").year_range
     else
-      months = Topic.year_range
+      months = OpeningPlan.year_range
     end
   end
 

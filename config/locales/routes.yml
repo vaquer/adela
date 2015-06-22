@@ -6,8 +6,6 @@ es:
     user: usuario
     inventories: inventarios
     inventory: inventario
-    topics: actividades
-    topic: actividad
     create: crear
     profile: perfil
     sign_out: salir
@@ -23,8 +21,6 @@ en:
     user: user
     inventories: inventories
     inventory: inventory
-    topics: topics
-    topic: topic
     create: create
     profile: profile
     sign_out: sign_out

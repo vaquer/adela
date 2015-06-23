@@ -96,6 +96,7 @@ es:
           attributes:
             email:
               blank: "no puede estar en blanco."
+              taken: "ya registrado."
             password:
               too_short: "es demasiado corta."
               blank: "no puede estar en blanco."
@@ -104,12 +105,15 @@ es:
             current_password:
               blank: "no puede estar en blanco."
               invalid: "no es válida."
+            name:
+              blank: "no puede estar en blanco."
     attributes:
       inventory:
         csv_file: "Archivo"
       user:
+        name: "Nombre"
         email: "Correo electrónico"
-        password: "Nueva contraseña"
+        password: "Contraseña"
         password_confirmation: "Confirmación de contraseña"
         current_password: "Contraseña actual"
       organization:

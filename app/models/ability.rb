@@ -6,6 +6,8 @@ class Ability
       can :manage, :all
     elsif user.has_role? :supervisor
       can :create, User
+    elsif user.organization
+      can :manage, Inventory
     end
   end
 end

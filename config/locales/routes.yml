@@ -10,6 +10,7 @@ es:
     profile: perfil
     sign_out: salir
     sign_in: ingresa
+    sign_up: registrarte
     password: contrasena
     search: buscar
 
@@ -25,5 +26,6 @@ en:
     profile: profile
     sign_out: sign_out
     sign_in: sign_in
+    sign_up: sign_up
     password: password
     search: search

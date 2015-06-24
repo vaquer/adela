@@ -18,7 +18,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
   private
 
   def new_dataset(row)
-    DataSet.new({
+    DCAT::V2::DataSet.new({
       :identifier => I18n.transliterate((row["ds:identifier"] || row[0]).force_encoding('utf-8')),
       :title => row["ds:title"],
       :description => row["ds:description"],

@@ -18,6 +18,29 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
   private
 
   def new_dataset(row)
+    version3?(row) ? new_dataset_v3(row) : new_dataset_v2(row)
+  end
+
+  def new_dataset_v3(row)
+    DCAT::V3::DataSet.new({
+      :identifier => I18n.transliterate((row["ds:identifier"] || row[0]).force_encoding('utf-8')),
+      :title => row["ds:title"],
+      :description => row["ds:description"],
+      :keyword => row["ds:keyword"],
+      :modified => row["ds:modified"],
+      :contactPoint => row["ds:contactPoint"],
+      :mbox => row["ds:mbox"],
+      :accessLevel => row["ds:accessLevel"],
+      :accessLevelComment => row["ds:accessLevelComment"],
+      :temporal => row["ds:temporal"],
+      :spatial => row["ds:spatial"],
+      :landingPage => row["ds:landingPage"],
+      :accrualPeriodicity => row["accrualPeriodicity"],
+      :publisher => organization.title,
+    })
+  end
+
+  def new_dataset_v2(row)
     DCAT::V2::DataSet.new({
       :identifier => I18n.transliterate((row["ds:identifier"] || row[0]).force_encoding('utf-8')),
       :title => row["ds:title"],
@@ -32,7 +55,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       :spatial => row["ds:spatial"],
       :dataDictionary => row["ds:dataDictionary"],
       :accrualPeriodicity => row["accrualPeriodicity"],
-      :publisher => organization.title
+      :publisher => organization.title,
     })
   end
 
@@ -45,7 +68,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       :byteSize => row["rs:byteSize"],
       :temporal => row["rs:temporal"],
       :spatial => row["rs:spatial"],
-      :accrualPeriodicity => row["rs:accrualPeriodicity"]
+      :accrualPeriodicity => row["rs:accrualPeriodicity"],
     })
   end
 
@@ -55,5 +78,11 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
 
   def distribution?(row)
     (row["ds:identifier"].present? || row[0].present?) && row["rs:title"].present?
+  end
+
+  private
+
+  def version3?(row)
+    row.header?("ds:landingPage")
   end
 end

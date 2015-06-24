@@ -1,22 +1,35 @@
 require 'spec_helper'
 
 describe Inventory do
+
   context 'valid inventories' do
-    before(:each) do
-      @inventory = FactoryGirl.create(:inventory)
+
+    shared_examples 'a valid inventory file' do
+      before(:each) do
+        file = File.new(csv_file)
+        @inventory = FactoryGirl.create(:inventory, csv_file: file)
+      end
+
+      it 'should be valid with mandatory fields' do
+        @inventory.should be_valid
+      end
+
+      it 'should not be valid without an organization' do
+        @inventory.organization_id = nil
+        @inventory.should_not be_valid
+      end
+
+      it 'should contain valid datasets' do
+        @inventory.has_valid_datasets?.should be_true
+      end
     end
 
-    it 'should be valid with mandatory fields' do
-      @inventory.should be_valid
+    it_behaves_like 'a valid inventory file' do
+      let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory.csv" }
     end
 
-    it 'should not be valid without an organization' do
-      @inventory.organization_id = nil
-      @inventory.should_not be_valid
-    end
-
-    it 'should contain valid datasets' do
-      @inventory.has_valid_datasets?.should be_true
+    it_behaves_like 'a valid inventory file' do
+      let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-v3.csv" }
     end
   end
 
@@ -60,6 +73,17 @@ describe Inventory do
 
       it "should contain valid datasets" do
         @inventory.has_valid_datasets?.should be_false
+      end
+    end
+
+    context 'an inventory with invalid landing page' do
+
+      it_behaves_like 'an inventory with invalid datasets' do
+        let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-v3-invalid-landing-page.csv" }
+      end
+
+      it_behaves_like 'an inventory with invalid datasets' do
+        let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-v3-blank-landing-page.csv" }
       end
     end
 

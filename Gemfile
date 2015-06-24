@@ -32,6 +32,7 @@ gem 'csvlint'
 gem 'haml'
 gem 'httparty'
 gem 'factory_girl_rails'
+gem 'validate_url'
 
 group :development, :test do
   gem 'spring'

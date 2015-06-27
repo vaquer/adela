@@ -1,0 +1,16 @@
+.vagrant
+.buildpacks
+.editorconfig
+.env
+.gitignore
+.rubyversion
+.travis.yml
+
+Aptfile
+LICENSE
+Procfile
+README.md
+vagrantfile
+
+_provision/
+coverage/

@@ -1,3 +1,5 @@
+# See https://github.com/mxabierto/adela/wiki/Docker
+
 FROM phusion/passenger-ruby21:0.9.15
 
 ENV HOME /root
@@ -17,23 +19,20 @@ RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
 
 # add nginx config file
-COPY adela.conf /etc/nginx/sites-enabled/adela.conf
+COPY .nginx/adela.conf /etc/nginx/sites-enabled/adela.conf
 
 # add environment variables in nginx
-COPY env.conf /etc/nginx/main.d/env.conf
+COPY .nginx/env.conf /etc/nginx/main.d/env.conf
 
-# cache bundler
-WORKDIR /tmp
-COPY Gemfile /tmp/
-COPY Gemfile.lock /tmp/
-RUN bundle install
-
-# deploy rails app
-WORKDIR /home/app/
-RUN git clone https://github.com/mxabierto/adela.git
-RUN chown app:app -R /home/app/adela
+# set up working directory
+RUN mkdir /home/app/adela
 WORKDIR /home/app/adela
+
+# caching bundler
+COPY Gemfile /home/app/adela/
+COPY Gemfile.lock /home/app/adela/
 RUN bundle install
 
-# clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# deploy app
+COPY . /home/app/adela
+RUN chown app:app -R /home/app/adela

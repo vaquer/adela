@@ -19,10 +19,6 @@ module DCAT
         ['privado', 'restringido'].include? accessLevel
       end
 
-      def public?
-        ['público'].include? accessLevel || accessLevel.blank?
-      end
-
       def keywords
         keyword.to_s.split(",").map(&:strip).reject{ |k| k.empty? }
       end

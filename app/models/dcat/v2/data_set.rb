@@ -2,16 +2,10 @@ module DCAT
   module V2
     class DataSet
       include ActiveModel::Validations
-      include DCAT::Commons
-
-      attr_accessor :distributions, :publisher, :identifier, :title, :description,
-        :keyword, :modified, :contactPoint, :mbox, :accessLevel, :accessLevelComment,
-        :temporal, :spatial, :dataDictionary, :accrualPeriodicity
-
-      validates_presence_of :accessLevelComment, if: :private?
-      validates :keywords, keywords: true
-      validate :distributions_structure
-
+      include DCAT::Commons::DataSet
+      include DCAT::Commons::Validations
+      attr_accessor :dataDictionary
+      validates_url :dataDictionary, allow_blank: true
     end
   end
 end

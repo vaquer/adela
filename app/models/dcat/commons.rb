@@ -22,12 +22,20 @@ module DCAT
       keyword.to_s.split(",").map(&:strip).reject{ |k| k.empty? }
     end
 
-    def download_url?
-      distributions.all? { |distribution| distribution.downloadURL.present? }
-    end
-
     def distributions_count
       distributions.size
+    end
+
+    private
+
+    def distributions_structure
+      unless valid_distributions?
+        errors.add(:distributions)
+      end
+    end
+
+    def valid_distributions?
+      distributions.inject { |memo, distribution| memo && distribution.valid? }
     end
   end
 end

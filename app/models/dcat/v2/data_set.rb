@@ -10,15 +10,8 @@ module DCAT
 
       validates_presence_of :accessLevelComment, if: :private?
       validates :keywords, keywords: true
-      validate :distributions_download_url, if: :public?
+      validate :distributions_structure
 
-      private
-
-      def distributions_download_url
-        unless download_url?
-          errors.add(:distributions)
-        end
-      end
     end
   end
 end

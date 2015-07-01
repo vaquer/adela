@@ -33,6 +33,42 @@ describe Inventory do
     end
   end
 
+  context 'compliant inventories' do
+    shared_examples 'a compliant inventory' do
+      before(:each) do
+        file = File.new(csv_file)
+        @inventory = FactoryGirl.create(:inventory, csv_file: file)
+      end
+
+      it 'should be valid' do
+        @inventory.should be_valid
+      end
+
+      it 'should be compliant' do
+        @inventory.compliant?.should be true
+      end
+    end
+
+    it_behaves_like 'a compliant inventory' do
+      let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-accrual-periodicity.csv" }
+    end
+  end
+
+  context 'noncompliant inventories' do
+    before(:each) do
+      file = File.new("#{Rails.root}/spec/fixtures/files/inventory-noncompliant.csv")
+      @inventory = FactoryGirl.create(:inventory, csv_file: file)
+    end
+
+    it 'should be valid' do
+      @inventory.should be_valid
+    end
+
+    it 'should be compliant' do
+      @inventory.compliant?.should be false
+    end
+  end
+
   context 'inventory with an opening plan' do
     before(:each) do
       file = File.new("#{Rails.root}/spec/fixtures/files/inventory-with-opening-plan.csv")

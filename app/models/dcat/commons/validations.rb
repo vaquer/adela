@@ -6,6 +6,7 @@ module DCAT
       included do
         validates_presence_of :accessLevelComment, :if => :private?
         validates :keywords, keywords: true
+        validates :accrualPeriodicity, accrualPeriodicity: true
         validate  :distributions_structure
       end
 

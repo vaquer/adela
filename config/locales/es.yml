@@ -107,6 +107,12 @@ es:
               invalid: "no es válida."
             name:
               blank: "no puede estar en blanco."
+    warnings:
+      models:
+        inventory:
+          attributes:
+            datasets:
+              compliant: "contiene campos que no cumplen con los estándares de datos."
     attributes:
       inventory:
         csv_file: "Archivo"
@@ -151,6 +157,8 @@ es:
               blank: "no puede estar en blanco si la base de datos es Pública."
             accessLevelComment:
               blank: "no puede estar en blanco si la base de datos es Privada o Restringida."
+            accrualPeriodicity:
+              repeating_duration: "debe de contener una duración de repetición en el formato ISO-8601 o 'irregular'."
   mailers:
     user:
       notificate_user_account_subject: "Nuevo usuario en ADELA"

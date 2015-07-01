@@ -6,7 +6,7 @@ class Inventory < ActiveRecord::Base
 
   validates_presence_of :organization_id, :csv_file
   validates_processing_of :csv_file
-  validate :csv_structure, :csv_datasets
+  validate :csv_structure, :csv_datasets, :compliant_datasets
   validates :csv_file, csv_file: true
   validates :datasets, datasets: true
 
@@ -57,6 +57,16 @@ class Inventory < ActiveRecord::Base
   end
 
   private
+
+  def compliant_datasets
+    unless compliant_datasets?
+      warnings[:datasets] << I18n.t("activerecord.warnings.models.inventory.attributes.datasets.compliant")
+    end
+  end
+
+  def compliant_datasets?
+    datasets.map(&:compliant?).inject(true){ |result, element| result && element }
+  end
 
   def opening_plan_lookup
     organization.opening_plans.map(&:destroy)

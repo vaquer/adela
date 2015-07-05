@@ -2,7 +2,7 @@
 postgres:
   image: postgres
   volumes:
-    - /Users/wicho/.docker-volumes/adela/postgresql:/var/lib/postgresql
+    - <ADELA-POSTGRES-VOLUME-PATH>:/var/lib/postgresql
   ports:
     - "5432"
 redis:
@@ -18,26 +18,26 @@ sidekiq:
 web:
   build: .
   environment:
-    AMAZON_ACCESS_KEY:
-    AMAZON_SECRET_KEY:
-    APP_DESCRIPTION:
-    CATALOG_URL:
-    HOST:
-    INVENTORY_DETAILS:
-    INVENTORY_TEMPLATE:
-    MAILER_ADDRESS:
-    MAILER_DOMAIN:
-    MAILER_FROM:
-    MAILER_PASSWORD:
-    MAILER_USERNAME:
-    RACK_ENV:
-    RAILS_ENV:
-    REDIS_PORT_6379_TCP_ADDR:
-    REDIS_PORT_6379_TCP_PORT:
-    S3_BUCKET_NAME:
-    SECRET_KEY_BASE:
-    SENDGRID_PASSWORD:
-    SENDGRID_USERNAME:
+    - AMAZON_ACCESS_KEY=''
+    - AMAZON_SECRET_KEY=''
+    - APP_DESCRIPTION=''
+    - CATALOG_URL=''
+    - HOST=''
+    - INVENTORY_DETAILS=''
+    - INVENTORY_TEMPLATE=''
+    - MAILER_ADDRESS=''
+    - MAILER_DOMAIN=''
+    - MAILER_FROM=''
+    - MAILER_PASSWORD=''
+    - MAILER_USERNAME=''
+    - RACK_ENV=''
+    - RAILS_ENV=''
+    - REDIS_PORT_6379_TCP_ADDR=''
+    - REDIS_PORT_6379_TCP_PORT=''
+    - S3_BUCKET_NAME=''
+    - SECRET_KEY_BASE=''
+    - SENDGRID_PASSWORD=''
+    - SENDGRID_USERNAME=''
   ports:
     - "80:80"
   links:

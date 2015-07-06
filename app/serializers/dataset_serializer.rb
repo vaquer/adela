@@ -12,6 +12,13 @@ class DatasetSerializer < ActiveModel::Serializer
       :mbox => object.mbox
     }
     data[:keyword] = object.keywords
+    data[:landingPage] = object.landingPage if version3?
     data
+  end
+
+  private
+
+  def version3?
+    object.class == DCAT::V3::DataSet
   end
 end

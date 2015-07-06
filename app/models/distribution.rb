@@ -1,5 +1,10 @@
 class Distribution
-  attr_accessor :title, :description, :downloadURL, :mediaType, :format, :byteSize, :temporal, :spatial, :accrualPeriodicity
+  include ActiveModel::Validations
+
+  attr_accessor :title, :description, :downloadURL, :mediaType, :format,
+                :byteSize, :temporal, :spatial, :accrualPeriodicity
+
+  validates_url :downloadURL, allow_blank: false
 
   def initialize(attributes = {})
     attributes.each do |name, value|

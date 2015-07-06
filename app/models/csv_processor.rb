@@ -18,7 +18,23 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
   private
 
   def new_dataset(row)
-    DataSet.new({
+    dcat_v3?(row) ? build_dataset_v3(row) : build_dataset_v2(row)
+  end
+
+  def build_dataset_v3(row)
+    dataset_attributes = dataset_common_attributes(row)
+    dataset_attributes[:landingPage] = row["ds:landingPage"]
+    DCAT::V3::DataSet.new(dataset_attributes)
+  end
+
+  def build_dataset_v2(row)
+    dataset_attributes = dataset_common_attributes(row)
+    dataset_attributes[:dataDictionary] = row["ds:dataDictionary"]
+    DCAT::V2::DataSet.new(dataset_attributes)
+  end
+
+  def dataset_common_attributes(row)
+    {
       :identifier => I18n.transliterate((row["ds:identifier"] || row[0]).force_encoding('utf-8')),
       :title => row["ds:title"],
       :description => row["ds:description"],
@@ -30,10 +46,9 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       :accessLevelComment => row["ds:accessLevelComment"],
       :temporal => row["ds:temporal"],
       :spatial => row["ds:spatial"],
-      :dataDictionary => row["ds:dataDictionary"],
       :accrualPeriodicity => row["accrualPeriodicity"],
-      :publisher => organization.title
-    })
+      :publisher => organization.title,
+    }
   end
 
   def new_distribution(row)
@@ -45,7 +60,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       :byteSize => row["rs:byteSize"],
       :temporal => row["rs:temporal"],
       :spatial => row["rs:spatial"],
-      :accrualPeriodicity => row["rs:accrualPeriodicity"]
+      :accrualPeriodicity => row["rs:accrualPeriodicity"],
     })
   end
 
@@ -55,5 +70,11 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
 
   def distribution?(row)
     (row["ds:identifier"].present? || row[0].present?) && row["rs:title"].present?
+  end
+
+  private
+
+  def dcat_v3?(row)
+    row.header?("ds:landingPage")
   end
 end

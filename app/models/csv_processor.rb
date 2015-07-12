@@ -46,7 +46,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       :accessLevelComment => row["ds:accessLevelComment"],
       :temporal => row["ds:temporal"],
       :spatial => row["ds:spatial"],
-      :accrualPeriodicity => row["accrualPeriodicity"],
+      :accrualPeriodicity => row["ds:accrualPeriodicity"],
       :publisher => organization.title,
     }
   end

@@ -18,7 +18,26 @@ sidekiq:
 web:
   build: .
   environment:
-    - SECRET_KEY_BASE=<SECRET-KEY-BASE>
+    - AMAZON_ACCESS_KEY=''
+    - AMAZON_SECRET_KEY=''
+    - APP_DESCRIPTION=''
+    - CATALOG_URL=''
+    - HOST=''
+    - INVENTORY_DETAILS=''
+    - INVENTORY_TEMPLATE=''
+    - MAILER_ADDRESS=''
+    - MAILER_DOMAIN=''
+    - MAILER_FROM=''
+    - MAILER_PASSWORD=''
+    - MAILER_USERNAME=''
+    - RACK_ENV=''
+    - RAILS_ENV=''
+    - REDIS_PORT_6379_TCP_ADDR=''
+    - REDIS_PORT_6379_TCP_PORT=''
+    - S3_BUCKET_NAME=''
+    - SECRET_KEY_BASE=''
+    - SENDGRID_PASSWORD=''
+    - SENDGRID_USERNAME=''
   ports:
     - "80:80"
   links:

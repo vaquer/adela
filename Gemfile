@@ -33,6 +33,7 @@ gem 'haml'
 gem 'httparty'
 gem 'factory_girl_rails'
 gem 'validate_url'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'spring'

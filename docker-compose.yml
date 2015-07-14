@@ -38,6 +38,7 @@ web:
     - SECRET_KEY_BASE=''
     - SENDGRID_PASSWORD=''
     - SENDGRID_USERNAME=''
+    - NEWRELIC_LICENSE_KEY=''
   ports:
     - "80:80"
   links:

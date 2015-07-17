@@ -8,6 +8,7 @@ Adela::Application.routes.draw do
     end
 
     get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
+    get "/:slug/plan" => "organizations#opening_plan", :as => "organization_opening_plan"
     root :to => "home#index"
 
 

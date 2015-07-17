@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: [:catalog, :show, :search]
+  before_action :authenticate_user!, except: [:catalog, :show, :search, :opening_plan]
 
   layout 'home'
 
@@ -35,6 +35,13 @@ class OrganizationsController < ApplicationController
       end
     else
       render :json => {}
+    end
+  end
+
+  def opening_plan
+    @organization  = Organization.friendly.find(params[:slug])
+    respond_to do |format|
+      format.json { render json: @organization, serializer: OrganizationOpeningPlanSerializer, root: false }
     end
   end
 
@@ -75,5 +82,4 @@ class OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(:description, :logo_url)
   end
-
 end

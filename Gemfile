@@ -34,6 +34,7 @@ gem 'httparty'
 gem 'factory_girl_rails'
 gem 'validate_url'
 gem 'newrelic_rpm'
+gem 'active_model_warnings'
 
 group :development, :test do
   gem 'spring'

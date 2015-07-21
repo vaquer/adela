@@ -139,6 +139,8 @@ GEM
       jquery-ui-rails (= 4.0.3)
       railties (>= 3.1.0)
     json (1.8.3)
+    json-schema (2.5.0)
+      addressable (~> 2.3)
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -305,6 +307,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-sass-rails
+  json-schema
   letter_opener
   newrelic_rpm
   pg
@@ -326,3 +329,6 @@ DEPENDENCIES
   unicorn
   validate_url
   will_paginate (~> 3.0)
+
+BUNDLED WITH
+   1.10.5

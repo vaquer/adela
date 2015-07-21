@@ -50,6 +50,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'json-schema'
 end
 
 group :doc do

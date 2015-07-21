@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "opening_plans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vision": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "publish_date": {
+            "type": "string"
+          },
+          "officials": {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "title",
+    "language",
+    "license",
+    "opening_plans"
+  ]
+}

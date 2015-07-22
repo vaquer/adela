@@ -60,7 +60,6 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       :byteSize => row["rs:byteSize"],
       :temporal => row["rs:temporal"],
       :spatial => row["rs:spatial"],
-      :accrualPeriodicity => row["rs:accrualPeriodicity"],
     })
   end
 

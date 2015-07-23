@@ -178,5 +178,11 @@ describe Inventory do
         let(:csv_file) { "#{Rails.root}/spec/fixtures/files/blank_rows_inventory-2.csv" }
       end
     end
+
+    context "csv file with no resources" do
+      it_behaves_like "an invalid inventory file" do
+        let(:csv_file) { "#{Rails.root}/spec/fixtures/files/inventory-no-resources.csv" }
+      end
+    end
   end
 end

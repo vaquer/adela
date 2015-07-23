@@ -8,8 +8,7 @@ class DistributionSerializer < ActiveModel::Serializer
               :byteSize,
               # These are dcat:Dataset fields we're adding to dcat:Distribution
               :temporal,
-              :spatial,
-              :accrualPeriodicity
+              :spatial
 
   def license
     "http://datos.gob.mx/libreusomx/"

@@ -2,7 +2,7 @@ class Distribution
   include ActiveModel::Validations
 
   attr_accessor :title, :description, :downloadURL, :mediaType, :format,
-                :byteSize, :temporal, :spatial, :accrualPeriodicity
+                :byteSize, :temporal, :spatial
 
   validates_url :downloadURL, allow_blank: false
 

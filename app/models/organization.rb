@@ -11,6 +11,8 @@ class Organization < ActiveRecord::Base
   scope :with_catalog, -> { joins(:inventories).where("inventories.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }
 
+  enum gov_type: [:federal, :state, :municipal, :autonomous]
+
   def current_inventory
     inventories.unpublished.first
   end

@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "description": {
+      "type": ["string","null"]
+    },
+    "logo_url": {
+      "type": ["string","null"]
+    },
+    "gov_type": {
+      "type": ["string","null"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "description",
+    "logo_url",
+    "gov_type",
+    "created_at",
+    "updated_at"
+  ]
+}

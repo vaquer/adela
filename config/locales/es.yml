@@ -125,6 +125,7 @@ es:
       organization:
         description: "Descripción"
         logo_url: "URL Logo"
+        gov_type: "Tipo de Gobierno"
   activemodel:
     errors:
       models:
@@ -162,3 +163,10 @@ es:
   mailers:
     user:
       notificate_user_account_subject: "Nuevo usuario en ADELA"
+  enums:
+    organization:
+      gov_type:
+        federal: "Federal"
+        state: "Estatal"
+        municipal: "Municipal"
+        autonomous: "Organismos Autónomos"

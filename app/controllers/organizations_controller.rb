@@ -80,6 +80,6 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:description, :logo_url)
+    params.require(:organization).permit(:description, :logo_url, :gov_type)
   end
 end

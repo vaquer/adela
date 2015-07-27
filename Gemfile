@@ -35,6 +35,7 @@ gem 'factory_girl_rails'
 gem 'validate_url'
 gem 'newrelic_rpm'
 gem 'active_model_warnings'
+gem 'enum_help'
 
 group :development, :test do
   gem 'spring'

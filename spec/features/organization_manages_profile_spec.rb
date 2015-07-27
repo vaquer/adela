@@ -17,6 +17,7 @@ feature Organization, 'manages profile:' do
 
     expect(page).to have_text "Descripción"
     expect(page).to have_text "URL Logo"
+    expect(page).to have_text "Tipo de Gobierno"
   end
 
   scenario "edit description and logo url", :js => true do
@@ -24,6 +25,7 @@ feature Organization, 'manages profile:' do
 
     fill_in "Descripción", :with => "Esta es una descripción de una institución"
     fill_in "URL Logo", :with => "http://www.imageurl.com"
+    select "Federal", :from => "organization[gov_type]"
     click_button "Guardar"
 
     expect(page).to have_text "El perfil se ha actualizado con éxito."

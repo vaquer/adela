@@ -11,6 +11,10 @@ class OrganizationsController < ApplicationController
     if current_organization.present? && @organization.current_inventory && !@organization.current_catalog
       flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu inventario."
     end
+    respond_to do |format|
+      format.html
+      format.json { render json: @organization, root: false  }
+    end
   end
 
   def publish_catalog

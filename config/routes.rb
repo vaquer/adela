@@ -30,10 +30,12 @@ Adela::Application.routes.draw do
     namespace :v1 do
 
       get "/catalogs" => "organizations#catalogs"
+      get "/organizations" => "organizations#organizations"
 
       resources :organizations do
         collection do
           get "catalogs"
+          get "organizations"
         end
       end
     end

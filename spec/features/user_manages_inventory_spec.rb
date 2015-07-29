@@ -8,8 +8,8 @@ feature User, 'manages inventory:' do
   end
 
   scenario "sees inventory link" do
-    expect(page).to have_text("Programa de apertura")
-    expect(page).to have_text("Inventario de datos")
+    expect(page).to have_text("Plan de apertura")
+    expect(page).to have_text("Catálogo de datos")
   end
 
   scenario "sees file input", :js => true do
@@ -22,7 +22,7 @@ feature User, 'manages inventory:' do
     tries_to_upload_the_file('inventory.csv')
     expect(page).to have_text "2 conjuntos de datos y 7 recursos."
     sees_table_with_datasets
-    activity_log_created_with_msg "actualizó su inventario de datos."
+    activity_log_created_with_msg "actualizó su catálogo de datos."
   end
 
   scenario "fails to upload an invalid csv file" do
@@ -53,12 +53,12 @@ feature User, 'manages inventory:' do
   scenario "sees save action for uploaded valid csv file" do
     visit new_inventory_path
     tries_to_upload_the_file('inventory.csv')
-    expect(page).to have_link "Guardar inventario"
+    expect(page).to have_link "Guardar catálogo"
   end
 
   def tries_to_upload_the_file(file_name)
     attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
-    click_on("Subir inventario")
+    click_on("Subir catálogo")
   end
 
   def given_has_uploaded_an_inventory(days_ago)

@@ -44,15 +44,15 @@
             %td
             %td
     .section-heading
-      %span.inventory-icon.h4 Inventario de datos
+      %span.inventory-icon.h4 Catálogo de datos
       .legends.col-md-5.pull-right
         %span.published-legend
-          %small Inventario publicado
+          %small Catálogo publicado
     = render "inventories/inventories_list"
     - if current_organization == @organization
       .section-links
         .col-md-4.col-md-offset-6
-          = link_to "Actualizar inventario", inventories_path, :class => "btn button pull-right"
+          = link_to "Actualizar catálogo", inventories_path, :class => "btn button pull-right"
     .section-heading
-      %span.calendar-icon.h4 Programa de apertura
+      %span.calendar-icon.h4 Plan de apertura
     = render "organizations/opening_plans"

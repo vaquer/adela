@@ -2,7 +2,7 @@
   #publish_inventory{:class => "#{display_publish_form?(from_dashboard)}"}
     %span.h4 Paso 5
     .step-holder.col-md-10.pull-right
-      %label Publica tu inventario.
+      %label Publica tu catálogo.
       = form_tag(publish_catalog_organization_path(current_user.organization), method: "post", id: "requirements") do
         .checkbox
           %label.center-block

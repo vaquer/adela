@@ -12,7 +12,7 @@ feature User, 'publishes catalog:' do
     visit new_inventory_path
     tries_to_upload_the_file("inventory.csv")
     expect(page).to have_text("Paso 5")
-    expect(page).to have_text("Publica tu inventario")
+    expect(page).to have_text("Publica tu catálogo")
     expect(page).to have_css("#publish.disabled")
     expect(page).to have_link("Lo publicaré después, quiero avanzar")
   end
@@ -28,10 +28,10 @@ feature User, 'publishes catalog:' do
   scenario "can publish a catalog", :js => true do
     visit new_inventory_path
     tries_to_upload_the_file("inventory.csv")
-    click_on "Guardar inventario"
+    click_on "Guardar catálogo"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
+    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura y catálogo de datos al día."
     expect(page).to have_text "Última versión"
     expect(page).to have_text "Versión publicada"
     expect(page).to have_text @user.name
@@ -43,9 +43,9 @@ feature User, 'publishes catalog:' do
   scenario "can publish a catalog later", :js => true do
     visit new_inventory_path
     tries_to_upload_the_file("inventory.csv")
-    click_on "Guardar inventario"
+    click_on "Guardar catálogo"
     click_on "Lo publicaré después, quiero avanzar"
-    expect(page).to have_text "OJO: No has completado el último paso que es publicar tu inventario."
+    expect(page).to have_text "OJO: No has completado el último paso que es publicar tu catálogo."
   end
 
   def sees_data_requirements
@@ -65,7 +65,7 @@ feature User, 'publishes catalog:' do
 
   def tries_to_upload_the_file(file_name)
     attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
-    click_on("Subir inventario")
+    click_on("Subir catálogo")
   end
 
   def given_has_uploaded_an_inventory(days_ago)

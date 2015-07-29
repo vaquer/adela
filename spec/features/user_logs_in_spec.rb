@@ -19,7 +19,7 @@ feature User, 'logs in:' do
 
     expect(page).to have_text "Actividad reciente"
     expect(page).to have_text "Instituciones"
-    expect(page).to have_text "Programa de apertura"
+    expect(page).to have_text "Plan de apertura"
   end
 
   scenario "visits root page and sees log in link" do

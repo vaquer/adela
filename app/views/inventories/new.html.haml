@@ -4,7 +4,7 @@
 .container
   .steps-wrapper
     .section-heading
-      %span.inventory-icon.h4 Subir nueva version de inventario
+      %span.inventory-icon.h4 Subir nueva version de catálogo
     .inventory-step
       = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}"
       %span.h4 Paso 1
@@ -18,26 +18,26 @@
         %strong Llena completamente la plantilla con un set de datos cada fila,
         %br/
         %strong de acuerdo a como se explica en la
-        = link_to "ficha técnica del inventario de datos", ENV["INVENTORY_DETAILS"]
+        = link_to "ficha técnica del catálogo de datos", ENV["INVENTORY_DETAILS"]
     .inventory-step.inventory-last-step
       = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(@upload_intent)}"
       %span.h4 Paso 3
       .step-holder.col-md-10.pull-right
         = form_for(Inventory.new) do |f|
-          = f.label "Sube tu CSV con el inventario de datos."
+          = f.label "Sube tu CSV con el catálogo de datos."
           = f.file_field :csv_file
           %br/
           %button#upload_file.btn.button.disabled{:type => "submit"}
             %span.glyphicon.glyphicon-cloud-upload
-            Subir inventario
+            Subir catálogo
     - if @datasets.present? && @upload_intent.present?
       .inventory-preview
         = image_tag "checked_step.png", :class => "checked-step hidden"
         %span.h4 Paso 4
         .step-holder.col-md-10.pull-right
-          %label Valida tu inventario
+          %label Valida tu catálogo
       .step-holder
         = render "datasets_preview", :datasets => datasets_to_display(@datasets)
         - if @inventory.valid? && @inventory.csv_file.present? && @inventory.csv_structure_valid?
-          = link_to "Guardar inventario", "#", :class => "btn button inventory-action", :id => "save_inventory"
+          = link_to "Guardar catálogo", "#", :class => "btn button inventory-action", :id => "save_inventory"
     = render "inventories/publish_form", :from_dashboard => false

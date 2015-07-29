@@ -4,7 +4,7 @@
 .container
   .dashboard-wrapper
     .section-heading
-      %span.inventory-icon.h4 Cargar nuevo inventario
+      %span.inventory-icon.h4 Cargar nuevo catálogo
     .row
       .col-md-1
       .version-holder.col-md-5
@@ -25,7 +25,7 @@
               %span.label Recursos:
               = @organization.last_file_version.distributions_count
           - else
-            %em No tienes ningún inventario.
+            %em No tienes ningún catálogo.
         = link_to "Subir nueva versión", new_inventory_path(:new_version => true), :class => "btn button"
       .version-holder.col-md-5
         %span.catalog-icon.h5 Versión publicada
@@ -55,7 +55,7 @@
               Muy bien. La última versión está publicada.
         - else
           .version-data.last-catalog
-            %em No tienes ningún inventario publicado.
+            %em No tienes ningún catálogo publicado.
         .publish-form-holder.hidden
           = render "inventories/publish_form", :from_dashboard => true
       .col-md-1
@@ -66,6 +66,6 @@
       .col-md-1
     .legends.col-md-5.pull-right
       %span.published-legend
-        %small Inventario publicado
+        %small Catálogo publicado
     .pull-down
       = render "inventories/inventories_list"

@@ -23,18 +23,18 @@
       %span.h4 Paso 3
       .step-holder.col-md-10.pull-right
         = form_for(Inventory.new) do |f|
-          = f.label "Sube tu CSV con el inventario de datos."
+          = f.label "Sube tu CSV con el catálogo de datos."
           = f.file_field :csv_file
           %br/
           %button#upload_file.btn.btn-default.disabled{:type => "submit"}
             %span.glyphicon.glyphicon-cloud-upload
-            Subir inventario
+            Subir catálogo
   .col-md-8
     .col-md-10.inventory-preview
       = image_tag "checked_step.png", :class => "checked-step"
       %span.h4 Paso 4
       .step-holder.col-md-10.pull-right
-        %label Valida tu inventario
+        %label Valida tu catálogo
     .step-holder.col-md-10.inventory-step
       = render "datasets_preview", :datasets => datasets_to_display(@datasets)
 = render "inventories/publish_form", :from_dashboard => true

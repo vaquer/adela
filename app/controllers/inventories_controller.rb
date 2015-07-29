@@ -22,7 +22,7 @@ class InventoriesController < ApplicationController
     @inventory.author = current_user.name
 
     if @inventory.save
-      record_activity("update", "actualizó su inventario de datos.")
+      record_activity("update", "actualizó su catálogo de datos.")
     end
 
     @datasets = @inventory.datasets

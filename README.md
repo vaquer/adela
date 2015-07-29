@@ -17,8 +17,8 @@ El objetivo de ADELA por un lado es **simplificar el proceso de publicación en 
 
 Los administradores de datos abiertos pueden:
 
-1. Cargar sus inventarios de datos
-2. Definir su programa de apertura institucional
+1. Cargar sus catálogos de datos
+2. Definir su plan de apertura institucional
 3. Publicar en [datos.gob.mx](http://datos.gob.mx)
 
 ¿Tienes dudas? visita la [Wiki](https://github.com/mxabierto/adela/wiki)

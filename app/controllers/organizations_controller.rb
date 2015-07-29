@@ -9,7 +9,7 @@ class OrganizationsController < ApplicationController
     @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
     @opening_plans = @organization.opening_plans.by_month(@current_month.to_date)
     if current_organization.present? && @organization.current_inventory && !@organization.current_catalog
-      flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu inventario."
+      flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu catálogo."
     end
     respond_to do |format|
       format.html
@@ -22,12 +22,12 @@ class OrganizationsController < ApplicationController
       @catalog = current_organization.current_inventory
       @catalog.publish!
       record_activity("publish","publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos.")
-      redirect_to inventories_path, :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu programa de apertura e inventario de datos al día."
+      redirect_to inventories_path, :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura y catálogo de datos al día."
     end
   end
 
   def publish_later
-    redirect_to organization_path(current_organization), :alert => "OJO: No has completado el último paso que es publicar tu inventario."
+    redirect_to organization_path(current_organization), :alert => "OJO: No has completado el último paso que es publicar tu catálogo."
   end
 
   def catalog

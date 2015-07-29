@@ -4,8 +4,8 @@ es:
     organization: institucion
     users: usuarios
     user: usuario
-    inventories: inventarios
-    inventory: inventario
+    inventories: catalogos
+    inventory: catalogo
     create: crear
     profile: perfil
     sign_out: salir

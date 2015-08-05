@@ -170,3 +170,17 @@ es:
         state: "Estatal"
         municipal: "Municipal"
         autonomous: "Organismos Autónomos"
+  flash:
+    notice:
+      user:
+        create: "El usuario se creó exitosamente."
+        update: "Se ha actualizado el usuario exitosamente."
+        import: "Los usuarios se crearon exitosamente."
+        update_role: "Se han actualizado los permisos del usuario."
+        update_password: "Se ha actualizado la contraseña exitosamente."
+    alert:
+      user:
+        create: "Ocurrió un error al crear el usuario."
+        update: "Ocurrió un error al actualizar el usuario."
+        import: "Ocurrió un error al crear usuarios. Verificar archivo CSV."
+        update_password: "Ocurrió un error al actualizar la contraseña."

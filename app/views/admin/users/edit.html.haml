@@ -1,0 +1,13 @@
+.container
+  %ol.breadcrumb.breadcrumb-admin
+    %li= link_to 'Admin', admin_root_path
+    %li= link_to 'Usuarios', admin_users_path
+    %li.active Editar
+  .dashboard-wrapper
+    .section-heading
+      %span.h4
+        Editar usuario #{@user.name}
+    .row
+      .col-md-2
+      .col-md-8.topic-form-holder.data-controls
+        = render "admin/users/shared/form"

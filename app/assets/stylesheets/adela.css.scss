@@ -18,6 +18,12 @@ a.logo-text {
   }
 }
 
+.breadcrumb {
+  &.breadcrumb-admin {
+    margin-top: 2em;
+  }
+}
+
 .nav li a:hover {
   background-color: $black;
 }

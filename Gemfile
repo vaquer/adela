@@ -36,6 +36,7 @@ gem 'validate_url'
 gem 'newrelic_rpm'
 gem 'active_model_warnings'
 gem 'enum_help'
+gem 'faker'
 
 group :development, :test do
   gem 'spring'

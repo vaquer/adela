@@ -24,5 +24,5 @@
     .alert.alert-danger
       %span.danger
       Estás en ADELA como
-      %strong= "#{current_user.name} de #{current_organization.title.upcase}."
+      %strong= "#{current_user.name} #{"de #{current_organization.title}" if current_organization}."
       = link_to "Volver al administrador", admin_stop_acting_path, :method => :post, :class => "pull-right"

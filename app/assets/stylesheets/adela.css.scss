@@ -589,4 +589,7 @@ span.danger {
 .logo-thumbnail {
   width: 30px;
   height: 30px;
+  &.margin-right {
+    margin-right: 10px;
+  }
 }

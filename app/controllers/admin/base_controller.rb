@@ -6,11 +6,6 @@ class Admin::BaseController < ApplicationController
   before_action :set_admin_session
   before_action :check_admin_session
 
-  def organizations
-    authorize! :read, Organization
-    @organizations = Organization.includes(:users).title_sorted.paginate(:page => params[:page], :per_page => 30)
-  end
-
   private
 
   def set_admin_session

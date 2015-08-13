@@ -14,6 +14,24 @@ FactoryGirl.define do
 
   factory :organization do |f|
     f.title { Faker::Company.name }
+    f.description { Faker::Company.catch_phrase }
+    f.logo_url { Faker::Company.logo }
+
+    factory :federal_organization do |f|
+      f.gov_type 'federal'
+    end
+
+    factory :state_organization do |f|
+      f.gov_type 'state'
+    end
+
+    factory :municipal_organization do |f|
+      f.gov_type 'municipal'
+    end
+
+    factory :autonomous_organization do |f|
+      f.gov_type 'autonomous'
+    end
   end
 
   factory :inventory do |f|

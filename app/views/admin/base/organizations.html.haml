@@ -13,5 +13,5 @@
             %td
               %ul.list-unstyled
                 - org.users.each do |member|
-                  %li= link_to "Acceder como #{member.name}(#{member.email})", admin_acting_as_path(:user_id => member.id)
+                  %li= link_to "Acceder como #{member.name}(#{member.email})", acting_as_admin_user_path(member.id)
     = will_paginate @organizations

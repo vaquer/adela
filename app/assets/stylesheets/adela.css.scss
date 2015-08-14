@@ -18,6 +18,12 @@ a.logo-text {
   }
 }
 
+.breadcrumb {
+  &.breadcrumb-admin {
+    margin-top: 2em;
+  }
+}
+
 .nav li a:hover {
   background-color: $black;
 }
@@ -191,6 +197,13 @@ a.logo-text {
 
   a {
     color: $white;
+  }
+}
+
+.dropdown {
+  button.block {
+    display: block;
+    width: 100%;
   }
 }
 

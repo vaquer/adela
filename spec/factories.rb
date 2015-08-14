@@ -2,7 +2,7 @@
 FactoryGirl.define do
   factory :user do |f|
     f.sequence(:email) { |n| "user#{n}@example.com" }
-    f.name 'Rodrigo'
+    f.name { Faker::Name.name }
     f.password 'secretpassword'
     f.password_confirmation 'secretpassword'
     f.association :organization, :factory => :organization
@@ -10,14 +10,10 @@ FactoryGirl.define do
     factory :admin do
       after(:create) { |user| user.add_role(:admin) }
     end
-
-    factory :supervisor do
-      after(:create) { |user| user.add_role(:supervisor) }
-    end
   end
 
   factory :organization do |f|
-    f.title "Hacienda"
+    f.title { Faker::Company.name }
   end
 
   factory :inventory do |f|

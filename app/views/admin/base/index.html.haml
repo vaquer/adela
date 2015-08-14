@@ -1,20 +1,8 @@
 .container
-  - if can? :create, User
-    %h2 IMPORTAR USUARIOS
-    = form_tag(admin_create_users_path, :method => :post, multipart: true) do |f|
-      = label_tag "Archivo CSV"
-      %br/
-      %small
-        Asegúrate de que contenga las columnas:
-        %strong "nombre", "email", "organizacion"
-      = file_field_tag :csv_file
-      %br/
-      = submit_tag "Importar usuarios", :class => "btn button"
-    %hr/
-  - if can? :read, User
-    %h2 USUARIOS REGISTRADOS
-    = link_to "Ver usuarios registrados", admin_users_path, :class => "btn button"
-    %hr/
-  - if can? :read, Organization
-    %h2 ORGANIZACIONES
-    = link_to "Ver organizaciones", admin_organizations_path, :class => "btn button"
+  %ol.breadcrumb.breadcrumb-admin
+    %li.active= link_to 'Admin', admin_root_path
+  .navbar
+    .container-fluid
+      .navbar-header
+        = link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrar Usuarios'.html_safe, admin_users_path, :class => "btn button navbar-btn"
+        = link_to '<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Administrar Organizaciones'.html_safe, admin_organizations_path, :class => "btn button navbar-btn"

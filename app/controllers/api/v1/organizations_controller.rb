@@ -13,6 +13,12 @@ module Api
         render :json => @organizations, serializer: OrganizationAPISerializer, root: false
       end
 
+      def gov_types
+        @gov_types = Organization.gov_types_i18n.map { |key, value| { id: key, value: value } }
+        @gov_types = @gov_types.paginate(:page => params[:page])
+        render :json => @gov_types, serializer: GovTypesSerializer, root: false
+      end
+
       private
 
       def organizations_array

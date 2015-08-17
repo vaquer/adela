@@ -10,6 +10,11 @@ feature "organizations api management" do
     expect(response).to match_response_schema("organizations")
   end
 
+  it "matches the gov_type json schema" do
+    get "/api/v1/gov_types"
+    expect(response).to match_response_schema("gov_types")
+  end
+
   it "gets the organizations with federal gov_type" do
     @organization = FactoryGirl.create(:organization, title: "sep", gov_type: "federal")
     get "/api/v1/organizations?gov_type=federal"

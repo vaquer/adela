@@ -44,7 +44,6 @@ Adela::Application.routes.draw do
 
   namespace :admin do
     get '/', to: 'base#index', as: 'root'
-    get '/organizations', to: 'base#organizations', as: 'organizations'
 
     get 'import_users', to: 'users#import'
     post 'create_users', to: 'users#create_users'
@@ -58,5 +57,7 @@ Adela::Application.routes.draw do
         put 'update_password'
       end
     end
+
+    resources :organizations, except: [:show, :destroy]
   end
 end

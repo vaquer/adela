@@ -123,6 +123,7 @@ es:
         password_confirmation: "Confirmación de contraseña"
         current_password: "Contraseña actual"
       organization:
+        title: "Nombre"
         description: "Descripción"
         logo_url: "URL Logo"
         gov_type: "Tipo de Gobierno"
@@ -178,9 +179,15 @@ es:
         import: "Los usuarios se crearon exitosamente."
         update_role: "Se han actualizado los permisos del usuario."
         update_password: "Se ha actualizado la contraseña exitosamente."
+      organization:
+        create: "La organización se creó exitosamente."
+        update: "Se ha actualizado la organización exitosamente."
     alert:
       user:
         create: "Ocurrió un error al crear el usuario."
         update: "Ocurrió un error al actualizar el usuario."
         import: "Ocurrió un error al crear usuarios. Verificar archivo CSV."
         update_password: "Ocurrió un error al actualizar la contraseña."
+      organizaion:
+        create: "Ocurrió un error al crear la organización."
+        update: "Ocurrió un error al actualizar la organización."

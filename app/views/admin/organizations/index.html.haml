@@ -1,0 +1,39 @@
+.container
+  %ol.breadcrumb.breadcrumb-admin
+    %li= link_to 'Admin', admin_root_path
+    %li.active= link_to 'Organizaciones', admin_organizations_path
+  .navbar
+    .container-fluid
+      .navbar-header
+        = link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Organización'.html_safe, new_admin_organization_path, :class => "btn button navbar-btn"
+  %table.table.table-condensed.table-bordered.table-striped
+    %thead
+      %tr
+        %th ORGANIZACIÓN
+        %th TIPO DE GOBIERNO
+        %th FECHA DE CREACIÓN
+        %th ÚLTIMA ACTUALIZACIÓN
+        %th ACCIONES
+    %tbody
+      - @organizations.each do |organization|
+        %tr
+          %td
+            = image_tag organization.logo_url, class: 'logo-thumbnail margin-right'
+            = organization.title
+          %td
+            .dropdown
+              %button.btn.btn-default.block.dropdown-toggle{:id => "organization_#{organization.id}_gov_type", :type => 'button', 'data-toggle' => 'dropdown'}
+                = organization.gov_type_i18n
+                %span.caret
+              %ul.dropdown-menu.dropdown-menu-right
+                - Organization.gov_types_i18n.each do |key, value|
+                  %li= link_to "Cambiar a #{value}", admin_organization_path(organization, :organization => { :gov_type => key }), :method => :put unless organization.gov_type == key
+          %td= I18n.l(organization.created_at, format: :short)
+          %td= I18n.l(organization.updated_at, format: :short)
+          %td
+            .dropdown
+              %button.btn.btn-default.block.dropdown-toggle{:id => "organization_#{organization.id}", :type => 'button', 'data-toggle' => 'dropdown'}
+                %span.glyphicon.glyphicon-chevron-down{'aria-hidden' =>'true'}
+              %ul.dropdown-menu.dropdown-menu-right
+                %li= link_to 'Editar', edit_admin_organization_path(organization)
+  = will_paginate @organizations

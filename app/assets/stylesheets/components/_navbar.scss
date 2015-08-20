@@ -1,0 +1,38 @@
+// Navbar default colors
+$navbar_background_color: $grey_800;
+$navbar_default_links_color: #fff;
+$navbar_active_links_color: $cartoon_green;
+
+// Paddings
+$navbar_padding_top: 10px;
+$navbar_padding_bottom: 10px;
+
+// Margins
+$navbar_margin_bottom: 0;
+
+
+nav {
+  padding-top: $navbar_padding_top;
+  padding-bottom: $navbar_padding_bottom;
+
+  margin-bottom: $navbar_margin_bottom !important;
+  border: 0 !important;
+
+  span {
+    color: $navbar_default_links_color;
+  }
+
+  &.navbar.navbar-default {
+    background-color: $navbar_background_color;
+  }
+
+}
+
+#navbar > ul > li > a {
+  // background-color: $navbar_background_color;
+  color: $navbar_default_links_color;
+
+  &:hover {
+    color: $navbar_active_links_color;
+  }
+}

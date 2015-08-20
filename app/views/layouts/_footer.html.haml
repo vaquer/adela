@@ -1,13 +1,50 @@
-.container
-  .footer
-    %span Contactos
-    %br/
-    - if @organization.present?
-      - @organization.users.each do |contact|
-        .contact.col-md-6
-          %span= contact.name
-          %br/
-          %span= contact.email
-    - else
-      .contact
-        %span adela@datos.gob.mx
+#footer
+  .container
+    .row.info__links
+      .col-xs-12.col-sm-2
+        %p.header Datos
+        %ul
+          %li Cultura
+          %li Salud
+          %li Geograf&iacute;a
+          %li Seguridad
+          %li Medio Ambiente
+          %li Educaci&oacute;n
+          %li Turismo
+      .col-xs-12.col-sm-2
+        %p.header Herramientas
+        %ul
+          %li Apps Web
+          %li Apps M&oacute;viles
+          %li Interactivas
+      .col-xs-12.col-sm-2
+        %p.header Impacto
+        %ul
+          %li Casos de uso
+          %li Noticias
+      .col-xs-12.col-sm-2
+        %p.header Guía
+        %ul
+          %li Pasos y recursos
+          %li Tablero de avances
+      .col-xs-12.col-sm-2
+        %p.header Retos
+        %p.header Consejo Consultivo
+        %p.header Red México Abierto
+      .col-xs-12.col-sm-2
+        %p.header Acerca
+        %p.header Ayuda
+        %ul
+          %li Preguntas Frecuentes
+          %li Foro
+
+      .col-xs-12.col-sm-2
+    .row
+      .col-xs-12
+        %p
+          2015 | Creado por
+          = link_to 'Cívica Digital', '#'
+        %p
+          Codeando México A.C. es una organización sin fines de lucro que busca
+          promover la solución de problemas ciudadanos en México usando tecnología.
+        %p Fundada en 2013 por los geeks de Cívica Digital.

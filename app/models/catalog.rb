@@ -1,5 +1,5 @@
 # encoding: utf-8
-class Inventory < ActiveRecord::Base
+class Catalog < ActiveRecord::Base
   String.include CoreExtensions::String::Transcoding
 
   mount_uploader :csv_file, FileUploader
@@ -26,7 +26,7 @@ class Inventory < ActiveRecord::Base
 
   def csv_datasets
     unless datasets.present?
-      errors[:base] << I18n.t("activerecord.errors.models.inventory.attributes.datasets.blank")
+      errors[:base] << I18n.t("activerecord.errors.models.catalog.attributes.datasets.blank")
     end
   end
 
@@ -60,7 +60,7 @@ class Inventory < ActiveRecord::Base
 
   def compliant_datasets
     unless compliant_datasets?
-      warnings[:datasets] << I18n.t("activerecord.warnings.models.inventory.attributes.datasets.compliant")
+      warnings[:datasets] << I18n.t("activerecord.warnings.models.catalog.attributes.datasets.compliant")
     end
   end
 

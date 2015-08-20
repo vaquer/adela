@@ -19,7 +19,7 @@ Adela::Application.routes.draw do
       get "search", :on => :collection
     end
 
-    resources :inventories do
+    resources :catalogs do
       collection do
         get "publish"
       end

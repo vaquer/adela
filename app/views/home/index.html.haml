@@ -71,8 +71,8 @@
               %td= link_to organization.title, organization_path(organization)
               %td= last_activity(organization)
               %td
-                - if organization.current_inventory.present?
-                  = organization.current_inventory.datasets_count
+                - if organization.unpublished_catalog.present?
+                  = organization.unpublished_catalog.datasets_count
                 - else
                   Ninguno
               %td

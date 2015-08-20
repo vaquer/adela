@@ -1,17 +1,17 @@
 = render "layouts/flash_messages", :flash => flash
-- if @inventory.present?
-  = render "layouts/error_messages", :object => @inventory
+- if @catalog.present?
+  = render "layouts/error_messages", :object => @catalog
 .container
   .steps-wrapper
     .section-heading
       %span.inventory-icon.h4 Subir nueva version de catálogo
-    .inventory-step
+    .catalog-step
       = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}"
       %span.h4 Paso 1
       .step-holder.col-md-10.pull-right
         = image_tag 'file.png', :class => "template-file-icon"
         = link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download" ) + " Descargar plantilla en blanco"), ENV["INVENTORY_TEMPLATE"], :class => "btn button"
-    .inventory-step
+    .catalog-step
       = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}"
       %span.h4 Paso 2
       .step-holder.col-md-10.pull-right
@@ -19,11 +19,11 @@
         %br/
         %strong de acuerdo a como se explica en la
         = link_to "ficha técnica del catálogo de datos", ENV["INVENTORY_DETAILS"]
-    .inventory-step.inventory-last-step
+    .catalog-step.catalog-last-step
       = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(@upload_intent)}"
       %span.h4 Paso 3
       .step-holder.col-md-10.pull-right
-        = form_for(Inventory.new) do |f|
+        = form_for(Catalog.new) do |f|
           = f.label "Sube tu CSV con el catálogo de datos."
           = f.file_field :csv_file
           %br/
@@ -31,13 +31,13 @@
             %span.glyphicon.glyphicon-cloud-upload
             Subir catálogo
     - if @datasets.present? && @upload_intent.present?
-      .inventory-preview
+      .catalog-preview
         = image_tag "checked_step.png", :class => "checked-step hidden"
         %span.h4 Paso 4
         .step-holder.col-md-10.pull-right
           %label Valida tu catálogo
       .step-holder
         = render "datasets_preview", :datasets => datasets_to_display(@datasets)
-        - if @inventory.valid? && @inventory.csv_file.present? && @inventory.csv_structure_valid?
-          = link_to "Guardar catálogo", "#", :class => "btn button inventory-action", :id => "save_inventory"
-    = render "inventories/publish_form", :from_dashboard => false
+        - if @catalog.valid? && @catalog.csv_file.present? && @catalog.csv_structure_valid?
+          = link_to "Guardar catálogo", "#", :class => "btn button catalog-action", :id => "save_catalog"
+    = render "catalogs/publish_form", :from_dashboard => false

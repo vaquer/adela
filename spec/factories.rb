@@ -34,12 +34,12 @@ FactoryGirl.define do
     end
   end
 
-  factory :inventory do |f|
-    f.csv_file File.new("#{Rails.root}/spec/fixtures/files/inventory.csv")
+  factory :catalog do |f|
+    f.csv_file File.new("#{Rails.root}/spec/fixtures/files/catalog.csv")
     f.association :organization, :factory => :organization
   end
 
-  factory :published_inventory, :parent => :inventory do |f|
+  factory :published_catalog, :parent => :catalog do |f|
     f.published true
     f.publish_date DateTime.now
   end

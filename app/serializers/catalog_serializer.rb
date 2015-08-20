@@ -1,4 +1,4 @@
-class InventorySerializer < ActiveModel::Serializer
+class CatalogSerializer < ActiveModel::Serializer
   has_many :datasets, root: :dataset, serializer: DatasetSerializer
 
   def attributes

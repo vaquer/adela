@@ -144,7 +144,7 @@ a.logo-text {
   }
 
   .published-legend {
-    background: image-url("mini-inventory.png") left no-repeat;
+    background: image-url("mini-catalog.png") left no-repeat;
   }
 
   span {
@@ -385,7 +385,7 @@ span.danger {
   }
 }
 
-// Inventories
+// Catalogs
 
 .version-icon {
   background: image-url("clock.png") left no-repeat;
@@ -435,20 +435,20 @@ span.danger {
   padding: 5px 65px;
 }
 
-.inventory-step {
+.catalog-step {
   border-bottom: 1px solid $gray1;
   min-height: 60px;
   margin-bottom: 10px;
   padding: 5px;
 }
 
-.inventory-last-step {
+.catalog-last-step {
   border: none;
   height: 130px;
   margin-bottom: 0;
 }
 
-.inventory-preview {
+.catalog-preview {
   border-top: 1px solid $gray1;
   padding: 15px 5px;
 }
@@ -463,7 +463,7 @@ span.danger {
   overflow: scroll;
 }
 
-.inventory-action {
+.catalog-action {
   margin-top: 15px;
   margin-bottom: 15px;
 }

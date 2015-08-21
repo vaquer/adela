@@ -13,40 +13,49 @@ $landing_default_color: #FFFFFF;
 
 #intro {
   z-index: -1;
-  // .image {
+  width: $landing_container_width;
+  height: $landing_container_height;
+  background-image: $landing_image_background;
+  background-size: cover;
+  color: $landing_default_color;
+  // margin-bottom: 70px;
+  margin-top: -$main_top_and_bottom_margin;
+
+  .overlay {
+    position: absolute;
     width: $landing_container_width;
     height: $landing_container_height;
-    background-image: $landing_image_background;
-    background-size: cover;
-    color: $landing_default_color;
-    // margin-bottom: 70px;
-    margin-top: -$main_top_and_bottom_margin;
-
-    .overlay {
-      position: absolute;
-      width: $landing_container_width;
-      height: $landing_container_height;
-      background: $grey_800;
-      opacity: 0.7;
-    }
-  // }
+    background: $grey_800;
+    opacity: 0.7;
+  }
 
   .content {
-    // z-index: 100;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-  //   color: #fff;
     width: 480px;
-    // margin-top: $main_top_and_bottom_margin ;
     padding-top: 150px;
-  //
-  //   // .actions {
-  //   //   margin-top: 30px;
-  //   //   a {
-  //   //     margin-left: 30px;
-  //   //     margin-right: 30px;
-  //   //   }
-  //   // }
+  }
+
+  p.topic {
+    @extend .uppercase;
+    font-size: 18px;
+  }
+
+  hr {
+    margin-top: 0;
+  }
+
+  .recent_activity {
+    padding: 0;
+    list-style-type: none;
+
+
+    li {
+      background-color: $grey_800;
+      padding: 10px 10px 10px 20px;
+      &.odd { opacity: 0.6; }
+      &.even { opacity: 0.8; }
+    }
   }
 }

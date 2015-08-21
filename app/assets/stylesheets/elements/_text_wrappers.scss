@@ -1,19 +1,19 @@
 @mixin heading($size, $color, $margin-bottom: 10px) {
   color: $color;
   font-size: $size;
-  font-size: bold;
+  font-size: light;
   margin-bottom: $margin-bottom;
 }
 
 // Colors
-// $default_text_color: $medium_grey;
+$default_text_color: $grey_800;
 
 /* Heading */
-// h1 { @include heading(32px, $cartoon_green); }
-// h3 { @include heading(22px, $cartoon_green); }
-// h5 { @include heading(18px, $medium_grey); }
+h1 { @include heading(32px, $cartoon_green); }
+h3 { @include heading(22px, $cartoon_green); }
+h5 { @include heading(18px, $cartoon_green); }
 
 /* Paragraph, spans and links */
-// p, span, a, label {
-//   color: $default_text_color;
-// }
+p, span, a, label {
+  color: $default_text_color;
+}

@@ -1,3 +1,29 @@
 .form__container {
   label { font-size: 16px; }
 }
+
+// let's override some of the bootstrap classes
+.control_override {
+  border-radius: 0;
+}
+
+.form-control {
+  @extend .control_override;
+  padding: 10px;
+
+  // &:focus { border-color: $cartoon_green; }
+}
+
+.btn {
+  @extend .control_override;
+  padding: 10px;
+  border: 0;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: $cartoon_green;
+  &:hover {
+    background-color: $cartoon_green;
+  }
+}

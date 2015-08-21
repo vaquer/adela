@@ -5,7 +5,7 @@ $landing_image_background: url('/assets/adelitas.gif');
 
 // Container
 $landing_container_width: 100%;
-$landing_container_height: 550px;
+$landing_container_height: 600px;
 $main_top_and_bottom_margin: 100px;
 
 // Colors
@@ -18,8 +18,9 @@ $landing_default_color: #FFFFFF;
   background-image: $landing_image_background;
   background-size: cover;
   color: $landing_default_color;
-  // margin-bottom: 70px;
   margin-top: -$main_top_and_bottom_margin;
+
+  h5 { @include heading(18px, $landing_default_color, 50px); }
 
   .overlay {
     position: absolute;
@@ -37,9 +38,14 @@ $landing_default_color: #FFFFFF;
     padding-top: 150px;
   }
 
+  .actions {
+    margin-bottom: 70px;
+  }
+
   p.topic {
     @extend .uppercase;
-    font-size: 18px;
+    color: $landing_default_color;
+    font-size: 16px;
   }
 
   hr {

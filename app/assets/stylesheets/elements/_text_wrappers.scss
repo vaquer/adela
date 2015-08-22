@@ -14,6 +14,6 @@ h3 { @include heading(22px, $cartoon_green); }
 h5 { @include heading(18px, $cartoon_green); }
 
 /* Paragraph, spans and links */
-p, span, a, label {
-  color: $default_text_color;
+p, span {
+  color: $grey_800;
 }

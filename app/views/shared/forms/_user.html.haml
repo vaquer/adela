@@ -1,0 +1,6 @@
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => ""}) do |f|
+  .form-group
+    = f.email_field :email, :autofocus => true, :placeholder => "Correo electrónico", class: 'form-control'
+    = f.password_field :password, :placeholder => "Contraseña", class: 'form-control'
+  .form-group
+    %div= f.submit "ENTRAR", :class => "btn btn-primary btn-block"

@@ -11,6 +11,10 @@
   @extend .control_override;
   padding: 10px;
 
+  &.inline {
+    display: inline-block;
+    width: 500px;
+  }
   // &:focus { border-color: $cartoon_green; }
 }
 

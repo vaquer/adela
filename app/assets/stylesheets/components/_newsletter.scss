@@ -1,15 +1,8 @@
 .newsletter {
-  .heading {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    p { margin: 30px; }
-  }
-
+  background-color: $grey_150;
+  padding: 30px;
   .content {
-    input {
-      margin-bottom: 15px;
-      height: 50px;
-    }
+    margin: 0 auto;
+    width: 80%;
   }
 }

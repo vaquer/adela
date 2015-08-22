@@ -2,10 +2,6 @@
   .row
     .col-md-4
     .user-form.col-md-4
-      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => ""}) do |f|
-        %h2.user-form-heading ADELA
-        = f.email_field :email, :autofocus => true, :placeholder => "Correo electrónico"
-        = f.password_field :password, :placeholder => "Contraseña"
-        %div= f.submit "ENTRAR", :class => "btn button btn-block"
-        = render "devise/shared/links"
+      %h2 Adela
+      = render 'shared/forms/user', resource: resource, resource_name: resource_name
     .col-md-4

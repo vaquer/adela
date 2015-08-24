@@ -20,3 +20,10 @@
 @import "components/landing";
 @import "components/forms";
 @import "components/newsletter";
+
+// Cards
+@import "components/cards";
+
+body {
+  background-color: $grey_100;
+}

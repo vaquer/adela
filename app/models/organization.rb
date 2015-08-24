@@ -8,6 +8,8 @@ class Organization < ActiveRecord::Base
   has_many :activity_logs
   has_many :opening_plans, dependent: :destroy
 
+  has_one :inventory
+
   scope :with_catalog, -> { joins(:catalogs).where("catalogs.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }
   scope :federal, -> { where("gov_type = ?", Organization.gov_types[:federal]) }

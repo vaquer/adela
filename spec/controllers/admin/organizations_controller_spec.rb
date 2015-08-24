@@ -37,7 +37,7 @@ describe Admin::OrganizationsController do
 
   describe 'POST create' do
     before :each do
-      @attributes = FactoryGirl.attributes_for(:federal_organization)
+      @attributes = FactoryGirl.attributes_for(:organization, :federal)
       post :create, organization: @attributes
     end
 
@@ -72,7 +72,7 @@ describe Admin::OrganizationsController do
   describe 'PATCH update' do
     before :each do
       @organization = FactoryGirl.create(:organization)
-      @attributes = FactoryGirl.attributes_for(:federal_organization)
+      @attributes = FactoryGirl.attributes_for(:organization, :federal)
       @organization.reload
 
       patch :update, id: @organization.id, organization: @attributes

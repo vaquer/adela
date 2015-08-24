@@ -38,6 +38,7 @@ gem 'active_model_warnings'
 gem 'enum_help'
 gem 'faker'
 gem 'toastr-rails'
+gem 'gretel'
 
 group :development, :test do
   gem 'spring'

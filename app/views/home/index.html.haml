@@ -1,10 +1,9 @@
 = render "layouts/flash_messages", :flash => flash
 #intro
-  -# .image
   .overlay
   .content
     .row.col-xs-12.subtitle
-      %h5
+      %h3.bright
         Con la Administradora de la Apertura, planea, publica, perfecciona
         y promueve datos abiertos.
 
@@ -13,13 +12,16 @@
       .col-xs-12.col-md-6
         %p.topic Actividad Reciente
         %hr
-        %ul.recent_activity
-          %li.odd Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          %li.even Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          %li.odd Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          %li.even Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          %li.odd Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          %li.even Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        - if @logs.any?
+          %ul.recent_activity
+            - @logs.first_block.each_with_index do |activity, index|
+              -# Show with different colors, to be moved to a helper
+              - if index.even?
+                %li.even "#{activity.organization.title} #{activity.description}"
+              - else
+                %li.odd "#{activity.organization.title} #{activity.description}"
+        - else
+          %p.bright No hay actividad reciente.
 
       .col-xs-12.col-md-6
         %p.topic Ingresar

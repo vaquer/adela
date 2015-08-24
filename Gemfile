@@ -37,6 +37,7 @@ gem 'newrelic_rpm'
 gem 'active_model_warnings'
 gem 'enum_help'
 gem 'faker'
+gem 'toastr-rails'
 
 group :development, :test do
   gem 'spring'

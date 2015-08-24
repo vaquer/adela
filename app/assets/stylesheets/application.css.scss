@@ -1,6 +1,7 @@
 /*
- *= require_self
- */
+  *= require toastr
+  *= require_self
+*/
 
  @import "bootstrap";
  @import "jquery.ui.core";
@@ -26,4 +27,8 @@
 
 body {
   background-color: $grey_100;
+}
+
+.toast-top-right {
+  top: 90px;
 }

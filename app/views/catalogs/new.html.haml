@@ -21,6 +21,31 @@
       El plan de apertura contiene el calendario de publicaci&oacute;n anual
       de los datos abiertos de la instituci&oacute;n
 
+  .card
+    %h3.title Planea
+    %h5.subtitle Inventario de datos
+    %ul.list
+      %li.item
+        %span.index 3
+        %span Sube el inventario de datos
+    %p Selecciona el archivo
+    %form
+      -# Needs hacks and tricks, to be done at a later time
+      .form-group
+        %input{ type: 'file' }
+      .form-group
+        %textarea.form-control{ placeholder: 'Comentarios', rows: '8' }
+      .form-group
+        %button.btn.btn-primary{ type: 'submit' } Enviar
+      -# .form-group
+      -#   .col-xs-12.col-md-10
+      -#     %input.form-control
+      -#   .col-xs-12.col-md-2
+      -#     %button.btn.btn-primary Explorar
+
+
+
+= render 'shared/components/newsletter'
 
 
 -# - if @inventory.present?

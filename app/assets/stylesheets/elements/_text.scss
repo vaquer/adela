@@ -26,3 +26,13 @@ h5 { @include heading-5(); }
 p, span {
   @include text__decorator($grey_200);
 }
+
+/* Text helpers */
+
+.bright {
+  color: #fff;
+}
+
+.dark {
+  color: $grey_800;
+}

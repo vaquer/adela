@@ -1,5 +1,9 @@
 - if current_user.has_role? :admin
   %li= link_to "Administrador", admin_root_path
 - if current_organization
+  %li= link_to "Planea", '#'
+  %li= link_to "Publica", '#'
+  %li= link_to "Perfecciona", '#'
+  %li= link_to "Promueve", '#'
   %li= link_to "Mi organización", organization_path(current_organization)
-%li= link_to "Cerrar sesión", destroy_user_session_path, method: :delete
+  %li= link_to "Cerrar sesión", destroy_user_session_path, method: :delete

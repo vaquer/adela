@@ -23,7 +23,7 @@ h3 { @include heading-3(); }
 h5 { @include heading-5(); }
 
 /* Paragraph, spans and links */
-p, span {
+p, span, label {
   @include text__decorator($grey_200);
 }
 
@@ -31,19 +31,11 @@ p, span {
  * If some of the next classes is present '!important', override everything.
  */
 
-.bright {
-  color: #fff !important;
-}
+// Colors
+.bright { color: #fff !important; }
+.dark { color: $grey_800 !important; }
+.primary { color: $cartoon_green !important; }
+.danger { color: $red_800 !important; }
 
-.dark {
-  color: $grey_800 !important;
-}
-
-.primary {
-  color: $cartoon_green !important;
-}
-
-// add a little boldness
-.boldish {
-  font-weight: 400; // normally 300;
-}
+// Weights
+.boldish { font-weight: 400 !important; } // normally 300;

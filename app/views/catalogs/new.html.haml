@@ -12,14 +12,14 @@
       %span.primary.boldish.uppercase Ago 25
     %ul.list
       %li.item
-        %span.index 1
+        .index 1
         %span Descarga la plantilla del inventario &nbsp;&nbsp;
         %a.btn.btn-primary Descargar
       %li.item
-        %span.index 2
+        .index 2
         %span Llena la plantilla con informaci&oacute;n
       %li.item
-        %span.index 3
+        .index 3
         %span Sube el inventario &nbsp;&nbsp;
         %a.btn.btn-primary Subir
     %h5.subtitle
@@ -63,14 +63,14 @@
       %span.primary.boldish.uppercase Ago 25
     %ul.list
       %li.item
-        %span.index 1
+        .index 1
         %span Descarga la plantilla del inventario &nbsp;&nbsp;
         %a.btn.btn-primary Descargar
       %li.item
-        %span.index 2
+        .index 2
         %span Llena la plantilla con informaci&oacute;n
       %li.item
-        %span.index 3
+        .index 3
         %span Sube el inventario &nbsp;&nbsp;
         %a.btn.btn-primary Subir
     %h5.subtitle
@@ -87,24 +87,45 @@
     %h5.subtitle Inventario de datos
     %ul.list
       %li.item
-        %span.index 3
+        .index 3
         %span Sube el inventario de datos
-    %p Selecciona el archivo
     %form
       -# Needs hacks and tricks, to be done at a later time
       .form-group
-        %input{ type: 'file' }
+        %label.block Selecciona el archivo *
+        %input.inline{ type: 'file' }
+        %span.danger El archivo seleccionado no es v&aacute;lido.
+      .form-group
+        %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
+        %input.inline{ type: 'file' }
       .form-group
         %textarea.form-control{ placeholder: 'Comentarios', rows: '8' }
       .form-group
-        %button.btn.btn-primary{ type: 'submit' } Enviar
-      -# .form-group
-      -#   .col-xs-12.col-md-10
-      -#     %input.form-control
-      -#   .col-xs-12.col-md-2
-      -#     %button.btn.btn-primary Explorar
+        %button.btn.btn-primary{ type: 'submit' } Subir inventario
+        %span.primary &nbsp;&nbsp;&nbsp;&nbsp;Archivo enviado
+      %p * Campos obligatorios
 
+    -# Card inside card, with grey background
+    .card.padding-top.bg--grey
+      %p Se realizar&aacute; la siguiente actividad
+      %p.primary.boldish Publicaci&oacute;n del inventario institucional de Datos de CONAGUA
+      %button.btn.btn-primary Aceptar
 
+    -# List of observations
+    %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
+    %ul.list__warnings
+      %li.item
+        .index Rengl&oacute;n 3
+        %span La fecha estimada de publicaci&oacute;n no est&aacute; en el formato AAAA-MM
+      %li.item
+        .index Rengl&oacute;n 5
+        %span La fecha estimada de publicaci&oacute;n no est&aacute; en el formato AAAA-MM
+      %li.item
+        .index Rengl&oacute;n 6
+        %span La fecha estimada de publicaci&oacute;n no est&aacute; en el formato AAAA-MM
+      %li.item
+        .index Rengl&oacute;n 10
+        %span La fecha estimada de publicaci&oacute;n no est&aacute; en el formato AAAA-MM
 
 = render 'shared/components/newsletter'
 

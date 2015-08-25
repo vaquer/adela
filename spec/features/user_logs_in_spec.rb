@@ -7,7 +7,7 @@ feature User, 'logs in:' do
   end
 
   scenario "fails to access a protected page" do
-    visit new_inventory_path
+    visit new_catalog_path
     sees_error_message "Necesita ingresar o registrarse para continuar."
   end
 

@@ -9,6 +9,8 @@ Adela::Application.routes.draw do
 
     get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
     get "/:slug/plan" => "organizations#opening_plan", :as => "organization_opening_plan"
+
+    get "/maqueta/" => "home#maqueta"
     root :to => "home#index"
 
 
@@ -19,7 +21,7 @@ Adela::Application.routes.draw do
       get "search", :on => :collection
     end
 
-    resources :inventories do
+    resources :catalogs do
       collection do
         get "publish"
       end

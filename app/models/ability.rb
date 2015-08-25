@@ -6,6 +6,6 @@ class Ability
       can :manage, User
       can :manage, Organization
     end
-    can :manage, Inventory if user.organization
+    can :manage, Catalog if user.organization
   end
 end

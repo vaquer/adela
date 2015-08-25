@@ -9,4 +9,7 @@ class HomeController < ApplicationController
     @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
     @opening_plans = OpeningPlan.by_month(@current_month.to_date)
   end
+
+  def maqueta
+  end
 end

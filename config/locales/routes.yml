@@ -4,8 +4,8 @@ es:
     organization: institucion
     users: usuarios
     user: usuario
-    inventories: catalogos
-    inventory: catalogo
+    catalogs: catalogos
+    catalog: catalogo
     create: crear
     profile: perfil
     sign_out: salir
@@ -20,8 +20,8 @@ en:
     organization: organization
     users: users
     user: user
-    inventories: inventories
-    inventory: inventory
+    catalogs: catalogs
+    catalog: catalog
     create: create
     profile: profile
     sign_out: sign_out

@@ -67,12 +67,12 @@ es:
       access_denied: "No tienes permisos para realizar esta acción."
   activerecord:
     models:
-      inventory: "catálogo"
+      catalog: "catálogo"
       organization: "organización"
       user: "usuario"
     errors:
       models:
-        inventory:
+        catalog:
           attributes:
             csv_file:
               blank_file: "El archivo se encuentra vacío."
@@ -109,12 +109,12 @@ es:
               blank: "no puede estar en blanco."
     warnings:
       models:
-        inventory:
+        catalog:
           attributes:
             datasets:
               compliant: "contiene campos que no cumplen con los estándares de datos."
     attributes:
-      inventory:
+      catalog:
         csv_file: "Archivo"
       user:
         name: "Nombre"

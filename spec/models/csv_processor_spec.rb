@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CsvProcessor do
   describe "#process" do
     subject do
-      CsvProcessor.new(FactoryGirl.create(:inventory).csv_file, FactoryGirl.create(:organization))
+      CsvProcessor.new(FactoryGirl.create(:catalog).csv_file, FactoryGirl.create(:organization))
     end
 
     it "gets the datasets from the file" do

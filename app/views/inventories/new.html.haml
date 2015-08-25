@@ -1,11 +1,15 @@
 = render 'layouts/flash_messages', :flash => flash
 
 - breadcrumb :planning
-  
+
 .container
+  -# Card: List stuff / 'Planea'
   .card
     %h3.title Planea
-    %h5.subtitle Inventario de datos
+    %h5.subtitle
+      %span Inventario de datos
+      |
+      %span.primary.boldish.uppercase Ago 25
     %ul.list
       %li.item
         %span.index 1
@@ -18,11 +22,66 @@
         %span.index 3
         %span Sube el inventario &nbsp;&nbsp;
         %a.btn.btn-primary Subir
-    %h5.subtitle Plan de apertura
+    %h5.subtitle
+      %span Plan de apertura
+      |
+      %span.primary.boldish.uppercase Sep 25
     %p
       El plan de apertura contiene el calendario de publicaci&oacute;n anual
       de los datos abiertos de la instituci&oacute;n
 
+  -# Card: Info / 'Publica', 'Perfecciona', 'Promueve'
+  -# Parece haber una discrepancia entre los colores de los headings
+  -# Todas las etapas deberían tener el mismo color 'verde pastel'.
+  -# En caso que se requiera forzosamente agregar el la clase '.dark'.
+  -# Ej. '%h3.title.dark Publica'
+  .card
+    %h3.title Publica
+    %h5.subtitle Cat&aacute;logo de datos institucional
+    %p
+      Publica el Cat&aacute;logo de datos Institucional en datos.gob.mx
+
+  .card
+    -# %h3.title.dark Perfecciona
+    %h3.title Perfecciona
+    %h5.subtitle
+      Aqu&iacute; encontrar&aacute;s las recomendaciones para mejorar en la
+      implementaci&oacute;n de Datos Abiertos
+
+  .card
+    -# %h3.title.dark Promueve
+    %h3.title Promueve
+    %h5.subtitle
+      Cat&aacutelogo de datos institucional
+
+  -# Card: Upload files
+  .card
+    %h3.title Planea
+    %h5.subtitle
+      %span Inventario de datos
+      |
+      %span.primary.boldish.uppercase Ago 25
+    %ul.list
+      %li.item
+        %span.index 1
+        %span Descarga la plantilla del inventario &nbsp;&nbsp;
+        %a.btn.btn-primary Descargar
+      %li.item
+        %span.index 2
+        %span Llena la plantilla con informaci&oacute;n
+      %li.item
+        %span.index 3
+        %span Sube el inventario &nbsp;&nbsp;
+        %a.btn.btn-primary Subir
+    %h5.subtitle
+      %span Plan de apertura
+      |
+      %span.primary.boldish.uppercase Sep 25
+    %p
+      El plan de apertura contiene el calendario de publicaci&oacute;n anual
+      de los datos abiertos de la instituci&oacute;n
+
+  -# Card: Upload files
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos

@@ -17,4 +17,4 @@ production:
   database: adela_production
   username: postgres
   host: postgres
-  password:
+  password: <%= ENV['POSTGRES_ENV_POSTGRES_PASSWORD'] %>

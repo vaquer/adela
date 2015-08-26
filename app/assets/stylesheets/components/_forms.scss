@@ -9,7 +9,7 @@
 
 .form-control {
   @extend .control_override;
-  padding: 10px;
+  height: 40px;
 
   &.inline {
     display: inline-block;

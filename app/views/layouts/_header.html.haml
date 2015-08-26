@@ -9,19 +9,10 @@
   .container
     .navbar-header
       = link_to root_path do
-        = image_tag 'logocmx@2x.svg', width: '150px'
+        = image_tag 'logoadela@2x.svg', width: '150px'
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           = render partial: "/layouts/shared/signed_in_menu"
         - else
           %li= link_to "Regístrate", new_user_registration_path
-
--# %header#header
--#   .nav-actions.col-md-3.pull-right
--#     %ul.nav.navbar-nav.navbar-right
--#       - if user_signed_in?
--#         = render partial: "/layouts/shared/signed_in_menu"
--#       - else
--#         %li= link_to "Regístrate", new_user_registration_path
--#         %li= link_to "Iniciar sesión", new_user_session_path

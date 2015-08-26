@@ -31,3 +31,4 @@ config/secrets.yml
 
 .env
 dump.rdb
+.DS_Store

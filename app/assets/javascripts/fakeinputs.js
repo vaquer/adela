@@ -11,9 +11,9 @@ function initFileUploads() {
   textInput.className = 'form-control';
 
   // Button for files
-  var button = document.createElement('a');
-  button.className = 'btn btn-primary';
-  button.innerHTML = 'Buscar';
+  var button = document.createElement('button');
+  button.className = 'btn btn-primary bg--dark-grey';
+  button.innerHTML = 'Explorar';
 
   // Append the elements
   fakeFileUpload.appendChild(textInput);

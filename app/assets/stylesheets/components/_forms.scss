@@ -39,3 +39,15 @@
 .block {
   display: block !important;
 }
+
+.file_input {
+  @extend .inline;
+}
+
+.fakefile {
+  margin-right: 30px;
+  input {
+    @extend .inline;
+    margin-right: 15px;
+  }
+}

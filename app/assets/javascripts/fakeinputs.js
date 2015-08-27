@@ -9,6 +9,7 @@ function initFileUploads() {
   // Text input for files
   var textInput = document.createElement('input');
   textInput.className = 'form-control';
+  textInput.disabled = true;
 
   // Button for files
   var button = document.createElement('a');

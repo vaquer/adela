@@ -11,6 +11,7 @@ Adela::Application.routes.draw do
     get "/:slug/plan" => "organizations#opening_plan", :as => "organization_opening_plan"
 
     get "/maqueta/" => "home#maqueta"
+    post "/maqueta/" => "home#maqueta"
     root :to => "home#index"
 
 

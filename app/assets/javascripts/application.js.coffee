@@ -9,10 +9,12 @@
 //= require jquery.spin
 //= require bootstrap
 //= require toastr
+//= require fakeinputs
 //= require_self
 //= require_directory .
 
-$(document).ready ->
+ready = ->
+  initFileUploads()
   toastr.options =
     'closeButton': false
     'debug': false
@@ -27,3 +29,6 @@ $(document).ready ->
     'showMethod': 'fadeIn'
     'hideMethod': 'fadeOut'
   return
+
+$(document).ready ready
+$(document).on 'page:load', ready

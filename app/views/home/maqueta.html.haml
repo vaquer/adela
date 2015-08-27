@@ -89,17 +89,26 @@
       %li.item
         .index 3
         %span Sube el inventario de datos
-    %form
+
+    -# THIS IS A DUMMY FORM TO TEST THE FILE UPLOAD
+    = form_tag '/maqueta/', method: 'post', multipart: true do
       -# Needs hacks and tricks, to be done at a later time
       .form-group
         %label.block Selecciona el archivo *
-        %input.inline{ type: 'file' }
+        -# do not add extra classes to the 'file_input' div, breaks the file hack
+        .file_input
+          %input{ type: 'file', name: 'file_0' }
         %span.danger El archivo seleccionado no es v&aacute;lido.
+
       .form-group
         %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
-        %input.inline{ type: 'file' }
+        -# do not add extra classes to the 'file_input' div, breaks the file hack
+        .file_input
+          %input{ type: 'file', name: 'file_1' }
+
       .form-group
-        %textarea.form-control{ placeholder: 'Comentarios', rows: '8' }
+        %textarea.form-control{ name: 'comments', placeholder: 'Comentarios', rows: '8' }
+
       .form-group
         %button.btn.btn-primary{ type: 'submit' } Subir inventario
         %span.primary &nbsp;&nbsp;&nbsp;&nbsp;Archivo enviado

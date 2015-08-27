@@ -11,5 +11,9 @@ class HomeController < ApplicationController
   end
 
   def maqueta
+    # dummy test try the hack with real files
+    if request.post?
+      raise params.inspect
+    end
   end
 end

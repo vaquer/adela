@@ -11,7 +11,7 @@ function initFileUploads() {
   textInput.className = 'form-control';
 
   // Button for files
-  var button = document.createElement('button');
+  var button = document.createElement('a');
   button.className = 'btn btn-primary bg--dark-grey';
   button.innerHTML = 'Explorar';
 

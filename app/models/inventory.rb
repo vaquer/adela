@@ -5,4 +5,12 @@ class Inventory < ActiveRecord::Base
   validates :organization, presence: true
 
   belongs_to :organization
+
+  def valid_rows?
+    rows.all?(&:valid?)
+  end
+
+  def rows
+    InventoryXLSXParser.new(self).parse
+  end
 end

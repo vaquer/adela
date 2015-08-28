@@ -198,6 +198,13 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rolify (4.0.0)
+    roo (2.1.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
+    roo-xls (1.0.0)
+      nokogiri
+      roo (>= 2.0.0beta1, < 3)
+      spreadsheet (> 0.9.0)
     route_translator (3.2.4)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
@@ -211,6 +218,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    ruby-ole (1.2.11.8)
     rubyzip (1.1.7)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -238,6 +246,8 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.6.0)
+    spreadsheet (1.0.4)
+      ruby-ole (>= 1.0)
     spring (1.1.2)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
@@ -327,6 +337,8 @@ DEPENDENCIES
   rails (= 4.1)
   redis
   rolify
+  roo (~> 2.1.0)
+  roo-xls
   route_translator
   rspec-rails
   sass-rails (~> 4.0.3)

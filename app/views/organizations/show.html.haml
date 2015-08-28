@@ -1,58 +1,41 @@
-= render "layouts/flash_messages", :flash => flash
-%br/
-= render "layouts/org_header"
 .container
-  .dashboard-wrapper
-    .section-heading
-      %span.activity-icon.h4 Actividad reciente
-      .legends.col-md-5.pull-right
-        %span.publication-legend
-          %small Publicaciones
-        %span.update-legend
-          %small Actualizaciones
-    .section-content.table-responsive
-      %table.expanded-table.activity-logs
-        - unless  @organization.activity_logs.any?
-          %tr.table-footer
-            %td
-            %td.icon
-            %td
-            %td
-              %em No existe actividad reciente.
-            %td
-        - @organization.activity_logs.first_block.each do |activity|
-          %tr
-            %td
-            %td.icon= image_tag "#{activity.category}-log.png"
-            %td.date= "Hace #{time_ago_in_words(activity.done_at)}"
-            %td.text= "#{@organization.title} #{activity.description}"
-            %td
-        - @organization.activity_logs.last_block.each do |activity|
-          %tr.more-activities.hidden
-            %td
-            %td.icon= image_tag "#{activity.category}-log.png"
-            %td.date= "Hace #{time_ago_in_words(activity.done_at)}"
-            %td.text= "#{@organization.title} #{activity.description}"
-            %td
-        - if @organization.activity_logs.last_block.any?
-          %tr.table-footer
-            %td
-            %td.icon
-            %td
-              = link_to "Ver más actividad", "#", :id => "view_more", :class => "dashboard-link"
-              = link_to "Ver menos actividad", "#", :id => "view_less", :class => "dashboard-link more-activities hidden"
-            %td
-            %td
-    .section-heading
-      %span.inventory-icon.h4 Catálogo de datos
-      .legends.col-md-5.pull-right
-        %span.published-legend
-          %small Catálogo publicado
-    = render "catalogs/catalogs_list"
-    - if current_organization == @organization
-      .section-links
-        .col-md-4.col-md-offset-6
-          = link_to "Actualizar catálogo", catalogs_path, :class => "btn button pull-right"
-    .section-heading
-      %span.calendar-icon.h4 Plan de apertura
-    = render "organizations/opening_plans"
+  -# Card: List stuff / 'Planea'
+  .card
+    %h3.title Planea
+    %h5.subtitle
+      %span Inventario de datos
+      |
+      %span.primary.boldish.uppercase Ago 28
+    %ul.list
+      %li.item
+        .index 1
+        %span Descarga la plantilla del inventario &nbsp;&nbsp;
+        = link_to 'Descargar', 'http://mxabierto.github.io/guia/docs/inventario_general_de_datos.xlsx', { class: 'btn btn-primary' }
+      %li.item
+        .index 2
+        %span Llena la plantilla con informaci&oacute;n
+      %li.item
+        .index 3
+        %span Sube el inventario &nbsp;&nbsp;
+        = link_to 'Subir', new_inventory_path, { class: 'btn btn-primary' }
+    %h5.subtitle
+      %span Plan de apertura
+      |
+      %span.primary.boldish.uppercase Sep 25
+    %p
+      El plan de apertura contiene el calendario de publicaci&oacute;n anual
+      de los datos abiertos de la instituci&oacute;n
+  .card
+    %h3.title Publica
+    %h5.subtitle Cat&aacute;logo de datos institucional
+    %p
+      Publica el Cat&aacute;logo de datos Institucional en datos.gob.mx
+  .card
+    %h3.title Perfecciona
+    %h5.subtitle
+      Aqu&iacute; encontrar&aacute;s las recomendaciones para mejorar en la
+      implementaci&oacute;n de Datos Abiertos
+  .card
+    %h3.title Promueve
+    %h5.subtitle
+      Cat&aacutelogo de datos institucional

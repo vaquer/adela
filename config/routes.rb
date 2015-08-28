@@ -14,7 +14,6 @@ Adela::Application.routes.draw do
     post "/maqueta/" => "home#maqueta"
     root :to => "home#index"
 
-
     resources :organizations, only: [:show, :update] do
       post "publish_catalog", :on => :member
       get "publish_later", :on => :member
@@ -27,11 +26,16 @@ Adela::Application.routes.draw do
         get "publish"
       end
     end
+
+    resources :inventories, only: [:new, :create, :show, :update] do
+      member do
+        get 'publish'
+      end
+    end
   end
 
   namespace :api, defaults: { format: 'json'} do
     namespace :v1 do
-
       get "/catalogs" => "organizations#catalogs"
       get "/organizations" => "organizations#organizations"
       get "/gov_types" => "organizations#gov_types"

@@ -161,6 +161,13 @@ es:
               blank: "no puede estar en blanco si la base de datos es Privada o Restringida."
             accrualPeriodicity:
               repeating_duration: "debe de contener una duración de repetición en el formato ISO-8601 o 'irregular'."
+        inventory_row:
+          attributes:
+            publish_date:
+              blank: "Cuando el valor del dato ¿Tiene datos privados? es Público la fecha estimada de publicación no puede estar vacía o nula."
+              invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
+            data_access_comment:
+              blank: "Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula."
   mailers:
     user:
       notificate_user_account_subject: "Nuevo usuario en ADELA"

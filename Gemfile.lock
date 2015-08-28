@@ -130,6 +130,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    iso8601 (0.8.6)
     jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -314,6 +315,7 @@ DEPENDENCIES
   haml
   httparty
   i18n
+  iso8601
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-sass-rails
@@ -340,3 +342,6 @@ DEPENDENCIES
   unicorn
   validate_url
   will_paginate (~> 3.0)
+
+BUNDLED WITH
+   1.10.6

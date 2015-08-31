@@ -1,4 +1,6 @@
 class InventoriesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @inventory = Inventory.new
   end

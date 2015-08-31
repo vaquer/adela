@@ -1,8 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:catalog, :search, :opening_plan]
 
-  layout 'home'
-
   def show
     @organization = Organization.friendly.find(params[:id])
     @catalogs = @organization.catalogs.published.date_sorted.paginate(:page => params[:page], :per_page => 5)

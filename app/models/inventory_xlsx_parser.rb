@@ -7,7 +7,7 @@ class InventoryXLSXParser
   end
 
   def parse
-    xlsx = Roo::Spreadsheet.open(inventory.spreadsheet_file)
+    xlsx = Roo::Spreadsheet.open(inventory_file_path)
     (xlsx.first_row..xlsx.last_row).drop(1).map do |i|
       xlsx_row = xlsx.row(i)
       build_inventory_row(xlsx_row, i)
@@ -15,6 +15,10 @@ class InventoryXLSXParser
   end
 
   private
+
+  def inventory_file_path
+    Rails.env.production? ? @inventory.spreadsheet_file.url : @inventory.spreadsheet_file
+  end
 
   def build_inventory_row(xlsx_row, row_number)
     InventoryRow.new(

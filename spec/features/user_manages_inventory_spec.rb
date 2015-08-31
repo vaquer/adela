@@ -21,6 +21,16 @@ feature User, 'manages inventory:' do
     expect(page).to have_text("Publicación del inventario institucional de Datos de #{@user.organization.title}")
   end
 
+  scenario 'uploads a valid inventory file and an authorization file' do
+    click_on('Subir')
+    attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos.xlsx")
+    attach_file('inventory_authorization_file', "#{Rails.root}/spec/fixtures/files/authorization_file.jpg")
+    click_on('Subir inventario')
+
+    expect(page).to have_text('Archivo enviado')
+    expect(page).to have_text("Publicación del inventario institucional de Datos de #{@user.organization.title}")
+  end
+
   scenario 'uploads an invalid inventory file with no comments for private datasets' do
     click_on('Subir')
     attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos_error_privado.xlsx")

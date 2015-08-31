@@ -30,6 +30,6 @@ class InventoriesController < ApplicationController
   private
 
   def intentory_params
-    params.require(:inventory).permit(:spreadsheet_file)
+    params.require(:inventory).permit(:spreadsheet_file, :authorization_file)
   end
 end

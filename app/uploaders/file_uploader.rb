@@ -11,6 +11,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(csv xls xlsx)
+    %w(csv xls xlsx jpg tif gif png jpeg bmp pdf)
   end
 end

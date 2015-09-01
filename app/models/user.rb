@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
   scope :created_at_sorted, -> { order("created_at DESC") }
 
   belongs_to      :organization
-  has_many        :inventories, :through => :organization
+  has_many        :catalogs, :through => :organization
 end

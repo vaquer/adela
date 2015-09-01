@@ -26,7 +26,7 @@
               = @organization.last_file_version.distributions_count
           - else
             %em No tienes ningún catálogo.
-        = link_to "Subir nueva versión", new_inventory_path(:new_version => true), :class => "btn button"
+        = link_to "Subir nueva versión", new_catalog_path(:new_version => true), :class => "btn button"
       .version-holder.col-md-5
         %span.catalog-icon.h5 Versión publicada
         - if @organization.current_catalog.present?
@@ -44,12 +44,12 @@
               %br/
               %span.label Recursos:
               = @organization.current_catalog.distributions_count
-          - if @organization.last_inventory_is_unpublished?
+          - if @organization.last_catalog_is_unpublished?
             .alert.alert-danger
               %span.danger>
               La versión publicada no es la última versión.
             %br/
-            = link_to "Publicar última versión", "#", :class => "btn button", :id => "save_inventory"
+            = link_to "Publicar última versión", "#", :class => "btn button", :id => "save_catalog"
           - else
             .alert.alert-success
               Muy bien. La última versión está publicada.
@@ -57,7 +57,7 @@
           .version-data.last-catalog
             %em No tienes ningún catálogo publicado.
         .publish-form-holder.hidden
-          = render "inventories/publish_form", :from_dashboard => true
+          = render "catalogs/publish_form", :from_dashboard => true
       .col-md-1
     .pull-down.row
       .col-md-1
@@ -68,4 +68,4 @@
       %span.published-legend
         %small Catálogo publicado
     .pull-down
-      = render "inventories/inventories_list"
+      = render "catalogs/catalogs_list"

@@ -1,13 +1,44 @@
-.container
-  .footer
-    %span Contactos
-    %br/
-    - if @organization.present?
-      - @organization.users.each do |contact|
-        .contact.col-md-6
-          %span= contact.name
-          %br/
-          %span= contact.email
-    - else
-      .contact
-        %span adela@datos.gob.mx
+#footer
+  .container
+    .row.info__links
+      .col-xs-12.col-sm-2
+        %p.header Datos
+        %ul
+          %li= link_to 'Cultura', '#'
+          %li= link_to 'Salud', '#'
+          %li= link_to 'Geografía', '#'
+          %li= link_to 'Seguridad', '#'
+          %li= link_to 'Medio Ambiente', '#'
+          %li= link_to 'Educación', '#'
+          %li= link_to 'Turismo', '#'
+      .col-xs-12.col-sm-2
+        %p.header Herramientas
+        %ul
+          %li= link_to 'Apps Web', '#'
+          %li= link_to 'Apps Móviles', '#'
+          %li= link_to 'Interactivas', '#'
+      .col-xs-12.col-sm-2
+        %p.header Impacto
+        %ul
+          %li= link_to 'Casos de uso', '#'
+          %li= link_to 'Noticias', '#'
+      .col-xs-12.col-sm-2
+        %p.header Guía
+        %ul
+          %li= link_to 'Pasos y recursos', '#'
+          %li= link_to 'Tablero de avances', '#'
+      .col-xs-12.col-sm-2
+        %p.header Retos
+        %p.header Consejo Consultivo
+        %p.header Red México Abierto
+      .col-xs-12.col-sm-2
+        %p.header Acerca
+        %p.header Ayuda
+        %ul
+          %li= link_to 'Preguntas Frecuentes', '#'
+          %li= link_to 'Foro', '#'
+
+      .col-xs-12.col-sm-2
+    .row
+      .col-xs-12
+        %p= link_to 'LIBRE USO MX', '#'

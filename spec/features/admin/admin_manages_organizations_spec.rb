@@ -15,7 +15,7 @@ feature Admin, 'manages organizations:' do
   end
 
   scenario "can create an new organization" do
-    organization = FactoryGirl.build(:federal_organization)
+    organization = FactoryGirl.build(:organization, :federal)
     visit "/admin/organizations"
     click_on 'Crear Organización'
 

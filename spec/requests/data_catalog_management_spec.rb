@@ -27,10 +27,10 @@ feature "data catalog management" do
     gets_all_catalogs_urls_in response
   end
 
-  scenario "can consume catalog data even with inventory empty fields" do
-    inventory_file = File.new("#{Rails.root}/spec/fixtures/files/inventory_with_blanks.csv")
-    inventory =  FactoryGirl.create(:published_inventory, :publish_date => 1.day.ago, :csv_file => inventory_file)
-    inventory.update_attributes(:organization_id => @organization.id)
+  scenario "can consume catalog data even with catalog empty fields" do
+    catalog_file = File.new("#{Rails.root}/spec/fixtures/files/catalog_with_blanks.csv")
+    catalog =  FactoryGirl.create(:published_catalog, :publish_date => 1.day.ago, :csv_file => catalog_file)
+    catalog.update_attributes(:organization_id => @organization.id)
 
     get "/#{@organization.slug}/catalogo.json"
 
@@ -40,9 +40,9 @@ feature "data catalog management" do
   end
 
   scenario "catalog will have correct DCAT key names" do
-    inventory_file = File.new("#{Rails.root}/spec/fixtures/files/conflicting_inventory_issue-106.csv")
-    inventory =  FactoryGirl.create(:published_inventory, :publish_date => 1.day.ago, :csv_file => inventory_file)
-    inventory.update_attributes(:organization_id => @organization.id)
+    catalog_file = File.new("#{Rails.root}/spec/fixtures/files/conflicting_catalog_issue-106.csv")
+    catalog =  FactoryGirl.create(:published_catalog, :publish_date => 1.day.ago, :csv_file => catalog_file)
+    catalog.update_attributes(:organization_id => @organization.id)
 
     dcat_keys = %w{ title description homepage issued modified language license dataset }
     dcat_dataset_keys = %w{ title description modified contactPoint identifier accessLevel accessLevelComment spatial language publisher keyword distribution }
@@ -56,13 +56,13 @@ feature "data catalog management" do
 
     # Makes damn sure that no foreign attributes are set in the model
     # See: https://github.com/mxabierto/adela/issues/106
-    dataset = ActiveSupport::JSON.decode(inventory.datasets.last.to_json)
+    dataset = ActiveSupport::JSON.decode(catalog.datasets.last.to_json)
     dataset.keys.include?("erick.maldonado@indesol.gob.mx").should eq(false)
   end
 
   def given_there_is_a_catalog_published(days_ago)
-    @inventory = FactoryGirl.create(:published_inventory, :publish_date => days_ago)
-    @inventory.update_attributes(:organization_id => @organization.id)
+    @catalog = FactoryGirl.create(:published_catalog, :publish_date => days_ago)
+    @catalog.update_attributes(:organization_id => @organization.id)
   end
 
   def gets_catalog_json_data_in(response)
@@ -82,11 +82,11 @@ feature "data catalog management" do
     organization = FactoryGirl.create(:organization, :title => organization_title)
     case status
     when "published"
-      inventory = FactoryGirl.create(:published_inventory)
+      catalog = FactoryGirl.create(:published_catalog)
     when "unpublished"
-      inventory = FactoryGirl.create(:inventory)
+      catalog = FactoryGirl.create(:catalog)
     end
-    inventory.update_attributes(:organization_id => organization.id)
+    catalog.update_attributes(:organization_id => organization.id)
   end
 
   def gets_all_catalogs_urls_in(response)

@@ -37,6 +37,11 @@ gem 'newrelic_rpm'
 gem 'active_model_warnings'
 gem 'enum_help'
 gem 'faker'
+gem 'toastr-rails'
+gem 'gretel'
+gem 'iso8601'
+gem 'roo', '~> 2.1.0'
+gem 'roo-xls'
 
 group :development, :test do
   gem 'spring'

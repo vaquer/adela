@@ -1,9 +1,9 @@
 $ ->
   $("form#requirements").on("change", "input.requirement", validate_requirements)
 
-  $("#save_inventory").on("click", show_last_step)
+  $("#save_catalog").on("click", show_last_step)
 
-  $("form#new_inventory").on("change", "#inventory_csv_file", () ->
+  $("form#new_catalog").on("change", "#catalog_csv_file", () ->
     $("#upload_file[type=submit]").removeClass("disabled")
   )
 
@@ -16,7 +16,7 @@ validate_requirements = () ->
     submit_button.addClass("disabled")
 
 show_last_step = () ->
-  $("#save_inventory").addClass("hidden")
-  $("#publish_inventory, .publish-form-holder").removeClass("hidden")
+  $("#save_catalog").addClass("hidden")
+  $("#publish_catalog, .publish-form-holder").removeClass("hidden")
   $(".checked-step").removeClass("hidden")
   false

@@ -8,9 +8,9 @@ feature User, 'publishes catalog:' do
   end
 
   scenario "can see a disabled publish link and catalog url" do
-    given_has_uploaded_an_inventory(1.day.ago)
-    visit new_inventory_path
-    tries_to_upload_the_file("inventory.csv")
+    given_has_uploaded_an_catalog(1.day.ago)
+    visit new_catalog_path
+    tries_to_upload_the_file("catalog.csv")
     expect(page).to have_text("Paso 5")
     expect(page).to have_text("Publica tu catálogo")
     expect(page).to have_css("#publish.disabled")
@@ -18,16 +18,16 @@ feature User, 'publishes catalog:' do
   end
 
   scenario "sees permissions and publication requirements checkboxes" do
-    given_has_uploaded_an_inventory(1.day.ago)
-    visit new_inventory_path
-    tries_to_upload_the_file("inventory.csv")
+    given_has_uploaded_an_catalog(1.day.ago)
+    visit new_catalog_path
+    tries_to_upload_the_file("catalog.csv")
     click_on "Guardar"
     sees_data_requirements
   end
 
   scenario "can publish a catalog", :js => true do
-    visit new_inventory_path
-    tries_to_upload_the_file("inventory.csv")
+    visit new_catalog_path
+    tries_to_upload_the_file("catalog.csv")
     click_on "Guardar catálogo"
     check_publication_requirements
     click_on "Publicar"
@@ -41,8 +41,8 @@ feature User, 'publishes catalog:' do
   end
 
   scenario "can publish a catalog later", :js => true do
-    visit new_inventory_path
-    tries_to_upload_the_file("inventory.csv")
+    visit new_catalog_path
+    tries_to_upload_the_file("catalog.csv")
     click_on "Guardar catálogo"
     click_on "Lo publicaré después, quiero avanzar"
     expect(page).to have_text "OJO: No has completado el último paso que es publicar tu catálogo."
@@ -64,12 +64,12 @@ feature User, 'publishes catalog:' do
   end
 
   def tries_to_upload_the_file(file_name)
-    attach_file('inventory_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
+    attach_file('catalog_csv_file', "#{Rails.root}/spec/fixtures/files/#{file_name}")
     click_on("Subir catálogo")
   end
 
-  def given_has_uploaded_an_inventory(days_ago)
-    @inventory = FactoryGirl.create(:inventory)
-    @inventory.update_attributes(:organization_id => @user.organization_id, :created_at => days_ago)
+  def given_has_uploaded_an_catalog(days_ago)
+    @catalog = FactoryGirl.create(:catalog)
+    @catalog.update_attributes(:organization_id => @user.organization_id, :created_at => days_ago)
   end
 end

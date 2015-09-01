@@ -7,5 +7,6 @@
     = csrf_meta_tags
   %body
     = render "layouts/header"
-    = render "layouts/flash_messages", :flash => flash
+    = render "layouts/shared/breadcrumbs"
     = yield
+    = render "layouts/footer"

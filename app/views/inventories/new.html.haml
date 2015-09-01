@@ -1,43 +1,20 @@
-= render "layouts/flash_messages", :flash => flash
-- if @inventory.present?
-  = render "layouts/error_messages", :object => @inventory
 .container
-  .steps-wrapper
-    .section-heading
-      %span.inventory-icon.h4 Subir nueva version de catálogo
-    .inventory-step
-      = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}"
-      %span.h4 Paso 1
-      .step-holder.col-md-10.pull-right
-        = image_tag 'file.png', :class => "template-file-icon"
-        = link_to (content_tag(:span, "", :class => "glyphicon glyphicon-cloud-download" ) + " Descargar plantilla en blanco"), ENV["INVENTORY_TEMPLATE"], :class => "btn button"
-    .inventory-step
-      = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(params[:new_version] || @upload_intent)}"
-      %span.h4 Paso 2
-      .step-holder.col-md-10.pull-right
-        %strong Llena completamente la plantilla con un set de datos cada fila,
-        %br/
-        %strong de acuerdo a como se explica en la
-        = link_to "ficha técnica del catálogo de datos", ENV["INVENTORY_DETAILS"]
-    .inventory-step.inventory-last-step
-      = image_tag "checked_step.png", :class => "checked-step #{ step_image_class(@upload_intent)}"
-      %span.h4 Paso 3
-      .step-holder.col-md-10.pull-right
-        = form_for(Inventory.new) do |f|
-          = f.label "Sube tu CSV con el catálogo de datos."
-          = f.file_field :csv_file
-          %br/
-          %button#upload_file.btn.button.disabled{:type => "submit"}
-            %span.glyphicon.glyphicon-cloud-upload
-            Subir catálogo
-    - if @datasets.present? && @upload_intent.present?
-      .inventory-preview
-        = image_tag "checked_step.png", :class => "checked-step hidden"
-        %span.h4 Paso 4
-        .step-holder.col-md-10.pull-right
-          %label Valida tu catálogo
-      .step-holder
-        = render "datasets_preview", :datasets => datasets_to_display(@datasets)
-        - if @inventory.valid? && @inventory.csv_file.present? && @inventory.csv_structure_valid?
-          = link_to "Guardar catálogo", "#", :class => "btn button inventory-action", :id => "save_inventory"
-    = render "inventories/publish_form", :from_dashboard => false
+  .card
+    %h3.title Planea
+    %h5.subtitle Inventario de datos
+    %ul.list
+      %li.item
+        .index 3
+        %span Sube el inventario de datos
+    = form_for @inventory do |f|
+      .form-group
+        %label.block Selecciona el archivo *
+        .file_input
+          = f.file_field :spreadsheet_file
+      .form-group
+        %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
+        .file_input
+          = f.file_field :authorization_file
+      .form-group
+        %button.btn.btn-primary{ type: 'submit' } Subir inventario
+      %p * Campos obligatorios

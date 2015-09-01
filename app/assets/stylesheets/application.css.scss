@@ -1,13 +1,35 @@
 /*
- *= require_self
- */
+  *= require toastr
+  *= require_self
+*/
 
- @import "palette";
  @import "bootstrap";
- @import "default";
- @import "adela";
- @import "topics";
  @import "jquery.ui.core";
  @import "jquery.ui.theme";
  @import "jquery.ui.datepicker";
- @import "header";
+
+ // Defaults
+ @import 'defaults/colors';
+ @import 'defaults/utilities';
+
+ // Elements
+@import "elements/text";
+
+// Components
+@import "components/navbar";
+@import "components/footer";
+@import "components/landing";
+@import "components/forms";
+@import "components/newsletter";
+@import "components/breadcrumbs";
+
+// Cards
+@import "components/cards";
+
+body {
+  background-color: $grey_100;
+}
+
+.toast-top-right {
+  top: 90px;
+}

@@ -19,9 +19,11 @@ feature User, 'logs out:' do
     expect(page).to have_text("Cerrar sesión")
   end
 
-  scenario "succeed to log out" do
+  scenario "succeed to log out", :js => true do
     visit "/"
-    click_on("Cerrar sesión")
+    expect(page).to have_link(@user.name)
+    click_on(@user.name)
+    click_on "Cerrar sesión"
     sees_success_message "Usted ha salido del sistema."
   end
 end

@@ -14,7 +14,7 @@ module Features
     end
 
     def sees_error_message(message)
-      within first(".alert-danger") do
+      within first(".toast-error") do
         expect(page).to have_text(message)
       end
     end

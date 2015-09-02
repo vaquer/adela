@@ -10,9 +10,8 @@ feature Organization, 'manages profile:' do
   scenario "sees profile options", :js => true do
     visit organization_path(@organization)
 
-    find("#user_actions").click
-
-    expect(page).to have_link "Editar Perfil"
+    expect(page).to have_link(@user.name)
+    click_on(@user.name)
     click_on "Editar Perfil"
 
     expect(page).to have_text "Descripción"

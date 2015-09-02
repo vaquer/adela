@@ -24,4 +24,12 @@ describe Inventory do
       inventory.should_not be_valid
     end
   end
+
+  context 'after saving an inventory' do
+    let(:inventory) { create(:inventory) }
+
+    it 'should be an InventoryXLSXParserWorker enqueued job' do
+      expect(InventoryXLSXParserWorker).to have_enqueued_job(inventory.id)
+    end
+  end
 end

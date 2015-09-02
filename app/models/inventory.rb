@@ -7,12 +7,4 @@ class Inventory < ActiveRecord::Base
 
   belongs_to :organization
   has_many :inventory_elements
-
-  def valid_rows?
-    rows.all?(&:valid?)
-  end
-
-  def rows
-    InventoryXLSXParser.new(self).parse
-  end
 end

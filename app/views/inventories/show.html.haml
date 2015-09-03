@@ -2,10 +2,13 @@
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos
+    - if inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
+      = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
+    - elsif @inventory.inventory_elements.blank?
+      = render partial: 'inventories/shared/parsing_spreadsheet', locals: { inventory: @inventory }
     %ul.list
       %li.item
-        .index 3
-        %span Sube el inventario de datos
+        %span Actualiza el inventario de datos
     = form_for @inventory do |f|
       .form-group
         %label.block Selecciona el archivo *
@@ -19,21 +22,8 @@
           = f.file_field :authorization_file
       .form-group
         %button.btn.btn-primary{ type: 'submit' } Subir inventario
-        - if @inventory.valid?
-          %span.primary &nbsp;&nbsp;&nbsp;&nbsp;Archivo enviado
       %p * Campos obligatorios
-    - if @inventory.valid_rows?
-      .card.padding-top.bg--grey
-        %p Se realizar&aacute; la siguiente actividad
-        %p.primary.boldish Publicaci&oacute;n del inventario institucional de Datos de #{current_organization.title}
-        = link_to 'Aceptar', publish_inventory_path(@inventory), { class: 'btn btn-primary' }
-    - unless @inventory.valid_rows?
+    - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
       %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
       %ul.list__warnings
-        - @inventory.rows.each do |row|
-          - unless row.valid?
-            - row.errors.messages.keys.each do |key|
-              - row.errors.messages[key].uniq.each do |error|
-                %li.item
-                  .index Rengl&oacute;n #{row.number}
-                  %span= error
+        = render partial: 'inventories/shared/element_warnings_list', collection: @inventory.inventory_elements, as: :element

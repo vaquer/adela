@@ -13,5 +13,9 @@ describe InventoryXLSXParser do
     it 'should have only valid rows' do
       subject.parse.all?(&:valid?).should == true
     end
+
+    it 'should have only compliant rows' do
+      subject.parse.all?(&:compliant?).should == true
+    end
   end
 end

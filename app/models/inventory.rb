@@ -7,11 +7,13 @@ class Inventory < ActiveRecord::Base
 
   belongs_to :organization
 
-  def valid_rows?
-    rows.all?(&:valid?)
-  end
+  has_many :inventory_elements, dependent: :destroy
 
-  def rows
-    InventoryXLSXParser.new(self).parse
+  after_save :create_inventory_elements
+
+  private
+
+  def create_inventory_elements
+    InventoryXLSXParserWorker.perform_async(id)
   end
 end

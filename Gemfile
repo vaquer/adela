@@ -58,6 +58,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'json-schema'
+  gem 'rspec-sidekiq'
 end
 
 group :doc do

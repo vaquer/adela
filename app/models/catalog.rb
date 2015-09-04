@@ -16,10 +16,6 @@ class Catalog < ActiveRecord::Base
   scope :unpublished, -> { date_sorted.where(:published => false) }
   scope :published, -> { date_sorted.where(:published => true) }
 
-  after_save do
-    opening_plan_lookup if published?
-  end
-
   def csv_structure_valid?
     datasets.all? { |dataset| dataset.valid? }
   end
@@ -66,17 +62,5 @@ class Catalog < ActiveRecord::Base
 
   def compliant_datasets?
     datasets.map(&:compliant?).inject(true){ |result, element| result && element }
-  end
-
-  def opening_plan_lookup
-    organization.opening_plans.map(&:destroy)
-    datasets.each do |dataset|
-      fetch_opening_plan(dataset) if dataset.title =~ /plan-de-apertura.csv/i
-    end
-  end
-
-  def fetch_opening_plan(dataset)
-    command = FetchOpeningPlanCommand.new(dataset, organization)
-    command.execute! if command.valid?
   end
 end

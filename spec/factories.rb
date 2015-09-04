@@ -27,6 +27,7 @@ FactoryGirl.define do
     f.name "Conjuntos de datos priorizados"
     f.description "Descripción de los conjuntos"
     f.publish_date Date.today
+    f.accrualPeriodicity "R/P1Y"
     f.association :organization, :factory => :organization
 
     factory :opening_plan_with_officials do

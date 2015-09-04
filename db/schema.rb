@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901112937) do
+ActiveRecord::Schema.define(version: 20150904140416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150901112937) do
     t.date     "publish_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "accrual_periodicity"
   end
 
   add_index "opening_plans", ["organization_id"], name: "index_opening_plans_on_organization_id", using: :btree

@@ -14,7 +14,7 @@ feature User, 'manages catalog:' do
 
   scenario "sees file input", :js => true do
     visit new_catalog_path
-    find('#catalog_csv_file').should_not be_nil
+    expect(page).to have_selector(".file_input")
   end
 
   scenario "succeed to upload a csv file" do
@@ -25,19 +25,19 @@ feature User, 'manages catalog:' do
     activity_log_created_with_msg "actualizó su catálogo de datos."
   end
 
-  scenario "fails to upload an invalid csv file" do
+  scenario "fails to upload an invalid csv file", :js => true do
     visit new_catalog_path
     tries_to_upload_the_file('invalid_file.txt')
     sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
-  scenario "fails to upload a csv file with invalid structure" do
+  scenario "fails to upload a csv file with invalid structure", :js => true do
     visit new_catalog_path
     tries_to_upload_the_file('invalid_catalog.csv')
     sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
-  scenario "fails to upload an empty csv file" do
+  scenario "fails to upload an empty csv file", :js => true do
     visit new_catalog_path
     tries_to_upload_the_file('empty_catalog.csv')
     sees_error_message "Debe existir al menos un conjunto de datos en el archivo."
@@ -67,7 +67,7 @@ feature User, 'manages catalog:' do
   end
 
   def sees_table_with_datasets
-    within "table#datasets_preview" do
+    within "table" do
       expect(page).to have_text("Indicadores de pobreza")
       expect(page).to have_text("Índice de Rezago Social")
     end

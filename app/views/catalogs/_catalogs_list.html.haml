@@ -1,7 +1,7 @@
-#catalogs.section-content.table-responsive
-  - if @catalogs.any?
-    %table.expanded-table.catalogs-list
-      %thead
+- if @catalogs.any?
+  %table.table.table-striped
+    %thead
+      %tr
         %th
         %th.icon
         %th Fecha
@@ -10,31 +10,30 @@
         %th Recursos
         %th.view Descargar
         %th
-      %tbody
-        - @catalogs.each do |catalog|
-          %tr
+    %tbody
+      - @catalogs.each do |catalog|
+        %tr
+          %td
+          %td
+            - if catalog == @organization.current_catalog
+              %span.glyphicon.glyphicon-globe{'aria-hidden' => 'true'}
+            - else
+              %span.glyphicon.glyphicon-eye-close{'aria-hidden' => 'true'}
+          - cache ['catalogs', catalog] do
+            %td= I18n.l(catalog.created_at, format: :short)
+            %td= I18n.l(catalog.created_at, format: :hour)
+            %td= catalog.datasets_count
+            %td= catalog.distributions_count
             %td
-            %td
-              - if catalog == @organization.current_catalog
-                = image_tag "mini-catalog.png"
-              - else
-                = image_tag "update-log.png"
-            - cache ['catalogs', catalog] do
-              %td= I18n.l(catalog.created_at, :format => :short)
-              %td= I18n.l(catalog.created_at, :format => :hour)
-              %td= catalog.datasets_count
-              %td= catalog.distributions_count
-              %td
-                = link_to image_tag("download.png"), catalog.csv_file.url
-            %td
-              - if catalog == @organization.current_catalog
-                %small
-                  = link_to gov_link(@organization) do
-                    = image_tag "catalog.png"
-                    Ver en datos.gob.mx
-    #catalogs_links.section-links
-      .col-md-4.col-md-offset-6
-        = will_paginate @catalogs, :class => "pagination pull-right"
-  - else
-    .col-md-5.col-md-offset-2
-      %em Aún no existen catálogos.
+              = link_to "<span class='glyphicon glyphicon-download' aria-hidden='true'></span>".html_safe, catalog.csv_file.url
+          %td
+            - if catalog == @organization.current_catalog
+              %small
+                = link_to gov_link(@organization) do
+                  = image_tag "catalog.png"
+                  Ver en datos.gob.mx
+  #catalogs_links.section-links
+    .col-md-4.col-md-offset-6
+      = will_paginate @catalogs, class: 'pagination pull-right'
+- else
+  %em Aún no existen catálogos.

@@ -37,23 +37,4 @@ describe OpeningPlan do
       subject.officials.map(&:kind).sort.should == ["admin", "liaison"]
     end
   end
-
-  describe "::by_month" do
-    before :each do
-      @next_month = Date.today + 1.month
-      @next_year  = Date.today + 1.year
-
-      FactoryGirl.create(:opening_plan_with_officials, publish_date: @next_month)
-      FactoryGirl.create(:opening_plan_with_officials, publish_date: @next_year)
-
-      @opening_plans = 3.times.map do
-        FactoryGirl.create(:opening_plan_with_officials)
-      end
-      @opening_plans.sort!
-    end
-
-    it "should return current month opening plan" do
-      OpeningPlan.by_month.sort.should == @opening_plans
-    end
-  end
 end

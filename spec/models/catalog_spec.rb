@@ -69,26 +69,6 @@ describe Catalog do
     end
   end
 
-  context 'catalog with an opening plan' do
-    before(:each) do
-      file = File.new("#{Rails.root}/spec/fixtures/files/catalog-with-opening-plan.csv")
-      @catalog = FactoryGirl.create(:published_catalog, csv_file: file)
-    end
-
-    it 'should be valid with mandatory fields' do
-      @catalog.should be_valid
-    end
-
-    it 'should create an opening plan' do
-      OpeningPlan.count.should eql(1)
-    end
-
-    it 'should delete previus opening plan' do
-      @catalog.save
-      OpeningPlan.count.should eql(1)
-    end
-  end
-
   context 'invalid catalogs' do
     shared_examples 'an invalid catalog file' do
       before(:each) do

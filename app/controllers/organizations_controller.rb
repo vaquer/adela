@@ -3,15 +3,9 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.friendly.find(params[:id])
-    @catalogs = @organization.catalogs.published.date_sorted.paginate(:page => params[:page], :per_page => 5)
-    @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
-    @opening_plans = @organization.opening_plans.by_month(@current_month.to_date)
-    if current_organization.present? && @organization.unpublished_catalog && !@organization.current_catalog
-      flash.now[:alert] = "OJO: No has completado el último paso que es publicar tu catálogo."
-    end
     respond_to do |format|
       format.html
-      format.json { render json: @organization, root: false  }
+      format.json { render json: @organization, root: false }
     end
   end
 

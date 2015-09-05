@@ -19,7 +19,7 @@ feature Organization, 'manages profile:' do
     expect(page).to have_text "Tipo de Gobierno"
   end
 
-  scenario "edit description and logo url", :js => true do
+  scenario "edit description and logo url", js: true do
     visit profile_organization_path(@organization)
 
     fill_in "Descripción", :with => "Esta es una descripción de una institución"
@@ -27,8 +27,7 @@ feature Organization, 'manages profile:' do
     select "Federal", :from => "organization[gov_type]"
     click_button "Guardar"
 
-    expect(page).to have_text "El perfil se ha actualizado con éxito."
-    expect(page).to have_text "Esta es una descripción de una institución"
+    sees_success_message "El perfil se ha actualizado con éxito."
   end
 
   scenario "can't see or edit another organization" do

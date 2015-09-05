@@ -1,7 +1,6 @@
 class OpeningPlan < ActiveRecord::Base
-  belongs_to :organization
-  has_many :officials, dependent: :destroy
+  validates :name, :publish_date, :accrual_periodicity, presence: true
 
-  validates :vision, :name, :description, :publish_date, :officials, presence: true
-  validates_associated :officials
+  has_many :officials, dependent: :destroy
+  belongs_to :organization
 end

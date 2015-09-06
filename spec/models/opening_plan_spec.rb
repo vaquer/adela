@@ -8,11 +8,6 @@ describe OpeningPlan do
       subject.should be_valid
     end
 
-    it "should not be valid without an institutional vision" do
-      subject.vision = ""
-      subject.should_not be_valid
-    end
-
     it "should not be valid without a dataset name" do
       subject.name = ""
       subject.should_not be_valid
@@ -25,11 +20,6 @@ describe OpeningPlan do
 
     it "should not be valid without a publish date" do
       subject.publish_date = nil
-      subject.should_not be_valid
-    end
-
-    it "should not be valid without officials" do
-      subject.officials = []
       subject.should_not be_valid
     end
 

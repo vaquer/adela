@@ -1,6 +1,13 @@
 class OpeningPlanController < ApplicationController
   before_action :authenticate_user!, except: %i(export)
 
+  def index
+    @organization = current_organization
+    if @organization.inventory.present? && @organization.opening_plans.empty?
+      redirect_to new_opening_plan_path
+    end
+  end
+
   def new
     @organization = current_organization
     @organization.opening_plans = []
@@ -12,7 +19,7 @@ class OpeningPlanController < ApplicationController
     @organization.opening_plans = []
     @organization.update(organization_params)
     @organization.save
-    redirect_to organization_opening_plan_path(@organization)
+    redirect_to opening_plan_index_path
   end
 
   def organization

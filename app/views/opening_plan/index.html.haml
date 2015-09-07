@@ -30,3 +30,4 @@
               %th= plan.accrual_periodicity
               %th= plan.publish_date
       = link_to 'Descargar Archivo', export_opening_plan_path(current_organization, format: :csv), class: 'btn btn-primary'
+      = link_to 'Actualizar Plan de Apertura', new_opening_plan_path, class: 'btn btn-primary'

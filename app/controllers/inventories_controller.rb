@@ -1,6 +1,11 @@
 class InventoriesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @inventory = Inventory.where(organization_id: current_organization.id).last
+    @new_inventory = Inventory.new
+  end
+
   def new
     @inventory = Inventory.new
   end

@@ -2,7 +2,8 @@ class InventoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @inventory = Inventory.where(organization_id: current_organization.id).last
+    redirect_to new_inventory_path if current_organization.inventory.nil?
+    @inventory = current_organization.inventory
     @new_inventory = Inventory.new
   end
 

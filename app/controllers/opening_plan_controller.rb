@@ -30,7 +30,7 @@ class OpeningPlanController < ApplicationController
   private
 
   def build_opening_plan_from_inventory
-    @organization.inventory.inventory_elements.each do |element|
+    @organization.inventory.datasets.each do |element|
       build_opening_plans(element) unless element.private?
     end
   end

@@ -114,6 +114,10 @@ es:
               invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
             access_comment:
               blank: "Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula."
+        inventory:
+          attributes:
+            inventory_elements:
+              duplicated: "Todos los recursos de un mismo conjunto de datos deben de estar agrupados."
     warnings:
       models:
         catalog:

@@ -23,7 +23,8 @@
       .form-group
         %button.btn.btn-primary{ type: 'submit' } Subir inventario
       %p * Campos obligatorios
-    - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
+    - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present? || !@inventory.compliant?
       %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
       %ul.list__warnings
+        = render partial: 'inventories/shared/inventory_warnings_list', locals: { inventory: @inventory }
         = render partial: 'inventories/shared/element_warnings_list', collection: @inventory.inventory_elements, as: :element

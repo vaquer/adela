@@ -29,4 +29,4 @@
               %th P&uacute;blico
               %th= plan.accrual_periodicity
               %th= plan.publish_date
-      = link_to 'Descargar Archivo', '#', class: 'btn btn-primary'
+      = link_to 'Descargar Archivo', export_opening_plan_path(current_organization, format: :csv), class: 'btn btn-primary'

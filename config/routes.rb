@@ -36,6 +36,7 @@ Adela::Application.routes.draw do
     resources :opening_plan, only: [:new, :create] do
       member do
         get 'organization'
+        get 'export'
       end
     end
   end

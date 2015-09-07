@@ -1,5 +1,5 @@
 class OpeningPlanController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i(export)
 
   def new
     @organization = current_organization
@@ -17,6 +17,14 @@ class OpeningPlanController < ApplicationController
 
   def organization
     @organization = Organization.find(params[:id])
+  end
+
+  def export
+    organization = Organization.find(params[:id])
+    exporter = OpeningPlanExporter.new(organization)
+    respond_to do |format|
+      format.csv { send_data exporter.export }
+    end
   end
 
   private

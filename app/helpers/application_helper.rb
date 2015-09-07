@@ -40,50 +40,6 @@ module ApplicationHelper
     end
   end
 
-  def activity_months_range(organization)
-    if organization.present?
-      months = OpeningPlan.publish_date_sorted.where("opening_plans.organization_id = #{organization}").month_range
-    else
-      months = OpeningPlan.publish_date_sorted.month_range
-    end
-  end
-
-  def previous_month(current, organization = nil)
-    current_index = activity_months_range(organization).index(current)
-    if current_index && current_index > 0
-      activity_months_range(organization)[current_index - 1]
-    elsif !current_index || current_index.zero?
-      OpeningPlan.previous_month_with_topics(current, organization)
-    else
-      ""
-    end
-  end
-
-  def next_month(current, organization = nil)
-    current_index = activity_months_range(organization).index(current)
-    if current_index && current_index <= (activity_months_range(organization).size - 1)
-      activity_months_range(organization)[current_index + 1]
-    elsif !current_index || current_index == (activity_months_range(organization).size - 1)
-      OpeningPlan.next_month_with_topics(current, organization)
-    else
-      ""
-    end
-  end
-
-  def activity_years_range(organization = nil)
-    if organization.present?
-      months = OpeningPlan.where("opening_plans.organization_id = #{organization}").year_range
-    else
-      months = OpeningPlan.year_range
-    end
-  end
-
-  def calendar_button_class(current_month, year)
-    if current_month.to_date.strftime("%Y") == year.to_date.strftime("%Y")
-      "active"
-    end
-  end
-
   def gov_link(organization)
     "#{ENV['CATALOG_URL']}#{organization.slug}"
   end

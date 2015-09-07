@@ -8,7 +8,7 @@ Adela::Application.routes.draw do
     end
 
     get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
-    get "/:slug/plan" => "organizations#opening_plan", :as => "organization_opening_plan"
+    get "/:slug/plan" => "organizations#opening_plan"
 
     get "/maqueta/" => "home#maqueta"
     post "/maqueta/" => "home#maqueta"
@@ -30,6 +30,13 @@ Adela::Application.routes.draw do
     resources :inventories, only: [:new, :create, :show, :update] do
       member do
         get 'publish'
+      end
+    end
+
+    resources :opening_plan, only: [:new, :create] do
+      member do
+        get 'organization'
+        get 'export'
       end
     end
   end

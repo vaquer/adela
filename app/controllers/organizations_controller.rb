@@ -62,8 +62,6 @@ class OrganizationsController < ApplicationController
   def search
     @organizations = Organization.search_by(params[:q]).sort_by(&:current_datasets_count).reverse.paginate(:page => params[:page], :per_page => 5)
     @logs = ActivityLog.date_sorted
-    @current_month = params[:month] || I18n.l(Date.today.at_beginning_of_month, :format => "01-%m-%Y")
-    @opening_plans = OpeningPlan.by_month(@current_month.to_date)
 
     render "home/index"
   end

@@ -10,6 +10,8 @@ class Organization < ActiveRecord::Base
 
   has_one :inventory
 
+  accepts_nested_attributes_for :opening_plans
+
   scope :with_catalog, -> { joins(:catalogs).where("catalogs.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }
   scope :federal, -> { where("gov_type = ?", Organization.gov_types[:federal]) }

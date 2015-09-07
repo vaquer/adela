@@ -33,7 +33,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :opening_plan, only: [:new, :create] do
+    resources :opening_plan, only: [:index, :new, :create] do
       member do
         get 'organization'
         get 'export'

@@ -12,6 +12,12 @@ class Inventory < ActiveRecord::Base
 
   after_save :create_inventory_elements
 
+  def datasets
+    dataset_titles.map do |title|
+      inventory_elements.find { |element| element.dataset_title == title }
+    end
+  end
+
   private
 
   def create_inventory_elements
@@ -23,7 +29,10 @@ class Inventory < ActiveRecord::Base
   end
 
   def duplicated_datasets?
-    dataset_titles = inventory_elements.chunk(&:dataset_title).map(&:first)
     dataset_titles.detect { |e| dataset_titles.count(e) > 1 }.present?
+  end
+
+  def dataset_titles
+    inventory_elements.chunk(&:dataset_title).map(&:first)
   end
 end

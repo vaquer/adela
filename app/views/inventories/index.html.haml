@@ -2,12 +2,7 @@
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos
-    - if @inventory.inventory_elements.present?
-      = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
-    - else
-      %em Aún no tienes ningún inventario
-
-    %p/
+    = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
     %p Actualiza el inventario de datos
     = form_for @new_inventory do |f|
       .form-group

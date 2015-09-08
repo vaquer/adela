@@ -16,9 +16,16 @@ class OpeningPlanController < ApplicationController
   end
 
   def create
+    # Keep datasets that were checkboxed
+    org = organization_params
+    plans = org["opening_plans_attributes"]
+    org["opening_plans_attributes"] = plans.keep_if do |k, v|
+      params["included_datasets"].include? v["name"]
+    end
+
     @organization = current_organization
     @organization.opening_plans = []
-    @organization.update(organization_params)
+    @organization.update(org)
     @organization.save
     redirect_to opening_plan_index_path
   end

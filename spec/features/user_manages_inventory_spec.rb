@@ -71,6 +71,13 @@ feature User, 'manages inventory:' do
     expect(page).to have_text('Peticiones de los ciudadanos')
   end
 
+  scenario 'continue with opening plan' do
+    upload_inventory_with_file("inventario_general_de_datos.xlsx")
+    visit inventory_path(@inventory)
+    click_on('Continua con el Plan de Apertura')
+    expect(current_path).to eq(new_opening_plan_path)
+  end
+
   def upload_inventory_with_file(file_name)
     spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
     @inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)

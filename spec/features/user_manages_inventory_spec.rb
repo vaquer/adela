@@ -69,5 +69,21 @@ feature User, 'manages inventory:' do
     find_button('Subir inventario')
   end
 
+  scenario 'sees current inventory datasets' do
+    upload_inventory_with_file("inventario_general_de_datos.xlsx")
+    visit inventories_path
+    expect(page).to have_css('table.table-striped')
+    expect(page).to have_text('Nombre del conjunto')
+    expect(page).to have_text('Fecha estimada de publicación')
+    expect(page).to have_text('Tipos de vegetación')
+    expect(page).to have_text('Montos Programa Adultos Mayores')
+    expect(page).to have_text('Peticiones de los ciudadanos')
+  end
+
+  def upload_inventory_with_file(file_name)
+    spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
+    inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)
+    InventoryXLSXParserWorker.new.perform(inventory.id)
+  end
 
 end

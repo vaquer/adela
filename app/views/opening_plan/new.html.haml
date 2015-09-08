@@ -17,19 +17,22 @@
         %table.table.table-striped
           %thead
             %tr
+              %th
               %th Nombre del conjunto
               %th Descripci&oacute;n
               %th Acceso
               %th Frecuecia con la que actualizan
               %th Confirmar fecha de Publicaci&oacute;n
           %tbody
-            = f.fields_for :opening_plans do |builder|
-              %tr
-                %th= builder.text_field :name, readonly: true
-                %th= builder.text_field :description
-                %th P&uacute;blico
-                %th= builder.text_field :accrual_periodicity
-                %th= builder.text_field :publish_date, class: 'datepicker'
+            - @organization.opening_plans.each do |plan|
+              = f.fields_for :opening_plans, plan do |builder|
+                %tr
+                  %th= check_box_tag "included_datasets[]", plan.name, 1
+                  %th= builder.text_field :name, readonly: true
+                  %th= builder.text_field :description
+                  %th P&uacute;blico
+                  %th= builder.text_field :accrual_periodicity
+                  %th= builder.text_field :publish_date, class: 'datepicker'
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
 
 :javascript

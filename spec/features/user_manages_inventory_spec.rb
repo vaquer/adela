@@ -60,4 +60,14 @@ feature User, 'manages inventory:' do
     expect(page).to have_text('Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:')
     expect(page).to have_text(' Todos los recursos de un mismo conjunto de datos deben de estar agrupados.')
   end
+
+  scenario 'sees new inventory form when no inventory has been uploaded' do
+    visit inventories_path
+    expect(page).to have_text('Sube el inventario de datos')
+    expect(page).to have_text('Selecciona el archivo')
+    expect(page).to have_text('Selecciona el archivo de la Minuta de Autorización del Grupo de Trabajo')
+    find_button('Subir inventario')
+  end
+
+
 end

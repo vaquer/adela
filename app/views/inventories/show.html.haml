@@ -4,26 +4,28 @@
     %h5.subtitle Inventario de datos
     - if inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
       = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
+      = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
     - elsif @inventory.inventory_elements.blank?
       = render partial: 'inventories/shared/parsing_spreadsheet', locals: { inventory: @inventory }
-    %ul.list
-      %li.item
-        %span Actualiza el inventario de datos
-    = form_for @inventory do |f|
-      .form-group
-        %label.block Selecciona el archivo *
-        .file_input
-          = f.file_field :spreadsheet_file
-        - unless @inventory.errors
-          %span.danger El archivo seleccionado no es v&aacute;lido.
-      .form-group
-        %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
-        .file_input
-          = f.file_field :authorization_file
-      .form-group
-        %button.btn.btn-primary{ type: 'submit' } Subir inventario
-      %p * Campos obligatorios
+
     - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present? || !@inventory.compliant?
+      %ul.list
+        %li.item
+          %span Actualiza el inventario de datos
+      = form_for @inventory do |f|
+        .form-group
+          %label.block Selecciona el archivo *
+          .file_input
+            = f.file_field :spreadsheet_file
+          - unless @inventory.errors
+            %span.danger El archivo seleccionado no es v&aacute;lido.
+        .form-group
+          %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
+          .file_input
+            = f.file_field :authorization_file
+        .form-group
+          %button.btn.btn-primary{ type: 'submit' } Subir inventario
+        %p * Campos obligatorios
       %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
       %ul.list__warnings
         = render partial: 'inventories/shared/inventory_warnings_list', locals: { inventory: @inventory }

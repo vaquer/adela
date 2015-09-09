@@ -31,7 +31,7 @@
                   %th= builder.text_field :name, readonly: true
                   %th= builder.text_field :description
                   %th P&uacute;blico
-                  %th= builder.text_field :accrual_periodicity
+                  %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
                   %th= builder.text_field :publish_date, class: 'datepicker'
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
 

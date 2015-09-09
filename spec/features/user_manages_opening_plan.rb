@@ -28,10 +28,10 @@ feature User, 'manages catalog:' do
     InventoryXLSXParser.new(inventory).parse
     visit new_opening_plan_path
     fill_in 'organization_opening_plans_attributes_0_description', with: 'osom dataset'
-    fill_in 'organization_opening_plans_attributes_0_accrual_periodicity', with: 'R/Y1'
+    select('anual', from: 'organization[opening_plans_attributes][0][accrual_periodicity]')
     click_on('Generar Plan de Apertura')
     expect(page).to have_text('osom dataset')
-    expect(page).to have_text('R/Y1')
+    expect(page).to have_text('anual')
     expect(page).to have_text('Descargar Archivo')
   end
 end

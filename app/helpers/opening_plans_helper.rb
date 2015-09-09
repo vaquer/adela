@@ -4,12 +4,12 @@ module OpeningPlansHelper
   end
 
   def parse_iso8601(iso8601)
-    ISO8601['accrual_periodicity'].key(iso8601)
+    ISO8601['accrual_periodicity'].key(iso8601).humanize
   end
 
   private
 
   def iso8601_options
-    ISO8601['accrual_periodicity'].to_a
+    ISO8601['accrual_periodicity'].map{ |key, value| [key.humanize, value] }
   end
 end

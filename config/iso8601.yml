@@ -1,0 +1,25 @@
+defaults: &defaults
+  accrual_periodicity:
+    diario: 'R/P1D'
+    semanal: 'R/P1W'
+    quincenal: 'R/P2W'
+    mensual: 'R/P1M'
+    bimestral: 'R/P2M'
+    trimestral: 'R/P3M'
+    cuatrimestral: 'R/P4M'
+    semestral: 'R/P6M'
+    anual: 'R/P1Y'
+    bianual: 'R/P2Y'
+    quinquenal: 'R/P5Y'
+    decenal: 'R/P10Y'
+    irregular: 'irregular'
+    tiempo_real: 'realtime'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

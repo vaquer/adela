@@ -27,7 +27,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, only: [:index, :new, :create, :show, :update] do
+    resources :inventories, except: :destroy do
       member do
         get 'publish'
       end

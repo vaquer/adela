@@ -3,3 +3,6 @@
     %h3.title Planea
     %h5.subtitle Inventario de datos
     = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
+    - if @inventory.compliant?
+      = link_to 'Descargar Inventario', @inventory.spreadsheet_file.url, class: 'btn btn-primary'
+      = link_to 'Actualizar Inventario', edit_inventory_path(@inventory), class: 'btn btn-primary'

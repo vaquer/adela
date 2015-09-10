@@ -78,10 +78,22 @@ feature User, 'manages inventory:' do
     expect(current_path).to eq(new_opening_plan_path)
   end
 
+  scenario 'download opening plan' do
+    upload_inventory_with_file("inventario_general_de_datos.xlsx")
+    visit inventories_path
+    expect(page).to have_text('Descargar Inventario')
+  end
+
+  scenario 'edit an opening plan' do
+    upload_inventory_with_file("inventario_general_de_datos.xlsx")
+    visit inventories_path
+    click_on('Actualizar Inventario')
+    expect(current_path).to eq(edit_inventory_path(@inventory))
+  end
+
   def upload_inventory_with_file(file_name)
     spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
     @inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)
     InventoryXLSXParserWorker.new.perform(@inventory.id)
   end
-
 end

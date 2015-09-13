@@ -20,7 +20,7 @@ S3_BUCKET_NAME: ''
 AMAZON_ACCESS_KEY: ''
 AMAZON_SECRET_KEY: ''
 
-# Inventory sample URLS
+# Catalog sample URLS
 
 INVENTORY_TEMPLATE: ''
 INVENTORY_DETAILS: ''

@@ -6,43 +6,38 @@ feature User, 'logs in:' do
     @user = FactoryGirl.create(:user)
   end
 
-  scenario "fails to access a protected page" do
+  scenario "fails to access a protected page", :js => true do
     visit new_inventory_path
+    expect(current_path).to eq(new_user_session_path)
     sees_error_message "Necesita ingresar o registrarse para continuar."
   end
 
   scenario "visits root page and sees landing page" do
     visit "/"
-    within ".app-description" do
-      expect(page).to have_text "ADELA"
-    end
-
-    expect(page).to have_text "Actividad reciente"
-    expect(page).to have_text "Instituciones"
-    expect(page).to have_text "Plan de apertura"
+    expect(page).to have_text "Con la Administradora de la Apertura, planea, publica, perfecciona y promueve datos abiertos."
+    expect(page).to have_text "Actividad Reciente"
+    expect(page).to have_css(".form-inline")
   end
 
   scenario "visits root page and sees log in link" do
     visit "/"
-    expect(page).to have_link("Iniciar sesión")
+    expect(page).to have_css("#new_user")
   end
 
   scenario "sees the log in form" do
     visit "/"
-    click_link("Iniciar sesión")
-    expect(current_path).to eq(new_user_session_path)
     expect(page).to have_css("#user_email")
     expect(page).to have_css("#user_password")
   end
 
-  scenario "fails to log in with an invalid account" do
+  scenario "fails to log in with an invalid account", :js => true do
     visit new_user_session_path
     fill_the_form_with(@user.email, "wrong_password")
     click_on("ENTRAR")
     sees_error_message "Correo o contraseña inválidos."
   end
 
-  scenario "succeed to log in with a valid account" do
+  scenario "succeed to log in with a valid account", :js => true do
     visit new_user_session_path
     fill_the_form_with(@user.email, @user.password)
     click_on("ENTRAR")

@@ -7,44 +7,31 @@ feature Organization, 'manages dashboard:' do
     given_logged_in_as(@user)
   end
 
-  scenario "sees the last inventory version" do
-    given_has_uploaded_an_inventory 10.days.ago
+  scenario "sees the last catalog version" do
+    given_has_uploaded_an_catalog 10.days.ago
     visit organization_path(@organization)
-    click_on "Actualizar catálogo"
+    click_on "Catálogo de Datos"
     expect(page).to have_text "Última versión"
     expect(page).to have_text "#{I18n.l(10.days.ago, :format => :short)}"
   end
 
-  scenario "sees older inventory versions" do
-    given_has_uploaded_an_inventory 10.days.ago
-    given_has_published_an_inventory 5.days.ago
+  scenario "sees older catalog versions" do
+    given_has_uploaded_an_catalog 10.days.ago
+    given_has_published_an_catalog 5.days.ago
     visit organization_path(@organization)
-    click_on "Actualizar catálogo"
+    click_on "Catálogo de Datos"
     expect(page).to have_text "Versiones pasadas"
     expect(page).to have_text "#{I18n.l(10.days.ago, :format => :short)}"
   end
 
-  scenario "can publish last inventory version", :js => true do
-    given_has_uploaded_an_inventory 5.days.ago
-    given_has_published_an_inventory 10.days.ago
-    visit organization_path(@organization)
-    click_on "Actualizar catálogo"
-    expect(page).to have_text "La versión publicada no es la última versión."
-    click_on "Publicar última versión"
-    expect(page).to have_text "Paso 5"
-    check_publication_requirements
-    click_on "Publicar"
-    page.should_not have_content("Publicar última versión")
+  def given_has_uploaded_an_catalog(days_ago)
+    @catalog = FactoryGirl.create(:catalog)
+    @catalog.update_attributes(:author => @user.name, :organization_id => @organization.id, :created_at => days_ago)
   end
 
-  def given_has_uploaded_an_inventory(days_ago)
-    @inventory = FactoryGirl.create(:inventory)
-    @inventory.update_attributes(:author => @user.name, :organization_id => @organization.id, :created_at => days_ago)
-  end
-
-  def given_has_published_an_inventory(days_ago)
-    @inventory = FactoryGirl.create(:published_inventory, :publish_date => days_ago)
-    @inventory.update_attributes(:author => @user.name, :organization_id => @organization.id, :created_at => days_ago)
+  def given_has_published_an_catalog(days_ago)
+    @catalog = FactoryGirl.create(:published_catalog, :publish_date => days_ago)
+    @catalog.update_attributes(:author => @user.name, :organization_id => @organization.id, :created_at => days_ago)
   end
 
   def check_publication_requirements

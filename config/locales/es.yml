@@ -67,12 +67,12 @@ es:
       access_denied: "No tienes permisos para realizar esta acción."
   activerecord:
     models:
-      inventory: "catálogo"
+      catalog: "catálogo"
       organization: "organización"
       user: "usuario"
     errors:
       models:
-        inventory:
+        catalog:
           attributes:
             csv_file:
               blank_file: "El archivo se encuentra vacío."
@@ -107,14 +107,25 @@ es:
               invalid: "no es válida."
             name:
               blank: "no puede estar en blanco."
+        inventory_element:
+          attributes:
+            publish_date:
+              blank: "Cuando el valor del dato ¿Tiene datos privados? es Público la fecha estimada de publicación no puede estar vacía o nula."
+              invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
+            access_comment:
+              blank: "Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula."
+        inventory:
+          attributes:
+            inventory_elements:
+              duplicated: "Todos los recursos de un mismo conjunto de datos deben de estar agrupados."
     warnings:
       models:
-        inventory:
+        catalog:
           attributes:
             datasets:
               compliant: "contiene campos que no cumplen con los estándares de datos."
     attributes:
-      inventory:
+      catalog:
         csv_file: "Archivo"
       user:
         name: "Nombre"

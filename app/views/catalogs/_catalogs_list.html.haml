@@ -1,0 +1,39 @@
+- if @catalogs.any?
+  %table.table
+    %thead
+      %tr
+        %th
+        %th.icon
+        %th Fecha
+        %th Hora
+        %th Conjuntos de datos
+        %th Recursos
+        %th.view Descargar
+        %th
+    %tbody
+      - @catalogs.each do |catalog|
+        %tr
+          %td
+          %td
+            - if catalog == @organization.current_catalog
+              %span.glyphicon.glyphicon-globe{'aria-hidden' => 'true'}
+            - else
+              %span.glyphicon.glyphicon-eye-close{'aria-hidden' => 'true'}
+          - cache ['catalogs', catalog] do
+            %td= I18n.l(catalog.created_at, format: :short)
+            %td= I18n.l(catalog.created_at, format: :hour)
+            %td= catalog.datasets_count
+            %td= catalog.distributions_count
+            %td
+              = link_to "<span class='glyphicon glyphicon-download' aria-hidden='true'></span>".html_safe, catalog.csv_file.url
+          %td
+            - if catalog == @organization.current_catalog
+              %small
+                = link_to gov_link(@organization) do
+                  = image_tag "catalog.png"
+                  Ver en datos.gob.mx
+  #catalogs_links.section-links
+    .col-md-4.col-md-offset-6
+      = will_paginate @catalogs, class: 'pagination pull-right'
+- else
+  %em Aún no existen catálogos.

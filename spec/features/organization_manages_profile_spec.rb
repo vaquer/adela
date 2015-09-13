@@ -10,9 +10,8 @@ feature Organization, 'manages profile:' do
   scenario "sees profile options", :js => true do
     visit organization_path(@organization)
 
-    find("#user_actions").click
-
-    expect(page).to have_link "Editar Perfil"
+    expect(page).to have_link(@user.name)
+    click_on(@user.name)
     click_on "Editar Perfil"
 
     expect(page).to have_text "Descripción"
@@ -20,7 +19,7 @@ feature Organization, 'manages profile:' do
     expect(page).to have_text "Tipo de Gobierno"
   end
 
-  scenario "edit description and logo url", :js => true do
+  scenario "edit description and logo url", js: true do
     visit profile_organization_path(@organization)
 
     fill_in "Descripción", :with => "Esta es una descripción de una institución"
@@ -28,8 +27,7 @@ feature Organization, 'manages profile:' do
     select "Federal", :from => "organization[gov_type]"
     click_button "Guardar"
 
-    expect(page).to have_text "El perfil se ha actualizado con éxito."
-    expect(page).to have_text "Esta es una descripción de una institución"
+    sees_success_message "El perfil se ha actualizado con éxito."
   end
 
   scenario "can't see or edit another organization" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723223356) do
+ActiveRecord::Schema.define(version: 20150904140416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150723223356) do
     t.string   "category"
   end
 
-  create_table "inventories", force: true do |t|
+  create_table "catalogs", force: true do |t|
     t.string   "csv_file"
     t.integer  "organization_id"
     t.datetime "created_at"
@@ -35,7 +35,34 @@ ActiveRecord::Schema.define(version: 20150723223356) do
     t.string   "author"
   end
 
+  add_index "catalogs", ["organization_id"], name: "index_catalogs_on_organization_id", using: :btree
+
+  create_table "inventories", force: true do |t|
+    t.string   "spreadsheet_file"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "authorization_file"
+  end
+
   add_index "inventories", ["organization_id"], name: "index_inventories_on_organization_id", using: :btree
+
+  create_table "inventory_elements", force: true do |t|
+    t.integer  "row"
+    t.text     "responsible"
+    t.text     "dataset_title"
+    t.text     "resource_title"
+    t.text     "description"
+    t.boolean  "private"
+    t.text     "access_comment"
+    t.string   "media_type"
+    t.date     "publish_date"
+    t.integer  "inventory_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inventory_elements", ["inventory_id"], name: "index_inventory_elements_on_inventory_id", using: :btree
 
   create_table "officials", force: true do |t|
     t.integer  "opening_plan_id"
@@ -57,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150723223356) do
     t.date     "publish_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "accrual_periodicity"
   end
 
   add_index "opening_plans", ["organization_id"], name: "index_opening_plans_on_organization_id", using: :btree

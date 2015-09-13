@@ -8,9 +8,11 @@ Adela::Application.routes.draw do
     end
 
     get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
-    get "/:slug/plan" => "organizations#opening_plan", :as => "organization_opening_plan"
-    root :to => "home#index"
+    get "/:slug/plan" => "organizations#opening_plan"
 
+    get "/maqueta/" => "home#maqueta"
+    post "/maqueta/" => "home#maqueta"
+    root :to => "home#index"
 
     resources :organizations, only: [:show, :update] do
       post "publish_catalog", :on => :member
@@ -19,16 +21,28 @@ Adela::Application.routes.draw do
       get "search", :on => :collection
     end
 
-    resources :inventories do
+    resources :catalogs do
       collection do
         get "publish"
+      end
+    end
+
+    resources :inventories, except: :destroy do
+      member do
+        get 'publish'
+      end
+    end
+
+    resources :opening_plan, only: [:index, :new, :create] do
+      member do
+        get 'organization'
+        get 'export'
       end
     end
   end
 
   namespace :api, defaults: { format: 'json'} do
     namespace :v1 do
-
       get "/catalogs" => "organizations#catalogs"
       get "/organizations" => "organizations#organizations"
       get "/gov_types" => "organizations#gov_types"

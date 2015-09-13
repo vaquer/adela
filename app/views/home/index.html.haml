@@ -1,84 +1,27 @@
-= render "layouts/flash_messages", :flash => flash
-.app-description.row
-  .col-md-2
-  .col-md-8
-    .title.col-md-3.pull-left
-      %span.heading ADELA
-    .description
-      %p= ENV['APP_DESCRIPTION']
-.container
-  .dashboard-wrapper
-    .section-heading
-      %span.activity-icon.h4 Actividad reciente
-      .legends.col-md-4.pull-right
-        %span.publication-legend
-          %small Publicaciones
-        %span.update-legend
-          %small Actualizaciones
-    .section-content.table-content
-      %table.expanded-table.activity-logs
-        - unless  @logs.any?
-          %tr.table-footer
-            %td
-            %td.icon
-            %td
-            %td
-              %em No existe actividad reciente.
-            %td
-        - @logs.first_block.each do |activity|
-          %tr
-            %td
-            %td.icon= image_tag "#{activity.category}-log.png"
-            %td.date= "Hace #{time_ago_in_words(activity.done_at)}"
-            %td.text= "#{activity.organization.title} #{activity.description}"
-            %td
-        - @logs.last_block.each do |activity|
-          %tr.more-activities.hidden
-            %td
-            %td.icon= image_tag "#{activity.category}-log.png"
-            %td.date= "Hace #{time_ago_in_words(activity.done_at)}"
-            %td.text= "#{activity.organization.title} #{activity.description}"
-            %td
-        - if @logs.last_block.any?
-          %tr.table-footer
-            %td
-            %td.icon
-            %td
-              = link_to "Ver más actividad", "#", :id => "view_more", :class => "dashboard-link"
-              = link_to "Ver menos actividad", "#", :id => "view_less", :class => "dashboard-link more-activities hidden"
-            %td
-            %td
-    .section-heading
-      %span.organization-icon.h4 Instituciones
-    .row
-      = form_tag(search_organizations_path, :method => :get, :class => "search col-md-2 col-md-offset-2") do
-        = text_field_tag :q, params[:q]
-        = image_submit_tag("search_icon.png", :id => "search", :class => "search-submit")
-    #organizations.section-content.table-content
-      %table.expanded-table.organizations-table
-        %thead
-          %th
-          %th.icon
-          %th Institución
-          %th Última actividad
-          %th Conjuntos de datos
-          %th
-        %tbody
-          - @organizations.each do |organization|
-            %tr
-              %td
-              %td= image_tag(organization.logo_url, :class => "logo-thumbnail logo-round") if organization.logo_url.present?
-              %td= link_to organization.title, organization_path(organization)
-              %td= last_activity(organization)
-              %td
-                - if organization.current_inventory.present?
-                  = organization.current_inventory.datasets_count
-                - else
-                  Ninguno
-              %td
-      #organizations_links.section-links
-        .col-md-4.col-md-offset-6
-          = will_paginate @organizations, :class => "pagination pull-right"
-    .section-heading
-      %span.calendar-icon.h4 Plan de apertura
-    = render "home/opening_plans"
+#intro
+  .overlay
+  .row.content
+    .col-xs-12.subtitle
+      %h3.bright
+        Con la Administradora de la Apertura, planea, publica, perfecciona
+        y promueve datos abiertos.
+
+  .container
+    .row.actions
+      .col-xs-12.col-md-6
+        %p.topic Actividad Reciente
+        %hr
+        - if @logs.any?
+          %ul.recent_activity
+            - @logs.first_block.each_with_index do |activity, index|
+              - if index.even?
+                %li.even "#{activity.organization.title} #{activity.description}"
+              - else
+                %li.odd "#{activity.organization.title} #{activity.description}"
+        - else
+          %p.bright No hay actividad reciente.
+      - if !user_signed_in?
+        .col-xs-12.col-md-6
+          %p.topic Ingresar
+          %hr
+          = render 'shared/forms/user', resource: User.new, resource_name: :user

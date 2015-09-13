@@ -1,48 +1,45 @@
 class InventoriesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
 
-  layout 'home'
-
-  rescue_from Exceptions::UnknownEncodingError, with: :unable_to_detect_encoding
-  rescue_from CSV::MalformedCSVError, with: :malformed_csv
+  def index
+    redirect_to new_inventory_path if current_organization.inventory.nil?
+    @inventory = current_organization.inventory
+    @new_inventory = Inventory.new
+  end
 
   def new
     @inventory = Inventory.new
   end
 
-  def index
-    @organization = current_organization
-    @inventories = current_organization.inventories.date_sorted.paginate(:page => params[:page], :per_page => 5)
+  def create
+    @inventory = current_organization.build_inventory(intentory_params)
+    @inventory.save
+    redirect_to inventory_path(@inventory)
   end
 
-  def create
-    @inventory = Inventory.new(inventory_params)
-    @inventory.organization_id = current_organization.id
-    @inventory.author = current_user.name
+  def edit
+    @inventory = Inventory.find(params[:id])
+  end
 
-    if @inventory.save
-      record_activity("update", "actualizó su catálogo de datos.")
-    end
+  def update
+    @inventory = Inventory.find(params[:id])
+    @inventory.update(intentory_params)
+    redirect_to inventory_path(@inventory)
+  end
 
-    @datasets = @inventory.datasets
-    @upload_intent = true
-    render :action => "new"
+  def show
+    @inventory = Inventory.find(params[:id])
+  end
+
+  def publish
+    @inventory = Inventory.find(params[:id])
+    # TODO: create inventory dataset
+    redirect_to organization_path(current_organization)
   end
 
   private
 
-  def inventory_params
-    params.require(:inventory).permit(:csv_file)
-  end
-
-  def unable_to_detect_encoding
-    flash[:alert] = I18n.t("activerecord.errors.models.inventory.attributes.csv_file.encoding")
-    redirect_to inventories_path
-  end
-
-  def malformed_csv
-    flash[:alert] = I18n.t("activerecord.errors.models.inventory.attributes.csv_file.malformed")
-    redirect_to inventories_path
+  def intentory_params
+    params.require(:inventory).permit(:spreadsheet_file, :authorization_file)
   end
 end

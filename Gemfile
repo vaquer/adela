@@ -37,6 +37,12 @@ gem 'newrelic_rpm'
 gem 'active_model_warnings'
 gem 'enum_help'
 gem 'faker'
+gem 'toastr-rails'
+gem 'gretel'
+gem 'iso8601'
+gem 'roo', '~> 2.1.0'
+gem 'roo-xls'
+gem 'deep_cloneable', '~> 2.1.1'
 
 group :development, :test do
   gem 'spring'
@@ -53,6 +59,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'json-schema'
+  gem 'rspec-sidekiq'
 end
 
 group :doc do

@@ -1,13 +1,11 @@
 class User < ActiveRecord::Base
-  rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :trackable, :validatable
+  rolify
+
+  scope :created_at_sorted, -> { order('created_at DESC') }
 
   validates_presence_of :name
 
-  scope :created_at_sorted, -> { order("created_at DESC") }
-
-  belongs_to      :organization
-  has_many        :catalogs, :through => :organization
+  has_many :catalogs, through: :organization
+  belongs_to :organization
 end

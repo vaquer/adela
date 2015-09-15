@@ -2,7 +2,16 @@
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos
-    = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
-    - if @inventory.compliant?
+    - if @inventory.compliant? && inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
+      = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
       = link_to 'Descargar Inventario', @inventory.spreadsheet_file.url, class: 'btn btn-primary'
-      = link_to 'Actualizar Inventario', edit_inventory_path(@inventory), class: 'btn btn-primary'
+      = link_to 'Actualizar Inventario', new_inventory_path, class: 'btn btn-primary'
+    - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present? || !@inventory.compliant?
+      %ul.list
+        %li.item
+          %span Actualiza el inventario de datos
+      = render 'inventories/shared/form'
+      %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
+      %ul.list__warnings
+        = render partial: 'inventories/shared/inventory_warnings_list', locals: { inventory: @inventory }
+        = render partial: 'inventories/shared/element_warnings_list', collection: @inventory.inventory_elements, as: :element

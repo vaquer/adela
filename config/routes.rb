@@ -27,7 +27,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, except: :destroy do
+    resources :inventories, except: [:edit, :update, :destroy] do
       member do
         get 'publish'
       end

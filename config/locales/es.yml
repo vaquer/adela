@@ -118,6 +118,7 @@ es:
           attributes:
             inventory_elements:
               duplicated: "Todos los recursos de un mismo conjunto de datos deben de estar agrupados."
+              invalid: "Las filas del inventario de datos son inválidas."
     warnings:
       models:
         catalog:

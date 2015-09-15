@@ -88,7 +88,7 @@ feature User, 'manages inventory:' do
     upload_inventory_with_file("inventario_general_de_datos.xlsx")
     visit inventories_path
     click_on('Actualizar Inventario')
-    expect(current_path).to eq(edit_inventory_path(@inventory))
+    expect(current_path).to eq(new_inventory_path)
   end
 
   def upload_inventory_with_file(file_name)

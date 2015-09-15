@@ -2,8 +2,8 @@ class InventoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    redirect_to new_inventory_path if current_organization.inventory.nil?
-    @inventory = current_organization.inventory
+    redirect_to new_inventory_path unless current_inventory
+    @inventory = current_inventory
     @new_inventory = Inventory.new
   end
 
@@ -12,18 +12,8 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    @inventory = current_organization.build_inventory(intentory_params)
+    @inventory = current_organization.inventories.build(intentory_params)
     @inventory.save
-    redirect_to inventory_path(@inventory)
-  end
-
-  def edit
-    @inventory = Inventory.find(params[:id])
-  end
-
-  def update
-    @inventory = Inventory.find(params[:id])
-    @inventory.update(intentory_params)
     redirect_to inventory_path(@inventory)
   end
 

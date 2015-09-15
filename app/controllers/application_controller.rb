@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_organization
+  helper_method :current_inventory
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => I18n.t("errors.messages.access_denied")
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   def current_organization
     current_user && current_user.organization
+  end
+
+  def current_inventory
+    current_organization.inventories.reverse.find(&:compliant?)
   end
 
   def record_activity(category, description)

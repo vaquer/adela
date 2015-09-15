@@ -8,7 +8,7 @@
 %nav.navbar.navbar-default
   .container
     .navbar-header
-      = link_to (user_signed_in? ? organization_path(current_organization) : root_path) do
+      = link_to home_path_helper do
         = image_tag 'logoadela@2x.svg', width: '150px'
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right

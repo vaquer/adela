@@ -14,5 +14,3 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           = render partial: "/layouts/shared/signed_in_menu"
-        - else
-          %li= link_to "Regístrate", new_user_registration_path

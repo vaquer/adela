@@ -3,22 +3,17 @@
     %li= link_to 'Admin', admin_root_path
     %li= link_to 'Usuarios', admin_users_path
     %li.active Importar
-  .dashboard-wrapper
-    .section-heading
-      %span.h4
-        Importar Usuarios
-    .row
-      .col-md-2
-      .col-md-8.topic-form-holder.data-controls
-        = form_tag(admin_create_users_path, :method => :post, multipart: true) do
-          = label_tag "Archivo CSV"
-          %br/
-          = file_field_tag :csv_file
-          %br/
-          %small
-            Asegúrate de que contenga las columnas:
-            %strong "nombre", "email", "organizacion"
-          %br/
-          = submit_tag "Importar usuarios", :class => "btn button"
-          = link_to 'Cancelar', admin_users_path, :class => "btn cancel button"
-        %hr/
+  .card
+    %h3.title Importar Usuarios
+    %p
+      Asegúrate de que contenga las columnas:
+      %strong "nombre", "email", "organizacion"
+      = form_tag(admin_create_users_path, :method => :post, multipart: true) do
+        .form-group
+          %label.block Archivo CSV *
+          .file_input
+            = file_field_tag :csv_file
+        .form-group
+          %button.btn.btn-primary{ type: 'submit' } Importar usuarios
+          = link_to 'Cancelar', admin_users_path, class: 'btn btn-primary'
+        %p * Campos obligatorios

@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def home_path_helper
+    if user_signed_in? && current_organization
+      organization_path(current_organization)
+    else
+      root_path
+    end
+  end
+
   def bootstrap_flash_class(key)
     case key
     when "notice" then "success"

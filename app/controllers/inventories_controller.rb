@@ -12,7 +12,7 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    @inventory = current_organization.build_inventory(intentory_params)
+    @inventory = current_organization.inventories.build(intentory_params)
     @inventory.save
     redirect_to inventory_path(@inventory)
   end

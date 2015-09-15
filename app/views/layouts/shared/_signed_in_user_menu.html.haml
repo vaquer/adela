@@ -1,0 +1,10 @@
+%li.dropdown
+  %a.dropdown-toggle{ :href => '#', 'data-toggle' => 'dropdown', :role => 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false' }
+    = image_tag 'adelitas.gif', class: 'avatar'
+    = current_user.name
+    %span.caret
+  %ul.dropdown-menu{ role: 'menu' }
+    - if current_user.has_role? :admin
+      %li= link_to 'Administrador', admin_root_path
+    %li= link_to 'Cambiar contraseña', edit_user_registration_path, role: 'menuitem', tabindex: '-1'
+    %li= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete

@@ -2,8 +2,8 @@ class InventoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    redirect_to new_inventory_path if current_organization.inventory.nil?
-    @inventory = current_organization.inventory
+    redirect_to new_inventory_path unless current_inventory
+    @inventory = current_inventory
     @new_inventory = Inventory.new
   end
 

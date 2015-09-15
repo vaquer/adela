@@ -3,7 +3,7 @@ class OpeningPlanController < ApplicationController
 
   def index
     @organization = current_organization
-    if @organization.inventory.present? && @organization.opening_plans.empty?
+    if current_inventory.present? && @organization.opening_plans.empty?
       redirect_to new_opening_plan_path
     end
   end
@@ -12,7 +12,7 @@ class OpeningPlanController < ApplicationController
     @organization = current_organization
     cloned_organization = @organization.deep_clone :include => [:opening_plans]
     @organization.opening_plans = []
-    build_opening_plan_from_inventory(cloned_organization.opening_plans) unless @organization.inventory.nil?
+    build_opening_plan_from_inventory(cloned_organization.opening_plans) unless current_inventory.nil?
   end
 
   def create
@@ -45,7 +45,7 @@ class OpeningPlanController < ApplicationController
   private
 
   def build_opening_plan_from_inventory(current_plan)
-    @organization.inventory.datasets.each do |element|
+    current_inventory.datasets.each do |element|
       build_opening_plans(element, current_plan) unless element.private?
     end
   end

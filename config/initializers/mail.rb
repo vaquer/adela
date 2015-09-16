@@ -1,3 +1,5 @@
+MAILER_FROM = ENV['MAILER_FROM'] || 'no-reply@adela.com'
+
 if Rails.env.production?
   ActionMailer::Base.smtp_settings = {
     :address        => ENV['MAILER_ADDRESS'],

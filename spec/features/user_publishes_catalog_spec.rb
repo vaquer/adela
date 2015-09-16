@@ -37,14 +37,6 @@ feature User, 'publishes catalog:' do
     activity_log_created_with_msg "publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos."
   end
 
-  scenario "can publish a catalog later" do
-    visit new_catalog_path
-    tries_to_upload_the_file("catalog.csv")
-    click_on "Guardar catálogo"
-    click_on "Lo publicaré después, quiero avanzar"
-    expect(page).to have_text "OJO: No has completado el último paso que es publicar tu catálogo."
-  end
-
   def sees_data_requirements
     expect(page).to have_css("#personal_data")
     expect(page).to have_css("#open_data")

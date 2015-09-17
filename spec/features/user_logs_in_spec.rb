@@ -16,7 +16,6 @@ feature User, 'logs in:' do
     visit "/"
     expect(page).to have_text "Con la Administradora de la Apertura, planea, publica, perfecciona y promueve datos abiertos."
     expect(page).to have_text "Actividad Reciente"
-    expect(page).to have_css(".form-inline")
   end
 
   scenario "visits root page and sees log in link" do

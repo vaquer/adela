@@ -1,4 +1,6 @@
 .container
+  - if @catalog.present?
+    = render 'layouts/error_messages', object: @catalog
   .card
     %h3.title Publica
     %h5.subtitle Cat&aacutelogo de datos institucional

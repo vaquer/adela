@@ -11,10 +11,8 @@ feature User, 'publishes catalog:' do
     given_has_uploaded_an_catalog(1.day.ago)
     visit new_catalog_path
     tries_to_upload_the_file("catalog.csv")
-    expect(page).to have_text("Paso 5")
     expect(page).to have_text("Publica tu catálogo")
     expect(page).to have_css("#publish.disabled")
-    expect(page).to have_link("Lo publicaré después, quiero avanzar")
   end
 
   scenario "sees permissions and publication requirements checkboxes" do
@@ -25,27 +23,18 @@ feature User, 'publishes catalog:' do
     sees_data_requirements
   end
 
-  scenario "can publish a catalog", :js => true do
+  scenario "can publish a catalog" do
     visit new_catalog_path
     tries_to_upload_the_file("catalog.csv")
     click_on "Guardar catálogo"
     check_publication_requirements
     click_on "Publicar"
-    sees_success_message "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura y catálogo de datos al día."
     expect(page).to have_text "Última versión"
     expect(page).to have_text "Versión publicada"
     expect(page).to have_text @user.name
     expect(page).to have_link "Subir nueva versión"
     @catalog = @user.organization.current_catalog
     activity_log_created_with_msg "publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos."
-  end
-
-  scenario "can publish a catalog later", :js => true do
-    visit new_catalog_path
-    tries_to_upload_the_file("catalog.csv")
-    click_on "Guardar catálogo"
-    click_on "Lo publicaré después, quiero avanzar"
-    expect(page).to have_text "OJO: No has completado el último paso que es publicar tu catálogo."
   end
 
   def sees_data_requirements
@@ -60,7 +49,6 @@ feature User, 'publishes catalog:' do
     check("open_data")
     check("office_permission")
     check("data_policy_requirements")
-    page.execute_script("$('#data_policy_requirements').trigger('change');")
   end
 
   def tries_to_upload_the_file(file_name)

@@ -25,22 +25,22 @@ feature User, 'manages catalog:' do
     activity_log_created_with_msg "actualizó su catálogo de datos."
   end
 
-  scenario "fails to upload an invalid csv file", :js => true do
+  scenario "fails to upload an invalid csv file" do
     visit new_catalog_path
     tries_to_upload_the_file('invalid_file.txt')
-    sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
+    expect(page).to have_text "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
-  scenario "fails to upload a csv file with invalid structure", :js => true do
+  scenario "fails to upload a csv file with invalid structure" do
     visit new_catalog_path
     tries_to_upload_the_file('invalid_catalog.csv')
-    sees_error_message "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
+    expect(page).to have_text "Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
   end
 
-  scenario "fails to upload an empty csv file", :js => true do
+  scenario "fails to upload an empty csv file" do
     visit new_catalog_path
     tries_to_upload_the_file('empty_catalog.csv')
-    sees_error_message "Debe existir al menos un conjunto de datos en el archivo."
+    expect(page).to have_text "Debe existir al menos un conjunto de datos en el archivo."
   end
 
   scenario "sees a preview of an incorrect uploaded file" do

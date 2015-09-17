@@ -10,6 +10,7 @@ $main_top_and_bottom_margin: 100px;
 
 // Colors
 $landing_default_color: #FFFFFF;
+$form_links_color: #FFF;
 
 #intro {
   z-index: -1;
@@ -67,4 +68,9 @@ $landing_default_color: #FFFFFF;
       &.even { opacity: 0.8; }
     }
   }
+}
+
+a.form-link {
+  margin-top: 0.75em;
+  color: $form_links_color;
 }

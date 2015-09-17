@@ -1,7 +1,7 @@
 .container
-  .row
-    .col-md-4
-    .user-form.col-md-4
-      %h2 Adela
-      = render 'shared/forms/user', resource: resource, resource_name: resource_name
-    .col-md-4
+  = custom_devise_error_messages!
+  .card
+    %h3.title Iniciar Sesion
+    %h5.subtitle
+      .span Ingresa los siguientes datos:
+    = render 'shared/forms/user', resource: resource, resource_name: resource_name

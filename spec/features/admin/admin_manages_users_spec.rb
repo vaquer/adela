@@ -9,8 +9,8 @@ feature Admin, 'manages users:' do
 
   scenario "sees users menu" do
     visit "/admin"
-    expect(page).to have_link "Administrar Usuarios"
-    click_on "Administrar Usuarios"
+    expect(page).to have_link "Ver Usuarios"
+    click_on "Ver Usuarios"
     expect(current_path).to eq(admin_users_path)
   end
 
@@ -18,14 +18,13 @@ feature Admin, 'manages users:' do
     visit "/admin/users"
     click_on 'Importar Usuarios'
 
-    expect(page).to have_text "Archivo csv"
+    expect(page).to have_text "Archivo CSV"
     upload_the_file "adela-users.csv"
 
-    sees_success_message "Los usuarios se crearon exitosamente."
     User.count.should == 3
   end
 
-  scenario "can create an new user" do
+  scenario "can create an new user", js: true do
     organization = FactoryGirl.create(:organization)
     visit "/admin/users"
     click_on 'Crear Usuario'

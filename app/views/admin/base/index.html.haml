@@ -1,8 +1,13 @@
 .container
-  %ol.breadcrumb.breadcrumb-admin
+  %ol.breadcrumb
     %li.active= link_to 'Admin', admin_root_path
-  .navbar
-    .container-fluid
-      .navbar-header
-        = link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrar Usuarios'.html_safe, admin_users_path, :class => "btn button navbar-btn"
-        = link_to '<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Administrar Organizaciones'.html_safe, admin_organizations_path, :class => "btn button navbar-btn"
+  .card
+    %h3.title Usuarios
+    %h5.subtitle
+      Aqu&iacute; podr&aacute;s ver el listado de usuarios, editar, crear y borrar usuarios en Adela.
+    = link_to 'Ver Usuarios'.html_safe, admin_users_path, class: 'btn btn-primary'
+  .card
+    %h3.title Organizaciones
+    %h5.subtitle
+      Aqu&iacute; podr&aacute;s ver el listado de organizaciones en adela.
+    = link_to 'Ver Organizaciones'.html_safe, admin_organizations_path, class: 'btn btn-primary'

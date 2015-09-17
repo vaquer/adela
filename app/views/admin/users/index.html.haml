@@ -2,49 +2,48 @@
   %ol.breadcrumb.breadcrumb-admin
     %li= link_to 'Admin', admin_root_path
     %li.active= link_to 'Usuarios', admin_users_path
-  .navbar
-    .container-fluid
-      .navbar-header
-        = link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Usuario'.html_safe, new_admin_user_path, :class => "btn button navbar-btn"
-        = link_to '<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Importar Usuarios'.html_safe, admin_import_users_path, :class => "btn button navbar-btn"
-  %table.table.table-condensed.table-bordered.table-striped
-    %thead
-      %tr
-        %th Nombre
-        %th Permisos
-        %th Email
-        %th Organización
-        %th Creado el
-        %th Actualizado
-        %th Último sign in
-        %th Acciones
-    %tbody
-      - @users.each do |user|
+  .card
+    %ul.nav.nav-pills
+      %li{ role: 'presentation' }
+        = link_to 'Crear Usuario', new_admin_user_path, class: 'btn btn-primary'
+      %li{ role: 'presentation' }
+        = link_to 'Importar Usuarios', admin_import_users_path, class: 'btn btn-primary'
+    %table.table.table-condensed
+      %thead
         %tr
-          %td= user.name
-          %td
-            .dropdown
-              %button.btn.btn-default.block.dropdown-toggle{:type => 'button', 'data-toggle' => 'dropdown'}
-                = user_role_description(user)
-                %span.caret
-              %ul.dropdown-menu.dropdown-menu-right
-                %li= link_to 'Convertir en Administrador', grant_admin_role_admin_user_path(user), method: :put, data: { confirm: "¿Estas seguro de cambiar los permisos de #{user.name}?" } unless user.has_role?(:admin)
-                %li= link_to 'Convertir en Funcionario', remove_admin_role_admin_user_path(user), method: :put, data: { confirm: "¿Estas seguro de cambiar los permisos de #{user.name}?" } if user.has_role?(:admin)
-          %td= user.email
-          %td= user.organization.try(:title)
-          %td= I18n.l(user.created_at, format: :short)
-          %td= I18n.l(user.updated_at, format: :short)
-          %td
-            - if user.last_sign_in_at.present?
-              = time_ago_in_words(user.last_sign_in_at)
-            - else
-              %em No ha ingresado
-          %td
-            .dropdown
-              %button.btn.btn-default.block.dropdown-toggle{:id => "user_#{user.id}", :type => 'button', 'data-toggle' => 'dropdown'}
-                %span.glyphicon.glyphicon-chevron-down{'aria-hidden' =>'true'}
-              %ul.dropdown-menu.dropdown-menu-right
-                %li= link_to 'Editar', edit_admin_user_path(user)
-                %li= link_to 'Ingresar', acting_as_admin_user_path(user)
-                %li= link_to 'Borrar', admin_user_path(user), method: :delete, data: { confirm: "¿Estas seguro de eliminar a #{user.name}?" }
-  = will_paginate @users
+          %th Nombre
+          %th Permisos
+          %th Email
+          %th Organización
+          %th Creado el
+          %th Último sign in
+          %th Acciones
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td
+              .dropdown
+                %button.btn.btn-default.block.dropdown-toggle{:type => 'button', 'data-toggle' => 'dropdown'}
+                  = user_role_description(user)
+                  %span.caret
+                %ul.dropdown-menu.dropdown-menu-right
+                  %li= link_to 'Convertir en Administrador', grant_admin_role_admin_user_path(user), method: :put, data: { confirm: "¿Estas seguro de cambiar los permisos de #{user.name}?" } unless user.has_role?(:admin)
+                  %li= link_to 'Convertir en Funcionario', remove_admin_role_admin_user_path(user), method: :put, data: { confirm: "¿Estas seguro de cambiar los permisos de #{user.name}?" } if user.has_role?(:admin)
+            %td= user.email
+            %td= user.organization.try(:title)
+            %td= I18n.l(user.created_at, format: :short)
+            %td
+              - if user.last_sign_in_at.present?
+                = time_ago_in_words(user.last_sign_in_at)
+              - else
+                %em No ha ingresado
+            %td
+              .dropdown
+                %button.btn.btn-default.block.dropdown-toggle{:id => "user_#{user.id}", :type => 'button', 'data-toggle' => 'dropdown'}
+                  %span.glyphicon.glyphicon-chevron-down{'aria-hidden' =>'true'}
+                %ul.dropdown-menu.dropdown-menu-right
+                  %li= link_to 'Editar', edit_admin_user_path(user)
+                  %li= link_to 'Ingresar', acting_as_admin_user_path(user)
+                  %li= link_to 'Borrar', admin_user_path(user), method: :delete, data: { confirm: "¿Estas seguro de eliminar a #{user.name}?" }
+    = will_paginate @users

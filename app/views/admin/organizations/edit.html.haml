@@ -1,12 +1,8 @@
 .container
-  %ol.breadcrumb.breadcrumb-admin
+  %ol.breadcrumb
     %li= link_to 'Admin', admin_root_path
     %li= link_to 'Organizaciones', admin_organizations_path
     %li.active= link_to 'Editar', edit_admin_organization_path(@organization)
-  .dashboard-wrapper
-    .section-heading
-      %span.h4= "Editar #{@organization.title}"
-    .row
-      .col-md-2
-      .col-md-8.topic-form-holder.data-controls
-        = render "admin/organizations/shared/form"
+  .card
+    %h3.title= "Editar #{@organization.title}"
+    = render 'admin/organizations/shared/form'

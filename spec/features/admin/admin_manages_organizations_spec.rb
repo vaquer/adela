@@ -9,12 +9,12 @@ feature Admin, 'manages organizations:' do
 
   scenario "sees organizations menu" do
     visit "/admin"
-    expect(page).to have_link "Administrar Organizaciones"
-    click_on "Administrar Organizaciones"
+    expect(page).to have_link "Ver Organizaciones"
+    click_on "Ver Organizaciones"
     expect(current_path).to eq(admin_organizations_path)
   end
 
-  scenario "can create an new organization" do
+  scenario "can create an new organization", js: true do
     organization = FactoryGirl.build(:organization, :federal)
     visit "/admin/organizations"
     click_on 'Crear Organización'
@@ -29,7 +29,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message "La organización se creó exitosamente."
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text(organization.gov_type_i18n)
+    expect(page).to have_text('FEDERAL')
   end
 
   scenario "can edit an organization", js: true do
@@ -51,7 +51,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message 'Se ha actualizado la organización exitosamente.'
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('Federal')
+    expect(page).to have_text('FEDERAL')
   end
 
   scenario "can edit an organization gov_type", js: true do
@@ -64,6 +64,6 @@ feature Admin, 'manages organizations:' do
     sees_success_message 'Se ha actualizado la organización exitosamente.'
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('Estatal')
+    expect(page).to have_text('ESTATAL')
   end
 end

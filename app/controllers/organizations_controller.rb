@@ -3,10 +3,6 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.friendly.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json { render json: @organization, root: false }
-    end
   end
 
   def publish_catalog

@@ -38,6 +38,6 @@
 :javascript
   $(function() {
     $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
-    $( ".datepicker" ).datepicker();
+    $( ".datepicker" ).datepicker({ minDate: 0 });
     $( "#opening-plan-form" ).validate();
   });

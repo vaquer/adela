@@ -109,6 +109,18 @@ es:
               blank: "no puede estar en blanco."
         inventory_element:
           attributes:
+            responsible:
+              invalid: "El campo \"¿En qué plataforma, tecnología, programa o sistema se albergan?\" no puede ir en blanco."
+            dataset_title:
+              invalid: "El campo \"Nombre del conjunto\" no puede ir en blanco."
+            resource_title:
+              invalid: "El campo \"Nombre del recurso\" no puede ir en blanco."
+            description:
+              invalid: "El campo \"¿De qué es?\" no puede ir en blanco."
+            private:
+              invalid: "El campo \"¿Tiene datos privados?\" no puede ir en blanco."
+            media_type:
+              invalid: "El campo \"¿En qué plataforma, tecnología, programa o sistema se albergan?\" no puede ir en blanco."
             publish_date:
               blank: "Cuando el valor del dato ¿Tiene datos privados? es Público la fecha estimada de publicación no puede estar vacía o nula."
               invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."

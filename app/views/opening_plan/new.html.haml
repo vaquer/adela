@@ -13,7 +13,7 @@
           Antes de generar el Plan de apertura de la institución debes de subir el Inventario de Datos.
         = link_to 'Subir', new_inventory_path, class: 'btn btn-primary'
     - else
-      = form_for @organization, url: url_for(controller: 'opening_plan', action: 'create'), html: { class: 'form' }, method: 'post' do |f|
+      = form_for @organization, url: url_for(controller: 'opening_plan', action: 'create'), html: { class: 'form', id: 'opening-plan-form' }, method: 'post' do |f|
         %table.table.table-striped
           %thead
             %tr
@@ -28,15 +28,16 @@
               = f.fields_for :opening_plans, plan do |builder|
                 %tr
                   %th= check_box_tag "included_datasets[]", plan.name, 1
-                  %th= builder.text_field :name, readonly: true
-                  %th= builder.text_field :description
+                  %th= builder.text_field :name, readonly: true, required: true
+                  %th= builder.text_field :description, required: true
                   %th P&uacute;blico
                   %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
-                  %th= builder.text_field :publish_date, class: 'datepicker'
+                  %th= builder.text_field :publish_date, required: true, class: 'datepicker'
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
 
 :javascript
   $(function() {
     $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
     $( ".datepicker" ).datepicker();
+    $( "#opening-plan-form" ).validate();
   });

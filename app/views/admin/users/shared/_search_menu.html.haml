@@ -1,0 +1,14 @@
+.card
+  %h3.title Buscar
+  = form_tag admin_users_path, method: :get do
+    .form-group
+      = label_tag :names, 'Nombre:'
+      = text_field_tag :names, '', class: 'form-control'
+    .form-group
+      = label_tag :email, 'Correo Electrónico:'
+      = text_field_tag :email, '', class: 'form-control'
+    .form-group
+      = label_tag :organization, 'Organizacion:'
+      = select_tag :organization, options_for_select(organizations_options), prompt: '', class: 'form-control'
+    .form-group
+      %button.btn.btn-primary{ type: 'submit' } Buscar

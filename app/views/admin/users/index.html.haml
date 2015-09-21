@@ -2,6 +2,7 @@
   %ol.breadcrumb.breadcrumb-admin
     %li= link_to 'Admin', admin_root_path
     %li.active= link_to 'Usuarios', admin_users_path
+  = render partial: '/admin/users/shared/search_menu'
   .card
     %ul.nav.nav-pills
       %li{ role: 'presentation' }

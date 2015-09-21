@@ -47,7 +47,7 @@ Adela::Application.routes.draw do
       get "/organizations" => "organizations#organizations"
       get "/gov_types" => "organizations#gov_types"
 
-      resources :organizations do
+      resources :organizations, only: [:show] do
         collection do
           get "catalogs"
           get "organizations"

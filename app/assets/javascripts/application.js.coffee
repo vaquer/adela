@@ -5,6 +5,8 @@
 //= require jquery.ui.datepicker-es
 //= require jquery.expander
 //= require jquery.pjax
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require spin
 //= require jquery.spin
 //= require bootstrap

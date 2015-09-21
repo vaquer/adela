@@ -43,6 +43,7 @@ gem 'iso8601'
 gem 'roo', '~> 2.1.0'
 gem 'roo-xls'
 gem 'deep_cloneable', '~> 2.1.1'
+gem 'jquery-validation-rails'
 
 group :development, :test do
   gem 'spring'

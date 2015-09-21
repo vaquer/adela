@@ -7,6 +7,7 @@
 //= require jquery.pjax
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require jquery/validate/messages
 //= require spin
 //= require jquery.spin
 //= require bootstrap

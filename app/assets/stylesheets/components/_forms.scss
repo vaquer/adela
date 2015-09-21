@@ -51,3 +51,12 @@
     margin-right: 15px;
   }
 }
+
+input.error {
+  border: 1px solid #A94442;
+}
+
+label.error {
+  color: #A94442;
+  font-weight: 700;
+}

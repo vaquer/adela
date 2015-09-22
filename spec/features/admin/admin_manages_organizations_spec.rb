@@ -66,4 +66,51 @@ feature Admin, 'manages organizations:' do
     expect(page).to have_text(organization.title)
     expect(page).to have_text('ESTATAL')
   end
+
+  scenario "can add a sector", js: true do
+    create(:sector, title: 'Educación')
+    organization = FactoryGirl.create(:organization)
+    new_attributes = FactoryGirl.attributes_for(:organization)
+    visit "/admin/organizations"
+
+    page.find("#organization_#{organization.id}").click
+    click_on 'Editar'
+
+    expect(current_path).to eq(edit_admin_organization_path(organization))
+    click_on 'Agregar un sector'
+    expect(page).to have_text('Eliminar sector')
+
+    click_on 'Guardar'
+
+    organization.reload
+    sees_success_message 'Se ha actualizado la organización exitosamente.'
+    expect(organization.sectors.count).to eq(1)
+  end
+
+  scenario "can delete a sector", js: true do
+    create(:sector, title: 'Educación')
+    organization = FactoryGirl.create(:organization)
+    new_attributes = FactoryGirl.attributes_for(:organization)
+
+    visit "/admin/organizations"
+    page.find("#organization_#{organization.id}").click
+    click_on 'Editar'
+
+    expect(current_path).to eq(edit_admin_organization_path(organization))
+    click_on 'Agregar un sector'
+    click_on 'Guardar'
+    sees_success_message 'Se ha actualizado la organización exitosamente.'
+
+    visit "/admin/organizations"
+    page.find("#organization_#{organization.id}").click
+    click_on 'Editar'
+
+    expect(current_path).to eq(edit_admin_organization_path(organization))
+    click_on 'Eliminar sector'
+    click_on 'Guardar'
+
+    organization.reload
+    sees_success_message 'Se ha actualizado la organización exitosamente.'
+    expect(organization.sectors.count).to eq(0)
+  end
 end

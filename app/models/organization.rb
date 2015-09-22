@@ -20,6 +20,7 @@ class Organization < ActiveRecord::Base
   scope :state, -> { where("gov_type = ?", Organization.gov_types[:state]) }
   scope :municipal, -> { where("gov_type = ?", Organization.gov_types[:municipal]) }
   scope :autonomous, -> { where("gov_type = ?", Organization.gov_types[:autonomous]) }
+  scope :sector, -> slug { joins(:sectors).where('sectors.slug = ?', slug) }
 
   enum gov_type: [:federal, :state, :municipal, :autonomous]
 

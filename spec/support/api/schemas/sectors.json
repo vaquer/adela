@@ -18,13 +18,17 @@
             },
             "updated_at": {
               "type": "string"
+            },
+            "slug": {
+              "type": "string"
             }
           },
           "required": [
             "id",
             "title",
             "created_at",
-            "updated_at"
+            "updated_at",
+            "slug"
           ]
         }
       ]

@@ -52,6 +52,13 @@ feature User, 'manages inventory:' do
     expect(page).to have_text(' Todos los recursos de un mismo conjunto de datos deben de estar agrupados.')
   end
 
+  scenario 'uploads an invalid inventory file with ungrouped datasets' do
+    upload_inventory_with_file("inventory-past-publish-date.xlsx")
+    visit inventory_path(@inventory)
+    expect(page).to have_text('Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:')
+    expect(page).to have_text('La fecha estimada de publicación debe ser mayor a la actual.')
+  end
+
   scenario 'sees new inventory form when no inventory has been uploaded' do
     visit inventories_path
     expect(page).to have_text('Sube el inventario de datos')

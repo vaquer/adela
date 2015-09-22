@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150904140416) do
+ActiveRecord::Schema.define(version: 20150922043158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20150904140416) do
 
   add_index "opening_plans", ["organization_id"], name: "index_opening_plans_on_organization_id", using: :btree
 
+  create_table "organization_sectors", force: true do |t|
+    t.integer  "sector_id"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organization_sectors", ["organization_id"], name: "index_organization_sectors_on_organization_id", using: :btree
+  add_index "organization_sectors", ["sector_id"], name: "index_organization_sectors_on_sector_id", using: :btree
+
   create_table "organizations", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
@@ -112,6 +122,12 @@ ActiveRecord::Schema.define(version: 20150904140416) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "sectors", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false

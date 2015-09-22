@@ -152,6 +152,7 @@ es:
         description: "Descripción"
         logo_url: "URL Logo"
         gov_type: "Tipo de Gobierno"
+        sectors: "Sectores"
   activemodel:
     errors:
       models:

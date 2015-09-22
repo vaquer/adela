@@ -165,6 +165,7 @@ GEM
     minitest (5.8.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
+    nested_form (0.3.2)
     newrelic_rpm (3.12.1.298)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -345,6 +346,7 @@ DEPENDENCIES
   jquery-validation-rails
   json-schema
   letter_opener
+  nested_form
   newrelic_rpm
   pg
   rack-pjax

@@ -16,11 +16,8 @@ class Organization < ActiveRecord::Base
 
   scope :with_catalog, -> { joins(:catalogs).where("catalogs.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }
-  scope :federal, -> { where("gov_type = ?", Organization.gov_types[:federal]) }
-  scope :state, -> { where("gov_type = ?", Organization.gov_types[:state]) }
-  scope :municipal, -> { where("gov_type = ?", Organization.gov_types[:municipal]) }
-  scope :autonomous, -> { where("gov_type = ?", Organization.gov_types[:autonomous]) }
   scope :sector, -> slug { joins(:sectors).where('sectors.slug = ?', slug) }
+  scope :gov_type, -> gov_type { where('gov_type = ?', Organization.gov_types[gov_type]) }
 
   enum gov_type: [:federal, :state, :municipal, :autonomous]
 

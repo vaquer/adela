@@ -2,6 +2,8 @@ module Api
   module V1
     class OrganizationsController < ApplicationController
       include Rails.application.routes.url_helpers
+      has_scope :sector
+      has_scope :gov_type
 
       def show
         @organization = Organization.friendly.find(params[:id])
@@ -14,7 +16,7 @@ module Api
       end
 
       def organizations
-        @organizations = organizations_array.paginate(:page => params[:page])
+        @organizations = apply_scopes(Organization).paginate(page: params[:page])
         render :json => @organizations, serializer: OrganizationAPISerializer, root: false
       end
 
@@ -22,16 +24,6 @@ module Api
         @gov_types = Organization.gov_types_i18n.map { |key, value| { id: key, value: value } }
         @gov_types = @gov_types.paginate(:page => params[:page])
         render :json => @gov_types, serializer: GovTypesSerializer, root: false
-      end
-
-      private
-
-      def organizations_array
-        if Organization.gov_types.has_key?(params[:gov_type])
-          Organization.send(params[:gov_type])
-        else
-          Organization.all
-        end
       end
     end
   end

@@ -7,8 +7,9 @@ class Organization < ActiveRecord::Base
   has_many :users
   has_many :activity_logs
   has_many :opening_plans, dependent: :destroy
-
   has_many :inventories
+  has_many :organization_sectors
+  has_many :sectors, through: :organization_sectors
 
   accepts_nested_attributes_for :opening_plans
 

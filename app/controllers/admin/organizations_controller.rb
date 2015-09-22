@@ -36,7 +36,12 @@ module Admin
     private
 
     def organization_params
-      params.require(:organization).permit(:title, :description, :logo_url, :gov_type)
+      params.require(:organization).permit(
+        :title,
+        :description,
+        :logo_url,
+        :gov_type,
+        organization_sectors_attributes: [:id, :sector_id, :_destroy])
     end
   end
 end

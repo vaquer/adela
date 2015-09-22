@@ -12,6 +12,7 @@ class Organization < ActiveRecord::Base
   has_many :sectors, through: :organization_sectors
 
   accepts_nested_attributes_for :opening_plans
+  accepts_nested_attributes_for :organization_sectors, allow_destroy: true
 
   scope :with_catalog, -> { joins(:catalogs).where("catalogs.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }

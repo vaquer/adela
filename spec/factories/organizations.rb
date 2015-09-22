@@ -19,5 +19,11 @@ FactoryGirl.define do
     trait :autonomous do
       gov_type { 'autonomous' }
     end
+
+    trait :sector do
+      after(:create) do |organization|
+        create(:organization_sector, organization: organization)
+      end
+    end
   end
 end

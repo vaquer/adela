@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "created_at",
+            "updated_at"
+          ]
+        }
+      ]
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": [
+    "results",
+    "pagination"
+  ]
+}

@@ -53,6 +53,7 @@ Adela::Application.routes.draw do
           get "organizations"
         end
       end
+      resources :sectors, only: [:index]
     end
   end
 

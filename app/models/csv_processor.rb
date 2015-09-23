@@ -1,5 +1,6 @@
 class CsvProcessor < Struct.new(:csv_file, :organization)
   String.include CoreExtensions::String::Transcoding
+  String.include CoreExtensions::String::Helpers
 
   def process
     datasets = []
@@ -38,7 +39,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
       identifier: I18n.transliterate((row['ds:identifier'] || row[0]).force_encoding('utf-8')),
       title: row['ds:title'],
       description: row['ds:description'],
-      keyword: row['ds:keyword'],
+      keyword: keywords(row),
       modified: row['ds:modified'],
       contactPoint: row['ds:contactPoint'],
       mbox: row['ds:mbox'],
@@ -73,5 +74,11 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
 
   def dcat_v3?(row)
     row.header?('ds:landingPage')
+  end
+
+  def keywords(row)
+    sectors = organization.sectors.map(&:title).join(',')
+    keywords = row['ds:keyword']
+    "#{keywords},#{sectors}".chomp(',').lchomp(',').downcase.strip
   end
 end

@@ -45,6 +45,7 @@ gem 'roo-xls'
 gem 'deep_cloneable', '~> 2.1.1'
 gem 'jquery-validation-rails'
 gem 'nested_form'
+gem 'has_scope'
 
 group :development, :test do
   gem 'spring'

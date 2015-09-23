@@ -15,4 +15,16 @@ describe Organization do
       @org.should_not be_valid
     end
   end
+
+  context 'sector scope' do
+    before(:each) do
+      @organization = FactoryGirl.create(:organization, :sector)
+    end
+
+    it 'should return the sector organizations' do
+      slug = Sector.last.slug
+      organizations_count = Organization.sector(slug).count
+      expect(organizations_count).to eq(1)
+    end
+  end
 end

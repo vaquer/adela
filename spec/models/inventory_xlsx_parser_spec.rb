@@ -18,4 +18,19 @@ describe InventoryXLSXParser do
       subject.parse.all?(&:compliant?).should == true
     end
   end
+
+  context 'inventory with yyyy-mm dates' do
+    subject do
+      spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/inventory-issue-398.xlsx")
+      InventoryXLSXParser.new(create(:inventory, spreadsheet_file: spreadsheet_file))
+    end
+
+    it 'should have only valid rows' do
+      subject.parse.all?(&:valid?).should == true
+    end
+
+    it 'should have only compliant rows' do
+      subject.parse.all?(&:compliant?).should == true
+    end
+  end
 end

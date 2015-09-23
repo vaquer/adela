@@ -40,7 +40,7 @@ class InventoryXLSXParser
 
   def parse_publish_date(xlsx_row)
     publish_date = xlsx_row[7].to_s
-    publish_date if matches_iso8601?(publish_date)
+    ISO8601::Date.new(publish_date) if matches_iso8601?(publish_date)
   end
 
   def matches_iso8601?(publish_date)

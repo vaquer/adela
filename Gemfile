@@ -64,6 +64,7 @@ group :test do
   gem 'database_cleaner'
   gem 'json-schema'
   gem 'rspec-sidekiq'
+  gem 'test_after_commit'
 end
 
 group :doc do

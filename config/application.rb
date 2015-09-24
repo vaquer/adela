@@ -34,5 +34,16 @@ module Adela
     config.i18n.default_locale = :es
     config.eager_load_paths += ["#{config.root}/workers"]
     config.middleware.use Rack::Pjax
+
+    config.middleware.insert_before 0, 'Rack::Cors' do
+      allow do
+        origins '*'
+
+        resource '/api/*',
+          headers: :any,
+          methods: [:get, :post, :delete, :put, :options, :head],
+          max_age: 0
+      end
+    end
   end
 end

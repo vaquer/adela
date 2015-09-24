@@ -2,6 +2,17 @@
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos
+    - if @inventory.error_message
+      .card.padding-top.bg--grey
+        %h5.primary.boldish Desafortunadamente no pudimos procesar tu último Inventario de Datos
+        %p
+          Revisa que tu archivo respete el formato original de la plantilla. Si el problema persiste, por favor contacta a escuadron@datos.gob.mx con una copia de tu inventario.
+        %p.primary
+          = "Mensaje de error: #{@inventory.error_message}"
+      %ul.list
+        %li.item
+          %span Sube el inventario de datos
+      = render 'inventories/shared/form'
     - if @inventory.compliant? && inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
       = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
       = link_to 'Descargar Inventario', @inventory.spreadsheet_file.url, class: 'btn btn-primary'

@@ -19,28 +19,28 @@ feature "organizations api management" do
     @organization = FactoryGirl.create(:organization, title: "sep", gov_type: "federal")
     get "/api/v1/organizations?gov_type=federal"
     json = JSON.parse(response.body)
-    expect(json["pagination"]["count"]).to eq(1)
+    expect(json["results"].count).to eq(1)
   end
 
   it "gets the organizations with state gov_type" do
     @organization = FactoryGirl.create(:organization, title: "Gobierno de Veracruz", gov_type: "state")
     get "/api/v1/organizations?gov_type=state"
     json = JSON.parse(response.body)
-    expect(json["pagination"]["count"]).to eq(1)
+    expect(json["results"].count).to eq(1)
   end
 
   it "gets the organizations with municipal gov_type" do
     @organization = FactoryGirl.create(:organization, title: "Huixquilucan", gov_type: "municipal")
     get "/api/v1/organizations?gov_type=municipal"
     json = JSON.parse(response.body)
-    expect(json["pagination"]["count"]).to eq(1)
+    expect(json["results"].count).to eq(1)
   end
 
   it "gets the organizations with autonomous gov_type" do
     @organization = FactoryGirl.create(:organization, title: "INEGI", gov_type: "autonomous")
     get "/api/v1/organizations?gov_type=autonomous"
     json = JSON.parse(response.body)
-    expect(json["pagination"]["count"]).to eq(1)
+    expect(json["results"].count).to eq(1)
   end
 
   it "gets the organizations with autonomous gov_type" do
@@ -48,6 +48,6 @@ feature "organizations api management" do
     @sector = @organization.sectors.first
     get "api/v1/organizations/?sector=#{@sector.slug}"
     json = JSON.parse(response.body)
-    expect(json['pagination']['count']).to eq(1)
+    expect(json['results'].count).to eq(1)
   end
 end

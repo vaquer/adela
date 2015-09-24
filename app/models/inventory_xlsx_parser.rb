@@ -7,10 +7,15 @@ class InventoryXLSXParser
   end
 
   def parse
-    xlsx = Roo::Spreadsheet.open(inventory_file_path)
-    (xlsx.first_row..xlsx.last_row).drop(1).map do |i|
-      xlsx_row = xlsx.row(i)
-      create_inventory_element(xlsx_row, i)
+    begin
+      xlsx = Roo::Spreadsheet.open(inventory_file_path)
+      (xlsx.first_row..xlsx.last_row).drop(1).map do |i|
+        xlsx_row = xlsx.row(i)
+        create_inventory_element(xlsx_row, i)
+      end
+    rescue => e
+      @inventory.error_message = e.message
+      @inventory.save
     end
   end
 

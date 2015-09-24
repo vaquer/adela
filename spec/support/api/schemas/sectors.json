@@ -36,13 +36,13 @@
     "pagination": {
       "type": "object",
       "properties": {
-        "count": {
-          "type": "integer"
-        },
         "page": {
           "type": "integer"
         },
         "per_page": {
+          "type": "integer"
+        },
+        "total": {
           "type": "integer"
         }
       }

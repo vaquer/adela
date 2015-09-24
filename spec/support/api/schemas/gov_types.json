@@ -4,20 +4,20 @@
     "pagination": {
       "type": "object",
       "properties": {
-        "count": {
-          "type": "integer"
-        },
         "page": {
           "type": "integer"
         },
         "per_page": {
           "type": "integer"
+        },
+        "total": {
+          "type": "integer"
         }
       },
       "required": [
-        "count",
         "page",
-        "per_page"
+        "per_page",
+        "total"
       ]
     },
     "results": {

@@ -37,26 +37,11 @@ feature User, 'manages inventory:' do
     expect(page).to have_text('Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula.')
   end
 
-  scenario 'uploads an invalid inventory file with no publish date for public datasets' do
-    upload_inventory_with_file("inventario_general_de_datos_error_publico.xlsx")
-    visit inventory_path(@inventory)
-    expect(page).to have_text('Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:')
-    expect(page).to have_text('Renglón 2')
-    expect(page).to have_text('Cuando el valor del dato ¿Tiene datos privados? es Público la fecha estimada de publicación no puede estar vacía o nula.')
-  end
-
   scenario 'uploads an invalid inventory file with ungrouped datasets' do
     upload_inventory_with_file("inventario_general_de_datos-error_no_agrupados.xlsx")
     visit inventory_path(@inventory)
     expect(page).to have_text('Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:')
     expect(page).to have_text(' Todos los recursos de un mismo conjunto de datos deben de estar agrupados.')
-  end
-
-  scenario 'uploads an invalid inventory file with ungrouped datasets' do
-    upload_inventory_with_file("inventory-past-publish-date.xlsx")
-    visit inventory_path(@inventory)
-    expect(page).to have_text('Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:')
-    expect(page).to have_text('La fecha estimada de publicación debe ser mayor a la actual.')
   end
 
   scenario 'sees new inventory form when no inventory has been uploaded' do

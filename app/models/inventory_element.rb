@@ -1,8 +1,7 @@
 class InventoryElement < ActiveRecord::Base
   # compliant validations
-  validate :public_mandatory_fields, unless: :private?
   validate :private_mandatory_fields, if: :private?
-  validate :mandatory_fields, :past_publish_date
+  validate :mandatory_fields
 
   validates :inventory, presence: true
   belongs_to :inventory
@@ -16,15 +15,7 @@ class InventoryElement < ActiveRecord::Base
     end
   end
 
-  def public_mandatory_fields
-    warnings.add(:publish_date, :blank) if publish_date.nil?
-  end
-
   def private_mandatory_fields
     warnings.add(:access_comment, :blank) if access_comment.nil?
-  end
-
-  def past_publish_date
-    warnings.add(:publish_date, :past) if publish_date && publish_date.past?
   end
 end

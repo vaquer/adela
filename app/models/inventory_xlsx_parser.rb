@@ -14,8 +14,7 @@ class InventoryXLSXParser
         create_inventory_element(xlsx_row, i)
       end
     rescue => e
-      @inventory.error_message = e.message
-      @inventory.save
+      @inventory.update_column(:error_message, e.message)
     end
   end
 

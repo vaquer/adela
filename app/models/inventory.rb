@@ -4,7 +4,7 @@ class Inventory < ActiveRecord::Base
 
   validates_presence_of :spreadsheet_file
   validates :organization, presence: true
-  validate :duplicated_datasets, :compliant_elements
+  validate :duplicated_datasets, :compliant_elements, :non_empty
 
   belongs_to :organization
 
@@ -22,6 +22,10 @@ class Inventory < ActiveRecord::Base
 
   def create_inventory_elements
     InventoryXLSXParserWorker.perform_async(id)
+  end
+
+  def non_empty
+    warnings.add(:inventory_elements) if inventory_elements.blank?
   end
 
   def compliant_elements

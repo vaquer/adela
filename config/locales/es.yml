@@ -123,7 +123,6 @@ es:
               invalid: "El campo \"¿En qué plataforma, tecnología, programa o sistema se albergan?\" no puede ir en blanco."
             publish_date:
               blank: "Cuando el valor del dato ¿Tiene datos privados? es Público la fecha estimada de publicación no puede estar vacía o nula."
-              past: "La fecha estimada de publicación debe ser mayor a la actual."
               invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
             access_comment:
               blank: "Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula."

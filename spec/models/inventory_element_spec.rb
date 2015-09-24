@@ -68,18 +68,8 @@ describe InventoryElement do
     it_behaves_like 'a non compliant inventory element'
   end
 
-  context 'without a publish date' do
-    let(:inventory_element) { build(:inventory_element, publish_date: nil) }
-    it_behaves_like 'a non compliant inventory element'
-  end
-
   context 'without an access comment with private data' do
     let(:inventory_element) { build(:inventory_element, :private, access_comment: nil) }
-    it_behaves_like 'a non compliant inventory element'
-  end
-
-  context 'without a publish date with public data' do
-    let(:inventory_element) { build(:inventory_element, :public, publish_date: nil) }
     it_behaves_like 'a non compliant inventory element'
   end
 end

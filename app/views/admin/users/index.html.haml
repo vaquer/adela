@@ -2,12 +2,15 @@
   %ol.breadcrumb.breadcrumb-admin
     %li= link_to 'Admin', admin_root_path
     %li.active= link_to 'Usuarios', admin_users_path
+  = render partial: '/admin/users/shared/search_menu'
   .card
     %ul.nav.nav-pills
       %li{ role: 'presentation' }
-        = link_to 'Crear Usuario', new_admin_user_path, class: 'btn btn-primary'
+        = link_to 'Crear Usuario', new_admin_user_path
       %li{ role: 'presentation' }
-        = link_to 'Importar Usuarios', admin_import_users_path, class: 'btn btn-primary'
+        = link_to 'Importar Usuarios', admin_import_users_path
+      %li{ role: 'presentation' }
+        = link_to 'Buscar Usuarios', '#', id: 'admin-users-search-btn'
     %table.table.table-condensed
       %thead
         %tr
@@ -47,3 +50,10 @@
                   %li= link_to 'Ingresar', acting_as_admin_user_path(user)
                   %li= link_to 'Borrar', admin_user_path(user), method: :delete, data: { confirm: "¿Estas seguro de eliminar a #{user.name}?" }
     = will_paginate @users
+
+:javascript
+  $(function(){
+    $("#admin-users-search-btn").click(function() {
+      $('#search').slideToggle();
+    });
+  });

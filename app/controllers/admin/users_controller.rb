@@ -3,8 +3,10 @@ module Admin
     load_and_authorize_resource
     skip_authorize_resource only: :stop_acting
 
+    has_scope :names, :email, :organization
+
     def index
-      @users = User.created_at_sorted.paginate(page: params[:page])
+      @users = apply_scopes(User).all.paginate(page: params[:page])
     end
 
     def new

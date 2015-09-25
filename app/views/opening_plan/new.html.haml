@@ -11,7 +11,12 @@
           Publica el inventario de datos
         %p
           Antes de generar el Plan de apertura de la institución debes de subir el Inventario de Datos.
-        = link_to 'Subir', new_inventory_path, class: 'btn btn-primary'
+    - elsif current_inventory.inventory_elements.all?(&:private)
+      .card.padding-top.bg--grey
+        %h5.primary.boldish Tu Inventario de Datos no contiene conjuntos públicos
+        %p
+          El Inventario de Datos debe de contener al menos un conjunto de datos público para generar el Plan de Apertura.
+        = link_to 'Revisar el Inventario de Datos', inventories_es_path, class: 'btn btn-primary'
     - else
       = form_for @organization, url: url_for(controller: 'opening_plan', action: 'create'), html: { class: 'form', id: 'opening-plan-form' }, method: 'post' do |f|
         %table.table.table-striped

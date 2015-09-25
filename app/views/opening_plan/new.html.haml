@@ -32,7 +32,7 @@
             - @organization.opening_plans.each do |plan|
               = f.fields_for :opening_plans, plan do |builder|
                 %tr
-                  %th= builder.check_box :_destroy, {}, '0', '1'
+                  %th= builder.check_box :_destroy, { checked: true }, '0', '1'
                   %th= builder.text_field :name, readonly: true, required: true
                   %th= builder.text_field :description, required: true
                   %th P&uacute;blico

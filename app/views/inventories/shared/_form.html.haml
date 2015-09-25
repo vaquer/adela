@@ -2,7 +2,7 @@
   .form-group
     %label.block Selecciona el archivo *
     .file_input
-      = f.file_field :spreadsheet_file
+      = f.file_field :spreadsheet_file, required: true
   .form-group
     %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
     .file_input
@@ -10,3 +10,7 @@
   .form-group
     %button.btn.btn-primary{ type: 'submit' } Subir inventario
   %p * Campos obligatorios
+:javascript
+  $(function() {
+    $( "#new_inventory" ).validate({ ignore: '' });
+  });

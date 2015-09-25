@@ -27,7 +27,7 @@
             - @organization.opening_plans.each do |plan|
               = f.fields_for :opening_plans, plan do |builder|
                 %tr
-                  %th= check_box_tag "included_datasets[]", plan.name, 1
+                  %th= builder.check_box :_destroy, {}, '0', '1'
                   %th= builder.text_field :name, readonly: true, required: true
                   %th= builder.text_field :description, required: true
                   %th P&uacute;blico

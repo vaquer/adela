@@ -32,7 +32,7 @@
             - @organization.opening_plans.each do |plan|
               = f.fields_for :opening_plans, plan do |builder|
                 %tr
-                  %th= builder.check_box :_destroy, { checked: true }, '0', '1'
+                  %th= builder.check_box :_destroy, { checked: true, class: 'validable' }, '0', '1'
                   %th= builder.text_field :name, readonly: true, required: true
                   %th= builder.text_field :description, required: true
                   %th P&uacute;blico
@@ -41,7 +41,60 @@
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
 
 :javascript
+  function updateValidations(event) {
+    function id() {
+      return event.target.id.match(/^organization_opening_plans_attributes_(\d+)__destroy/)[1];
+    }
+
+    function description() {
+      return $("#organization_opening_plans_attributes_" + id() + "_description");
+    }
+
+    function title() {
+      return $("#organization_opening_plans_attributes_" + id() + "_name");
+    }
+
+    function publishDate() {
+      return $("#organization_opening_plans_attributes_" + id() + "_publish_date");
+    }
+
+    function descriptionErrorLabel() {
+      return $("#organization_opening_plans_attributes_" + id() + "_description-error");
+    }
+
+    function publishDateErrorLabel() {
+      return $("#organization_opening_plans_attributes_" + id() + "_publish_date-error");
+    }
+
+    function removeRequiredAttribute() {
+      description().removeAttr("required");
+      title().removeAttr("required");
+      publishDate().removeAttr("required");
+    }
+
+    function addRequiredAttribute() {
+      description().attr("required", "");
+      title().attr("required", "");
+      publishDate().attr("required", "");
+    }
+
+    function removeErrors() {
+      description().removeClass("error");
+      publishDate().removeClass("error");
+      descriptionErrorLabel().remove();
+      publishDateErrorLabel().remove();
+    }
+
+    if ($(this).is(":checked")) {
+      addRequiredAttribute();
+    } else {
+      removeRequiredAttribute();
+      removeErrors();
+    }
+  };
+
   $(function() {
+    $( ".validable" ).change(updateValidations);
     $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
     $( ".datepicker" ).datepicker();
     $( "#opening-plan-form" ).validate();

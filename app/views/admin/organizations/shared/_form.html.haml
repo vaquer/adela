@@ -11,6 +11,15 @@
   .form-group
     = f.label :gov_type
     = f.select :gov_type, options_for_gov_types_select(@organization), { include_blank: true }, { class: 'form-control' }
+  - unless @organization.new_record?
+    .form-group
+      = f.label :administrator
+      = f.fields_for :administrator, @organization.administrator do |admin_form|
+        = admin_form.select :user_id, options_for_organization_admin(@organization), { include_blank: true }, { class: 'form-control' }
+    .form-group
+      = f.label :liaison
+      = f.fields_for :liaison, @organization.liaison do |liaison_form|
+        = liaison_form.select :user_id, options_for_organization_liaison(@organization), { include_blank: true }, { class: 'form-control' }
   .form-group
     = f.label :sectors
     = f.fields_for :organization_sectors do |sector_form|

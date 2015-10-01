@@ -54,6 +54,31 @@ feature Admin, 'manages organizations:' do
     expect(page).to have_text('FEDERAL')
   end
 
+  scenario 'can edit an organization', js: true do
+    organization  = FactoryGirl.create(:organization)
+    administrator = FactoryGirl.create(:user, organization: organization)
+    liaison = FactoryGirl.create(:user, organization: organization)
+
+    visit '/admin/organizations'
+
+    page.find("#organization_#{organization.id}").click
+    click_on 'Editar'
+
+    expect(current_path).to eq(edit_admin_organization_path(organization))
+
+    select(administrator.name, from: 'organization_administrator_attributes_user_id')
+    select(liaison.name, from: 'organization_liaison_attributes_user_id')
+
+    click_on 'Guardar'
+
+    organization.reload
+    sees_success_message 'Se ha actualizado la organización exitosamente.'
+    expect(current_path).to eq(admin_organizations_path)
+
+    expect(organization.administrator.user.name).to eq(administrator.name)
+    expect(organization.liaison.user.name).to eq(liaison.name)
+  end
+
   scenario "can edit an organization gov_type", js: true do
     organization =  FactoryGirl.create(:organization)
     visit "/admin/organizations"

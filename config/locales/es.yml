@@ -151,6 +151,8 @@ es:
         logo_url: "URL Logo"
         gov_type: "Tipo de Gobierno"
         sectors: "Sectores"
+        administrator: "Administrador de Datos"
+        liaison: "Enlace"
   activemodel:
     errors:
       models:

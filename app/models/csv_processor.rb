@@ -77,7 +77,7 @@ class CsvProcessor < Struct.new(:csv_file, :organization)
   end
 
   def keywords(row)
-    sectors = organization.sectors.map(&:title).join(',')
+    sectors = organization.sectors.map(&:slug).join(',')
     keywords = row['ds:keyword']
     "#{keywords},#{sectors}".chomp(',').lchomp(',').downcase.strip
   end

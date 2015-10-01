@@ -14,6 +14,8 @@ class Organization < ActiveRecord::Base
   has_many :organization_sectors, dependent: :destroy
   has_many :sectors, through: :organization_sectors
 
+  accepts_nested_attributes_for :administrator
+  accepts_nested_attributes_for :liaison
   accepts_nested_attributes_for :opening_plans, allow_destroy: true
   accepts_nested_attributes_for :organization_sectors, allow_destroy: true
 

@@ -21,6 +21,8 @@ module Admin
 
     def edit
       @organization = Organization.friendly.find(params[:id])
+      @organization.build_administrator unless @organization.administrator
+      @organization.build_liaison unless @organization.liaison
     end
 
     def update
@@ -41,6 +43,8 @@ module Admin
         :description,
         :logo_url,
         :gov_type,
+        administrator_attributes: [:user_id],
+        liaison_attributes: [:user_id],
         organization_sectors_attributes: [:id, :sector_id, :_destroy])
     end
   end

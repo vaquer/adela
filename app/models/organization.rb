@@ -3,6 +3,8 @@ class Organization < ActiveRecord::Base
   friendly_id :title, use: [:slugged, :finders]
   validates_presence_of :title
 
+  has_one :administrator
+
   has_many :catalogs
   has_many :users
   has_many :activity_logs

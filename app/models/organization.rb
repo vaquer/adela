@@ -4,6 +4,7 @@ class Organization < ActiveRecord::Base
   validates_presence_of :title
 
   has_one :administrator
+  has_one :liaison
 
   has_many :catalogs
   has_many :users

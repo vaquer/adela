@@ -19,6 +19,7 @@ class OpeningPlanController < ApplicationController
     @organization = current_organization
     @organization.opening_plans = []
     @organization.update(organization_params)
+    create_opening_plan_officials
     redirect_to opening_plan_index_path
   end
 
@@ -56,6 +57,25 @@ class OpeningPlanController < ApplicationController
       end
 
     end
+  end
+
+  def create_opening_plan_officials
+    @organization.opening_plans.each do |opening_plan|
+      administrator = create_opening_plan_administrator(opening_plan)
+      liaison = create_opening_plan_liaison(opening_plan)
+    end
+  end
+
+  def create_opening_plan_administrator(opening_plan)
+    user = @organization.administrator.try(:user)
+    return unless user
+    opening_plan.officials.create(email: user.email, name: user.name, kind: 'admin')
+  end
+
+  def create_opening_plan_liaison(opening_plan)
+    user = @organization.liaison.try(:user)
+    return unless user
+    opening_plan.officials.create(email: user.email, name: user.name, kind: 'liaison')
   end
 
   def organization_params

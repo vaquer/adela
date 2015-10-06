@@ -1,23 +1,13 @@
+# TODO: needs refactoring
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:catalog, :search, :opening_plan]
 
+  # TODO: move action to home#dashboard
   def show
     @organization = Organization.friendly.find(params[:id])
   end
 
-  def publish_catalog
-    if publication_requirements_checked?
-      @catalog = current_organization.unpublished_catalog
-      @catalog.publish!
-      record_activity("publish","publicó #{@catalog.datasets_count} conjuntos de datos con #{@catalog.distributions_count} recursos.")
-      redirect_to catalogs_path, :notice => "LISTO, has completados todos los pasos. Ahora utiliza esta herramienta para mantener tu plan de apertura y catálogo de datos al día."
-    end
-  end
-
-  def publish_later
-    redirect_to organization_path(current_organization), :alert => "OJO: No has completado el último paso que es publicar tu catálogo."
-  end
-
+  # TODO: move action to a controller under the API namespace
   def catalog
     @organization = Organization.friendly.find(params[:slug])
     @catalog = @organization.current_catalog
@@ -30,6 +20,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # TODO: move action to a controller under the API namespace
   def opening_plan
     @organization  = Organization.friendly.find(params[:slug])
     respond_to do |format|
@@ -37,6 +28,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # TODO: use show action instead of this one
   def profile
     @organization = Organization.friendly.find(params[:id])
 
@@ -55,19 +47,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  def search
-    @organizations = Organization.search_by(params[:q]).sort_by(&:current_datasets_count).reverse.paginate(:page => params[:page], :per_page => 5)
-    @logs = ActivityLog.date_sorted
-
-    render "home/index"
-  end
-
   private
-
-  def publication_requirements_checked?
-    requirements = [params[:personal_data], params[:open_data], params[:office_permission], params[:data_policy_requirements]]
-    requirements.all? { |r| r == "1"}
-  end
 
   def organization_params
     params.require(:organization).permit(:description, :logo_url, :gov_type)

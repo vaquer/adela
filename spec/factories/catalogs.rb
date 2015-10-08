@@ -11,7 +11,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |catalog, evaluator|
-        create_list(:dataset, evaluator.datasets_count, catalog: catalog)
+        create_list(:dataset, evaluator.datasets_count, :distributions, catalog: catalog)
       end
     end
   end

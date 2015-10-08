@@ -11,5 +11,16 @@ FactoryGirl.define do
     spatial { Faker::Address.state }
     landing_page { Faker::Internet.url }
     accrual_periodicity 'R/P1Y'
+    catalog
+
+    trait :distributions do
+      ignore do
+        distributions_count { Faker::Number.between(1, 5) }
+      end
+
+      after(:create) do |dataset, evaluator|
+        create_list(:distribution, evaluator.distributions_count, dataset: dataset)
+      end
+    end
   end
 end

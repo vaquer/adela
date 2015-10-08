@@ -5,6 +5,11 @@ FactoryGirl.define do
     author { Faker::Name.name }
     organization
 
+    trait :unpublished do
+      published false
+      publish_date nil
+    end
+
     trait :datasets do
       ignore do
         datasets_count { Faker::Number.between(1, 8) }

@@ -25,4 +25,8 @@ class Organization < ActiveRecord::Base
   scope :gov_type, -> gov_type { where('gov_type = ?', Organization.gov_types[gov_type]) }
 
   enum gov_type: [:federal, :state, :municipal, :autonomous]
+
+  def current_catalog
+    catalogs.order(created_at: :desc).find(&:published?)
+  end
 end

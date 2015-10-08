@@ -19,4 +19,30 @@ describe Dataset do
       expect(dataset.publisher).to eql(organization)
     end
   end
+
+  context '#keywords' do
+    it 'should include the dataset keyword' do
+      dataset = create(:dataset)
+      expect(dataset.keywords).to include(dataset.keyword)
+    end
+
+    it 'should include the organization sectors' do
+      organization = create(:organization, :sector)
+      dataset = create(:dataset)
+      dataset.catalog.organization = organization
+
+      expect(dataset.keywords).to include(organization.sectors.first.slug)
+    end
+  end
+
+  context '#sectors' do
+    it 'should include the organization sectors slug' do
+      organization = create(:organization, :sector)
+      dataset = create(:dataset)
+      dataset.catalog.organization = organization
+
+      sectors = dataset.send(:sectors)
+      expect(sectors).to include(organization.sectors.first.slug)
+    end
+  end
 end

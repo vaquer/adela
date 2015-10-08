@@ -11,4 +11,12 @@ describe Dataset do
     let(:dataset) { create(:dataset) }
     it_behaves_like 'a valid dataset'
   end
+
+  context '#publisher' do
+    it 'should be equal to the organization title' do
+      dataset = create(:dataset)
+      organization = dataset.catalog.organization.title
+      expect(dataset.publisher).to eql(organization)
+    end
+  end
 end

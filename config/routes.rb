@@ -10,22 +10,14 @@ Adela::Application.routes.draw do
     get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
     get "/:slug/plan" => "organizations#opening_plan"
 
-    get "/maqueta/" => "home#maqueta"
-    post "/maqueta/" => "home#maqueta"
     root :to => "home#index"
 
     resources :organizations, only: [:show, :update] do
-      post "publish_catalog", :on => :member
-      get "publish_later", :on => :member
       get "profile", :on => :member
       get "search", :on => :collection
     end
 
-    resources :catalogs do
-      collection do
-        get "publish"
-      end
-    end
+    resources :catalogs, only: :index
 
     resources :inventories, except: [:edit, :update, :destroy] do
       member do

@@ -26,43 +26,7 @@ class Organization < ActiveRecord::Base
 
   enum gov_type: [:federal, :state, :municipal, :autonomous]
 
-  def unpublished_catalog
-    catalogs.unpublished.first
-  end
-
   def current_catalog
-    catalogs.published.first
-  end
-
-  def last_file_version
-    catalogs.date_sorted.first
-  end
-
-  def last_catalog_is_unpublished?
-    current_catalog && last_file_version && (current_catalog.id != last_file_version.id)
-  end
-
-  def first_published_catalog
-    catalogs.published.last
-  end
-
-  def last_activity_at
-    activity_logs.date_sorted.first.done_at if activity_logs.any?
-  end
-
-  def current_datasets_count
-    if unpublished_catalog.present?
-      unpublished_catalog.datasets_count
-    else
-      0
-    end
-  end
-
-  def self.search_by(q)
-    if q.present?
-      where("organizations.title ~* ?", q)
-    else
-      self.all
-    end
+    catalogs.order(created_at: :desc).find(&:published?)
   end
 end

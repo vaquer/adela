@@ -3,18 +3,18 @@ Adela::Application.routes.draw do
     devise_for :users
 
     as :user do
-      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-      patch 'users/:id' => 'devise/registrations#update', :as => 'user_registration'
+      get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
+      patch 'users/:id' => 'devise/registrations#update', as: 'user_registration'
     end
 
-    get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
-    get "/:slug/plan" => "organizations#opening_plan"
+    get '/:slug/catalogo' => 'organizations#catalog', as: 'organization_catalog'
+    get '/:slug/plan' => 'organizations#opening_plan'
 
-    root :to => "home#index"
+    root to: 'home#index'
 
     resources :organizations, only: [:show, :update] do
-      get "profile", :on => :member
-      get "search", :on => :collection
+      get 'profile', on: :member
+      get 'search', on: :collection
     end
 
     resources :catalogs, only: :index
@@ -33,16 +33,16 @@ Adela::Application.routes.draw do
     end
   end
 
-  namespace :api, defaults: { format: 'json'} do
+  namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      get "/catalogs" => "organizations#catalogs"
-      get "/organizations" => "organizations#organizations"
-      get "/gov_types" => "organizations#gov_types"
+      get '/catalogs' => 'organizations#catalogs'
+      get '/organizations' => 'organizations#organizations'
+      get '/gov_types' => 'organizations#gov_types'
 
       resources :organizations, only: [:show] do
         collection do
-          get "catalogs"
-          get "organizations"
+          get 'catalogs'
+          get 'organizations'
         end
       end
       resources :sectors, only: [:index]

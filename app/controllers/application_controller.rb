@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  helper_method :current_catalog
   helper_method :current_organization
   helper_method :current_inventory
 
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
 
   def current_inventory
     current_organization && current_organization.inventories.order(created_at: :desc).find(&:compliant?)
+  end
+
+  def current_catalog
+    current_organization && current_organization.current_catalog
   end
 
   def record_activity(category, description)

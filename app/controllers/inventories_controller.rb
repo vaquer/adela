@@ -21,12 +21,6 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
   end
 
-  def publish
-    @inventory = Inventory.find(params[:id])
-    # TODO: create inventory dataset
-    redirect_to organization_path(current_organization)
-  end
-
   private
 
   def intentory_params

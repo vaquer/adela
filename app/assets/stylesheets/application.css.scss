@@ -7,13 +7,16 @@
  @import "jquery.ui.core";
  @import "jquery.ui.theme";
  @import "jquery.ui.datepicker";
+ @import "font-awesome";
 
  // Defaults
  @import 'defaults/colors';
  @import 'defaults/utilities';
+ @import 'defaults/mixins';
 
  // Elements
 @import "elements/text";
+@import "elements/table";
 
 // Components
 @import "components/alert";

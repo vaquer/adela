@@ -67,4 +67,8 @@ Adela::Application.routes.draw do
 
     resources :organizations, except: [:show, :destroy]
   end
+
+  namespace :mockups do
+    get '/501', to: 'templates#s501'
+  end
 end

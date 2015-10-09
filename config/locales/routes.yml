@@ -13,6 +13,7 @@ es:
     sign_up: registrarte
     password: contrasena
     search: buscar
+    datasets: conjuntos
 
 en:
   routes:
@@ -29,3 +30,4 @@ en:
     sign_up: sign_up
     password: password
     search: search
+    datasets: datasets

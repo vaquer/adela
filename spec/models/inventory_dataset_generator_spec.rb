@@ -12,16 +12,16 @@ describe InventoryDatasetGenerator do
 
     it 'should generate an organization catalog' do
       organization = @inventory.organization
-      expect(organization.catalogs.count).to eql(1)
+      expect(organization.catalog).not_to be_nil
     end
 
     it 'should generate a dataset' do
-      catalog = @inventory.organization.catalogs.last
+      catalog = @inventory.organization.catalog
       expect(catalog.datasets.count).to eql(1)
     end
 
     it 'should generate a dataset with one distribution' do
-      catalog = @inventory.organization.catalogs.last
+      catalog = @inventory.organization.catalog
       dataset = catalog.datasets.last
       expect(dataset.distributions.count).to eql(1)
     end

@@ -10,8 +10,8 @@ class OrganizationsController < ApplicationController
   # TODO: move action to a controller under the API namespace
   def catalog
     @organization = Organization.friendly.find(params[:slug])
-    @catalog = @organization.current_catalog
-    if @catalog.present?
+    @catalog = @organization.catalog
+    if @catalog.present? && @catalog.published?
       respond_to do |format|
         format.json { render json: @catalog, root: false }
       end

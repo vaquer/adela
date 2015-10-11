@@ -16,15 +16,11 @@ class InventoryDatasetGenerator
   private
 
   def organization_catalog
-    if @organization.catalogs.present?
-      @organization.catalogs.last
-    else
-      build_catalog
-    end
+    @organization.catalog.present? ? @organization.catalog : build_catalog
   end
 
   def build_catalog
-    @organization.catalogs.build(published: false)
+    @organization.build_catalog(published: false)
   end
 
   def build_dataset

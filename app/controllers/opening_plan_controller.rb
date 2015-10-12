@@ -20,6 +20,7 @@ class OpeningPlanController < ApplicationController
     @organization.opening_plans = []
     @organization.update(organization_params)
     create_opening_plan_officials
+    generate_catalog_datasets
     generate_opening_plan_dataset
     redirect_to opening_plan_index_path
   end
@@ -81,6 +82,10 @@ class OpeningPlanController < ApplicationController
 
   def generate_opening_plan_dataset
     OpeningPlanDatasetGenerator.new(@organization.catalog).generate unless opening_plan_dataset?
+  end
+
+  def generate_catalog_datasets
+    CatalogDatasetsGenerator.new(@organization).execute unless opening_plan_dataset?
   end
 
   def opening_plan_dataset?

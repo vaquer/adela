@@ -3,20 +3,21 @@
  *= require_self
  */
 
- @import "bootstrap";
- @import "jquery.ui.core";
- @import "jquery.ui.theme";
- @import "jquery.ui.datepicker";
- @import "font-awesome";
+@import "bootstrap";
+@import "jquery.ui.core";
+@import "jquery.ui.theme";
+@import "jquery.ui.datepicker";
+@import "font-awesome";
 
- // Defaults
- @import 'defaults/colors';
- @import 'defaults/utilities';
- @import 'defaults/mixins';
+// Defaults
+@import 'defaults/colors';
+@import 'defaults/utilities';
+@import 'defaults/mixins';
 
- // Elements
- @import "elements/link";
+// Elements
 @import "elements/text";
+@import "elements/button";
+@import "elements/link";
 @import "elements/table";
 
 // Components

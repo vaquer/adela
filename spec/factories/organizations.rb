@@ -25,5 +25,15 @@ FactoryGirl.define do
         create(:organization_sector, organization: organization)
       end
     end
+
+    trait :opening_plan do
+      ignore do
+        opening_plan_count { Faker::Number.between(1, 5) }
+      end
+
+      after(:create) do |organization, evaluator|
+        create_list(:opening_plan, evaluator.opening_plan_count, organization: organization)
+      end
+    end
   end
 end

@@ -26,13 +26,28 @@ FactoryGirl.define do
       end
     end
 
+    trait :catalog do
+      after(:create) do |organization|
+        create(:catalog, organization: organization)
+      end
+    end
+
     trait :opening_plan do
       ignore do
-        opening_plan_count { Faker::Number.between(1, 5) }
+        datasets_count { Faker::Number.between(1, 5) }
+        distributions_count { Faker::Number.between(1, 5) }
       end
 
       after(:create) do |organization, evaluator|
-        create_list(:opening_plan, evaluator.opening_plan_count, organization: organization)
+        create_list(:opening_plan, evaluator.datasets_count, organization: organization)
+
+        # creates inventory and inventory elements
+        inventory = create(:inventory, organization: organization)
+        organization.opening_plans.each do |opening_plan|
+          evaluator.distributions_count.times do
+            create(:inventory_element, inventory: inventory, dataset_title: opening_plan.name)
+          end
+        end
       end
     end
   end

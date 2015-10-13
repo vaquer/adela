@@ -14,11 +14,14 @@
 //= require bootstrap
 //= require toastr
 //= require fakeinputs
+//= require components/datepicker
 //= require_self
 //= require_directory .
 
 ready = ->
   initFileUploads()
+  loadDatePicker()
+
   toastr.options =
     'closeButton': false
     'debug': false

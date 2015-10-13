@@ -11,7 +11,7 @@ describe InventoryXLSXParserWorker do
   end
 
   it 'should generate the inventory dataset' do
-    datasets = @inventory.organization.catalogs.last.datasets
+    datasets = @inventory.organization.catalog.datasets
     expect(datasets.count).to be(1)
   end
 end

@@ -20,6 +20,8 @@ class OpeningPlanController < ApplicationController
     @organization.opening_plans = []
     @organization.update(organization_params)
     create_opening_plan_officials
+    generate_catalog_datasets
+    generate_opening_plan_dataset
     redirect_to opening_plan_index_path
   end
 
@@ -76,6 +78,18 @@ class OpeningPlanController < ApplicationController
     user = @organization.liaison.try(:user)
     return unless user
     opening_plan.officials.create(email: user.email, name: user.name, kind: 'liaison')
+  end
+
+  def generate_opening_plan_dataset
+    OpeningPlanDatasetGenerator.new(@organization.catalog).generate unless opening_plan_dataset?
+  end
+
+  def generate_catalog_datasets
+    CatalogDatasetsGenerator.new(@organization).execute unless opening_plan_dataset?
+  end
+
+  def opening_plan_dataset?
+    @organization.catalog.datasets.map(&:identifier).grep('plan-de-apertura-institucional').present?
   end
 
   def organization_params

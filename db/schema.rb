@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008010828) do
+ActiveRecord::Schema.define(version: 20151013012447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20151008010828) do
     t.text     "description"
     t.string   "logo_url"
     t.integer  "gov_type"
+    t.text     "landing_page"
   end
 
   add_index "organizations", ["gov_type"], name: "index_organizations_on_gov_type", using: :btree

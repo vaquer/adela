@@ -121,6 +121,7 @@ es:
         title: "Nombre"
         description: "Descripción"
         logo_url: "URL Logo"
+        landing_page: "Sitio Web"
         gov_type: "Tipo de Gobierno"
         sectors: "Sectores"
         administrator: "Administrador de Datos"

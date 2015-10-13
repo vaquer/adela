@@ -15,12 +15,14 @@
 //= require toastr
 //= require fakeinputs
 //= require components/datepicker
+//= require components/table-checkbox
 //= require_self
 //= require_directory .
 
 ready = ->
   initFileUploads()
   loadDatePicker()
+  loadCheckboxes()
 
   toastr.options =
     'closeButton': false

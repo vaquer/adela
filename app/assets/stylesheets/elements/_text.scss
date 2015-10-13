@@ -19,3 +19,9 @@ p, span, label {
 
 // Weights
 .boldish { font-weight: 400 !important; } // normally 300;
+
+.footnote {
+  @include text__decorator(black);
+  background-color: $grey_100;
+  padding: 15px;
+}

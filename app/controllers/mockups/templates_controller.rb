@@ -3,6 +3,9 @@ module Mockups
     def s501
     end
 
+    def s505
+    end
+
     def s506
     end
   end

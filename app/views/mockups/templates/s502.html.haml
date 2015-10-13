@@ -60,7 +60,7 @@
       %thead
         %tr
           %th
-            %input.little-margin-right{ type: 'checkbox' }
+            %input#cell-checkbox-master.little-margin-right{ type: 'checkbox' }
             Nombre del recurso
             %i.fa.fa-caret-down
           %th
@@ -72,25 +72,25 @@
       %tbody
         %tr
           %td
-            %input.little-margin-right{ type: 'checkbox' }
+            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
             Aviso de ciclones tropicales
-          %td 0%
+          %td Falta informaci&oacute;n
           %td= link_to 'Completar', '#'
         %tr
           %td
-            %input.little-margin-right{ type: 'checkbox' }
+            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
             Imágenes satelitales
-          %td 50%
+          %td Listo para publicar
           %td= link_to 'Actualizar', '#'
         %tr
           %td
-            %input.little-margin-right{ type: 'checkbox' }
+            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
             Precipitación anual
-          %td 100%
+          %td Listo para publicar
           %td= link_to 'Actualizar', '#'
         %tr
           %td
-            %input.little-margin-right{ type: 'checkbox' }
+            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
             Niveles actuales de ríos
-          %td 100%
+          %td Publicado
           %td= link_to 'Actualizar', '#'

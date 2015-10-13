@@ -1,0 +1,20 @@
+.container
+  .card
+    %h3 Catálogo de datos
+    %h5 Publica a datos.gob.mx
+    %p
+      Aquí puedes revisar el avance de cada conjunto y editar sus recursos para finalizar el proceso.
+    %table.table.table-striped
+      %tr
+        %th Conjunto de Datos
+        %th Recursos publicados
+        %th Fecha compromiso
+        %th
+      - @catalog.datasets.each do |dataset|
+        %tr
+          %td= dataset.title
+          %td= "#{published_distributions_percentage(dataset)}%"
+          %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
+          %td
+            = link_to 'Editar', edit_dataset_path(dataset)
+            = link_to 'Ver último folio', dataset_path(dataset)

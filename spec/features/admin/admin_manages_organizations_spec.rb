@@ -23,6 +23,7 @@ feature Admin, 'manages organizations:' do
     fill_in('Nombre', with: organization.title)
     fill_in('Descripción', with: organization.description)
     fill_in('URL Logo', with: organization.logo_url)
+    fill_in('Sitio Web', with: organization.landing_page)
     select(organization.gov_type_i18n, from: 'organization_gov_type')
     click_on 'Guardar'
 
@@ -44,6 +45,7 @@ feature Admin, 'manages organizations:' do
     fill_in('Nombre', with: new_attributes[:title])
     fill_in('Descripción', with: new_attributes[:description])
     fill_in('URL Logo', with: new_attributes[:logo_url])
+    fill_in('Sitio Web', with: new_attributes[:landing_page])
     select('Federal', from: 'organization_gov_type')
     click_on 'Guardar'
 

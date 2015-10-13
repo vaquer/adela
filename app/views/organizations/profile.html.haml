@@ -2,15 +2,26 @@
   .card
     %h3.title Editar Organizaci&oacute;n
     %h5.subtitle= @organization.title.upcase
-    = form_for(@organization) do |f|
+    = form_for(@organization, html: { id: 'edit_organization' }) do |f|
       .form-group
         = f.label :description
         = f.text_field :description, class: 'form-control'
       .form-group
         = f.label :logo_url, class: 'block'
-        = f.text_field :logo_url, class: 'form-control'
+        = f.url_field :logo_url, class: 'form-control'
+      .form-group
+        = f.label :landing_page, class: 'block'
+        = f.url_field :landing_page, class: 'form-control'
       .form-group
         = f.label :gov_type, class: 'control-label'
         = f.select :gov_type, options_for_gov_types_select(@organization), { include_blank: true }, { class: 'form-control' }
       .form-group
         = f.button "Guardar", type: 'submit', class: 'btn btn-primary'
+:javascript
+  $( "#edit_organization" ).validate({
+    rules: {
+      field: {
+        url: true
+      }
+    }
+  });

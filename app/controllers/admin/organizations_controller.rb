@@ -42,6 +42,7 @@ module Admin
         :title,
         :description,
         :logo_url,
+        :landing_page,
         :gov_type,
         administrator_attributes: [:user_id],
         liaison_attributes: [:user_id],

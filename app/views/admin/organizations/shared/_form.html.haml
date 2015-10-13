@@ -1,4 +1,4 @@
-= nested_form_for([:admin, @organization]) do |f|
+= nested_form_for([:admin, @organization], html: { id: 'edit_organization' }) do |f|
   .form-group
     = f.label :title
     = f.text_field :title, class: 'form-control'
@@ -7,7 +7,10 @@
     = f.text_field :description, class: 'form-control'
   .form-group
     = f.label :logo_url
-    = f.text_field :logo_url, class: 'form-control'
+    = f.url_field :logo_url, class: 'form-control'
+  .form-group
+    = f.label :landing_page
+    = f.url_field :landing_page, class: 'form-control'
   .form-group
     = f.label :gov_type
     = f.select :gov_type, options_for_gov_types_select(@organization), { include_blank: true }, { class: 'form-control' }
@@ -31,3 +34,11 @@
   .form-group
     = link_to 'Cancelar', admin_organizations_path, class: 'btn btn-primary'
     = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'
+:javascript
+  $( "#edit_organization" ).validate({
+    rules: {
+      field: {
+        url: true
+      }
+    }
+  });

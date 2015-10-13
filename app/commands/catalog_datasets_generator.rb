@@ -28,7 +28,8 @@ class CatalogDatasetsGenerator
       mbox: organization_administrator.try(:email),
       # TODO: add dct:landing_page field
       # landing_page: Faker::Internet.url,
-      accrual_periodicity: opening_plan.accrual_periodicity
+      accrual_periodicity: opening_plan.accrual_periodicity,
+      publish_date: opening_plan.publish_date
     )
   end
 

@@ -3,6 +3,8 @@ class CatalogsController < ApplicationController
   before_action :require_opening_plan
 
   def index
+    redirect_to catalog_datasets_path(current_organization.catalog)
+    return
   end
 
   private

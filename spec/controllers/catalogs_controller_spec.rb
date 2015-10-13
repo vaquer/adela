@@ -2,6 +2,24 @@ require 'spec_helper'
 
 describe CatalogsController do
   describe 'GET #index' do
+    context 'with an opening plan and inventory' do
+      before(:each) do
+        @organization = create(:organization, :catalog, :opening_plan)
+        @user = create(:user, organization: @organization)
+        sign_in(@user)
+
+        get :index, organization_id: @organization.id, locale: :es
+      end
+
+      it 'has 302 status' do
+        expect(response.status).to eq(302)
+      end
+
+      it 'redirects to catalog_datasets path' do
+        expect(response).to redirect_to(catalog_datasets_path(@organization.catalog))
+      end
+    end
+
     context 'without an inventory' do
       before(:each) do
         @organization = create(:organization)
@@ -22,7 +40,7 @@ describe CatalogsController do
 
     context 'without an opening plan' do
       before(:each) do
-        @organization = create(:organization)
+        @organization = create(:organization, :catalog)
         create(:inventory, organization: @organization)
         @user = create(:user, organization: @organization)
         sign_in(@user)

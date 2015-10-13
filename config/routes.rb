@@ -15,7 +15,7 @@ Adela::Application.routes.draw do
     resources :organizations, only: [:show, :update] do
       get 'profile', on: :member
       get 'search', on: :collection
-      resources :catalogs, only: :index do
+      resources :catalogs, only: :index, shallow: true do
         resources :datasets
       end
     end

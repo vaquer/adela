@@ -11,6 +11,7 @@ FactoryGirl.define do
     spatial { Faker::Address.state }
     landing_page { Faker::Internet.url }
     accrual_periodicity 'R/P1Y'
+    publish_date { Faker::Time.forward }
     catalog
 
     trait :distributions do

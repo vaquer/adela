@@ -6,6 +6,9 @@ module Mockups
     def s473
     end
 
+    def s475
+    end
+
     def s501
     end
 

@@ -14,7 +14,7 @@
       publicada en el portal de datos.gob.mx. Por favor valida su consistencia
       para poder publicar.
 
-    .summary
+    .section
       .row
         .col-xs-12.col-sm-4
           %p.dark Nombre
@@ -79,55 +79,48 @@
         .col-xs-12.col-sm-8
           %p http://www.semarnat.gob.mx/78129/cdn-001-diccionario.csv
 
+    .row
+      %table.table.table-striped.table-condensed
+        %thead
+          %tr
+            %th
+              %input#cell-checkbox-master.little-margin-right{ type: 'checkbox' }
+              Nombre del recurso
+              %i.fa.fa-caret-down
+            %th
+              Fecha de &uacute;ltima modificaci&oacute;n
+              %i.fa.fa-caret-down
+            %th
+              Per&iacute;odo de tiempo cubierto
+              %i.fa.fa-caret-down
+            %th
+              URL de descarga
+              %i.fa.fa-caret-down
+        %tbody
+          %tr
+            %td
+              %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
+              Aviso de ciclones tropicales en formato CAP
+            %td 01-febrero-2015
+            %td 01-enero-2015 a 31-enero-2015
+            %td= link_to truncate('http://www.semarnat.gob.mx/78129/cap-001.csv', length: 30), '#'
+          %tr
+            %td
+              %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
+              Aviso de ciclones tropicales en formato ITU-T
+            %td 01-febrero-2015
+            %td 01-enero-2015 a 31-enero-2015
+            %td= link_to truncate('http://www.semarnat.gob.mx/78129/iut-t-001.csv', length: 30), '#'
 
-        -# %p.uppercase.dark Identificador
-        -# %p CNN01-aviso-de-ciclones-tropicales
-        -#
-        -# %p.uppercase.dark Frecuencia de actualizaci&oacute;n
-        -# %p Cuatrimestral
-        -#
-        -# %p.footnote
-        -#   Para editar estos campo, vuelve a subir el inventario de datos con tu
-        -#   modificaci&oacute;n o edita el plan de apertura.
-
-    %table.table.table-striped.table-condensed
-      %thead
-        %tr
-          %th
-            %input#cell-checkbox-master.little-margin-right{ type: 'checkbox' }
-            Nombre del recurso
-            %i.fa.fa-caret-down
-          %th
-            Estatus de publicación
-            %i.fa.fa-caret-down
-          %th
-            Acciones
-            %i.fa.fa-caret-down
-      %tbody
-        %tr
-          %td
-            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
-            Aviso de ciclones tropicales
-          %td Falta informaci&oacute;n
-          %td= link_to 'Completar', '#'
-        %tr
-          %td
-            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
-            Imágenes satelitales
-          %td Listo para publicar
-          %td= link_to 'Actualizar', '#'
-        %tr
-          %td
-            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
-            Precipitación anual
-          %td Listo para publicar
-          %td= link_to 'Actualizar', '#'
-        %tr
-          %td
-            %input.cell-checkbox.little-margin-right{ type: 'checkbox' }
-            Niveles actuales de ríos
-          %td Publicado
-          %td= link_to 'Actualizar', '#'
+    .section
+      %p.dark
+        %input{ type: 'checkbox' }
+        Estoy de acuerdo que en que esta informaci&oacute;n se publique en
+        datos.gob.mx
+      %p.dark
+        %input{ type: 'checkbox' }
+        Confirmo que la informaci&oacute;n est&aacute; validada por
+        la instituci&oacute;n
 
     %button.btn.btn-primary Publicar
     %button.btn.btn-default Volver al cat&aacute;logo

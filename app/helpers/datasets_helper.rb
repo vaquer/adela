@@ -6,4 +6,8 @@ module DatasetsHelper
   rescue
     0
   end
+
+  def accrual_periodicity_translate(accrual_periodicity)
+    ISO8601_DEFAULTS['accrual_periodicity'].invert[accrual_periodicity]
+  end
 end

@@ -16,6 +16,7 @@
 //= require fakeinputs
 //= require components/datepicker
 //= require components/table-checkbox
+//= require components/agreement
 //= require_self
 //= require_directory .
 

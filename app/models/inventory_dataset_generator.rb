@@ -36,6 +36,7 @@ class InventoryDatasetGenerator
       # TODO: add dct:landing_page field
       # dataset.landing_page = Faker::Internet.url
       dataset.accrual_periodicity = 'irregular'
+      dataset.publish_date = DateTime.new(2015, 8, 28)
     end
   end
 

@@ -6,8 +6,9 @@
 }
 
 .btn-primary {
-  background-color: $cartoon_green;
-  &:hover {
-    background-color: $cartoon_green;
-  }
+  @include button($cartoon_green, white);
+}
+
+.btn-default {
+  @include button($grey_150, $grey_600);
 }

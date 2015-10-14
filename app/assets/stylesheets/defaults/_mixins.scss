@@ -25,3 +25,13 @@ $default_text_color: $grey_800;
 @mixin navigation($position) {
   text-align: $position;
 }
+
+@mixin button($background_color, $text_color) {
+  background-color: $background_color;
+  color: $text_color;
+
+  &:hover {
+    background-color: $background_color;
+    color: $text_color;
+  }
+}

@@ -69,6 +69,7 @@ Adela::Application.routes.draw do
   end
 
   namespace :mockups do
+    get '/469', to: 'templates#s469'
     get '/473', to: 'templates#s473'
 
     get '/501', to: 'templates#s501'

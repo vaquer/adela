@@ -1,5 +1,9 @@
 module Mockups
   class TemplatesController < ApplicationController
+    def s473
+    end
+
+
     def s501
     end
 

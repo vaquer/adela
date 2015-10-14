@@ -26,8 +26,7 @@ class CatalogDatasetsGenerator
       description: opening_plan.description,
       contact_point: organization_administrator.try(:name),
       mbox: organization_administrator.try(:email),
-      # TODO: add dct:landing_page field
-      # landing_page: Faker::Internet.url,
+      landing_page: @organization.landing_page,
       accrual_periodicity: opening_plan.accrual_periodicity,
       publish_date: opening_plan.publish_date
     )

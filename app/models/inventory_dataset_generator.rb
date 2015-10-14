@@ -33,8 +33,7 @@ class InventoryDatasetGenerator
       dataset.contact_point = organization_administrator.try(:name)
       dataset.mbox = organization_administrator.try(:email)
       dataset.temporal = Time.current.year
-      # TODO: add dct:landing_page field
-      # dataset.landing_page = Faker::Internet.url
+      dataset.landing_page = @organization.landing_page
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 8, 28)
     end

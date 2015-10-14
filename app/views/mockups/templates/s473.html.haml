@@ -114,13 +114,13 @@
 
     .section
       %p.dark
-        %input{ type: 'checkbox' }
+        %input#agreement-publish{ type: 'checkbox', 'onClick'=>'termsConfirmed()' }
         Estoy de acuerdo que en que esta informaci&oacute;n se publique en
         datos.gob.mx
       %p.dark
-        %input{ type: 'checkbox' }
+        %input#agreement-validated{ type: 'checkbox', 'onClick'=>'termsConfirmed()' }
         Confirmo que la informaci&oacute;n est&aacute; validada por
         la instituci&oacute;n
 
-    %button.btn.btn-primary Publicar
+    %button#publish.btn.btn-primary.disabled Publicar
     %button.btn.btn-default Volver al cat&aacute;logo

@@ -24,5 +24,11 @@ FactoryGirl.define do
         create_list(:distribution, evaluator.distributions_count, dataset: dataset)
       end
     end
+
+    trait :sector do
+      after(:create) do |dataset|
+        create(:dataset_sector, dataset: dataset)
+      end
+    end
   end
 end

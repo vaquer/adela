@@ -68,4 +68,17 @@ Adela::Application.routes.draw do
 
     resources :organizations, except: [:show, :destroy]
   end
+
+  namespace :mockups do
+    get '/469', to: 'templates#s469'
+    get '/473', to: 'templates#s473'
+    get '/475', to: 'templates#s475'
+
+    get '/501', to: 'templates#s501'
+    get '/502', to: 'templates#s502'
+    get '/503', to: 'templates#s502'
+    get '/504', to: 'templates#s504'
+    get '/505', to: 'templates#s505'
+    get '/506', to: 'templates#s506'
+  end
 end

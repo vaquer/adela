@@ -15,21 +15,6 @@
     display: inline-block;
     width: 500px;
   }
-  // &:focus { border-color: $cartoon_green; }
-}
-
-.btn {
-  @extend .control_override;
-  padding: 10px;
-  border: 0;
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background-color: $cartoon_green;
-  &:hover {
-    background-color: $cartoon_green;
-  }
 }
 
 .inline {

@@ -20,6 +20,7 @@ class OpeningPlanDatasetGenerator
       dataset.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       dataset.keyword = 'plan-de-apertura'
       dataset.modified = Time.current.iso8601
+      dataset.contact_position = ENV_CONTACT_POSITION_NAME
       dataset.contact_point = organization_administrator.try(:name)
       dataset.mbox = organization_administrator.try(:email)
       dataset.temporal = Time.current.year

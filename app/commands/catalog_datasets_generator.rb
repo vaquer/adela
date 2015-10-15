@@ -24,6 +24,7 @@ class CatalogDatasetsGenerator
       identifier: opening_plan.name.downcase.split.join('-'),
       title: opening_plan.name,
       description: opening_plan.description,
+      contact_position: ENV_CONTACT_POSITION_NAME,
       contact_point: organization_administrator.try(:name),
       mbox: organization_administrator.try(:email),
       landing_page: @organization.landing_page,

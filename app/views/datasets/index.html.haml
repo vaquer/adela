@@ -1,20 +1,31 @@
 .container
   .card
-    %h3 Catálogo de datos
-    %h5 Publica a datos.gob.mx
-    %p
-      Aquí puedes revisar el avance de cada conjunto y editar sus recursos para finalizar el proceso.
+    %h3.title Cat&aacute;logo de datos
+    %h5.subtitle Publica a datos.gob.mx
+    .row
+      .col-xs-12.col-sm-6
+        %p
+          Aqu&iacute; puedes revisar el avance de cada conjunto y editar sus recursos
+          para finalizar el proceso.
     %table.table.table-striped
-      %tr
-        %th Conjunto de Datos
-        %th Recursos publicados
-        %th Fecha compromiso
-        %th Acciones
-      - @catalog.datasets.sort_by(&:publish_date).each do |dataset|
+      %thead
         %tr
-          %td= dataset.title
-          %td= "#{published_distributions_percentage(dataset)}%"
-          %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
-          %td
-            = link_to 'Editar', edit_dataset_path(dataset)
-            = link_to 'Ver último folio', dataset_path(dataset)
+          %th
+            Conjunto de datos
+            %i.fa.fa-caret-down
+          %th
+            Recursos publicados
+            %i.fa.fa-caret-down
+          %th
+            Fecha de compromiso
+            %i.fa.fa-caret-down
+          %th
+            Acciones
+      %tbody
+        - @catalog.datasets.sort_by(&:publish_date).each do |dataset|
+          %tr
+            %td= dataset.title
+            %td= "#{published_distributions_percentage(dataset)}%"
+            %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
+            %td
+              = link_to 'Editar', edit_dataset_path(dataset)

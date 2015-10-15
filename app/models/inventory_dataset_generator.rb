@@ -10,6 +10,7 @@ class InventoryDatasetGenerator
   def generate
     dataset = build_dataset
     build_distribution(dataset)
+    build_sector(dataset) if @organization.sectors.present?
     dataset.save
   end
 
@@ -42,6 +43,12 @@ class InventoryDatasetGenerator
 
   def organization_administrator
     @organization.administrator.try(:user)
+  end
+
+  def build_sector(dataset)
+    dataset.build_dataset_sector do |dataset_sector|
+      dataset_sector.sector_id = @organization.sectors.first.id
+    end
   end
 
   def build_distribution(dataset)

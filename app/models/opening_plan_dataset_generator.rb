@@ -8,6 +8,7 @@ class OpeningPlanDatasetGenerator
   def generate
     dataset = build_dataset
     build_distribution(dataset)
+    build_sector(dataset) if @catalog.organization.sectors.present?
     @catalog.save
   end
 
@@ -27,6 +28,12 @@ class OpeningPlanDatasetGenerator
       dataset.landing_page = @catalog.organization.landing_page
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 9, 25)
+    end
+  end
+
+  def build_sector(dataset)
+    dataset.build_dataset_sector do |dataset_sector|
+      dataset_sector.sector_id = @catalog.organization.sectors.first.id
     end
   end
 

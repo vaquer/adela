@@ -7,6 +7,10 @@ class CatalogsController < ApplicationController
     return
   end
 
+  def show
+    @catalog = current_organization.catalog
+  end
+
   def check
     @catalog = current_organization.catalog
   end

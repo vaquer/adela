@@ -8,7 +8,6 @@ FactoryGirl.define do
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }
     modified { Faker::Time.forward }
     spatial { Faker::Address.state }
-    published true
     dataset
 
     trait :broke do

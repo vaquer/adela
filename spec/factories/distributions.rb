@@ -11,6 +11,21 @@ FactoryGirl.define do
     published true
     dataset
 
+    trait :broke do
+      download_url nil
+      temporal nil
+      modified nil
+      state 'broke'
+    end
+
+    trait :validated do
+      state 'validated'
+    end
+
+    trait :published do
+      state 'published'
+    end
+
     trait :unpublished do
       published false
     end

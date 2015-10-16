@@ -8,9 +8,9 @@ describe DatasetsHelper do
     end
 
     it 'returns percentage of published distributions' do
-
       FactoryGirl.create(:distribution, dataset: @dataset)
-      FactoryGirl.create(:distribution, :unpublished, dataset: @dataset)
+      distribution = FactoryGirl.create(:distribution, dataset: @dataset)
+      distribution.update_column(:state, 'published')
       percentage = helper.published_distributions_percentage(@dataset)
       expect(percentage).to eq(50)
     end

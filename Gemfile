@@ -47,6 +47,7 @@ gem 'jquery-validation-rails'
 gem 'nested_form'
 gem 'has_scope'
 gem 'rack-cors'
+gem 'state_machines-activerecord'
 
 group :development, :test do
   gem 'spring'

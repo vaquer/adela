@@ -2,7 +2,7 @@
   .card
     %h3.title= "Nombre del conjunto: #{@dataset.title}"
     %h5.subtitle= "Fecha de compromiso - #{l(@dataset.publish_date, format: '%d %B %Y')}"
-    %p
+    %p.instructions
       Aqu&iacute; puedes documentar la informaci&oacute;n requerida para publicar 
       el conjunto de datos y sus recursos en datos.gob.mx
     .row
@@ -15,7 +15,7 @@
         %p.uppercase.dark Frecuencia de actualizaci&oacute;n
         %p= accrual_periodicity_translate(@dataset.accrual_periodicity)
 
-        %p.footnote
+        %p.instructions
           Para editar estos campo, vuelve a subir el inventario de datos con tu
           modificaci&oacute;n o edita el plan de apertura.
 
@@ -53,7 +53,7 @@
               = f.text_area :keyword, class: 'form-control auto_submit_item'
 
     .row
-      %p
+      %p.instructions
         Continúa con la documentación de los recursos de este conjunto de datos
 
     %table.table.table-striped.table-condensed

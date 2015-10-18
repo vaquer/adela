@@ -14,7 +14,10 @@
             Conjunto de datos
             %i.fa.fa-caret-down
           %th
-            Recursos publicados
+            Estatus de publicación
+            %i.fa.fa-caret-down
+          %th
+            Recursos documentados
             %i.fa.fa-caret-down
           %th
             Fecha de compromiso
@@ -26,9 +29,16 @@
           %tr
             %td= dataset.title
             %td
+            %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
             %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
-            %td
-              = link_to 'Editar', edit_dataset_path(dataset)
+            %td= link_to 'Editar', edit_dataset_path(dataset)
+          - dataset.distributions.each do |distribution|
+            %tr
+              %td.nested= distribution.title
+              %td= state_description(distribution)
+              %th
+              %th
+              %td= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
 
     = link_to 'Publicar', check_organization_catalogs_path(current_organization), class: can_publish?(@catalog) ? 'btn btn-primary' : 'btn btn-primary disabled'
     = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-default' : 'btn btn-default disabled'

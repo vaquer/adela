@@ -10,4 +10,8 @@ module DatasetsHelper
   def published_distributions?(dataset)
     dataset.distributions.select(&:published?).present?
   end
+
+  def documented_distributions(dataset)
+    dataset.distributions.select { |d| d.published? || d.validated? }
+  end
 end

@@ -9,4 +9,16 @@ describe DatasetsHelper do
       end
     end
   end
+
+  describe '#documented_distributions' do
+    it 'returns only documented distributions' do
+      dataset = create(:dataset)
+      create(:distribution, :broke, dataset: dataset)
+      create(:distribution, :validated, dataset: dataset)
+      create(:distribution, :published, dataset: dataset)
+
+      distributions = helper.documented_distributions(dataset)
+      expect(distributions.count).to eq(2)
+    end
+  end
 end

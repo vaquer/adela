@@ -38,7 +38,21 @@
 
 :javascript
   $(function () {
-    $("form").validate();
+    $("form").validate({
+      errorPlacement: function(error, element) {
+        // Find if element has a calendar sibling
+        var calendar = $(element).parent().find("i.fa-calendar");
+        var hasCalendarField = calendar.length > 0;
+        if (hasCalendarField) {
+          // Insert error outside .input-group to avoid messing up the style
+          error.insertAfter(calendar.parent().parent());
+          // Add red border to calendar-icon span element
+          calendar.parent().addClass("error");
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
 
     function onDistributionTemporalChange() {
       var initDate, termDate, dcatTemporal;

@@ -7,7 +7,7 @@
         .col-xs-12.col-sm-12
           = f.label(:download_url, 'URL para descargar *')
         .col-xs-12.col-sm-6
-          = f.url_field(:download_url, class: 'form-control')
+          = f.url_field(:download_url, class: 'form-control', required: true)
 
       .form-group
         .col-xs-12.col-sm-12
@@ -15,12 +15,12 @@
           = f.hidden_field(:temporal)
         .col-xs-12.col-sm-3
           .input-group
-            %input#init-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Inicio" }
+            %input#init-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Inicio", required: true }
             %span.input-group-addon
               %i.fa.fa-calendar
         .col-xs-12.col-sm-3
           .input-group
-            %input#term-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Fin" }
+            %input#term-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Fin", required: true }
             %span.input-group-addon
               %i.fa.fa-calendar
 
@@ -29,14 +29,31 @@
           = f.label(:modified, 'Fecha de última modificación de datos *')
         .col-xs-12.col-sm-3
           .input-group
-            = f.text_field(:modified, class: 'input-icon datepicker')
+            = f.text_field(:modified, class: 'input-icon datepicker', required: true)
             %span.input-group-addon
               %i.fa.fa-calendar
 
       = f.button 'Guardar avance', type: 'submit', class: 'btn btn-primary'
+      = link_to 'Cancelar', edit_dataset_path, class: 'btn btn-primary'
 
 :javascript
   $(function () {
+    $("form").validate({
+      errorPlacement: function(error, element) {
+        // Find if element has a calendar sibling
+        var calendar = $(element).parent().find("i.fa-calendar");
+        var hasCalendarField = calendar.length > 0;
+        if (hasCalendarField) {
+          // Insert error outside .input-group to avoid messing up the style
+          error.insertAfter(calendar.parent().parent());
+          // Add red border to calendar-icon span element
+          calendar.parent().addClass("error");
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
     function onDistributionTemporalChange() {
       var initDate, termDate, dcatTemporal;
 

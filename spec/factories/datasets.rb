@@ -5,6 +5,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     keyword { Faker::Lorem.words.join(',') }
     modified { Faker::Time.forward }
+    contact_position { Faker::Lorem.word }
     contact_point { Faker::Name.name }
     mbox { Faker::Internet.email }
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }
@@ -21,6 +22,12 @@ FactoryGirl.define do
 
       after(:create) do |dataset, evaluator|
         create_list(:distribution, evaluator.distributions_count, dataset: dataset)
+      end
+    end
+
+    trait :sector do
+      after(:create) do |dataset|
+        create(:dataset_sector, dataset: dataset)
       end
     end
   end

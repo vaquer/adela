@@ -5,7 +5,7 @@ ruby '2.1.5'
 gem 'rails', '4.1'
 
 gem 'sass-rails', '~> 4.0.3'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -47,6 +47,7 @@ gem 'jquery-validation-rails'
 gem 'nested_form'
 gem 'has_scope'
 gem 'rack-cors'
+gem 'state_machines-activerecord'
 
 group :development, :test do
   gem 'spring'

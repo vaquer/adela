@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013154250) do
+ActiveRecord::Schema.define(version: 20151016135802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20151013154250) do
 
   add_index "catalogs", ["organization_id"], name: "index_catalogs_on_organization_id", using: :btree
 
+  create_table "dataset_sectors", force: true do |t|
+    t.integer  "sector_id"
+    t.integer  "dataset_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dataset_sectors", ["dataset_id"], name: "index_dataset_sectors_on_dataset_id", using: :btree
+  add_index "dataset_sectors", ["sector_id"], name: "index_dataset_sectors_on_sector_id", using: :btree
+
   create_table "datasets", force: true do |t|
     t.string   "identifier"
     t.text     "title"
@@ -63,6 +73,7 @@ ActiveRecord::Schema.define(version: 20151013154250) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "publish_date"
+    t.string   "contact_position"
   end
 
   add_index "datasets", ["catalog_id"], name: "index_datasets_on_catalog_id", using: :btree
@@ -79,7 +90,7 @@ ActiveRecord::Schema.define(version: 20151013154250) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "modified"
-    t.boolean  "published"
+    t.string   "state"
   end
 
   add_index "distributions", ["dataset_id"], name: "index_distributions_on_dataset_id", using: :btree

@@ -1,0 +1,64 @@
+.container
+  .card
+    %h3.title= "Nombre del recurso: #{@distribution.title}"
+    %h5.subtitle= "Completar recurso #{@distribution.title} en formato #{@distribution.media_type}"
+    = form_for(@distribution, html: { class: 'form-horizontal' }) do |f|
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:download_url, 'URL para descargar *')
+        .col-xs-12.col-sm-6
+          = f.url_field(:download_url, class: 'form-control')
+
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:temporal, 'Período de tiempo cubierto *')
+          = f.hidden_field(:temporal)
+        .col-xs-12.col-sm-3
+          .input-group
+            %input#init-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Inicio" }
+            %span.input-group-addon
+              %i.fa.fa-calendar
+        .col-xs-12.col-sm-3
+          .input-group
+            %input#term-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Fin" }
+            %span.input-group-addon
+              %i.fa.fa-calendar
+
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:modified, 'Fecha de última modificación de datos *')
+        .col-xs-12.col-sm-3
+          .input-group
+            = f.text_field(:modified, class: 'input-icon datepicker')
+            %span.input-group-addon
+              %i.fa.fa-calendar
+
+      = f.button 'Guardar avance', type: 'submit', class: 'btn btn-primary'
+
+:javascript
+  $(function () {
+    function onDistributionTemporalChange() {
+      var initDate, termDate, dcatTemporal;
+
+      initDate = $('#init-date').val();
+      termDate = $('#term-date').val();
+
+      dcatTemporal = initDate + "/" + termDate;
+      $('#distribution_temporal').val(dcatTemporal);
+    }
+
+    function loadTemporalValues() {
+      var initDate, termDate, dcatTemporal;
+
+      dcatTemporal = $('#distribution_temporal').val().split('/');
+      initDate = dcatTemporal[0];
+      termDate = dcatTemporal[1];
+
+      $('#init-date').val(initDate);
+      $('#term-date').val(termDate);
+    }
+
+    $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
+    loadTemporalValues();
+    $('.dcat-temporal').change(onDistributionTemporalChange);
+  })

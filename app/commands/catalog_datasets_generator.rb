@@ -7,7 +7,10 @@ class CatalogDatasetsGenerator
   end
 
   def execute
-    build_datasets.each { |dataset| build_distributions(dataset) }
+    build_datasets.each do |dataset|
+      build_distributions(dataset)
+      build_sector(dataset) if @organization.sectors.present?
+    end
     @organization.save
   end
 
@@ -24,6 +27,7 @@ class CatalogDatasetsGenerator
       identifier: opening_plan.name.downcase.split.join('-'),
       title: opening_plan.name,
       description: opening_plan.description,
+      contact_position: ENV_CONTACT_POSITION_NAME,
       contact_point: organization_administrator.try(:name),
       mbox: organization_administrator.try(:email),
       landing_page: @organization.landing_page,
@@ -39,6 +43,12 @@ class CatalogDatasetsGenerator
         description: distribution.description,
         media_type: distribution.media_type
       )
+    end
+  end
+
+  def build_sector(dataset)
+    dataset.create_dataset_sector do |dataset_sector|
+      dataset_sector.sector_id = @organization.sectors.first.id
     end
   end
 

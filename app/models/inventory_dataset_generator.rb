@@ -10,6 +10,7 @@ class InventoryDatasetGenerator
   def generate
     dataset = build_dataset
     build_distribution(dataset)
+    build_sector(dataset) if @organization.sectors.present?
     dataset.save
   end
 
@@ -30,6 +31,7 @@ class InventoryDatasetGenerator
       dataset.description = "Inventario Institucional de Datos de #{@organization.title}"
       dataset.keyword = 'inventario'
       dataset.modified = Time.current.iso8601
+      dataset.contact_position = ENV_CONTACT_POSITION_NAME
       dataset.contact_point = organization_administrator.try(:name)
       dataset.mbox = organization_administrator.try(:email)
       dataset.temporal = Time.current.year
@@ -41,6 +43,12 @@ class InventoryDatasetGenerator
 
   def organization_administrator
     @organization.administrator.try(:user)
+  end
+
+  def build_sector(dataset)
+    dataset.build_dataset_sector do |dataset_sector|
+      dataset_sector.sector_id = @organization.sectors.first.id
+    end
   end
 
   def build_distribution(dataset)

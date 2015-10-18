@@ -25,7 +25,7 @@
         - @catalog.datasets.sort_by(&:publish_date).each do |dataset|
           %tr
             %td= dataset.title
-            %td= "#{published_distributions_percentage(dataset)}%"
+            %td
             %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
             %td
               = link_to 'Editar', edit_dataset_path(dataset)

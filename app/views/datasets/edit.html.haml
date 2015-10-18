@@ -1,6 +1,6 @@
 .container
   .card
-    %h3.title= @dataset.title
+    %h3.title= "Nombre del conjunto: #{@dataset.title}"
     %h5.subtitle= "Fecha de compromiso - #{l(@dataset.publish_date, format: '%d %B %Y')}"
     %p
       Aqu&iacute; puedes documentar la informaci&oacute;n requerida para publicar 

@@ -1,6 +1,6 @@
 .container
   .card
-    %h3.title= @distribution.title
+    %h3.title= "Nombre del recurso: #{@distribution.title}"
     %h5.subtitle= "Completar recurso #{@distribution.title} en formato #{@distribution.media_type}"
     = form_for(@distribution, html: { class: 'form-horizontal' }) do |f|
       .form-group

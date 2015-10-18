@@ -1,10 +1,10 @@
 .container
   .card
-    %h3.title= @dataset.title
+    %h3.title= "Nombre del conjunto: #{@dataset.title}"
     %h5.subtitle= "Fecha de compromiso - #{l(@dataset.publish_date, format: '%d %B %Y')}"
     %p
-      Aqu&iacute; puedes capturar informaci&oacute;n faltante del
-      conjunto y publicar tus recursos en el portal de datos.gob.mx
+      Aqu&iacute; puedes documentar la informaci&oacute;n requerida para publicar 
+      el conjunto de datos y sus recursos en datos.gob.mx
     .row
       .col-xs-12.col-sm-6
         %p.uppercase.dark Descripci&oacute;n
@@ -51,6 +51,10 @@
               = f.label :keyword, 'Palabras clave (separadas por coma) *'
             .col-xs-12.col-sm-12
               = f.text_area :keyword, class: 'form-control auto_submit_item'
+
+    .row
+      %p
+        Continúa con la documentación de los recursos de este conjunto de datos
 
     %table.table.table-striped.table-condensed
       %thead

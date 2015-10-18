@@ -1,7 +1,7 @@
 .container
   .card
     %h3.title= "Nombre del recurso: #{@distribution.title}"
-    %p= "Aquí puedes documentar la información requerida para publicar el recurso en datos.gob.mx"
+    %p.instructions= "Aquí puedes documentar la información requerida para publicar el recurso en datos.gob.mx"
     = form_for(@distribution, html: { class: 'form-horizontal' }) do |f|
       .form-group
         .col-xs-12.col-sm-12

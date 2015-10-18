@@ -25,3 +25,7 @@ p, span, label {
   background-color: $grey_100;
   padding: 15px;
 }
+
+.instructions {
+  @extend .footnote;
+}

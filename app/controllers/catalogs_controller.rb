@@ -22,6 +22,7 @@ class CatalogsController < ApplicationController
     @catalog.publish_date = Time.current
     @catalog.save
     publish_distributions
+    notify_administrator
     redirect_to catalog_path(@catalog)
     return
   end
@@ -30,6 +31,11 @@ class CatalogsController < ApplicationController
 
   def catalog_params
     params.require(:catalog).permit(distribution_ids: [])
+  end
+
+  def notify_administrator
+    administrator = @catalog.organization.administrator
+    CatalogMailer.publish_email(@catalog.id, administrator.user.id).deliver if administrator
   end
 
   def publish_distributions

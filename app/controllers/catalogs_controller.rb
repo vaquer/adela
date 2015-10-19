@@ -12,7 +12,9 @@ class CatalogsController < ApplicationController
   end
 
   def check
-    @catalog = current_organization.catalog
+    @datasets = catalog_params['distribution_ids'].map do |id|
+      Distribution.find(id).dataset
+    end
   end
 
   def publish
@@ -26,9 +28,13 @@ class CatalogsController < ApplicationController
 
   private
 
+  def catalog_params
+    params.require(:catalog).permit(distribution_ids: [])
+  end
+
   def publish_distributions
-    distributions = @catalog.datasets.map(&:distributions).flatten.select(&:validated?)
-    distributions.each do |distribution|
+    catalog_params['distribution_ids'].each do |id|
+      distribution = Distribution.find(id)
       distribution.update_column(:state, 'published')
     end
   end

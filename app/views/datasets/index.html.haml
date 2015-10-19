@@ -7,38 +7,42 @@
         %p
           Aqu&iacute; puedes revisar el avance de cada conjunto y editar sus recursos
           para finalizar el proceso.
-    %table.table.table-striped
-      %thead
-        %tr
-          %th
-            Conjunto de datos
-            %i.fa.fa-caret-down
-          %th
-            Estatus de publicación
-            %i.fa.fa-caret-down
-          %th
-            Recursos documentados
-            %i.fa.fa-caret-down
-          %th
-            Fecha de compromiso
-            %i.fa.fa-caret-down
-          %th
-            Acciones
-      %tbody
-        - @catalog.datasets.sort_by(&:publish_date).each do |dataset|
+    = form_for @catalog, url: check_organization_catalogs_path(current_organization.catalog), method: :get do |f|
+      %table.table.table-striped
+        %thead
           %tr
-            %td= dataset.title
-            %td
-            %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
-            %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
-            %td= link_to 'Editar', edit_dataset_path(dataset)
-          - dataset.distributions.each do |distribution|
+            %th
+              Conjunto de datos
+              %i.fa.fa-caret-down
+            %th
+              Estatus de publicación
+              %i.fa.fa-caret-down
+            %th
+              Recursos documentados
+              %i.fa.fa-caret-down
+            %th
+              Fecha de compromiso
+              %i.fa.fa-caret-down
+            %th
+              Acciones
+        %tbody
+          - @catalog.datasets.sort_by(&:publish_date).each do |dataset|
             %tr
-              %td.nested= distribution.title
-              %td= state_description(distribution)
-              %th
-              %th
-              %td= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
+              %td= dataset.title
+              %td
+              %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
+              %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
+              %td= link_to 'Editar', edit_dataset_path(dataset)
+            - dataset.distributions.each do |distribution|
+              %tr
+                %td.nested
+                  - if distribution.validated?
+                    = check_box_tag('catalog[distribution_ids][]', distribution.id, false, class: 'cell-checkbox little-margin-right')
+                  = distribution.title
+                %td= state_description(distribution)
+                %th
+                %th
+                %td= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
 
-    = link_to 'Publicar', check_organization_catalogs_path(current_organization), class: can_publish?(@catalog) ? 'btn btn-primary' : 'btn btn-primary disabled'
-    = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-default' : 'btn btn-default disabled'
+      = f.button 'Publicar', type: 'submit', class: can_publish?(@catalog) ? 'btn btn-primary' : 'btn btn-primary disabled'
+      = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-default' : 'btn btn-default disabled'

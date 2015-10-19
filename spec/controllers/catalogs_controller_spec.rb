@@ -73,4 +73,22 @@ describe CatalogsController do
       end
     end
   end
+
+  describe 'PUTS #publish' do
+    before { ActionMailer::Base.deliveries = [] }
+
+    before(:each) do
+      @organization = create(:organization, :catalog, :opening_plan)
+      @user = create(:user, :administrator, organization: @organization)
+      distribution_ids = @organization.catalog.distributions.map(&:id)
+      sign_in(@user)
+
+      put :publish, id: @organization.id, catalog: { distribution_ids: distribution_ids }, locale: :es
+    end
+
+    it 'sends an email to administrator' do
+      deliveries_count = ActionMailer::Base.deliveries.count
+      expect(deliveries_count).to eq(1)
+    end
+  end
 end

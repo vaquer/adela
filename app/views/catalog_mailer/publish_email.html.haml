@@ -1,0 +1,47 @@
+!!!
+%html
+  %head
+    %title Adela
+  %body
+    .container
+      .card
+        .section.hidden-print
+          %p
+            A continuaci&oacute;n se muestra el comprobante con la informaci&oacute;n
+            que fue publicada en el portal de datos.gob.mx.
+
+        %h3.title= published_catalog_id(@catalog)
+        %h5.subtitle= "Publicado el #{l(@catalog.publish_date, format: '%d %B %Y')}"
+
+        - @catalog.datasets.each do |dataset|
+          - next unless published_distributions?(dataset)
+          %p= "Nombre: #{dataset.title}"
+          %p= "Descripción: #{dataset.description}"
+          %p= "Identificador: #{dataset.identifier}"
+          %p= "Cargo de responsable: #{dataset.contact_position}"
+          %p= "Frecuencia de actualización: #{accrual_periodicity_translate(dataset.accrual_periodicity)}"
+          %p= "Período de tiempo que cubre: #{dataset.temporal}"
+          %p= "Fecha de última modificación: #{dataset.modified}"
+          %p= "Sector: #{dataset.sector.title}"
+          %p= "Palabras clave: #{dataset.keyword}"
+          %p= "Dirección web de diccionario: #{dataset.landing_page}"
+
+          .row
+            %table.table.table-striped.table-condensed
+              %thead
+                %tr
+                  %th Nombre del recurso
+                  %th Fecha de &uacute;ltima modificaci&oacute;n
+                  %th Per&iacute;odo de tiempo cubierto
+                  %th URL de descarga
+              %tbody
+                - dataset.distributions.each do |distribution|
+                  - next unless distribution.published?
+                  %tr
+                    %td= "#{distribution.title} en formato #{distribution.media_type}"
+                    %td= distribution.modified
+                    %td= distribution.temporal
+                    %td= link_to truncate(distribution.download_url, length: 30), distribution.download_url
+
+        .section.hidden-print
+          %button.btn.btn-primary{ 'onClick'=> 'window.print();'} Imprimir

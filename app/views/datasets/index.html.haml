@@ -38,7 +38,7 @@
               %tr
                 %td.nested
                   - if distribution.validated?
-                    = check_box_tag('catalog[distribution_ids][]', distribution.id, false, class: 'cell-checkbox little-margin-right')
+                    = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')
                   = distribution.title
                 %td= state_description(distribution)
                 %th

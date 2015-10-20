@@ -12,4 +12,10 @@ class CatalogSerializer < ActiveModel::Serializer
     data[:license] = 'http://datos.gob.mx/libreusomx/'
     data.merge super
   end
+
+  def datasets
+    object.datasets.select do |dataset|
+      dataset.distributions.map(&:published?).any?
+    end
+  end
 end

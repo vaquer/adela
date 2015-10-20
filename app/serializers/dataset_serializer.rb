@@ -15,4 +15,8 @@ class DatasetSerializer < ActiveModel::Serializer
     data[:landing_page] = object.landing_page
     data
   end
+
+  def distributions
+    object.distributions.select(&:published?)
+  end
 end

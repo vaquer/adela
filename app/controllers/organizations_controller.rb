@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
   def catalog
     @organization = Organization.friendly.find(params[:slug])
     @catalog = @organization.catalog
-    if @catalog.present? && @catalog.published?
+    if @catalog.present? && @catalog.distributions.map(&:published?).any?
       respond_to do |format|
         format.json { render json: @catalog, root: false }
       end

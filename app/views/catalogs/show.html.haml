@@ -6,7 +6,7 @@
         que fue publicada en el portal de datos.gob.mx.
 
     %h3.title= published_catalog_id(@catalog)
-    %h5.subtitle= "Publicado el #{l(@catalog.publish_date, format: '%d %B %Y')}"
+    %h5.subtitle= "Publicado el #{l(@catalog.publish_date, format: '%d %B %Y')} por #{current_user.name}"
 
     - @catalog.datasets.each do |dataset|
       - next unless published_distributions?(dataset)

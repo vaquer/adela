@@ -45,4 +45,14 @@ describe Dataset do
       expect(sectors).to include(organization.sectors.first.slug)
     end
   end
+
+  it 'finds the next dataset in the catalog' do
+    d01 = create(:dataset)
+    d02 = create(:dataset)
+    catalog = create(:catalog)
+    catalog.datasets << d01
+    catalog.datasets << d02
+    expect(d01.next).to eq(d02)
+    expect(d02.next).to eq(nil)
+  end
 end

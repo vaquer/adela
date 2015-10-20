@@ -69,6 +69,7 @@
             Acciones
             %i.fa.fa-caret-down
       %tbody
+        - next_dataset = @dataset.next
         - @dataset.distributions.each do |distribution|
           %tr
             %td= distribution.title
@@ -76,6 +77,8 @@
             %td= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
 
     = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-default'
+    - unless next_dataset.nil?
+      = link_to 'Documentar siguiente conjunto', edit_dataset_path(next_dataset), class: 'btn btn-default pull-right'
 
 :javascript
   $(function() {

@@ -1,0 +1,82 @@
+.container
+  - breadcrumb :distribution, @distribution
+  .card
+    %h3.title= "Nombre del recurso: #{@distribution.title}"
+    %p.instructions= "Aquí puedes documentar la información requerida para publicar el recurso en datos.gob.mx"
+    = form_for(@distribution, html: { class: 'form-horizontal' }) do |f|
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:download_url, 'URL para descargar *')
+        .col-xs-12.col-sm-6
+          = f.url_field(:download_url, class: 'form-control', required: true)
+
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:temporal, 'Período de tiempo cubierto *')
+          = f.hidden_field(:temporal)
+        .col-xs-12.col-sm-3
+          .input-group
+            %input#init-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Inicio", required: true }
+            %span.input-group-addon
+              %i.fa.fa-calendar
+        .col-xs-12.col-sm-3
+          .input-group
+            %input#term-date.dcat-temporal.input-icon.datepicker{ type: "text", placeholder: "Fin", required: true }
+            %span.input-group-addon
+              %i.fa.fa-calendar
+
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:modified, 'Fecha de última modificación de datos *')
+        .col-xs-12.col-sm-3
+          .input-group
+            = f.text_field(:modified, class: 'input-icon datepicker', required: true)
+            %span.input-group-addon
+              %i.fa.fa-calendar
+
+      = f.button 'Guardar avance', type: 'submit', class: 'btn btn-primary'
+      = link_to 'Cancelar', edit_dataset_path, class: 'btn btn-primary'
+
+:javascript
+  $(function () {
+    $("form").validate({
+      errorPlacement: function(error, element) {
+        // Find if element has a calendar sibling
+        var calendar = $(element).parent().find("i.fa-calendar");
+        var hasCalendarField = calendar.length > 0;
+        if (hasCalendarField) {
+          // Insert error outside .input-group to avoid messing up the style
+          error.insertAfter(calendar.parent().parent());
+          // Add red border to calendar-icon span element
+          calendar.parent().addClass("error");
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
+    function onDistributionTemporalChange() {
+      var initDate, termDate, dcatTemporal;
+
+      initDate = $('#init-date').val();
+      termDate = $('#term-date').val();
+
+      dcatTemporal = initDate + "/" + termDate;
+      $('#distribution_temporal').val(dcatTemporal);
+    }
+
+    function loadTemporalValues() {
+      var initDate, termDate, dcatTemporal;
+
+      dcatTemporal = $('#distribution_temporal').val().split('/');
+      initDate = dcatTemporal[0];
+      termDate = dcatTemporal[1];
+
+      $('#init-date').val(initDate);
+      $('#term-date').val(termDate);
+    }
+
+    $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
+    loadTemporalValues();
+    $('.dcat-temporal').change(onDistributionTemporalChange);
+  })

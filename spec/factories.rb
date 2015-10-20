@@ -10,11 +10,12 @@ FactoryGirl.define do
     factory :admin do
       after(:create) { |user| user.add_role(:admin) }
     end
-  end
 
-  factory :catalog do |f|
-    f.csv_file File.new("#{Rails.root}/spec/fixtures/files/catalog.csv")
-    f.association :organization, :factory => :organization
+    trait :administrator do
+      after(:create) do |user|
+        create(:administrator, user: user, organization: user.organization)
+      end
+    end
   end
 
   factory :published_catalog, :parent => :catalog do |f|

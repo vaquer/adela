@@ -1,19 +1,25 @@
 /*
-  *= require toastr
-  *= require_self
-*/
+ *= require toastr
+ *= require_self
+ */
 
- @import "bootstrap";
- @import "jquery.ui.core";
- @import "jquery.ui.theme";
- @import "jquery.ui.datepicker";
+@import "bootstrap";
+@import "jquery.ui.core";
+@import "jquery.ui.theme";
+@import "jquery.ui.datepicker";
+@import "font-awesome";
 
- // Defaults
- @import 'defaults/colors';
- @import 'defaults/utilities';
+// Defaults
+@import 'defaults/colors';
+@import 'defaults/utilities';
+@import 'defaults/mixins';
 
- // Elements
+// Elements
 @import "elements/text";
+@import "elements/input";
+@import "elements/button";
+@import "elements/link";
+@import "elements/table";
 
 // Components
 @import "components/alert";
@@ -24,6 +30,7 @@
 @import "components/forms";
 @import "components/newsletter";
 @import "components/breadcrumbs";
+@import "components/datepicker";
 
 // Cards
 @import "components/cards";

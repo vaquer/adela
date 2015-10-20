@@ -4,7 +4,7 @@ class Organization < ActiveRecord::Base
   validates_presence_of :title
 
   has_one :administrator
-  has_one :catalog
+  has_one :catalog, -> { order('created_at desc') }
   has_one :liaison
 
   has_many :users

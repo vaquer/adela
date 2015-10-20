@@ -94,7 +94,7 @@
                 - next unless params['catalog']['distribution_ids'].map(&:to_i).include? distribution.id
                 %tr
                   %td
-                    = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')
+                    = hidden_field_tag 'catalog[distribution_ids][]', distribution.id
                     = "#{distribution.title} en formato #{distribution.media_type}"
                   %td= distribution.modified
                   %td= distribution.temporal

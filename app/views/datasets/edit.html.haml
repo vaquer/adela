@@ -78,6 +78,7 @@
             %td.action= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
 
     = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-default', id: 'back'
+    = link_to 'Ver tour de ayuda', '#no-scroll-please', class: 'btn btn-default', id: 'get-tour'
     - unless next_dataset.nil?
       = link_to 'Documentar siguiente conjunto', edit_dataset_path(next_dataset), class: 'btn btn-default pull-right', id: 'next'
 
@@ -90,9 +91,12 @@
       toastr.success("#{t('flash.notice.dataset.update')}");
     });
     $('tr:contains("Listo para publicar")').addClass('success');
+    // Init
     $("#tour").joyride({
-      autoStart : true,
-      'cookieMonster': true,
-      'cookieName': 'JoyRide'
+      autoStart: false
+    });
+    $('#get-tour').click(function() {
+      // Show on click
+      $("#tour").joyride({});
     });
   });

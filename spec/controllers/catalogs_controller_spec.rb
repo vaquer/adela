@@ -90,5 +90,10 @@ describe CatalogsController do
       deliveries_count = ActionMailer::Base.deliveries.count
       expect(deliveries_count).to eq(1)
     end
+
+    it 'enqueues the harvest job' do
+      catalog_url = "http://adela.datos.gob.mx/#{@organization.slug}/catalogo.json"
+      expect(ShogunHarvestWorker).to have_enqueued_job(catalog_url)
+    end
   end
 end

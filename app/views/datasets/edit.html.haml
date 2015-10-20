@@ -3,7 +3,7 @@
     %h3.title= "Nombre del conjunto: #{@dataset.title}"
     %h5.subtitle= "Fecha de compromiso - #{l(@dataset.publish_date, format: '%d %B %Y')}"
     %p.instructions
-      Aqu&iacute; puedes documentar la informaci&oacute;n requerida para publicar 
+      Aqu&iacute; puedes documentar la informaci&oacute;n requerida para publicar
       el conjunto de datos y sus recursos en datos.gob.mx
     .row
       .col-xs-12.col-sm-6
@@ -82,4 +82,5 @@
     $('.auto_submit_item').change(function() {
       $('form').submit();
     });
+    $(':contains("Listo para publicar")').addClass('success');
   });

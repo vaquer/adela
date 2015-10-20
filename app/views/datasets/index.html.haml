@@ -48,7 +48,7 @@
       = f.button 'Publicar', type: 'submit', id: 'publish', class: can_publish?(@catalog) ? 'btn btn-primary' : 'btn btn-primary disabled'
       = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-default' : 'btn btn-default disabled'
 
-= render "tour"
+= render "tour_index"
 
 :javascript
   $(function() {

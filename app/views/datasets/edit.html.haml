@@ -90,5 +90,9 @@
       toastr.success("#{t('flash.notice.dataset.update')}");
     });
     $('tr:contains("Listo para publicar")').addClass('success');
-    $("#tour").joyride({});
+    $("#tour").joyride({
+      autoStart : true,
+      'cookieMonster': true,
+      'cookieName': 'JoyRide'
+    });
   });

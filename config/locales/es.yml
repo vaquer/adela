@@ -138,6 +138,8 @@ es:
         autonomous: "Organismos Autónomos"
   flash:
     notice:
+      dataset:
+        update: "El conjunto de datos se ha actualizado."
       user:
         create: "El usuario se creó exitosamente."
         update: "Se ha actualizado el usuario exitosamente."

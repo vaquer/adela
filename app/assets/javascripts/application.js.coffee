@@ -14,6 +14,7 @@
 //= require bootstrap
 //= require toastr
 //= require fakeinputs
+//= require jquery.joyride-2.1
 //= require components/datepicker
 //= require components/table-checkbox
 //= require components/agreement

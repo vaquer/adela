@@ -1,93 +1,99 @@
 require 'spec_helper'
 
 describe CatalogsController do
-  let(:user) { FactoryGirl.create(:user) }
+  describe 'GET #index' do
+    context 'with an opening plan and inventory' do
+      before(:each) do
+        @organization = create(:organization, :catalog, :opening_plan)
+        @user = create(:user, organization: @organization)
+        sign_in(@user)
 
-  before :each do
-    sign_in user
-  end
-
-  describe "POST create" do
-
-    shared_examples "a valid catalog file" do
-      it "creates a new catalog" do
-        post :create, catalog: { csv_file: catalog_file }, :locale => "es"
-        assigns(:catalog).should be_kind_of(Catalog)
-        assigns(:catalog).should be_persisted
+        get :index, organization_id: @organization.id, locale: :es
       end
 
-      it "assigns the catalog to the current organization" do
-        post :create, catalog: { csv_file: catalog_file }, :locale => "es"
-        assigns(:catalog).organization.should == user.organization
-      end
-
-      it "redirects to new catalog page" do
-        post :create, catalog: { csv_file: catalog_file }, :locale => "es"
-        response.should render_template("new")
-      end
-    end
-
-    context "UTF-8 file" do
-      it_behaves_like "a valid catalog file" do
-        let(:catalog_file) { fixture_file_upload("files/catalog.csv") }
-      end
-    end
-
-    context "ISO 8859-1 file" do
-      it_behaves_like "a valid catalog file" do
-        let(:catalog_file) { fixture_file_upload("files/catalog-latin-1.csv") }
-      end
-    end
-
-    shared_examples "an invalid catalog file" do
-      it "redirects to catalogs_path" do
-        post :create, catalog: { csv_file: "" }, :locale => "es"
-        expect(response).to redirect_to(catalogs_path)
-      end
-
-      it "has 302 status" do
-        post :create, catalog: { csv_file: "" }, :locale => "es"
+      it 'has 302 status' do
         expect(response.status).to eq(302)
       end
 
-      it "shows invalid encoding message" do
-        post :create, catalog: { csv_file: "" }, :locale => "es"
-        expect(flash[:alert]).to eq(error_message)
-      end
-
-      it "raises Exceptions::UnknownEncodingError" do
-        bypass_rescue
-        expect { post :create, catalog: { csv_file: "" }, :locale => "es" }.to raise_error
+      it 'redirects to catalog_datasets path' do
+        expect(response).to redirect_to(catalog_datasets_path(@organization.catalog))
       end
     end
 
-    context "file with invalid encoding" do
-      before do
-        def controller.create
-          raise Exceptions::UnknownEncodingError
-        end
+    context 'without an inventory' do
+      before(:each) do
+        @organization = create(:organization)
+        @user = create(:user, organization: @organization)
+        sign_in(@user)
+
+        get :index, organization_id: @organization.id, locale: :es
       end
-      it_behaves_like "an invalid catalog file" do
-        let(:error_message) { I18n.t("activerecord.errors.models.catalog.attributes.csv_file.encoding") }
+
+      it 'has 200 status' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'renders error template' do
+        expect(response).to render_template(:error)
       end
     end
 
-    context "malformed csv file" do
-      before do
-        def controller.create
-          raise CSV::MalformedCSVError
-        end
+    context 'without an opening plan' do
+      before(:each) do
+        @organization = create(:organization, :catalog)
+        create(:inventory, organization: @organization)
+        @user = create(:user, organization: @organization)
+        sign_in(@user)
+
+        get :index, organization_id: @organization.id, locale: :es
       end
-      it_behaves_like "an invalid catalog file" do
-        let(:error_message) { I18n.t("activerecord.errors.models.catalog.attributes.csv_file.malformed") }
+
+      it 'has 200 status' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'renders error template' do
+        expect(response).to render_template(:error)
       end
     end
 
-    context "empty catalog file" do
-      it "renders the template again on error" do
-        post :create, catalog: { csv_file: "" }, :locale => "es"
-        response.should render_template("new")
+    context 'when user is logged out' do
+      before(:each) do
+        @organization = create(:organization)
+        @user = create(:user, organization: @organization)
+        get :index, organization_id: @organization.id, locale: :es
       end
+
+      it 'has 302 status' do
+        expect(response.status).to eq(302)
+      end
+
+      it 'redirects to new_user_session path' do
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  describe 'PUTS #publish' do
+    before { ActionMailer::Base.deliveries = [] }
+
+    before(:each) do
+      @organization = create(:organization, :catalog, :opening_plan)
+      @user = create(:user, :administrator, organization: @organization)
+      distribution_ids = @organization.catalog.distributions.map(&:id)
+      sign_in(@user)
+
+      put :publish, id: @organization.id, catalog: { distribution_ids: distribution_ids }, locale: :es
+    end
+
+    it 'sends an email to administrator' do
+      deliveries_count = ActionMailer::Base.deliveries.count
+      expect(deliveries_count).to eq(1)
+    end
+
+    it 'enqueues the harvest job' do
+      catalog_url = "http://adela.datos.gob.mx/#{@organization.slug}/catalogo.json"
+      expect(ShogunHarvestWorker).to have_enqueued_job(catalog_url)
     end
   end
 end

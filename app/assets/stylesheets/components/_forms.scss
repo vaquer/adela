@@ -15,21 +15,6 @@
     display: inline-block;
     width: 500px;
   }
-  // &:focus { border-color: $cartoon_green; }
-}
-
-.btn {
-  @extend .control_override;
-  padding: 10px;
-  border: 0;
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background-color: $cartoon_green;
-  &:hover {
-    background-color: $cartoon_green;
-  }
 }
 
 .inline {
@@ -52,11 +37,20 @@
   }
 }
 
+span.error {
+  border: 1px solid #A94442;
+}
+
 input.error {
   border: 1px solid #A94442;
 }
 
 label.error {
   color: #A94442;
+  font-weight: 700;
+}
+
+.success {
+  color: $cartoon_green;
   font-weight: 700;
 }

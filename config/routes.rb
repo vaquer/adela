@@ -3,27 +3,26 @@ Adela::Application.routes.draw do
     devise_for :users
 
     as :user do
-      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-      patch 'users/:id' => 'devise/registrations#update', :as => 'user_registration'
+      get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
+      patch 'users/:id' => 'devise/registrations#update', as: 'user_registration'
     end
 
-    get "/:slug/catalogo" => "organizations#catalog", :as => "organization_catalog"
-    get "/:slug/plan" => "organizations#opening_plan"
+    get '/:slug/catalogo' => 'organizations#catalog', as: 'organization_catalog'
+    get '/:slug/plan' => 'organizations#opening_plan'
 
-    get "/maqueta/" => "home#maqueta"
-    post "/maqueta/" => "home#maqueta"
-    root :to => "home#index"
+    root to: 'home#index'
 
     resources :organizations, only: [:show, :update] do
-      post "publish_catalog", :on => :member
-      get "publish_later", :on => :member
-      get "profile", :on => :member
-      get "search", :on => :collection
-    end
+      get 'profile', on: :member
+      get 'search', on: :collection
 
-    resources :catalogs do
-      collection do
-        get "publish"
+      resources :catalogs, only: [:index, :show], shallow: true do
+        get 'check', on: :collection
+        put 'publish', on: :member
+
+        resources :datasets, shallow: true do
+          resources :distributions
+        end
       end
     end
 
@@ -41,16 +40,16 @@ Adela::Application.routes.draw do
     end
   end
 
-  namespace :api, defaults: { format: 'json'} do
+  namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      get "/catalogs" => "organizations#catalogs"
-      get "/organizations" => "organizations#organizations"
-      get "/gov_types" => "organizations#gov_types"
+      get '/catalogs' => 'organizations#catalogs'
+      get '/organizations' => 'organizations#organizations'
+      get '/gov_types' => 'organizations#gov_types'
 
       resources :organizations, only: [:show] do
         collection do
-          get "catalogs"
-          get "organizations"
+          get 'catalogs'
+          get 'organizations'
         end
       end
       resources :sectors, only: [:index]
@@ -74,5 +73,18 @@ Adela::Application.routes.draw do
     end
 
     resources :organizations, except: [:show, :destroy]
+  end
+
+  namespace :mockups do
+    get '/469', to: 'templates#s469'
+    get '/473', to: 'templates#s473'
+    get '/475', to: 'templates#s475'
+
+    get '/501', to: 'templates#s501'
+    get '/502', to: 'templates#s502'
+    get '/503', to: 'templates#s502'
+    get '/504', to: 'templates#s504'
+    get '/505', to: 'templates#s505'
+    get '/506', to: 'templates#s506'
   end
 end

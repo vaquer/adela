@@ -72,26 +72,6 @@ es:
       user: "usuario"
     errors:
       models:
-        catalog:
-          attributes:
-            csv_file:
-              blank_file: "El archivo se encuentra vacío."
-              wrong_content_type: "El content-type del archivo no es 'text/csv'."
-              ragged_rows: "La fila %{row} tiene un número diferente de columnas a la primera fila en el archivo."
-              blank_rows: "La fila %{row} esta completamente vacía."
-              invalid_encoding: "El archivo seleccionado no está codificado en formato UTF-8."
-              not_found: "No se encontro el archivo."
-              stray_quote: "Las comillas de la fila %{row} no estan balanceadas."
-              unclosed_quote: "Las comillas de la fila %{row} no estan balanceadas."
-              whitespace: "La fila %{row}, contiene espacios en blanco antes o después de una columna citada en comillas."
-              line_breaks: "Los saltos de linea son inconsistentes en el archivo."
-              undeclared_header: "El archivo no cuenta con el encabezado 'Content-Type'."
-              blank: " no se puede procesar."
-              invalid: " no es válido. Vuelve a subir el archivo corrigiendo las filas incorrectas. Asegúrate de que sea en formato CSV y con las columnas como la plantilla en blanco que descargaste."
-              encoding: "El archivo seleccionado no está codificado en formato UTF-8."
-              malformed: "El archivo csv se encuentra malformado."
-            datasets:
-              blank: "Debe existir al menos un conjunto de datos en el archivo."
         user:
           attributes:
             email:
@@ -130,15 +110,7 @@ es:
             inventory_elements:
               duplicated: "Todos los recursos de un mismo conjunto de datos deben de estar agrupados."
               invalid: "Las filas del inventario de datos son inválidas."
-    warnings:
-      models:
-        catalog:
-          attributes:
-            datasets:
-              compliant: "contiene campos que no cumplen con los estándares de datos."
     attributes:
-      catalog:
-        csv_file: "Archivo"
       user:
         name: "Nombre"
         email: "Correo electrónico"
@@ -149,44 +121,11 @@ es:
         title: "Nombre"
         description: "Descripción"
         logo_url: "URL Logo"
+        landing_page: "Sitio Web"
         gov_type: "Tipo de Gobierno"
         sectors: "Sectores"
         administrator: "Administrador de Datos"
         liaison: "Enlace"
-  activemodel:
-    errors:
-      models:
-        data_set:
-          attributes:
-            description:
-              blank: "no puede estar en blanco."
-            keyword:
-              invalid_characters: "no puede contener símbolos distintos a -_."
-              blank: "no puede estar en blanco."
-            title:
-              blank: "no puede estar en blanco."
-              duplicated: "no puede contener titulos duplicados."
-            description:
-              blank: "no puede estar en blanco."
-            modified:
-              blank: "no puede estar en blanco."
-            publisher:
-              blank: "no puede estar en blanco."
-            contactPoint:
-              blank: "no puede estar en blanco."
-            mbox:
-              blank: "no puede estar en blanco."
-            identifier:
-              blank: "no puede estar en blanco."
-              duplicated: "no puede contener títulos duplicados."
-            accessLevel:
-              blank: "no puede estar en blanco."
-            accessUrl:
-              blank: "no puede estar en blanco si la base de datos es Pública."
-            accessLevelComment:
-              blank: "no puede estar en blanco si la base de datos es Privada o Restringida."
-            accrualPeriodicity:
-              repeating_duration: "debe de contener una duración de repetición en el formato ISO-8601 o 'irregular'."
   mailers:
     user:
       notificate_user_account_subject: "Nuevo usuario en ADELA"
@@ -199,6 +138,8 @@ es:
         autonomous: "Organismos Autónomos"
   flash:
     notice:
+      dataset:
+        update: "El conjunto de datos se ha actualizado."
       user:
         create: "El usuario se creó exitosamente."
         update: "Se ha actualizado el usuario exitosamente."

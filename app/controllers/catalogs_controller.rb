@@ -1,48 +1,59 @@
 class CatalogsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
-
-  layout 'home'
-
-  rescue_from Exceptions::UnknownEncodingError, with: :unable_to_detect_encoding
-  rescue_from CSV::MalformedCSVError, with: :malformed_csv
-
-  def new
-    @catalogs = Catalog.new
-  end
+  before_action :require_opening_plan
 
   def index
-    @organization = current_organization
-    @catalogs = current_organization.catalogs.date_sorted.paginate(:page => params[:page], :per_page => 5)
+    redirect_to catalog_datasets_path(current_organization.catalog)
+    return
   end
 
-  def create
-    @catalog = Catalog.new(catalog_params)
-    @catalog.organization_id = current_organization.id
-    @catalog.author = current_user.name
+  def show
+    @catalog = current_organization.catalog
+  end
 
-    if @catalog.save
-      record_activity("update", "actualizó su catálogo de datos.")
+  def check
+    @datasets = catalog_params['distribution_ids'].map do |id|
+      Distribution.find(id).dataset
     end
+  end
 
-    @datasets = @catalog.datasets
-    @upload_intent = true
-    render :action => "new"
+  def publish
+    @catalog = current_organization.catalog
+    @catalog.publish_date = Time.current
+    @catalog.save
+    publish_distributions
+    harvest_catalog
+    notify_administrator
+    redirect_to catalog_path(@catalog)
+    return
   end
 
   private
 
   def catalog_params
-    params.require(:catalog).permit(:csv_file)
+    params.require(:catalog).permit(distribution_ids: [])
   end
 
-  def unable_to_detect_encoding
-    flash[:alert] = I18n.t("activerecord.errors.models.catalog.attributes.csv_file.encoding")
-    redirect_to catalogs_path
+  def notify_administrator
+    administrator = @catalog.organization.administrator
+    CatalogMailer.publish_email(@catalog.id, administrator.user.id).deliver if administrator
   end
 
-  def malformed_csv
-    flash[:alert] = I18n.t("activerecord.errors.models.catalog.attributes.csv_file.malformed")
-    redirect_to catalogs_path
+  def publish_distributions
+    catalog_params['distribution_ids'].each do |id|
+      distribution = Distribution.find(id)
+      distribution.update_column(:state, 'published')
+    end
+  end
+
+  def harvest_catalog
+    slug = @catalog.organization.slug
+    ShogunHarvestWorker.perform_async("http://adela.datos.gob.mx/#{slug}/catalogo.json")
+  end
+
+  def require_opening_plan
+    return if current_organization.opening_plans.present?
+    render :error
+    return
   end
 end

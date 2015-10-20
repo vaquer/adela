@@ -13,6 +13,8 @@ es:
     sign_up: registrarte
     password: contrasena
     search: buscar
+    datasets: conjuntos
+    opening_plan: plan-de-apertura
 
 en:
   routes:
@@ -29,3 +31,5 @@ en:
     sign_up: sign_up
     password: password
     search: search
+    datasets: datasets
+    opening_plan: opening-plan

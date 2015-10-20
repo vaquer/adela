@@ -1,24 +1,26 @@
 include ActiveModel::Serialization
 
 class DatasetSerializer < ActiveModel::Serializer
-  attributes :title, :description, :modified, :contactPoint, :identifier, :accessLevel, :accessLevelComment, :spatial
   has_many :distributions, root: :distribution
+  attributes :identifier, :title, :description, :modified, :contactPoint, :spatial
 
   def attributes
     data = super
-    data[:language] = "es"
+    data[:language] = 'es'
     data[:publisher] = {
-      :name => object.publisher,
-      :mbox => object.mbox
+      name: object.publisher,
+      mbox: object.mbox
     }
-    data[:keyword] = object.keywords
-    data[:landingPage] = object.landingPage if version3?
+    data[:keyword] = object.keywords.split(',')
+    data[:landingPage] = object.landing_page
     data
   end
 
-  private
+  def contactPoint
+    object.contact_point
+  end
 
-  def version3?
-    object.class == DCAT::V3::DataSet
+  def distributions
+    object.distributions.select(&:published?)
   end
 end

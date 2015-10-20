@@ -7,27 +7,21 @@ crumb :planning do
   parent :root
 end
 
-# crumb :projects do
-#   link "Projects", projects_path
-# end
+crumb :catalog do
+  link "Último folio", catalog_path(current_organization)
+  parent :datasets
+end
 
-# crumb :project do |project|
-#   link project.name, project_path(project)
-#   parent :projects
-# end
+crumb :datasets do
+  link "Catálogo de datos", organization_catalogs_path(current_organization)
+end
 
-# crumb :project_issues do |project|
-#   link "Issues", project_issues_path(project)
-#   parent :project, project
-# end
+crumb :dataset do |d|
+  link d.title, edit_dataset_path(d)
+  parent :datasets
+end
 
-# crumb :issue do |issue|
-#   link issue.title, issue_path(issue)
-#   parent :project_issues, issue.project
-# end
-
-# If you want to split your breadcrumbs configuration over multiple files, you
-# can create a folder named `config/breadcrumbs` and put your configuration
-# files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that
-# folder are loaded and reloaded automatically when you change them, just like
-# this file (`config/breadcrumbs.rb`).
+crumb :distribution do |r|
+  link r.title, edit_distribution_path(r)
+  parent :dataset, r.dataset
+end

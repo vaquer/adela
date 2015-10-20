@@ -1,16 +1,38 @@
-class Distribution
-  include ActiveModel::Validations
+class Distribution < ActiveRecord::Base
+  belongs_to :dataset
+  validate :mandatory_fields
 
-  attr_accessor :title, :description, :downloadURL, :mediaType, :format,
-                :byteSize, :temporal, :spatial
+  before_save :fix_distribution
+  before_save :break_distibution
 
-  validates_url :downloadURL, allow_blank: false
+  state_machine initial: :broke do
+    state :broke
+    state :validated
+    state :published
 
-  def initialize(attributes = {})
-    attributes.each do |name, value|
-      if value.present?
-        send("#{name}=", value.force_encoding(Encoding::UTF_8))
-      end
+    event :validate do
+      transition [:broke, :published] => :validated, if: lambda { |distribution| distribution.compliant? }
+    end
+
+    event :break_dist do
+      transition [:validated, :published] => :broke, unless: lambda { |distribution| distribution.compliant? }
+    end
+  end
+
+  private
+
+  def fix_distribution
+    validate if can_validate?
+  end
+
+  def break_distibution
+    break_dist if can_break_dist?
+  end
+
+  def mandatory_fields
+    fields = %i(download_url temporal modified)
+    fields.each do |field|
+      warnings.add(field) if send(field).blank?
     end
   end
 end

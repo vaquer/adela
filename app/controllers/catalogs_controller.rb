@@ -22,6 +22,7 @@ class CatalogsController < ApplicationController
     @catalog.publish_date = Time.current
     @catalog.save
     publish_distributions
+    harvest_catalog
     notify_administrator
     redirect_to catalog_path(@catalog)
     return
@@ -43,6 +44,11 @@ class CatalogsController < ApplicationController
       distribution = Distribution.find(id)
       distribution.update_column(:state, 'published')
     end
+  end
+
+  def harvest_catalog
+    slug = @catalog.organization.slug
+    ShogunHarvestWorker.perform_async("http://adela.datos.gob.mx/#{slug}/catalogo.json")
   end
 
   def require_opening_plan

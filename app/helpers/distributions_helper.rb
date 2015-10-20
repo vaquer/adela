@@ -1,6 +1,6 @@
 module DistributionsHelper
   def edit_link_to_text(distribution)
-    distribution.published? ? 'Actualizar' : 'Completar'
+    distribution.broke? ? 'Completar' : 'Actualizar'
   end
 
   def state_description(distribution)

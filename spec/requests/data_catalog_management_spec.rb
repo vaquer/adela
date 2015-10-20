@@ -6,7 +6,11 @@ feature 'data catalog management' do
   end
 
   scenario 'can consume published catalog data' do
-    create(:catalog, :datasets, organization: @organization)
+    catalog = create(:catalog, organization: @organization)
+    dataset = create(:dataset, catalog: catalog)
+    distribution = create(:distribution, dataset: dataset)
+    distribution.update_column(:state, 'published')
+
     get "/#{@organization.slug}/catalogo.json"
     json_response = JSON.parse(response.body)
     json_response['title'].should eql("Catálogo de datos abiertos de #{@organization.title}")
@@ -15,6 +19,7 @@ feature 'data catalog management' do
 
   scenario 'can\'t consume unpublished catalog data' do
     create(:catalog, :unpublished, organization: @organization)
+
     get "/#{@organization.slug}/catalogo.json"
     json_response = JSON.parse(response.body)
     expect(json_response).to eql({})
@@ -29,11 +34,14 @@ feature 'data catalog management' do
   end
 
   scenario 'catalog will have correct DCAT key names' do
-    create(:catalog, :datasets, organization: @organization)
+    catalog = create(:catalog, organization: @organization)
+    dataset = create(:dataset, catalog: catalog)
+    distribution = create(:distribution, dataset: dataset)
+    distribution.update_column(:state, 'published')
 
     dcat_keys = %w(title description homepage issued modified language license dataset)
-    dcat_dataset_keys = %w(identifier title description keyword modified contact_point spatial landing_page language publisher distribution)
-    dcat_distribution_keys = %w(title description license download_url media_type byte_size temporal spatial)
+    dcat_dataset_keys = %w(identifier title description keyword modified contactPoint spatial landingPage language publisher distribution)
+    dcat_distribution_keys = %w(title description license downloadURL mediaType byteSize temporal spatial)
 
     get "/#{@organization.slug}/catalogo.json"
     json_response = JSON.parse(response.body)

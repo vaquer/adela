@@ -1,4 +1,5 @@
 .container
+  - breadcrumb :dataset, @dataset
   .card
     %h3.title= "Nombre del conjunto: #{@dataset.title}"
     %h5.subtitle= "Fecha de compromiso - #{l(@dataset.publish_date, format: '%d %B %Y')}"

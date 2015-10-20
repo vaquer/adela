@@ -58,5 +58,14 @@
       'cookieMonster': true,
       'cookieName': 'JoyRide'
     });
+    // Every time a checkbox is checked or unchecked we will...
+    $("input:checked").click(function() {
+      // activate the Publish button if there are some checkboxes activated
+      // or disable otherwise
+      if ($("input:checked").length > 0)
+        $('#publish').removeClass('disabled');
+      else
+        $('#publish').addClass('disabled');
+    });
   });
 

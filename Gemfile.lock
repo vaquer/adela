@@ -388,6 +388,3 @@ DEPENDENCIES
   unicorn
   validate_url
   will_paginate (~> 3.0)
-
-BUNDLED WITH
-   1.10.6

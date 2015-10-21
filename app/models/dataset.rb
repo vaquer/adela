@@ -8,13 +8,6 @@ class Dataset < ActiveRecord::Base
 
   accepts_nested_attributes_for :dataset_sector
 
-  def next
-    Dataset
-      .where("catalog_id = #{catalog_id} AND id > #{id}")
-      .order("id ASC")
-      .first
-  end
-
   def publisher
     catalog.organization.title
   end

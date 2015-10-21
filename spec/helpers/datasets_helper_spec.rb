@@ -21,4 +21,25 @@ describe DatasetsHelper do
       expect(distributions.count).to eq(2)
     end
   end
+
+  describe '#next_dataset' do
+    let(:catalog) { create(:catalog, :datasets, datasets_count: 2) }
+
+    it 'should return the next dataset' do
+      helper.stub(:current_organization) { catalog.organization }
+      current_dataset = catalog.datasets.sort_by(&:publish_date).first
+      next_dataset = catalog.datasets.last
+      next_dataset = helper.next_dataset(current_dataset)
+
+      expect(next_dataset).to eql(next_dataset)
+    end
+
+    it 'should return nil on the last dataset' do
+      helper.stub(:current_organization) { catalog.organization }
+      current_dataset = catalog.datasets.sort_by(&:publish_date).last
+      next_dataset = helper.next_dataset(current_dataset)
+
+      expect(next_dataset).to be_nil
+    end
+  end
 end

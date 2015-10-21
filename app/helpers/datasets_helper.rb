@@ -14,4 +14,10 @@ module DatasetsHelper
   def documented_distributions(dataset)
     dataset.distributions.select { |d| d.published? || d.validated? }
   end
+
+  def next_dataset(dataset)
+    datasets = current_organization.catalog.datasets.sort_by(&:publish_date)
+    index = datasets.index { |ds| ds.id == dataset.id }
+    datasets[index + 1]
+  end
 end

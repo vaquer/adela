@@ -73,6 +73,7 @@ feature User, 'updates opening plan:' do
     expect(page).to have_content changing_opening_plan.name
     expect(page).to have_content "Changing description"
     expect(page).not_to have_content "10-Oct-2015"
+    expect(catalog_with_no_duplicated_datasets).to be
   end
 
   def given_organization_inventory_element_with(name)
@@ -84,5 +85,10 @@ feature User, 'updates opening plan:' do
   def given_organization_has_empty_catalog
     create :catalog, datasets: [], organization: @organization
     @organization.reload
+  end
+
+  def catalog_with_no_duplicated_datasets
+    @organization.reload
+    @organization.catalog.datasets.map(&:title).uniq.size == @organization.catalog.datasets.size
   end
 end

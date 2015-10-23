@@ -20,4 +20,8 @@ module DatasetsHelper
     index = datasets.index { |ds| ds.id == dataset.id }
     datasets[index + 1]
   end
+
+  def sector_title(dataset)
+    dataset.sector.present? ? dataset.sector.title : 'Sector no definido'
+  end
 end

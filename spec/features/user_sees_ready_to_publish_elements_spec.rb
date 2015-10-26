@@ -29,7 +29,7 @@ feature User, 'sees ready to publish elements:' do
       expect(page).to have_content resource.download_url.truncate(30)
     end
 
-    expect(page).to have_content "Estoy de acuerdo en que esta información se publique en datos.gob.mx"
+    expect(page).to have_content I18n.t('agreement.publish')
     expect(page).to have_content "Confirmo que la información está validada por la institución"
     expect(page).to have_button "Publicar"
   end

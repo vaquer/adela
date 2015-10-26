@@ -157,3 +157,6 @@ es:
       organizaion:
         create: "Ocurrió un error al crear la organización."
         update: "Ocurrió un error al actualizar la organización."
+  agreement:
+    publish: "Estoy de acuerdo en que esta información se publique en datos.gob.mx"
+

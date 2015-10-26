@@ -8,13 +8,45 @@ class InventoryDatasetGenerator
   end
 
   def generate
+    if inventory_dataset.present?
+      update_dataset_and_distribution
+    else
+      create_dataset_and_distribution
+    end
+  end
+
+  private
+
+  def update_dataset_and_distribution
+    update_dataset
+    update_distribution
+  end
+
+  def update_dataset
+    dataset = inventory_dataset
+    dataset.modified = Time.current.iso8601
+    dataset.distributions.first
+    dataset.save
+  end
+
+  def update_distribution
+    distribution = inventory_dataset.distributions.first
+    distribution.download_url = @inventory.spreadsheet_file.url
+    distribution.byte_size = @inventory.spreadsheet_file.file.size
+    distribution.modified = Time.current.iso8601
+    distribution.save
+  end
+
+  def inventory_dataset
+    @catalog.datasets.where("identifier LIKE '#{@organization.slug}-inventario-institucional-de-datos'").last
+  end
+
+  def create_dataset_and_distribution
     dataset = build_dataset
     build_distribution(dataset)
     build_sector(dataset) if @organization.sectors.present?
     dataset.save
   end
-
-  private
 
   def organization_catalog
     @organization.catalog.present? ? @organization.catalog : build_catalog

@@ -25,18 +25,6 @@ feature User, 'sees inventory elements:' do
     end
   end
 
-  def resource_checkbox
-    find("input[type='checkbox']")
-  end
-
-  def set_row
-    all('table tbody tr')[0]
-  end
-
-  def resource_row
-    all('table tbody tr')[1]
-  end
-
   def upload_inventory_with_file(file_name)
     spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
     @inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)

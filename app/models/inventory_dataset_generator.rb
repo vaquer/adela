@@ -59,7 +59,7 @@ class InventoryDatasetGenerator
   def build_dataset
     @catalog.datasets.build do |dataset|
       dataset.identifier = "#{@organization.slug}-inventario-institucional-de-datos"
-      dataset.title = 'Inventario Institucional de Datos'
+      dataset.title = "Inventario Institucional de Datos de #{@organization.title}"
       dataset.description = "Inventario Institucional de Datos de #{@organization.title}"
       dataset.keyword = 'inventario'
       dataset.modified = Time.current.iso8601

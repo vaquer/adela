@@ -11,8 +11,7 @@ es:
     next_label: "siguiente"
   date:
     formats:
-        default: '%d/%m/%Y'
-        params: "%d-%m-%Y"
+        default: '%d-%b-%y'
         short: "%d %B %Y"
         month: "%B"
         month_year: "%B, %Y"

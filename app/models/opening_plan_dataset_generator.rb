@@ -39,7 +39,7 @@ class OpeningPlanDatasetGenerator
 
   def build_distribution(dataset)
     dataset.distributions.build do |distribution|
-      distribution.title = 'Plan de Apertura Institucional'
+      distribution.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.download_url = "http://adela.datos.gob.mx/plan-de-apertura/#{@catalog.organization.slug}/export.csv"
       distribution.media_type = 'text/csv'

@@ -17,7 +17,7 @@ class OpeningPlanDatasetGenerator
   def build_dataset
     @catalog.datasets.build do |dataset|
       dataset.identifier = "#{@catalog.organization.slug}-plan-de-apertura-institucional"
-      dataset.title = 'Plan de Apertura Institucional'
+      dataset.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       dataset.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       dataset.keyword = 'plan-de-apertura'
       dataset.modified = Time.current.iso8601
@@ -39,7 +39,7 @@ class OpeningPlanDatasetGenerator
 
   def build_distribution(dataset)
     dataset.distributions.build do |distribution|
-      distribution.title = 'Plan de Apertura Institucional'
+      distribution.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.download_url = "http://adela.datos.gob.mx/plan-de-apertura/#{@catalog.organization.slug}/export.csv"
       distribution.media_type = 'text/csv'

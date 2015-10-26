@@ -26,5 +26,19 @@ describe OpeningPlanDatasetGenerator do
 
       expect(dataset_identifier).to eql(expected_identifier)
     end
+
+    it 'should contain a dataset containing the organization name in the title' do
+      dataset_title = @catalog.datasets.last.title
+      expected_title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
+
+      expect(dataset_title).to eql(expected_title)
+    end
+
+    it 'should contain a distribution containing the organization name in the title' do
+      distribution_title = @catalog.datasets.last.distributions.last.title
+      expected_title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
+
+      expect(distribution_title).to eql(expected_title)
+    end
   end
 end

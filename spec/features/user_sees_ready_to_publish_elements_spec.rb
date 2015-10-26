@@ -30,8 +30,8 @@ feature User, 'sees ready to publish elements:' do
     end
 
     expect(page).to have_content I18n.t('agreement.publish')
-    expect(page).to have_content "Confirmo que la información está validada por la institución"
-    expect(page).to have_button "Publicar"
+    expect(page).to have_content I18n.t('agreement.validated')
+    expect(page).to have_button I18n.t('action.publish')
   end
 
   def dataset_distributions

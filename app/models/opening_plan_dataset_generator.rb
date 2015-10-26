@@ -17,7 +17,7 @@ class OpeningPlanDatasetGenerator
   def build_dataset
     @catalog.datasets.build do |dataset|
       dataset.identifier = "#{@catalog.organization.slug}-plan-de-apertura-institucional"
-      dataset.title = 'Plan de Apertura Institucional'
+      dataset.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       dataset.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       dataset.keyword = 'plan-de-apertura'
       dataset.modified = Time.current.iso8601

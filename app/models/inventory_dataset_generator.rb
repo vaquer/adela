@@ -97,6 +97,7 @@ class InventoryDatasetGenerator
       distribution.media_type = 'application/vnd.ms-excel'
       distribution.byte_size = @inventory.spreadsheet_file.file.size
       distribution.temporal = build_temporal(dataset.modified)
+      distribution.modified = dataset.modified
     end
   end
 end

@@ -31,7 +31,13 @@ describe InventoryDatasetGenerator do
         expect(dataset_identifier).to eql(expected_identifier)
       end
 
-      it 'should set a temporal range for the existing distributions' do
+      it 'should set the modified field for the distribution' do
+        dataset       = organization.catalog.datasets.last
+        distribution  = dataset.distributions.last
+        expect(distribution.modified).to eq(dataset.modified)
+      end
+
+      it 'should set a temporal range for the distributions' do
         dataset       = organization.catalog.datasets.last
         distribution  = dataset.distributions.last
         timestring    = "P3H33M/#{dataset.modified.strftime("%FT%T%:z")}"

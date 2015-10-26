@@ -52,7 +52,6 @@ feature User, 'updates opening plan:' do
     fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_description", with: "Changing description"
     fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_publish_date", with: "2015-11-11"
 
-    fill_in "Mensaje", with: "Commit message"
     click_button "Generar Plan de Apertura"
     click_link "Catálogo de Datos"
 
@@ -64,7 +63,6 @@ feature User, 'updates opening plan:' do
     check "organization_opening_plans_attributes_#{changing_opening_plan_index}__destroy"
     fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_publish_date", with: "2015-10-10"
 
-    fill_in "Mensaje", with: "Commit message"
     click_button "Generar Plan de Apertura"
     click_link "Catálogo de Datos"
 

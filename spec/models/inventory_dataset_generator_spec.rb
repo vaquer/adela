@@ -23,6 +23,20 @@ describe InventoryDatasetGenerator do
         expect(dataset.distributions.count).to eql(1)
       end
 
+      it 'should contain a dataset with the organization name in the title' do
+        dataset_title = organization.catalog.datasets.last.title
+        expected_title = "Inventario Institucional de Datos de #{organization.title}"
+
+        expect(dataset_title).to eql(expected_title)
+      end
+
+      it 'should contain a distribution with the organization name in the title' do
+        distribution_title = organization.catalog.datasets.last.distributions.last.title
+        expected_title = "Inventario Institucional de Datos de #{organization.title}"
+
+        expect(distribution_title).to eql(expected_title)
+      end
+
       it 'should contain an identifier with the organization slug' do
         organization_slug = organization.slug
         dataset_identifier = organization.catalog.datasets.last.identifier

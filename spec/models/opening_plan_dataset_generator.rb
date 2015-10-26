@@ -18,5 +18,13 @@ describe OpeningPlanDatasetGenerator do
       dataset = @catalog.datasets.last
       expect(dataset.distributions.count).to eql(1)
     end
+
+    it 'should contain a dataset with an identifier containing the organization slug' do
+      organization_slug = @catalog.organization.slug
+      dataset_identifier = @catalog.datasets.last.identifier
+      expected_identifier = "#{organization_slug}-plan-de-apertura-institucional"
+
+      expect(dataset_identifier).to eql(expected_identifier)
+    end
   end
 end

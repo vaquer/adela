@@ -24,5 +24,12 @@ module Features
       @activity.should_not be_nil
       @activity.description.should == message
     end
+
+    def generate_new_opening_plan
+      visit new_opening_plan_path
+      fill_in 'organization_opening_plans_attributes_0_description', with: 'osom dataset'
+      select('anual', from: 'organization[opening_plans_attributes][0][accrual_periodicity]')
+      click_on('Generar Plan de Apertura')
+    end
   end
 end

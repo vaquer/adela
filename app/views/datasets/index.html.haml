@@ -32,7 +32,7 @@
               %td= dataset.title
               %td
               %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
-              %td= dataset.publish_date.try(:strftime, '%d-%b-%y')
+              %td= l dataset.publish_date.to_date
               %td.action= link_to 'Editar', edit_dataset_path(dataset)
             - dataset.distributions.each do |distribution|
               %tr.distribution

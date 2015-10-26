@@ -25,5 +25,14 @@ describe InventoryDatasetGenerator do
       dataset = catalog.datasets.last
       expect(dataset.distributions.count).to eql(1)
     end
+
+    it 'should contain an identifier with the organization slug' do
+      catalog = @inventory.organization.catalog
+      organization_slug = catalog.organization.slug
+      dataset_identifier = catalog.datasets.last.identifier
+      expected_identifier = "#{organization_slug}-inventario-institucional-de-datos"
+
+      expect(dataset_identifier).to eql(expected_identifier)
+    end
   end
 end

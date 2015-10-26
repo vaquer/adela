@@ -34,6 +34,7 @@ class InventoryDatasetGenerator
     distribution.download_url = @inventory.spreadsheet_file.url
     distribution.byte_size = @inventory.spreadsheet_file.file.size
     distribution.modified = Time.current.iso8601
+    distribution.temporal = build_temporal(distribution.modified)
     distribution.save
   end
 
@@ -83,6 +84,11 @@ class InventoryDatasetGenerator
     end
   end
 
+  def build_temporal(date)
+    "P3H33M/" + date.strftime("%FT%T%:z")
+  end
+
+
   def build_distribution(dataset)
     dataset.distributions.build do |distribution|
       distribution.title = 'Inventario Institucional de Datos'
@@ -90,7 +96,7 @@ class InventoryDatasetGenerator
       distribution.download_url = @inventory.spreadsheet_file.url
       distribution.media_type = 'application/vnd.ms-excel'
       distribution.byte_size = @inventory.spreadsheet_file.file.size
-      distribution.temporal = Time.current.year
+      distribution.temporal = build_temporal(dataset.modified)
     end
   end
 end

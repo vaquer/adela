@@ -30,6 +30,13 @@ describe InventoryDatasetGenerator do
 
         expect(dataset_identifier).to eql(expected_identifier)
       end
+
+      it 'should set a temporal range for the existing distributions' do
+        dataset       = organization.catalog.datasets.last
+        distribution  = dataset.distributions.last
+        timestring    = "P3H33M/#{dataset.modified.strftime("%FT%T%:z")}"
+        expect(distribution.temporal).to eq(timestring)
+      end
     end
 
     context 'an existing inventory' do
@@ -71,6 +78,12 @@ describe InventoryDatasetGenerator do
         old_distribution_download_url = @old_dataset.distributions.first.download_url
         new_distribution_download_url = @new_dataset.distributions.first.download_url
         expect(new_distribution_download_url).not_to eql(old_distribution_download_url)
+      end
+
+      it 'should update temporal range for the existing distribution' do
+        resource    = @new_dataset.distributions.first
+        timestring  = "P3H33M/#{resource.modified.strftime("%FT%T%:z")}"
+        expect(resource.temporal).to eq(timestring)
       end
     end
   end

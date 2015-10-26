@@ -85,7 +85,7 @@ class InventoryDatasetGenerator
 
   def build_distribution(dataset)
     dataset.distributions.build do |distribution|
-      distribution.title = 'Inventario Institucional de Datos'
+      distribution.title = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.description = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.download_url = @inventory.spreadsheet_file.url
       distribution.media_type = 'application/vnd.ms-excel'

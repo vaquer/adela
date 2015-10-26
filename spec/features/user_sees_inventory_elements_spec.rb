@@ -43,13 +43,6 @@ feature User, 'sees inventory elements:' do
     InventoryXLSXParserWorker.new.perform(@inventory.id)
   end
 
-  def generate_new_opening_plan
-    visit new_opening_plan_path
-    fill_in 'organization_opening_plans_attributes_0_description', with: 'osom dataset'
-    select('anual', from: 'organization[opening_plans_attributes][0][accrual_periodicity]')
-    click_on('Generar Plan de Apertura')
-  end
-
   def edit_catalog_first_set
     click_link "Catálogo de Datos"
     within set_row do

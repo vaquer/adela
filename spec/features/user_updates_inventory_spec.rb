@@ -22,7 +22,6 @@ feature User, 'updates inventory:' do
     expect(page).to have_field "Mensaje"
 
     attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventory-issue-398.xlsx")
-    fill_in "Mensaje", with: "Commit message"
     click_button "Subir inventario"
 
     InventoryXLSXParserWorker.new.perform(Inventory.last.id)
@@ -52,36 +51,24 @@ feature User, 'updates inventory:' do
     expect(first_set).to include "Tipos de vegetación"
   end
 
-  scenario 'and dataset metadata changes' do
+  scenario 'and sees catalog with consistent data' do
     upload_inventory_with_file("inventory-issue-398.xlsx")
     generate_new_opening_plan
-    inventory_dataset = @user.organization.catalog.distributions.sort.first
 
-    visit edit_distribution_path(inventory_dataset)
-    expect(download_url).to include "inventory-issue-398.xlsx"
-    expect(modified_date).to be_blank
-
-    visit edit_dataset_path(inventory_dataset.dataset)
-    expect(page).to have_content "irregular"
+    click_link "Catálogo de Datos"
+    expect(page).to have_content "Servicios Personales"
+    expect(page).not_to have_content "Tipos de vegetación"
 
     visit new_inventory_path
 
     attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos.xlsx")
     click_button "Subir inventario"
     InventoryXLSXParserWorker.new.perform(Inventory.last.id)
+    generate_new_opening_plan
 
-    visit edit_distribution_path(inventory_dataset)
-    expect(download_url).to include "inventario_general_de_datos.xlsx"
-    expect(download_url).not_to include "inventory-issue-398.xlsx"
-    expect(modified_date).not_to be_blank
-  end
-
-  def download_url
-    find("#distribution_download_url").value
-  end
-
-  def modified_date
-    find("#distribution_modified").value
+    click_link "Catálogo de Datos"
+    expect(page).not_to have_content "Servicios Personales"
+    expect(page).to have_content "Tipos de vegetación"
   end
 
   def first_set

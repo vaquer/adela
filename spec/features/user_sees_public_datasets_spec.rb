@@ -23,17 +23,5 @@ feature User, 'has inventory containing some private datasets:' do
     end
   end
 
-  def given_organization_has_catalog
-    inventory = create(:inventory, :elements, organization: @user.organization)
-    InventoryXLSXParserWorker.new.perform(inventory.id)
-
-    org = @user.organization
-    generate_new_opening_plan
-
-    CatalogDatasetsGenerator.new(org).execute
-    @user.organization.reload
-  end
-
 end
-
 

@@ -55,6 +55,10 @@ module Features
       find("input[type='checkbox']")
     end
 
+    def checkboxes
+      all("input[type='checkbox']")
+    end
+
     def set_rows
       all('table tbody tr.dataset')
     end

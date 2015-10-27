@@ -81,7 +81,7 @@ class OpeningPlanController < ApplicationController
   end
 
   def generate_opening_plan_dataset
-    OpeningPlanDatasetGenerator.new(@organization.catalog).generate unless opening_plan_dataset?
+    OpeningPlanDatasetGenerator.new(@organization.catalog).generate
   end
 
   def generate_catalog_datasets

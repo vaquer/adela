@@ -6,13 +6,42 @@ class OpeningPlanDatasetGenerator
   end
 
   def generate
-    dataset = build_dataset
-    build_distribution(dataset)
-    build_sector(dataset) if @catalog.organization.sectors.present?
-    @catalog.save
+    if opening_plan_dataset.present?
+      update_dataset_and_distribution
+    else
+      create_dataset_and_distribution
+    end
   end
 
   private
+
+  def update_dataset_and_distribution
+    update_dataset
+    update_distribution
+  end
+
+  def update_dataset
+    dataset = opening_plan_dataset
+    dataset.modified = Time.current.iso8601
+    dataset.save
+  end
+
+  def update_distribution
+    distribution = opening_plan_dataset.distributions.first
+    distribution.modified = Time.current.iso8601
+    distribution.save
+  end
+
+  def create_dataset_and_distribution
+    dataset = build_dataset
+    build_distribution(dataset)
+    build_sector(dataset) if @catalog.organization.sectors.present?
+    dataset.save
+  end
+
+  def opening_plan_dataset
+    @catalog.datasets.where("identifier LIKE '#{@catalog.organization.slug}-plan-de-apertura-institucional'").last
+  end
 
   def build_dataset
     @catalog.datasets.build do |dataset|

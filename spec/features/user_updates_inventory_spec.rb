@@ -19,7 +19,6 @@ feature User, 'updates inventory:' do
 
     expect(page).to have_content "Si renombras un conjunto o recurso se eliminará lo que se tenga actualmente y aparecerá como uno nuevo."
     expect(page).to have_content "Si eliminas un conjunto o recurso se eliminará del catálogo permanentemente."
-    expect(page).to have_field "Mensaje"
 
     attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventory-issue-398.xlsx")
     click_button "Subir inventario"
@@ -51,24 +50,50 @@ feature User, 'updates inventory:' do
     expect(first_set).to include "Tipos de vegetación"
   end
 
-  scenario 'and sees catalog with consistent data' do
+  scenario 'and updates inventory dataset for publishing' do
+    create :sector, title: "Custom sector"
     upload_inventory_with_file("inventory-issue-398.xlsx")
     generate_new_opening_plan
 
     click_link "Catálogo de Datos"
-    expect(page).to have_content "Servicios Personales"
-    expect(page).not_to have_content "Tipos de vegetación"
 
-    visit new_inventory_path
+    within inventory_resource do
+      expect(page).not_to have_content "Listo para publicar"
+    end
 
-    attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos.xlsx")
-    click_button "Subir inventario"
-    InventoryXLSXParserWorker.new.perform(Inventory.last.id)
-    generate_new_opening_plan
+    within inventory_set do
+      expect(page).to have_content "Inventario Institucional de Datos"
+      expect(page).not_to have_content "1 de 1"
+      click_link "Editar"
+    end
+
+    fill_in "Correo del responsable", with: @user.email
+    select "Custom sector", from: "dataset_dataset_sector_attributes_sector_id"
+    click_link "Completar"
+
+    fill_in "URL para descargar", with: "http://www.fakeurl.com"
+    fill_in "init-date", with: "2015"
+    fill_in "term-date", with: "2015-12-20"
+    fill_in "distribution_modified", with: "2015-08-28"
+    click_button "Guardar avance"
 
     click_link "Catálogo de Datos"
-    expect(page).not_to have_content "Servicios Personales"
-    expect(page).to have_content "Tipos de vegetación"
+    within inventory_set do
+      expect(page).to have_content "Inventario Institucional de Datos"
+      expect(page).to have_content "1 de 1"
+    end
+
+    within inventory_resource do
+      expect(page).to have_content "Listo para publicar"
+    end
+  end
+
+  def inventory_set
+    all("tr.dataset").first
+  end
+
+  def inventory_resource
+    all("tr.distribution").first
   end
 
   def first_set

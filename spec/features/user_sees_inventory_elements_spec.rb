@@ -18,7 +18,7 @@ feature User, 'sees inventory elements:' do
       expect(page).to have_link "Editar"
     end
 
-    within resource_row do
+    within resource_rows.first do
       expect(resource_checkbox).to be_checked
       expect(page).to have_content "Listo para publicar"
       expect(page).to have_link "Actualizar"
@@ -44,7 +44,7 @@ feature User, 'sees inventory elements:' do
 
   def complete_first_resource_set
     click_link "Catálogo de Datos"
-    within resource_row do
+    within resource_rows.first do
       click_link "Completar"
     end
     fill_in "URL para descargar", with: "http://www.fakeurl.com"

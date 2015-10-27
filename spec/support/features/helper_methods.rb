@@ -63,8 +63,8 @@ module Features
       set_rows.first
     end
 
-    def resource_row
-      all('table tbody tr')[1]
+    def resource_rows
+      all('table tbody tr.distribution')
     end
   end
 end

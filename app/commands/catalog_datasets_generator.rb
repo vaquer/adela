@@ -7,22 +7,28 @@ class CatalogDatasetsGenerator
   end
 
   def execute
-    build_datasets.each do |dataset|
-      build_distributions(dataset)
-      build_sector(dataset) if @organization.sectors.present?
+    @organization.opening_plans.map do |opening_plan|
+      create_or_update_dataset(opening_plan)
     end
-    @organization.save
   end
 
   private
 
-  def build_datasets
-    @organization.opening_plans.map do |opening_plan|
-      opening_plan_to_dataset(opening_plan)
+  def create_or_update_dataset(opening_plan)
+    if (dataset = find_dataset_by_title(opening_plan.name))
+      update_dataset(dataset, opening_plan)
+    else
+      create_dataset_and_distributions(opening_plan)
     end
   end
 
-  def opening_plan_to_dataset(opening_plan)
+  def create_dataset_and_distributions(opening_plan)
+    dataset = create_dataset(opening_plan)
+    create_sector(dataset)
+    create_distributions(dataset)
+  end
+
+  def create_dataset(opening_plan)
     @organization.catalog.datasets.create(
       identifier: opening_plan.name.downcase.split.join('-').truncate(255),
       title: opening_plan.name,
@@ -36,7 +42,14 @@ class CatalogDatasetsGenerator
     )
   end
 
-  def build_distributions(dataset)
+  def create_sector(dataset)
+    return unless @organization.sectors.present?
+    dataset.create_dataset_sector do |dataset_sector|
+      dataset_sector.sector_id = @organization.sectors.first.id
+    end
+  end
+
+  def create_distributions(dataset)
     select_distributions(dataset).map do |distribution|
       dataset.distributions.create(
         title: distribution.resource_title,
@@ -46,17 +59,23 @@ class CatalogDatasetsGenerator
     end
   end
 
-  def build_sector(dataset)
-    dataset.create_dataset_sector do |dataset_sector|
-      dataset_sector.sector_id = @organization.sectors.first.id
-    end
+  def update_dataset(dataset, opening_plan)
+    dataset.update(
+      description: opening_plan.description,
+      accrual_periodicity: opening_plan.accrual_periodicity,
+      publish_date: opening_plan.publish_date
+    )
   end
 
   def select_distributions(dataset)
-    @inventory.inventory_elements.select { |element| element.dataset_title == dataset.title }
+    @inventory.inventory_elements.select { |element| element.dataset_title.gsub("\n",'') == dataset.title }
   end
 
   def organization_administrator
     @organization.administrator.try(:user)
+  end
+
+  def find_dataset_by_title(title)
+    @organization.catalog.datasets.where('title LIKE ?', title).first
   end
 end

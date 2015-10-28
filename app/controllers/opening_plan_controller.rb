@@ -85,11 +85,7 @@ class OpeningPlanController < ApplicationController
   end
 
   def generate_catalog_datasets
-    CatalogDatasetsGenerator.new(@organization).execute unless opening_plan_dataset?
-  end
-
-  def opening_plan_dataset?
-    @organization.catalog.datasets.map(&:identifier).grep('plan-de-apertura-institucional').present?
+    CatalogDatasetsGenerator.new(@organization).execute
   end
 
   def organization_params

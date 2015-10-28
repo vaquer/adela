@@ -56,7 +56,6 @@ feature User, 'updates opening plan:' do
     click_link "Catálogo de Datos"
 
     expect(page).not_to have_content changing_opening_plan.name
-    expect(page).not_to have_content "Changing description"
     expect(page).not_to have_content "11-Nov-2015"
 
     visit new_opening_plan_path
@@ -71,7 +70,6 @@ feature User, 'updates opening plan:' do
     end
 
     expect(page).to have_content changing_opening_plan.name
-    expect(page).to have_content "Changing description"
     expect(page).not_to have_content "10-Oct-2015"
     expect(catalog_with_no_duplicated_datasets).to be
   end

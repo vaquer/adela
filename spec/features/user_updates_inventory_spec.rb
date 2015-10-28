@@ -7,6 +7,7 @@ feature User, 'updates inventory:' do
   end
 
   scenario 'and sees warning message' do
+    pending
     upload_inventory_with_file("inventario_general_de_datos.xlsx")
 
     click_link 'Inventario de Datos'
@@ -43,13 +44,35 @@ feature User, 'updates inventory:' do
     visit new_inventory_path
 
     attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos.xlsx")
-    fill_in "Mensaje", with: "Commit message"
     click_button "Subir inventario"
     InventoryXLSXParserWorker.new.perform(Inventory.last.id)
 
     visit new_opening_plan_path
     expect(first_set).not_to include "Servicios Personales"
     expect(first_set).to include "Tipos de vegetación"
+  end
+
+  scenario 'and can not see removed resources from inventory' do
+    upload_inventory_with_file("inventario_general_de_datos_update.xlsx")
+    generate_new_opening_plan
+
+    click_link "Catálogo de Datos"
+    expect(page).to have_content "Tipos de vegetación"
+    expect(page).to have_content "bosque de encinos, bosquie de coniferas, selva prenifolia, etc"
+    expect(page).to have_content "Desierto"
+
+    visit new_inventory_path
+
+    attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos.xlsx")
+    click_button "Subir inventario"
+    InventoryXLSXParserWorker.new.perform(Inventory.last.id)
+    @user.organization.reload
+    generate_new_opening_plan
+
+    click_link "Catálogo de Datos"
+    expect(page).to have_content "Tipos de vegetación"
+    expect(page).to have_content "bosque de encinos, bosquie de coniferas, selva prenifolia, etc"
+    expect(page).not_to have_content "Desierto"
   end
 
   def first_set

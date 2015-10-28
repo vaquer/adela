@@ -50,14 +50,12 @@ feature User, 'updates inventory:' do
     expect(first_set).to include "Tipos de vegetación"
   end
 
-  scenario 'and sees new resources in catalog and can edit them' do
+  scenario 'and resources can not be duplicated' do
     upload_inventory_with_file("inventario_general_de_datos.xlsx")
     generate_new_opening_plan
 
     click_link "Catálogo de Datos"
-    expect(page).to have_content "Tipos de vegetación"
-    expect(page).to have_content "bosque de encinos, bosquie de coniferas, selva prenifolia, etc"
-    expect(page).not_to have_content "Desierto"
+    expect(no_duplicated_resources_on_catalog).to be
 
     visit new_inventory_path
 
@@ -66,24 +64,15 @@ feature User, 'updates inventory:' do
     InventoryXLSXParserWorker.new.perform(Inventory.last.id)
 
     generate_new_opening_plan
+    @user.organization.reload
+
     click_link "Catálogo de Datos"
-
-    expect(page).to have_content "Tipos de vegetación"
-    expect(page).to have_content "bosque de encinos, bosquie de coniferas, selva prenifolia, etc"
-    expect(page).to have_content "Desierto"
-
-    within last_resource do
-      expect(page).to have_content "Desierto"
-      expect(page).to have_link "Completar"
-      click_link "Completar"
-    end
-
-    expect(page).to have_field "URL para descargar"
-    expect(page).to have_button "Guardar avance"
+    expect(no_duplicated_resources_on_catalog).to be
   end
 
-  def last_resource
-    all("tr.distribution").last
+  def no_duplicated_resources_on_catalog
+    organization_distributions = @user.organization.catalog.distributions
+    organization_distributions.map(&:title).uniq.size == organization_distributions.size
   end
 
   def first_set

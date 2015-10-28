@@ -50,50 +50,40 @@ feature User, 'updates inventory:' do
     expect(first_set).to include "Tipos de vegetación"
   end
 
-  scenario 'and updates inventory dataset for publishing' do
-    create :sector, title: "Custom sector"
-    upload_inventory_with_file("inventory-issue-398.xlsx")
+  scenario 'and sees new resources in catalog and can edit them' do
+    upload_inventory_with_file("inventario_general_de_datos.xlsx")
     generate_new_opening_plan
 
     click_link "Catálogo de Datos"
+    expect(page).to have_content "Tipos de vegetación"
+    expect(page).to have_content "bosque de encinos, bosquie de coniferas, selva prenifolia, etc"
+    expect(page).not_to have_content "Desierto"
 
-    within inventory_resource do
-      expect(page).not_to have_content "Listo para publicar"
-    end
+    visit new_inventory_path
 
-    within inventory_set do
-      expect(page).to have_content "Inventario Institucional de Datos"
-      expect(page).not_to have_content "1 de 1"
-      click_link "Editar"
-    end
+    attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos_update.xlsx")
+    click_button "Subir inventario"
+    InventoryXLSXParserWorker.new.perform(Inventory.last.id)
 
-    fill_in "Correo del responsable", with: @user.email
-    select "Custom sector", from: "dataset_dataset_sector_attributes_sector_id"
-    click_link "Completar"
-
-    fill_in "URL para descargar", with: "http://www.fakeurl.com"
-    fill_in "init-date", with: "2015"
-    fill_in "term-date", with: "2015-12-20"
-    fill_in "distribution_modified", with: "2015-08-28"
-    click_button "Guardar avance"
-
+    generate_new_opening_plan
     click_link "Catálogo de Datos"
-    within inventory_set do
-      expect(page).to have_content "Inventario Institucional de Datos"
-      expect(page).to have_content "1 de 1"
+
+    expect(page).to have_content "Tipos de vegetación"
+    expect(page).to have_content "bosque de encinos, bosquie de coniferas, selva prenifolia, etc"
+    expect(page).to have_content "Desierto"
+
+    within last_resource do
+      expect(page).to have_content "Desierto"
+      expect(page).to have_link "Completar"
+      click_link "Completar"
     end
 
-    within inventory_resource do
-      expect(page).to have_content "Listo para publicar"
-    end
+    expect(page).to have_field "URL para descargar"
+    expect(page).to have_button "Guardar avance"
   end
 
-  def inventory_set
-    all("tr.dataset").first
-  end
-
-  def inventory_resource
-    all("tr.distribution").first
+  def last_resource
+    all("tr.distribution").last
   end
 
   def first_set

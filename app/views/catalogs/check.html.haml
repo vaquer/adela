@@ -103,12 +103,10 @@
       .section
         %p.dark
           %input#agreement-publish{ type: 'checkbox', 'onClick'=>'termsConfirmed()' }
-          Estoy de acuerdo que en que esta informaci&oacute;n se publique en
-          datos.gob.mx
+            = t('agreement.publish')
         %p.dark
           %input#agreement-validated{ type: 'checkbox', 'onClick'=>'termsConfirmed()' }
-          Confirmo que la informaci&oacute;n est&aacute; validada por
-          la instituci&oacute;n
+            = t('agreement.validated')
 
-      = f.button 'Publicar', type: 'submit', class: 'btn btn-primary disabled', id: 'publish'
+      = f.button t('action.publish'), type: 'submit', class: 'btn btn-primary disabled', id: 'publish'
       = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-default'

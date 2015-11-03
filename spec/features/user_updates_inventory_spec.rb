@@ -70,6 +70,26 @@ feature User, 'updates inventory:' do
     expect(no_duplicated_resources_on_catalog).to be
   end
 
+  scenario 'and sets can not be duplicated' do
+    upload_inventory_with_file("inventario_general_de_datos.xlsx")
+    generate_new_opening_plan
+
+    click_link "Catálogo de Datos"
+    expect(no_duplicated_datasets_on_catalog).to be
+
+    visit new_inventory_path
+
+    attach_file('inventory_spreadsheet_file', "#{Rails.root}/spec/fixtures/files/inventario_general_de_datos_update.xlsx")
+    click_button "Subir inventario"
+    InventoryXLSXParserWorker.new.perform(Inventory.last.id)
+
+    generate_new_opening_plan
+    @user.organization.reload
+
+    click_link "Catálogo de Datos"
+    expect(no_duplicated_datasets_on_catalog).to be
+  end
+
   scenario 'and dataset metadata changes' do
     upload_inventory_with_file("inventory-issue-398.xlsx")
     generate_new_opening_plan
@@ -202,6 +222,11 @@ feature User, 'updates inventory:' do
   def no_duplicated_resources_on_catalog
     organization_distributions = @user.organization.catalog.distributions
     organization_distributions.map(&:title).uniq.size == organization_distributions.size
+  end
+
+  def no_duplicated_datasets_on_catalog
+    organization_datasets = @user.organization.catalog.datasets
+    organization_datasets.map(&:title).uniq.size == organization_datasets.size
   end
 
   def first_set

@@ -44,7 +44,7 @@ feature User, 'sees inventory elements:' do
 
   def complete_first_resource_set
     click_link "Catálogo de Datos"
-    within resource_rows.first do
+    within resource_rows.last do
       click_link "Completar"
     end
     fill_in "URL para descargar", with: "http://www.fakeurl.com"

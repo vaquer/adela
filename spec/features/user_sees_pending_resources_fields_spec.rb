@@ -11,15 +11,12 @@ feature User, 'sees pending documentation:' do
     click_link 'Catálogo de Datos'
 
     set_rows.each do |row|
-      expect(row.text).to match(/0 de \d+/)
+      expect(row.text).to match(/\d+ de \d+/)
     end
 
     resource_rows.each do |row|
-      expect(row.text).to have_content("Falta información")
-      expect(row.text).to have_content("Completar")
+      expect(row.text).to have_content(/(Falta información|Listo para publicar)/)
+      expect(row.text).to have_content(/(Actualizar)|(Completar)/)
     end
-
-    expect(checkboxes).to be_empty
   end
-
 end

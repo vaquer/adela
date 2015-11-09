@@ -26,8 +26,11 @@ feature 'data catalog management' do
   end
 
   scenario 'can see all the catalogs available through the api' do
-    create(:catalog)
-    create(:catalog, :unpublished)
+    catalog = create(:catalog, :datasets)
+    dataset = create(:dataset, catalog: catalog)
+    distribution = create(:distribution, dataset: dataset)
+    distribution.update_column(:state, 'published')
+
     get '/api/v1/organizations/catalogs.json'
     json_response = JSON.parse(response.body)
     json_response.size.should == 1

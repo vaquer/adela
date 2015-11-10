@@ -76,6 +76,16 @@ feature User, 'updates opening plan:' do
     expect(catalog_with_no_duplicated_datasets).to be
   end
 
+  scenario "and doesn't deletes the previous opening plan" do
+    opening_plan = @organization.opening_plans.first
+    click_link 'Plan de Apertura'
+    click_link 'Actualizar Plan de Apertura'
+    click_link 'Plan de Apertura'
+
+    expect(page).to have_content opening_plan.name
+    expect(page).to have_content opening_plan.description
+  end
+
   def given_organization_inventory_element_with(name)
     inventory = @organization.inventories.last
     inventory.inventory_elements << (create :inventory_element, dataset_title: name)

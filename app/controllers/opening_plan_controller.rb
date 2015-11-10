@@ -10,9 +10,7 @@ class OpeningPlanController < ApplicationController
 
   def new
     @organization = current_organization
-    cloned_organization = @organization.deep_clone :include => [:opening_plans]
-    @organization.opening_plans = []
-    build_opening_plan_from_inventory(cloned_organization.opening_plans) unless current_inventory.nil?
+    build_opening_plan_from_inventory(@organization.opening_plans) unless current_inventory.nil?
   end
 
   def create
@@ -41,6 +39,7 @@ class OpeningPlanController < ApplicationController
 
   def build_opening_plan_from_inventory(current_plan)
     current_inventory.datasets.each do |element|
+      next if current_plan.map(&:name).include?(element.dataset_title)
       build_opening_plans(element, current_plan) unless element.private?
     end
   end
@@ -49,15 +48,6 @@ class OpeningPlanController < ApplicationController
     @organization.opening_plans.build do |plan|
       plan.name = element.dataset_title
       plan.publish_date = element.publish_date
-
-      current_plan.each do |ds|
-        if element.dataset_title == ds.name
-          plan.description = ds.description
-          plan.accrual_periodicity = ds.accrual_periodicity
-          plan.publish_date = ds.publish_date
-        end
-      end
-
     end
   end
 

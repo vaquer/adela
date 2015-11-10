@@ -19,7 +19,6 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :opening_plans, allow_destroy: true
   accepts_nested_attributes_for :organization_sectors, allow_destroy: true
 
-  scope :with_catalog, -> { joins(:catalog).where("catalogs.published = 't'").uniq }
   scope :title_sorted, -> { order("organizations.title ASC") }
   scope :sector, -> slug { joins(:sectors).where('sectors.slug = ?', slug) }
   scope :gov_type, -> gov_type { where('gov_type = ?', Organization.gov_types[gov_type]) }

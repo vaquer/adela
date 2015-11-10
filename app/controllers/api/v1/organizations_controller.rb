@@ -11,8 +11,10 @@ module Api
       end
 
       def catalogs
-        @catalogs_urls = Organization.with_catalog.map { |org| organization_catalog_url(:slug => org.slug, :host => request.host, :format => :json)}
-        render :json => @catalogs_urls, root: false
+        @catalogs_urls = Organization.all.select do |organization|
+          organization.catalog.present? && organization.catalog.distributions.map(&:published?).any?
+        end
+        render json: @catalogs_urls, root: false
       end
 
       def organizations

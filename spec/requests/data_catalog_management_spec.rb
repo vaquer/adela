@@ -52,4 +52,15 @@ feature 'data catalog management' do
     json_response['dataset'].last.keys.sort.should eq(dcat_dataset_keys.sort)
     json_response['dataset'].last['distribution'].last.keys.sort.should eq(dcat_distribution_keys.sort)
   end
+
+  scenario 'removes linebreaks from keywods' do
+    catalog = create(:catalog, organization: @organization)
+    dataset = create(:dataset, catalog: catalog, keyword: "foo\n, bar\r\n")
+    distribution = create(:distribution, dataset: dataset)
+    distribution.update_column(:state, 'published')
+
+    get "/#{@organization.slug}/catalogo.json"
+    json_response = JSON.parse(response.body)
+    json_response['dataset'][0]['keyword'].sort == %w(bar foo)
+  end
 end

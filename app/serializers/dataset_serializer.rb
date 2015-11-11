@@ -11,7 +11,7 @@ class DatasetSerializer < ActiveModel::Serializer
       name: object.publisher,
       mbox: object.mbox
     }
-    data[:keyword] = object.keywords.split(',')
+    data[:keyword] = object.keywords.split(',').map(&:squish)
     data[:landingPage] = object.landing_page
     data
   end

@@ -23,8 +23,8 @@
           %thead
             %tr
               %th
-              %th Nombre del conjunto
-              %th Descripci&oacute;n
+              %th.col-md-4 Nombre del conjunto
+              %th.col-md-4 Descripci&oacute;n
               %th Acceso
               %th Frecuencia con la que actualizan
               %th Confirmar fecha de Publicaci&oacute;n
@@ -33,8 +33,10 @@
               = f.fields_for :opening_plans, plan do |builder|
                 %tr
                   %th= builder.check_box :_destroy, { checked: true, class: 'validable' }, '0', '1'
-                  %th= builder.text_field :name, readonly: true, required: true
-                  %th= builder.text_field :description, required: true
+                  %th
+                    = builder.hidden_field :name, readonly: true, required: true
+                    = plan.name
+                  %th= builder.text_area :description, required: true, class: 'fill'
                   %th P&uacute;blico
                   %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
                   %th= builder.text_field :publish_date, required: true, class: 'datepicker'
@@ -94,6 +96,7 @@
   };
 
   $(function() {
+    $('textarea').autosize();
     $( ".validable" ).change(updateValidations);
     $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
     $( ".datepicker" ).datepicker();

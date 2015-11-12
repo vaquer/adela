@@ -3,6 +3,7 @@
 //= require jquery.ui.sortable
 //= require jquery.ui.datepicker
 //= require jquery.ui.datepicker-es
+//= require jquery.autosize
 //= require jquery.expander
 //= require jquery.pjax
 //= require jquery.validate

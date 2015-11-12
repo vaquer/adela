@@ -22,7 +22,7 @@
         %table.table.table-striped
           %thead
             %tr
-              %th
+              %th ¿Publicar?
               %th.col-md-4 Nombre del conjunto
               %th.col-md-4 Descripci&oacute;n
               %th Acceso
@@ -32,7 +32,7 @@
             - @organization.opening_plans.each do |plan|
               = f.fields_for :opening_plans, plan do |builder|
                 %tr
-                  %th= builder.check_box :_destroy, { checked: true, class: 'validable' }, '0', '1'
+                  %th.text-center= builder.check_box :_destroy, { checked: true, class: 'validable' }, '0', '1'
                   %th
                     = builder.hidden_field :name, readonly: true, required: true
                     = plan.name

@@ -33,6 +33,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    autosize-rails (1.18.17)
+      rails (>= 3.1)
     aws-sdk (1.39.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -327,6 +329,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   active_model_warnings
+  autosize-rails
   bootstrap-sass
   byebug
   cancancan
@@ -388,3 +391,6 @@ DEPENDENCIES
   unicorn
   validate_url
   will_paginate (~> 3.0)
+
+BUNDLED WITH
+   1.10.6

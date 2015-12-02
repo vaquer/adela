@@ -17,6 +17,7 @@ class CatalogDatasetsGenerator
   def create_or_update_dataset(opening_plan)
     if (dataset = find_dataset_by_title(opening_plan.name))
       update_dataset(dataset, opening_plan)
+      create_new_distributions(dataset)
     else
       create_dataset_and_distributions(opening_plan)
     end
@@ -67,6 +68,17 @@ class CatalogDatasetsGenerator
     )
   end
 
+  def create_new_distributions(dataset)
+    select_distributions(dataset).map do |distribution|
+      next if find_distribution_by_title(dataset, distribution.resource_title)
+      dataset.distributions.create(
+        title: distribution.resource_title,
+        description: distribution.description,
+        media_type: distribution.media_type
+      )
+    end
+  end
+
   def select_distributions(dataset)
     @inventory.inventory_elements.select { |element| element.dataset_title.gsub("\n",'') == dataset.title }
   end
@@ -77,5 +89,9 @@ class CatalogDatasetsGenerator
 
   def find_dataset_by_title(title)
     @organization.catalog.datasets.where('title LIKE ?', title).first
+  end
+
+  def find_distribution_by_title(dataset, title)
+    dataset.distributions.where('title LIKE ?', title).first
   end
 end

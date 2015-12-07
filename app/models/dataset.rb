@@ -13,12 +13,16 @@ class Dataset < ActiveRecord::Base
   end
 
   def keywords
-    "#{keyword},#{sectors}".chomp(',').lchomp(',').downcase.strip
+    "#{keyword},#{gov_type},#{sectors}".chomp(',').lchomp(',').downcase.strip
   end
 
   private
 
   def sectors
     catalog.organization.sectors.map(&:slug).join(',')
+  end
+
+  def gov_type
+    catalog.organization.gov_type
   end
 end

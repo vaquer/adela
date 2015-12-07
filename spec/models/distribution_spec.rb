@@ -43,4 +43,14 @@ describe Distribution do
     let(:distribution) { create(:distribution, modified: nil) }
     it_behaves_like 'a non compliant distribution'
   end
+
+  context 'after save' do
+    let(:dataset) { create(:dataset, modified: Date.yesterday) }
+    let(:distribution) { build(:distribution, dataset: dataset, modified: Date.today) }
+
+    it 'should update the dataset modified with the latest distribution modified date' do
+      distribution.save
+      expect(dataset.modified).to eq(distribution.modified)
+    end
+  end
 end

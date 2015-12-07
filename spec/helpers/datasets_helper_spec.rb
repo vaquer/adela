@@ -16,6 +16,7 @@ describe DatasetsHelper do
       create(:distribution, :broke, dataset: dataset)
       create(:distribution, :validated, dataset: dataset)
       create(:distribution, :published, dataset: dataset)
+      dataset.reload
 
       distributions = helper.documented_distributions(dataset)
       expect(distributions.count).to eq(2)

@@ -4,6 +4,7 @@ class Distribution < ActiveRecord::Base
 
   before_save :fix_distribution
   before_save :break_distibution
+  after_commit :update_dataset_metadata
 
   state_machine initial: :broke do
     state :broke
@@ -34,5 +35,10 @@ class Distribution < ActiveRecord::Base
     fields.each do |field|
       warnings.add(field) if send(field).blank?
     end
+  end
+
+  def update_dataset_metadata
+    last_modified_distribution = dataset.distributions.map(&:modified).sort.last
+    dataset.update(modified: last_modified_distribution)
   end
 end

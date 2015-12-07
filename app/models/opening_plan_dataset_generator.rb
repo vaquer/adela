@@ -72,7 +72,8 @@ class OpeningPlanDatasetGenerator
       distribution.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.download_url = "http://adela.datos.gob.mx/plan-de-apertura/#{@catalog.organization.slug}/export.csv"
       distribution.media_type = 'text/csv'
-      distribution.temporal = Time.current.year
+      distribution.temporal = "#{Date.new(2015, 9, 25)}/#{Date.new(2016, 9, 26)}"
+      distribution.modified = Date.today
     end
   end
 

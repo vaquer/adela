@@ -18,6 +18,12 @@ describe OpeningPlanDatasetGenerator do
         expect(dataset.distributions.count).to eql(1)
       end
 
+      it 'should generate a dataset with a validated distribution' do
+        dataset = catalog.datasets.last
+        distribution = dataset.distributions.last
+        expect(distribution.state).to eql('validated')
+      end
+
       it 'should contain a dataset with an identifier containing the organization slug' do
         organization_slug = catalog.organization.slug
         dataset_identifier = catalog.datasets.last.identifier

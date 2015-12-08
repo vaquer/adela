@@ -3,6 +3,9 @@
     %h3.title Editar Organizaci&oacute;n
     %h5.subtitle= @organization.title.upcase
     = form_for(@organization, html: { id: 'edit_organization' }) do |f|
+      .foorm-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control', required: true
       .form-group
         = f.label :description
         = f.text_field :description, class: 'form-control'

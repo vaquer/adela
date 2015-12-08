@@ -14,6 +14,7 @@ feature Organization, 'manages profile:' do
     click_on(@user.name)
     click_on "Editar Perfil"
 
+    expect(page).to have_text "Nombre"
     expect(page).to have_text "Descripción"
     expect(page).to have_text "URL Logo"
     expect(page).to have_text "Sitio Web"
@@ -23,9 +24,10 @@ feature Organization, 'manages profile:' do
   scenario "edit description and logo url", js: true do
     visit profile_organization_path(@organization)
 
+    fill_in "Nombre", :with => Faker::Company.name
     fill_in "Descripción", :with => "Esta es una descripción de una institución"
     fill_in "URL Logo", :with => "http://www.imageurl.com"
-    fill_in "Sitio Web", :with => Faker::Internet.url 
+    fill_in "Sitio Web", :with => Faker::Internet.url
     select "Federal", :from => "organization[gov_type]"
     click_button "Guardar"
 

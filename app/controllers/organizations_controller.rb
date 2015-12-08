@@ -16,13 +16,13 @@ class OrganizationsController < ApplicationController
         format.json { render json: @catalog, root: false }
       end
     else
-      render :json => {}
+      render json: {}
     end
   end
 
   # TODO: move action to a controller under the API namespace
   def opening_plan
-    @organization  = Organization.friendly.find(params[:slug])
+    @organization = Organization.friendly.find(params[:slug])
     respond_to do |format|
       format.json { render json: @organization, serializer: OrganizationOpeningPlanSerializer, root: false }
     end
@@ -31,19 +31,16 @@ class OrganizationsController < ApplicationController
   # TODO: use show action instead of this one
   def profile
     @organization = Organization.friendly.find(params[:id])
-
-    if @organization != current_organization
-      redirect_to organization_path(@organization)
-    end
+    redirect_to organization_path(@organization) unless @organization == current_organization
   end
 
   def update
     @organization = Organization.friendly.find(params[:id])
 
     if @organization.update(organization_params)
-      redirect_to profile_organization_path(@organization), :notice => "El perfil se ha actualizado con éxito."
+      redirect_to profile_organization_path(@organization), notice: 'El perfil se ha actualizado con éxito.'
     else
-      redirect_to profile_organization_path(@organization), :error => "Ha ocurrido un error al actualizar el perfil."
+      redirect_to profile_organization_path(@organization), error: 'Ha ocurrido un error al actualizar el perfil.'
     end
   end
 

@@ -48,7 +48,6 @@ gem 'nested_form'
 gem 'has_scope'
 gem 'rack-cors'
 gem 'state_machines-activerecord'
-gem 'gretel'
 gem 'autosize-rails'
 
 group :development, :test do

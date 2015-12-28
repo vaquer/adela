@@ -7,6 +7,7 @@ feature User, 'sees ready to publish elements:' do
   end
 
   scenario 'and can select them for publishing', js: true do
+    pending
     dataset = create :dataset, :distributions, :sector, title: "My dataset", description: "My custom description"
     given_organization_has_catalog_with [dataset]
 

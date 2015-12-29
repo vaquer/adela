@@ -10,7 +10,7 @@ class Inventory < ActiveRecord::Base
 
   has_many :inventory_elements, dependent: :destroy
 
-  after_commit :create_inventory_elements
+  after_commit :create_inventory_elements, on: :create
 
   def datasets
     dataset_titles.map do |title|

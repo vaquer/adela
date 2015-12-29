@@ -32,7 +32,7 @@ describe Inventory do
     let(:inventory) { create(:inventory) }
 
     it 'should be an InventoryXLSXParserWorker enqueued job' do
-      expect(InventoryXLSXParserWorker).to have_enqueued_job(inventory.id)
+      expect { inventory.run_callbacks(:commit) }.to change { InventoryXLSXParserWorker.jobs.count }.by(1)
     end
   end
 end

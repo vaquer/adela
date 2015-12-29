@@ -14,7 +14,7 @@ describe DatasetsHelper do
     it 'returns only documented distributions' do
       dataset = create(:dataset)
       create(:distribution, :broke, dataset: dataset)
-      create(:distribution, :validated, dataset: dataset)
+      create(:distribution, :documented, dataset: dataset)
       create(:distribution, :published, dataset: dataset)
       dataset.reload
 

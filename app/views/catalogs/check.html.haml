@@ -9,7 +9,7 @@
 
     = form_for current_organization.catalog, url: publish_catalog_path(current_organization.catalog), method: :put do |f|
       - @datasets.each do |dataset|
-        - next unless validated_distributions?(dataset)
+        - next unless documented_distributions?(dataset)
         %h5.subtitle= dataset.title
         .section
           .row
@@ -90,7 +90,7 @@
                   %i.fa.fa-caret-down
             %tbody
               - dataset.distributions.each do |distribution|
-                - next unless distribution.validated?
+                - next unless distribution.documented?
                 - next unless params['catalog']['distribution_ids'].map(&:to_i).include? distribution.id
                 %tr
                   %td

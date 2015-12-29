@@ -37,7 +37,7 @@
             - dataset.distributions.each do |distribution|
               %tr.distribution
                 %td.nested
-                  - if distribution.validated?
+                  - if distribution.documented?
                     = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')
                   = distribution.title
                 %td.status= state_description(distribution)

@@ -3,8 +3,8 @@ module DatasetsHelper
     ISO8601_DEFAULTS['accrual_periodicity'].invert[accrual_periodicity]
   end
 
-  def validated_distributions?(dataset)
-    dataset.distributions.select(&:validated?).present?
+  def documented_distributions?(dataset)
+    dataset.distributions.select(&:documented?).present?
   end
 
   def published_distributions?(dataset)
@@ -12,7 +12,7 @@ module DatasetsHelper
   end
 
   def documented_distributions(dataset)
-    dataset.distributions.select { |d| d.published? || d.validated? }
+    dataset.distributions.select { |d| d.published? || d.documented? }
   end
 
   def next_dataset(dataset)

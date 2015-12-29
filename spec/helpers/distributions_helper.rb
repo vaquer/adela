@@ -22,8 +22,8 @@ describe DistributionsHelper do
       expect(text).to eq('Falta información')
     end
 
-    it 'shows the validated description' do
-      distribution = build(:distribution, :validated)
+    it 'shows the documented description' do
+      distribution = build(:distribution, :documented)
       text = helper.state_description(distribution)
       expect(text).to eq('Listo para publicar')
     end

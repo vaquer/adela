@@ -6,7 +6,7 @@ module DistributionsHelper
   def state_description(distribution)
     if distribution.broke?
       'Falta información'
-    elsif distribution.validated?
+    elsif distribution.documented?
       'Listo para publicar'
     else
       'Publicado'

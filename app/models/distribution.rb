@@ -8,22 +8,22 @@ class Distribution < ActiveRecord::Base
 
   state_machine initial: :broke do
     state :broke
-    state :validated
+    state :documented
     state :published
 
-    event :validate do
-      transition [:broke, :published] => :validated, if: lambda { |distribution| distribution.compliant? }
+    event :document do
+      transition [:broke, :published] => :documented, if: lambda { |distribution| distribution.compliant? }
     end
 
     event :break_dist do
-      transition [:validated, :published] => :broke, unless: lambda { |distribution| distribution.compliant? }
+      transition [:documented, :published] => :broke, unless: lambda { |distribution| distribution.compliant? }
     end
   end
 
   private
 
   def fix_distribution
-    validate if can_validate?
+    document if can_document?
   end
 
   def break_distibution

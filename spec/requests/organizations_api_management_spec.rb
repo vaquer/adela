@@ -44,7 +44,7 @@ feature "organizations api management" do
   it "gets the organizations with autonomous gov_type" do
     organization = FactoryGirl.create(:organization, :sector)
     @sector = organization.sectors.first
-    get "api/v1/organizations/?sector=#{@sector.slug}"
+    get "/api/v1/organizations/?sector=#{@sector.slug}"
     json = JSON.parse(response.body)
     expect(json['results'].count).to eq(1)
   end

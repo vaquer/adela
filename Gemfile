@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.1.8'
 
-gem 'rails', '4.1'
+gem 'rails', '4.2.5'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'font-awesome-rails'

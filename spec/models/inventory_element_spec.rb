@@ -3,23 +3,23 @@ require 'spec_helper'
 describe InventoryElement do
   shared_examples 'a valid inventory element' do
     it 'should be compliant' do
-      inventory_element.compliant?.should be true
+      expect(inventory_element.compliant?).to be true
     end
 
     it 'should be valid' do
-      inventory_element.should be_valid
+      expect(inventory_element).to be_valid
     end
   end
 
   shared_examples 'an invalid inventory element' do
     it 'should not be valid' do
-      inventory_element.should_not be_valid
+      expect(inventory_element).not_to be_valid
     end
   end
 
   shared_examples 'a non compliant inventory element' do
     it 'should not be compliant' do
-      inventory_element.compliant?.should_not be true
+      expect(inventory_element.compliant?).not_to be true
     end
   end
 

@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Inventory do
   shared_examples 'a valid inventory' do
     it 'should be valid ' do
-      inventory.should be_valid
+      expect(inventory).to be_valid
     end
   end
 
   shared_examples 'an invalid inventory' do
     it 'should not be valid ' do
-      inventory.should_not be_valid
+      expect(inventory).not_to be_valid
     end
   end
 

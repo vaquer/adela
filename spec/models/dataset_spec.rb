@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Dataset do
   shared_examples 'a valid dataset' do
     it 'should be valid ' do
-      dataset.should be_valid
+      expect(dataset).to be_valid
     end
   end
 

@@ -21,8 +21,8 @@ module Features
 
     def activity_log_created_with_msg(message)
       @activity = ActivityLog.last
-      @activity.should_not be_nil
-      @activity.description.should == message
+      expect(@activity).not_to be_nil
+      expect(@activity.description).to eq(message)
     end
 
     def generate_new_opening_plan

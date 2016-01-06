@@ -7,12 +7,12 @@ describe Organization do
     end
 
     it 'should be valid with mandatory attributes' do
-      @org.should be_valid
+      expect(@org).to be_valid
     end
 
     it 'should not be valid without a title' do
       @org.title = nil
-      @org.should_not be_valid
+      expect(@org).not_to be_valid
     end
   end
 

@@ -131,11 +131,11 @@ describe Admin::UsersController do
     end
 
     it 'stores original_user_id in session' do
-      session[:original_user_id].should eql(admin.id)
+      expect(session[:original_user_id]).to eql(admin.id)
     end
 
     it 'sets from_admin session value true' do
-      session[:from_admin].should be_true
+      expect(session[:from_admin]).to be_truthy
     end
 
     it 'has 302 status' do
@@ -155,11 +155,11 @@ describe Admin::UsersController do
     end
 
     it 'sets from_admin session value false' do
-      session[:from_admin].should be_false
+      expect(session[:from_admin]).to be_falsey
     end
 
     it 'destroys original_user_id from session' do
-      session[:original_user_id].should be_nil
+      expect(session[:original_user_id]).to be_nil
     end
 
     it 'has 302 status' do

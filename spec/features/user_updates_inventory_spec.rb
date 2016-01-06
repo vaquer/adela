@@ -7,7 +7,7 @@ feature User, 'updates inventory:' do
   end
 
   scenario 'and sees warning message' do
-    pending
+    skip
     upload_inventory_with_file("inventario_general_de_datos.xlsx")
 
     click_link 'Inventario de Datos'
@@ -145,7 +145,7 @@ feature User, 'updates inventory:' do
   end
 
   scenario 'and sees new resources in catalog and can edit them' do
-    pending
+    skip
     upload_inventory_with_file("inventario_general_de_datos.xlsx")
     generate_new_opening_plan
 
@@ -178,7 +178,7 @@ feature User, 'updates inventory:' do
   end
 
   scenario 'and can not see removed resources from inventory' do
-    pending
+    skip
     upload_inventory_with_file("inventario_general_de_datos_update.xlsx")
     generate_new_opening_plan
 
@@ -202,7 +202,7 @@ feature User, 'updates inventory:' do
   end
 
   scenario 'and sees catalog with consistent data' do
-    pending
+    skip
     upload_inventory_with_file("inventory-issue-398.xlsx")
     generate_new_opening_plan
 

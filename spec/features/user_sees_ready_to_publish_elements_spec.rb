@@ -7,22 +7,23 @@ feature User, 'sees ready to publish elements:' do
   end
 
   scenario 'and can select them for publishing', js: true do
-    skip
     dataset = create :dataset, :distributions, :sector, title: "My dataset", description: "My custom description"
     given_organization_has_catalog_with [dataset]
 
     click_link "Catálogo de Datos"
     expect(page).to have_content "My dataset"
-    expect(page).to have_content "Listo para publicar"
 
     dataset_distributions.each do |distribution_row|
       within distribution_row do
         expect(ready_to_publish_checkbox).to be_checked
+        expect(page).to have_content "Listo para publicar"
         expect(ready_to_publish_row_color(distribution_row)).to eq "green"
       end
     end
 
+    find(".joyride-close-tip").click
     click_button "Publicar"
+
     expect(page).to have_content "My dataset"
 
     dataset.distributions.each do |resource|

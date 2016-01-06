@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016135802) do
+ActiveRecord::Schema.define(version: 20160106192525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activity_logs", force: true do |t|
+  create_table "activity_logs", force: :cascade do |t|
     t.integer  "organization_id"
     t.string   "description"
     t.datetime "done_at"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
     t.string   "category"
   end
 
-  create_table "administrators", force: true do |t|
+  create_table "administrators", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "administrators", ["organization_id"], name: "index_administrators_on_organization_id", using: :btree
   add_index "administrators", ["user_id"], name: "index_administrators_on_user_id", using: :btree
 
-  create_table "catalogs", force: true do |t|
+  create_table "catalogs", force: :cascade do |t|
     t.string   "csv_file"
     t.integer  "organization_id"
     t.datetime "created_at"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "catalogs", ["organization_id"], name: "index_catalogs_on_organization_id", using: :btree
 
-  create_table "dataset_sectors", force: true do |t|
+  create_table "dataset_sectors", force: :cascade do |t|
     t.integer  "sector_id"
     t.integer  "dataset_id"
     t.datetime "created_at"
@@ -57,8 +57,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "dataset_sectors", ["dataset_id"], name: "index_dataset_sectors_on_dataset_id", using: :btree
   add_index "dataset_sectors", ["sector_id"], name: "index_dataset_sectors_on_sector_id", using: :btree
 
-  create_table "datasets", force: true do |t|
-    t.string   "identifier"
+  create_table "datasets", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.text     "keyword"
@@ -78,7 +77,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "datasets", ["catalog_id"], name: "index_datasets_on_catalog_id", using: :btree
 
-  create_table "distributions", force: true do |t|
+  create_table "distributions", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.text     "download_url"
@@ -95,7 +94,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "distributions", ["dataset_id"], name: "index_distributions_on_dataset_id", using: :btree
 
-  create_table "inventories", force: true do |t|
+  create_table "inventories", force: :cascade do |t|
     t.string   "spreadsheet_file"
     t.integer  "organization_id"
     t.datetime "created_at"
@@ -106,7 +105,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "inventories", ["organization_id"], name: "index_inventories_on_organization_id", using: :btree
 
-  create_table "inventory_elements", force: true do |t|
+  create_table "inventory_elements", force: :cascade do |t|
     t.integer  "row"
     t.text     "responsible"
     t.text     "dataset_title"
@@ -123,7 +122,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "inventory_elements", ["inventory_id"], name: "index_inventory_elements_on_inventory_id", using: :btree
 
-  create_table "liaisons", force: true do |t|
+  create_table "liaisons", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -133,7 +132,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "liaisons", ["organization_id"], name: "index_liaisons_on_organization_id", using: :btree
   add_index "liaisons", ["user_id"], name: "index_liaisons_on_user_id", using: :btree
 
-  create_table "officials", force: true do |t|
+  create_table "officials", force: :cascade do |t|
     t.integer  "opening_plan_id"
     t.string   "name"
     t.string   "position"
@@ -145,7 +144,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "officials", ["opening_plan_id"], name: "index_officials_on_opening_plan_id", using: :btree
 
-  create_table "opening_plans", force: true do |t|
+  create_table "opening_plans", force: :cascade do |t|
     t.integer  "organization_id"
     t.text     "vision"
     t.text     "name"
@@ -158,7 +157,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "opening_plans", ["organization_id"], name: "index_opening_plans_on_organization_id", using: :btree
 
-  create_table "organization_sectors", force: true do |t|
+  create_table "organization_sectors", force: :cascade do |t|
     t.integer  "sector_id"
     t.integer  "organization_id"
     t.datetime "created_at"
@@ -168,7 +167,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "organization_sectors", ["organization_id"], name: "index_organization_sectors_on_organization_id", using: :btree
   add_index "organization_sectors", ["sector_id"], name: "index_organization_sectors_on_sector_id", using: :btree
 
-  create_table "organizations", force: true do |t|
+  create_table "organizations", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -182,7 +181,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "organizations", ["gov_type"], name: "index_organizations_on_gov_type", using: :btree
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -193,7 +192,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
-  create_table "sectors", force: true do |t|
+  create_table "sectors", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -202,7 +201,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
 
   add_index "sectors", ["slug"], name: "index_sectors_on_slug", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -223,7 +222,7 @@ ActiveRecord::Schema.define(version: 20151016135802) do
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "users_roles", id: false, force: true do |t|
+  create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
   end

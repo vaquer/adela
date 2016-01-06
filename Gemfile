@@ -49,6 +49,7 @@ gem 'has_scope'
 gem 'rack-cors'
 gem 'state_machines-activerecord'
 gem 'autosize-rails'
+gem 'babosa'
 
 group :development, :test do
   gem 'spring'

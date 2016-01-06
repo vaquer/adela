@@ -38,9 +38,9 @@ describe InventoryDatasetGenerator do
       end
 
       it 'should contain an identifier with the organization slug' do
-        organization_slug = organization.slug
+        organization_slug = organization.title.to_slug.normalize.to_s
         dataset_identifier = organization.catalog.datasets.last.identifier
-        expected_identifier = "#{organization_slug}-inventario-institucional-de-datos"
+        expected_identifier = "inventario-institucional-de-datos-de-#{organization_slug}"
 
         expect(dataset_identifier).to eql(expected_identifier)
       end

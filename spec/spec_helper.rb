@@ -2,7 +2,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'coveralls'
 
 Coveralls.wear!('rails')
@@ -43,6 +42,15 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  # To explicitly tag specs without using automatic inference, set the `:type`
+  # metadata manually:
+  #
+  #     describe ThingsController, :type => :controller do
+  #       # Equivalent to being in spec/controllers
+  #     end
+  config.infer_spec_type_from_file_location!
+
+  config.include RSpec::Rails::RequestExampleGroup, type: :feature
   config.include Devise::TestHelpers, :type => :controller
   config.include Features::HelperMethods, :type => :feature
   config.include FactoryGirl::Syntax::Methods
@@ -64,7 +72,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.after(:each) do |example|
     DatabaseCleaner.clean
     Capybara.use_default_driver if example.metadata[:js]
   end

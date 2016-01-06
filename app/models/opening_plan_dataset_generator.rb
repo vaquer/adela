@@ -40,7 +40,7 @@ class OpeningPlanDatasetGenerator
   end
 
   def opening_plan_dataset
-    @catalog.datasets.where("identifier LIKE '#{@catalog.organization.slug}-plan-de-apertura-institucional'").last
+    @catalog.datasets.where("title LIKE 'Plan de Apertura Institucional de #{@catalog.organization.title}'").last
   end
 
   def build_dataset

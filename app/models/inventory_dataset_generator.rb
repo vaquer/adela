@@ -39,7 +39,7 @@ class InventoryDatasetGenerator
   end
 
   def inventory_dataset
-    @catalog.datasets.where("identifier LIKE '#{@organization.slug}-inventario-institucional-de-datos'").last
+    @catalog.datasets.where("title LIKE 'Inventario Institucional de Datos de #{@organization.title}'").last
   end
 
   def create_dataset_and_distribution

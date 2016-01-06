@@ -25,9 +25,9 @@ describe OpeningPlanDatasetGenerator do
       end
 
       it 'should contain a dataset with an identifier containing the organization slug' do
-        organization_slug = catalog.organization.slug
+        organization_slug = catalog.organization.title.to_slug.normalize.to_s
         dataset_identifier = catalog.datasets.last.identifier
-        expected_identifier = "#{organization_slug}-plan-de-apertura-institucional"
+        expected_identifier = "plan-de-apertura-institucional-de-#{organization_slug}"
 
         expect(dataset_identifier).to eql(expected_identifier)
       end

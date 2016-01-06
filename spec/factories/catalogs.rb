@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
 
     trait :datasets do
-      ignore do
+      transient do
         datasets_count { Faker::Number.between(1, 8) }
       end
 

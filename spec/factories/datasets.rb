@@ -16,7 +16,7 @@ FactoryGirl.define do
     catalog
 
     trait :distributions do
-      ignore do
+      transient do
         distributions_count { Faker::Number.between(1, 5) }
       end
 

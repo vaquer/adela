@@ -5,7 +5,7 @@ FactoryGirl.define do
     organization
 
     trait :elements do
-      ignore do
+      transient do
         datasets_count { Faker::Number.between(1, 5) }
         distributions_count { Faker::Number.between(1, 5) }
       end

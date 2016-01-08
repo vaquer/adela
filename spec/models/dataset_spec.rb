@@ -12,6 +12,14 @@ describe Dataset do
     it_behaves_like 'a valid dataset'
   end
 
+  context '#identifier' do
+    let(:dataset) { create(:dataset, title: 'Módulos de internet gratuitos en Xalapa') }
+
+    it 'should generate a slugged identifier from title' do
+      expect(dataset.identifier).to eql('modulos-de-internet-gratuitos-en-xalapa')
+    end
+  end
+
   context '#publisher' do
     it 'should be equal to the organization title' do
       dataset = create(:dataset)

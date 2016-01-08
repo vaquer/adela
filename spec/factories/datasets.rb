@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :dataset do
-    identifier { Faker::Lorem.words.join('-') }
     title { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     keyword { Faker::Lorem.words.join(',') }

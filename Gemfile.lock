@@ -53,6 +53,7 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.2.8)
       aws-sdk-core (= 2.2.8)
+    babosa (1.0.2)
     bcrypt (3.1.10)
     bootstrap-sass (3.3.5)
       autoprefixer-rails (>= 5.0.0.1)
@@ -365,6 +366,7 @@ DEPENDENCIES
   active_model_serializers
   active_model_warnings
   autosize-rails
+  babosa
   bootstrap-sass
   byebug
   cancancan

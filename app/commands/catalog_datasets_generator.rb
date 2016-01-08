@@ -31,7 +31,6 @@ class CatalogDatasetsGenerator
 
   def create_dataset(opening_plan)
     @organization.catalog.datasets.create(
-      identifier: opening_plan.name.downcase.split.join('-').truncate(255),
       title: opening_plan.name,
       description: opening_plan.description,
       contact_position: ENV_CONTACT_POSITION_NAME,

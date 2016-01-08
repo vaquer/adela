@@ -39,7 +39,7 @@ class InventoryDatasetGenerator
   end
 
   def inventory_dataset
-    @catalog.datasets.where("identifier LIKE '#{@organization.slug}-inventario-institucional-de-datos'").last
+    @catalog.datasets.where("title LIKE 'Inventario Institucional de Datos de #{@organization.title}'").last
   end
 
   def create_dataset_and_distribution
@@ -59,7 +59,6 @@ class InventoryDatasetGenerator
 
   def build_dataset
     @catalog.datasets.build do |dataset|
-      dataset.identifier = "#{@organization.slug}-inventario-institucional-de-datos"
       dataset.title = "Inventario Institucional de Datos de #{@organization.title}"
       dataset.description = "Inventario Institucional de Datos de #{@organization.title}"
       dataset.keyword = 'inventario'

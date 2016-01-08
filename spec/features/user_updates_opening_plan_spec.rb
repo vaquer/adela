@@ -8,7 +8,7 @@ feature User, 'updates opening plan:' do
   end
 
   scenario 'and sees warning message' do
-    pending
+    skip
     opening_plan = @organization.opening_plans.first
 
     click_link 'Plan de Apertura'
@@ -34,7 +34,7 @@ feature User, 'updates opening plan:' do
   end
 
   scenario 'and generates catalog with consistent data' do
-    pending
+    skip
     changing_opening_plan = create :opening_plan, organization: @organization, publish_date: 2.days.from_now
     @organization.reload
     changing_opening_plan_index = @organization.opening_plans.size - 1

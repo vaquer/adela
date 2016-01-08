@@ -34,7 +34,7 @@ FactoryGirl.define do
     end
 
     trait :opening_plan do
-      ignore do
+      transient do
         datasets_count { Faker::Number.between(1, 5) }
         distributions_count { Faker::Number.between(1, 5) }
       end

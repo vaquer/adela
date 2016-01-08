@@ -39,8 +39,8 @@ feature Organization, 'manages profile:' do
 
     visit profile_organization_path(@not_my_organization)
 
-    page.should_not have_content 'Descripción'
-    page.should_not have_content 'URL Logo'
+    expect(page).not_to have_content 'Descripción'
+    expect(page).not_to have_content 'URL Logo'
     expect(current_path).to eq(organization_path(@not_my_organization))
   end
 end

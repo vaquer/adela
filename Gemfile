@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.3.0'
 
-gem 'rails', '4.1'
+gem 'rails', '4.2.5'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'font-awesome-rails'
@@ -48,7 +48,6 @@ gem 'nested_form'
 gem 'has_scope'
 gem 'rack-cors'
 gem 'state_machines-activerecord'
-gem 'gretel'
 gem 'autosize-rails'
 
 group :development, :test do

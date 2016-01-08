@@ -36,7 +36,7 @@ class CatalogsController < ApplicationController
 
   def notify_administrator
     administrator = @catalog.organization.administrator
-    CatalogMailer.publish_email(@catalog.id, administrator.user.id).deliver if administrator
+    CatalogMailer.publish_email(@catalog.id, administrator.user.id).deliver_now if administrator
   end
 
   def publish_distributions

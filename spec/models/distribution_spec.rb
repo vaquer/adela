@@ -9,13 +9,13 @@ describe Distribution do
 
   shared_examples 'a compliant distribution' do
     it 'should be compliant' do
-      expect(distribution.compliant?).to be_true
+      expect(distribution.compliant?).to be_truthy
     end
   end
 
   shared_examples 'a non compliant distribution' do
     it 'should be non compliant' do
-      expect(distribution.compliant?).to be_false
+      expect(distribution.compliant?).to be_falsey
     end
   end
 

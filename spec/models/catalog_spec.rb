@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Catalog do
   shared_examples 'a valid catalog' do
     it 'should be valid' do
-      catalog.should be_valid
+      expect(catalog).to be_valid
     end
   end
 

@@ -21,7 +21,7 @@ feature Admin, 'manages users:' do
     expect(page).to have_text "Archivo CSV"
     upload_the_file "adela-users.csv"
 
-    User.count.should == 3
+    expect(User.count).to eq(3)
   end
 
   scenario "can create an new user", js: true do

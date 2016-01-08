@@ -17,8 +17,8 @@ FactoryGirl.define do
       state 'broke'
     end
 
-    trait :validated do
-      state 'validated'
+    trait :documented do
+      state 'documented'
     end
 
     trait :published do

@@ -28,7 +28,7 @@ describe Admin::BaseController do
       end
 
       it "stores login time in session" do
-        session[:admin_logs_in].should eql(@admin_login_time)
+        expect(session[:admin_logs_in]).to eql(@admin_login_time)
       end
 
       it "expires admin session" do

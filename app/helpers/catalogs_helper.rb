@@ -1,6 +1,6 @@
 module CatalogsHelper
   def can_publish?(catalog)
-    catalog.datasets.map(&:distributions).flatten.map(&:state).grep('validated').present?
+    catalog.datasets.map(&:distributions).flatten.map(&:state).grep('documented').present?
   end
 
   def published_catalog_id(catalog)

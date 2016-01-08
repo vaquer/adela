@@ -10,20 +10,20 @@ describe UserMailer do
     end
 
     it "should be sent to the users email" do
-      @mail.to.should eql([@user.email])
+      expect(@mail.to).to eql([@user.email])
     end
 
     it 'Should be sent by adela' do
-      @mail.from.should eql(["no-reply@adela.com"])
+      expect(@mail.from).to eql(["no-reply@adela.com"])
     end
 
     it "should have the right subject" do
-      @mail.subject.should eql("Nuevo usuario en ADELA")
+      expect(@mail.subject).to eql("Nuevo usuario en ADELA")
     end
 
     it "should have the right content" do
-      @mail.body.raw_source.should include @password
-      @mail.body.raw_source.should include "Te recomendamos ampliamente cambiar la contraseña temporal recibida"
+      expect(@mail.body.raw_source).to include @password
+      expect(@mail.body.raw_source).to include "Te recomendamos ampliamente cambiar la contraseña temporal recibida"
     end
   end
 end

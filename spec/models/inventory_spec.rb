@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Inventory do
   shared_examples 'a valid inventory' do
     it 'should be valid ' do
-      inventory.should be_valid
+      expect(inventory).to be_valid
     end
   end
 
   shared_examples 'an invalid inventory' do
     it 'should not be valid ' do
-      inventory.should_not be_valid
+      expect(inventory).not_to be_valid
     end
   end
 
@@ -32,7 +32,7 @@ describe Inventory do
     let(:inventory) { create(:inventory) }
 
     it 'should be an InventoryXLSXParserWorker enqueued job' do
-      expect(InventoryXLSXParserWorker).to have_enqueued_job(inventory.id)
+      expect { inventory.run_callbacks(:commit) }.to change { InventoryXLSXParserWorker.jobs.count }.by(1)
     end
   end
 end

@@ -93,7 +93,7 @@ describe CatalogsController do
 
     it 'enqueues the harvest job' do
       catalog_url = "http://adela.datos.gob.mx/#{@organization.slug}/catalogo.json"
-      expect(ShogunHarvestWorker).to have_enqueued_job(catalog_url)
+      expect(ShogunHarvestWorker.jobs.size).to eq(1)
     end
   end
 end

@@ -1,4 +1,5 @@
 class Dataset < ActiveRecord::Base
+  include DatasetXLSXBuilder
   belongs_to :catalog
 
   has_many :distributions, dependent: :destroy

@@ -28,11 +28,16 @@ describe Inventory do
     it_behaves_like 'an invalid inventory'
   end
 
-  context 'after saving an inventory' do
+  context 'after creating an inventory' do
     let(:inventory) { create(:inventory) }
 
     it 'should be an InventoryXLSXParserWorker enqueued job' do
       expect { inventory.run_callbacks(:commit) }.to change { InventoryXLSXParserWorker.jobs.count }.by(1)
+    end
+
+    it 'should be an InventorySpreadsheetFileWorker enqueued job' do
+      expect { inventory.run_callbacks(:commit) }.to change { InventorySpreadsheetFileWorker
+        .jobs.count }.by(1)
     end
   end
 end

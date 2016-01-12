@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106192525) do
+ActiveRecord::Schema.define(version: 20160112211121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160106192525) do
     t.datetime "updated_at"
     t.datetime "publish_date"
     t.string   "contact_position"
+    t.boolean  "published",           default: false
   end
 
   add_index "datasets", ["catalog_id"], name: "index_datasets_on_catalog_id", using: :btree

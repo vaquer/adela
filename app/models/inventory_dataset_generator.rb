@@ -54,7 +54,7 @@ class InventoryDatasetGenerator
   end
 
   def build_catalog
-    @organization.build_catalog(published: false)
+    @organization.create_catalog(published: false)
   end
 
   def build_dataset

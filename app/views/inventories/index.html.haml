@@ -13,11 +13,11 @@
         %li.item
           %span Sube el inventario de datos
       = render 'inventories/shared/form'
-    - if @inventory.compliant? && inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
+    - if @inventory.compliant? && @inventory.inventory_elements.present?
       = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
       = link_to 'Descargar Inventario', @inventory.spreadsheet_file.url, class: 'btn btn-primary'
       = link_to 'Actualizar Inventario', new_inventory_path, class: 'btn btn-primary'
-    - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present? || !@inventory.compliant?
+    - if @inventory.inventory_elements.present? || !@inventory.compliant?
       %ul.list
         %li.item
           %span Actualiza el inventario de datos

@@ -2,27 +2,12 @@
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos
-    - if @inventory.error_message
-      .card.padding-top.bg--grey
-        %h5.primary.boldish Desafortunadamente no pudimos procesar tu último Inventario de Datos
-        %p
-          Revisa que tu archivo respete el formato original de la plantilla. Si el problema persiste, por favor contacta a escuadron@datos.gob.mx con una copia de tu inventario.
-        %p.primary
-          = "Mensaje de error: #{@inventory.error_message}"
-      %ul.list
-        %li.item
-          %span Sube el inventario de datos
-      = render 'inventories/shared/form'
-    - if @inventory.inventory_elements.present?
-      = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
-      = link_to 'Descargar Inventario', @inventory.spreadsheet_file.url, class: 'btn btn-primary'
+    - if current_inventory && current_inventory.error_message
+      = render partial: 'inventories/shared/error_message', locals: { inventory: current_inventory }
+    - if current_organization.catalog && current_organization.catalog.datasets.present?
+      = render partial: 'inventories/shared/list', locals: { inventory: current_inventory }
+      = link_to 'Descargar Inventario', current_inventory.spreadsheet_file.url, class: 'btn btn-primary'
       = link_to 'Actualizar Inventario', new_inventory_path, class: 'btn btn-primary'
-    - if @inventory.inventory_elements.present?
-      %ul.list
-        %li.item
-          %span Actualiza el inventario de datos
+      = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
+    - else
       = render 'inventories/shared/form'
-      %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
-      %ul.list__warnings
-        = render partial: 'inventories/shared/inventory_warnings_list', locals: { inventory: @inventory }
-        = render partial: 'inventories/shared/element_warnings_list', collection: @inventory.inventory_elements, as: :element

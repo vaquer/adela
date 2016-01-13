@@ -11,6 +11,6 @@ class InventoryXLSXParserWorker
   private
 
   def generate_dataset(inventory)
-    InventoryDatasetGenerator.new(inventory).generate if inventory.compliant?
+    InventoryDatasetGenerator.new(inventory).generate if inventory.valid?
   end
 end

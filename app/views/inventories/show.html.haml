@@ -2,7 +2,7 @@
   .card
     %h3.title Planea
     %h5.subtitle Inventario de datos
-    - if @inventory.compliant? && @inventory.inventory_elements.present?
+    - if @inventory.inventory_elements.present?
       = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
       = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
     - elsif @inventory.error_message
@@ -18,7 +18,7 @@
       = render 'inventories/shared/form'
     - elsif @inventory.inventory_elements.blank?
       = render partial: 'inventories/shared/parsing_spreadsheet', locals: { inventory: @inventory }
-    - elsif @inventory.inventory_elements.present? || !@inventory.compliant?
+    - elsif @inventory.inventory_elements.present?
       %ul.list
         %li.item
           %span Actualiza el inventario de datos

@@ -16,7 +16,6 @@ module DatasetXLSXBuilder
       end
 
       def build
-        return unless public_dataset?
         build_dataset
         build_distribution
         @dataset.reload

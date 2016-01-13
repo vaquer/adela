@@ -16,7 +16,7 @@ Adela::Application.routes.draw do
       get 'profile', on: :member
       get 'search', on: :collection
 
-      resources :catalogs, only: [:index, :show], shallow: true do
+      resources :catalogs, only: [:index, :show, :update], shallow: true do
         get 'check', on: :collection
         put 'publish', on: :member
 

@@ -10,7 +10,6 @@ class OpeningPlanController < ApplicationController
 
   def new
     @organization = current_organization
-    build_opening_plan_from_inventory(@organization.opening_plans) unless current_inventory.nil?
   end
 
   def create

@@ -7,4 +7,5 @@ class Catalog < ActiveRecord::Base
 
   # TODO: remove uploader after migrating data from csv to database
   mount_uploader :csv_file, FileUploader
+  accepts_nested_attributes_for :datasets
 end

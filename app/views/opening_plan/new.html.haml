@@ -18,7 +18,7 @@
           El Inventario de Datos debe de contener al menos un conjunto de datos público para generar el Plan de Apertura.
         = link_to 'Revisar el Inventario de Datos', inventories_es_path, class: 'btn btn-primary'
     - else
-      = form_for @organization, url: url_for(controller: 'opening_plan', action: 'create'), html: { class: 'form', id: 'opening-plan-form' }, method: 'post' do |f|
+      = form_for @organization.catalog, html: { class: 'form', id: 'opening-plan-form' } do |f|
         %table.table.table-striped
           %thead
             %tr
@@ -29,13 +29,13 @@
               %th Frecuencia con la que actualizan
               %th Confirmar fecha de Publicaci&oacute;n
           %tbody
-            - @organization.opening_plans.each do |plan|
-              = f.fields_for :opening_plans, plan do |builder|
+            - @organization.catalog.datasets.each do |dataset|
+              = f.fields_for :datasets, dataset do |builder|
                 %tr
-                  %th.text-center= builder.check_box :_destroy, { checked: true, class: 'validable' }, '0', '1'
+                  %th.text-center= builder.check_box :published, { checked: true, class: 'validable' }
                   %th
-                    = builder.hidden_field :name, readonly: true, required: true
-                    = plan.name
+                    = builder.hidden_field :title, readonly: true, required: true
+                    = dataset.title
                   %th= builder.text_area :description, required: true, class: 'fill'
                   %th P&uacute;blico
                   %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
@@ -45,27 +45,27 @@
 :javascript
   function updateValidations(event) {
     function id() {
-      return event.target.id.match(/^organization_opening_plans_attributes_(\d+)__destroy/)[1];
+      return event.target.id.match(/^catalog_datasets_attributes_(\d+)__destroy/)[1];
     }
 
     function description() {
-      return $("#organization_opening_plans_attributes_" + id() + "_description");
+      return $("#catalog_datasets_attributes_" + id() + "_description");
     }
 
     function title() {
-      return $("#organization_opening_plans_attributes_" + id() + "_name");
+      return $("#catalog_datasets_attributes_" + id() + "_name");
     }
 
     function publishDate() {
-      return $("#organization_opening_plans_attributes_" + id() + "_publish_date");
+      return $("#catalog_datasets_attributes_" + id() + "_publish_date");
     }
 
     function descriptionErrorLabel() {
-      return $("#organization_opening_plans_attributes_" + id() + "_description-error");
+      return $("#catalog_datasets_attributes_" + id() + "_description-error");
     }
 
     function publishDateErrorLabel() {
-      return $("#organization_opening_plans_attributes_" + id() + "_publish_date-error");
+      return $("#catalog_datasets_attributes_" + id() + "_publish_date-error");
     }
 
     function removeRequiredAttribute() {

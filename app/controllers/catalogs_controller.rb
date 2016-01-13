@@ -1,6 +1,6 @@
 class CatalogsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_opening_plan
+  before_action :require_opening_plan, except: [:update]
 
   def index
     redirect_to catalog_datasets_path(current_organization.catalog)
@@ -9,6 +9,12 @@ class CatalogsController < ApplicationController
 
   def show
     @catalog = current_organization.catalog
+  end
+
+  def update
+    @catalog = Catalog.find(params['id'])
+    @catalog.update(catalog_update_params)
+    redirect_to opening_plan_index_path
   end
 
   def check
@@ -30,6 +36,14 @@ class CatalogsController < ApplicationController
   end
 
   private
+
+  def catalog_update_params
+    params.require(:catalog).permit(
+      datasets_attributes: [
+        :id, :published, :title, :description, :accrual_periodicity, :publish_date
+      ]
+    )
+  end
 
   def catalog_params
     params.require(:catalog).permit(distribution_ids: [])

@@ -74,10 +74,6 @@ class OpeningPlanController < ApplicationController
     OpeningPlanDatasetGenerator.new(@organization.catalog).generate
   end
 
-  def generate_catalog_datasets
-    CatalogDatasetsGenerator.new(@organization).execute
-  end
-
   def organization_params
     params.require(:organization).permit(
       opening_plans_attributes: [

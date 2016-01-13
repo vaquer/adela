@@ -1,4 +1,4 @@
 %tr
   %th= dataset.title
   %th= dataset.public_access? ? 'Público' : 'Privado'
-  %th= dataset.publish_date
+  %th= dataset.publish_date.strftime('%F') if dataset.publish_date

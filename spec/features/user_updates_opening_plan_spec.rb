@@ -20,7 +20,7 @@ feature User, 'updates opening plan:' do
     expect(page).to have_content "Los cambios al Plan de Apertura Institucional se verán reflejados en el Catálogo de Datos."
     expect(page).to have_field "Mensaje"
 
-    fill_in "organization_opening_plans_attributes_0_description", with: "New description"
+    fill_in "catalog_datasets_attributes_0_description", with: "New description"
     fill_in "Mensaje", with: "Commit message"
     click_button "Generar Plan de Apertura"
 
@@ -49,9 +49,9 @@ feature User, 'updates opening plan:' do
     end
 
     visit new_opening_plan_path
-    uncheck "organization_opening_plans_attributes_#{changing_opening_plan_index}__destroy"
-    fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_description", with: "Changing description"
-    fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_publish_date", with: "2015-11-11"
+    uncheck "catalog_datasets_attributes_#{changing_opening_plan_index}__destroy"
+    fill_in "catalog_datasets_attributes_#{changing_opening_plan_index}_description", with: "Changing description"
+    fill_in "catalog_datasets_attributes_#{changing_opening_plan_index}_publish_date", with: "2015-11-11"
 
     click_button "Generar Plan de Apertura"
     click_link "Catálogo de Datos"
@@ -60,9 +60,9 @@ feature User, 'updates opening plan:' do
     expect(page).not_to have_content "11-Nov-2015"
 
     visit new_opening_plan_path
-    check "organization_opening_plans_attributes_#{changing_opening_plan_index}__destroy"
-    fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_description", with: "Changing description"
-    fill_in "organization_opening_plans_attributes_#{changing_opening_plan_index}_publish_date", with: "2015-10-10"
+    check "catalog_datasets_attributes_#{changing_opening_plan_index}__destroy"
+    fill_in "catalog_datasets_attributes_#{changing_opening_plan_index}_description", with: "Changing description"
+    fill_in "catalog_datasets_attributes_#{changing_opening_plan_index}_publish_date", with: "2015-10-10"
 
     click_button "Generar Plan de Apertura"
     click_link "Catálogo de Datos"

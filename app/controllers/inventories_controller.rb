@@ -12,7 +12,7 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    @inventory = current_organization.inventories.build(intentory_params)
+    @inventory = current_organization.inventories.build(inventory_params)
     @inventory.save
     redirect_to inventory_path(@inventory)
   end
@@ -23,7 +23,7 @@ class InventoriesController < ApplicationController
 
   private
 
-  def intentory_params
+  def inventory_params
     params.require(:inventory).permit(:spreadsheet_file, :authorization_file)
   end
 end

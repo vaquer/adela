@@ -41,12 +41,11 @@ module Features
 
     # TODO: rename method to something like given_user_generated_catalog
     def given_organization_has_catalog
-      inventory = create(:inventory, :elements, organization: @user.organization)
+      inventory = create(:inventory, organization: @user.organization)
       InventoryXLSXParserWorker.new.perform(inventory.id)
+      InventorySpreadsheetFileWorker.new.perform(inventory.id)
 
-      org = @user.organization
       generate_new_opening_plan
-
       @user.organization.reload
     end
 

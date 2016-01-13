@@ -3,7 +3,7 @@ class OpeningPlanController < ApplicationController
 
   def index
     @organization = current_organization
-    if current_inventory.present? && @organization.opening_plans.empty?
+    if current_inventory.present? && @organization.catalog.datasets.where(published: true).blank?
       redirect_to new_opening_plan_path
     end
   end

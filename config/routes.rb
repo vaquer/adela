@@ -26,11 +26,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, except: [:edit, :update, :destroy] do
-      member do
-        get 'publish'
-      end
-    end
+    resources :inventories, only: [:index, :new, :create]
 
     resources :opening_plan, only: [:index, :new, :create] do
       member do

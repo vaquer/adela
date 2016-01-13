@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112211121) do
+ActiveRecord::Schema.define(version: 20160113115225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,23 +105,6 @@ ActiveRecord::Schema.define(version: 20160112211121) do
   end
 
   add_index "inventories", ["organization_id"], name: "index_inventories_on_organization_id", using: :btree
-
-  create_table "inventory_elements", force: :cascade do |t|
-    t.integer  "row"
-    t.text     "responsible"
-    t.text     "dataset_title"
-    t.text     "resource_title"
-    t.text     "description"
-    t.boolean  "private"
-    t.text     "access_comment"
-    t.text     "media_type"
-    t.date     "publish_date"
-    t.integer  "inventory_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "inventory_elements", ["inventory_id"], name: "index_inventory_elements_on_inventory_id", using: :btree
 
   create_table "liaisons", force: :cascade do |t|
     t.integer  "organization_id"

@@ -47,7 +47,6 @@ module Features
       org = @user.organization
       generate_new_opening_plan
 
-      CatalogDatasetsGenerator.new(org).execute
       @user.organization.reload
     end
 

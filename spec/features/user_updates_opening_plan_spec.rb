@@ -77,13 +77,15 @@ feature User, 'updates opening plan:' do
   end
 
   scenario "and doesn't deletes the previous opening plan" do
-    opening_plan = @organization.opening_plans.first
+    given_organization_has_catalog
     click_link 'Plan de Apertura'
     click_link 'Actualizar Plan de Apertura'
     click_link 'Plan de Apertura'
 
-    expect(page).to have_content opening_plan.name
-    expect(page).to have_content opening_plan.description
+    @organization.catalog.datasets.each do |dataset|
+      expect(page).to have_content(dataset.title)
+      expect(page).to have_content(dataset.description)
+    end
   end
 
   def given_organization_inventory_element_with(name)

@@ -1,0 +1,18 @@
+.dropdown
+  %button.btn.btn-default.dropdown-toggle{ 'type' => 'button', 'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'true' }
+    %span.caret
+  %ul.dropdown-menu
+    %li.dropdown-header
+      Conjunto de Datos
+    %li
+      = link_to '#' do
+        Editar
+    %li
+      = link_to '#' do
+        Eliminar
+    %li.divider{ 'role' => 'separator' }
+    %li.dropdown-header
+      Recursos de Datos
+    %li
+      = link_to '#' do
+        Agregar

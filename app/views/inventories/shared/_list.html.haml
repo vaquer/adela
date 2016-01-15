@@ -1,8 +1,8 @@
-%table.table.table-striped
+%table.table
   %thead
     %tr
       %th Nombre del conjunto
-      %th Acceso
-      %th Fecha estimada de publicación
+      %th.center Acceso
+      %th.center Fecha estimada de publicación
   %tbody
     = render partial: 'inventories/shared/dataset', collection: current_organization.catalog.datasets

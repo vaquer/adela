@@ -1,4 +1,5 @@
-%tr
-  %th= dataset.title
-  %th= dataset.public_access? ? 'Público' : 'Privado'
-  %th= dataset.publish_date.strftime('%F') if dataset.publish_date
+%tr.active
+  %td= dataset.title
+  %td.center= dataset.public_access? ? 'Público' : 'Privado'
+  %td.center= dataset.publish_date.strftime('%F') if dataset.publish_date
+= render partial: 'inventories/shared/distribution', collection: dataset.distributions

@@ -2,4 +2,6 @@
   %td= dataset.title
   %td.center= dataset.public_access? ? 'Público' : 'Privado'
   %td.center= dataset.publish_date.strftime('%F') if dataset.publish_date
+  %td.center
+    = render partial: 'inventories/shared/menus/dataset_actions', locals: { dataset: dataset }
 = render partial: 'inventories/shared/distribution', collection: dataset.distributions

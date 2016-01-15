@@ -3,3 +3,6 @@
   %td.center
     %span.label.label-default
       = distribution.media_type
+  %td
+  %td.center
+    = render partial: 'inventories/shared/menus/distribution_actions', locals: { distribution: distribution }

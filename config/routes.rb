@@ -71,6 +71,10 @@ Adela::Application.routes.draw do
     resources :organizations, except: [:show, :destroy]
   end
 
+  namespace :inventories do
+    resources :datasets
+  end
+
   namespace :mockups do
     get '/469', to: 'templates#s469'
     get '/473', to: 'templates#s473'

@@ -8,7 +8,7 @@
       = link_to edit_inventories_dataset_path(dataset) do
         Editar
     %li
-      = link_to '#' do
+      = link_to inventories_dataset_path(dataset), data: {}, method: :delete do
         Eliminar
     %li.divider{ 'role' => 'separator' }
     %li.dropdown-header

@@ -19,4 +19,10 @@ module DistributionActions
     @distribution.update(distribution_params)
     update_customization if update_customization.present?
   end
+
+  def destroy
+    @distribution = Distribution.find(params['id'])
+    @distribution.destroy
+    destroy_customization if destroy_customization.present?
+  end
 end

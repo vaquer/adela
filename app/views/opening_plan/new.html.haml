@@ -11,12 +11,6 @@
           Publica el inventario de datos
         %p
           Antes de generar el Plan de apertura de la institución debes de subir el Inventario de Datos.
-    - elsif current_inventory.inventory_elements.all?(&:private)
-      .card.padding-top.bg--grey
-        %h5.primary.boldish Tu Inventario de Datos no contiene conjuntos públicos
-        %p
-          El Inventario de Datos debe de contener al menos un conjunto de datos público para generar el Plan de Apertura.
-        = link_to 'Revisar el Inventario de Datos', inventories_es_path, class: 'btn btn-primary'
     - else
       = form_for @organization.catalog, html: { class: 'form', id: 'opening-plan-form' } do |f|
         %table.table.table-striped
@@ -30,6 +24,7 @@
               %th Confirmar fecha de Publicaci&oacute;n
           %tbody
             - @organization.catalog.datasets.each do |dataset|
+              - next unless dataset.public_access?
               = f.fields_for :datasets, dataset do |builder|
                 %tr
                   %th.text-center= builder.check_box :published, { checked: true, class: 'validable' }
@@ -39,7 +34,7 @@
                   %th= builder.text_area :description, required: true, class: 'fill'
                   %th P&uacute;blico
                   %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
-                  %th= builder.text_field :publish_date, required: true, class: 'datepicker'
+                  %th= builder.text_field :publish_date, value: dataset.publish_date.strftime('%F'), required: true, class: 'datepicker'
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
 
 :javascript

@@ -8,6 +8,7 @@ class Dataset < ActiveRecord::Base
   has_one :sector, through: :dataset_sector
 
   accepts_nested_attributes_for :dataset_sector
+  accepts_nested_attributes_for :distributions, allow_destroy: true
 
   def identifier
     title.to_slug.normalize.to_s

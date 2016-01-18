@@ -5,9 +5,9 @@
     - if current_inventory && current_inventory.error_message
       = render partial: 'inventories/shared/error_message', locals: { inventory: current_inventory }
     - if current_organization.catalog && current_organization.catalog.datasets.present?
+      .pull-right
+        = render partial: 'inventories/shared/menus/inventory_actions'
       = render partial: 'inventories/shared/list', locals: { inventory: current_inventory }
-      = link_to 'Descargar Inventario', current_inventory.spreadsheet_file.url, class: 'btn btn-primary'
-      = link_to 'Actualizar Inventario', new_inventory_path, class: 'btn btn-primary'
       = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
     - else
       = render 'inventories/shared/form'

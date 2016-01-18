@@ -67,7 +67,7 @@ class CatalogsController < ApplicationController
   end
 
   def require_opening_plan
-    return if current_organization.opening_plans.present?
+    return if current_organization.catalog.datasets.where(published: true).present?
     render :error
     return
   end

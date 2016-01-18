@@ -12,7 +12,7 @@ module DatasetsHelper
   end
 
   def next_dataset(dataset)
-    datasets = current_organization.catalog.datasets.sort_by(&:publish_date)
+    datasets = current_organization.catalog.datasets.where(published: true).sort_by(&:publish_date)
     index = datasets.index { |ds| ds.id == dataset.id }
     datasets[index + 1]
   end

@@ -1,4 +1,9 @@
 module DatasetActions
+  def create
+    @dataset = current_organization.catalog.datasets.create(dataset_params)
+    create_customization if create_customization.present?
+  end
+
   def edit
     @dataset = Dataset.find(params['id'])
   end

@@ -8,4 +8,10 @@ module DatasetActions
     @dataset.update(dataset_params)
     update_customization if update_customization.present?
   end
+
+  def destroy
+    @dataset = Dataset.find(params['id'])
+    @dataset.destroy
+    destroy_customization if destroy_customization.present?
+  end
 end

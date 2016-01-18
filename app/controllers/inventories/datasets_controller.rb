@@ -3,12 +3,17 @@ class Inventories::DatasetsController < ApplicationController
 
   before_action :authenticate_user!
 
+  private
+
   def update_customization
     redirect_to inventories_path
     return
   end
 
-  private
+  def destroy_customization
+    redirect_to inventories_path
+    return
+  end
 
   def dataset_params
     params.require(:dataset).permit(:title, :public_access, :publish_date)

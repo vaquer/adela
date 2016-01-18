@@ -23,11 +23,12 @@
             %th Confirmar fecha de Publicaci&oacute;n
         %tbody
           - @organization.catalog.datasets.each do |dataset|
+            - next unless dataset.public_access? && dataset.published?
             %tr
               %th= dataset.title
               %th= dataset.description
               %th P&uacute;blico
               %th= parse_iso8601(dataset.accrual_periodicity)
-              %th= dataset.publish_date
+              %th= dataset.publish_date.strftime('%F')
       = link_to 'Descargar Archivo', export_opening_plan_path(current_organization, format: :csv), class: 'btn btn-primary'
       = link_to 'Actualizar Plan de Apertura', new_opening_plan_path, class: 'btn btn-primary'

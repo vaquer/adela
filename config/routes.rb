@@ -72,7 +72,9 @@ Adela::Application.routes.draw do
   end
 
   namespace :inventories do
-    resources :datasets
+    resources :datasets do
+      resources :distributions
+    end
   end
 
   namespace :mockups do

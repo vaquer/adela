@@ -1,19 +1,10 @@
-%ul.list
-  %li.item
-    %span Sube el inventario de datos
 = form_for Inventory.new do |f|
   .form-group
-    %label.block Selecciona el archivo *
-    .file_input
-      = f.file_field :spreadsheet_file, required: true
+    %label Selecciona el archivo *
+    = f.file_field :spreadsheet_file, required: true
   .form-group
-    %label.block Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
-    .file_input
-      = f.file_field :authorization_file
+    %label Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
+    = f.file_field :authorization_file
   .form-group
     %button.btn.btn-primary{ type: 'submit' } Subir inventario
   %p * Campos obligatorios
-:javascript
-  $(function() {
-    $( "#new_inventory" ).validate({ ignore: '' });
-  });

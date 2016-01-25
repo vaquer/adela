@@ -14,7 +14,6 @@
 //= require jquery.spin
 //= require bootstrap
 //= require toastr
-//= require fakeinputs
 //= require jquery.joyride-2.1
 //= require jquery.cookie
 //= require components/datepicker
@@ -24,7 +23,6 @@
 //= require_directory .
 
 ready = ->
-  initFileUploads()
   loadDatePicker()
   loadCheckboxes()
 

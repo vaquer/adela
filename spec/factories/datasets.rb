@@ -4,7 +4,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     keyword { Faker::Lorem.words.join(',') }
     modified { Faker::Time.forward }
-    contact_position { Faker::Lorem.word }
+    contact_position { Faker::Company.profession }
     contact_point { Faker::Name.name }
     mbox { Faker::Internet.email }
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }

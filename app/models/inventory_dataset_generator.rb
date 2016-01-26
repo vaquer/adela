@@ -94,7 +94,7 @@ class InventoryDatasetGenerator
       distribution.title = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.description = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.download_url = @inventory.spreadsheet_file.url
-      distribution.media_type = 'application/vnd.ms-excel'
+      distribution.media_type = 'excel'
       distribution.byte_size = @inventory.spreadsheet_file.file.size
       distribution.temporal = build_temporal(dataset.modified)
       distribution.modified = dataset.modified

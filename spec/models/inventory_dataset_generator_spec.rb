@@ -4,7 +4,7 @@ describe InventoryDatasetGenerator do
   describe '#generate' do
     context 'a new inventory' do
       let(:organization) { create(:organization) }
-      let(:inventory) { create(:inventory, :elements, organization: organization) }
+      let(:inventory) { create(:inventory, organization: organization) }
 
       before(:each) do
         InventoryDatasetGenerator.new(inventory).generate
@@ -63,8 +63,8 @@ describe InventoryDatasetGenerator do
       before(:each) do
         @organization = create(:organization)
         old_inventory = create(:inventory, organization: @organization)
+        InventoryDatasetsWorker.new.perform(old_inventory.id)
 
-        InventoryXLSXParserWorker.new.perform(old_inventory.id)
         @old_dataset = @organization.catalog.datasets.first.deep_clone(include: [:distributions])
 
         Timecop.travel(Faker::Date.forward)
@@ -79,7 +79,7 @@ describe InventoryDatasetGenerator do
       end
 
       it 'should not create a new dataset' do
-        expect(@organization.catalog.datasets.count).to eq(1)
+        expect(@organization.catalog.non_editable_datasets.count).to eq(1)
       end
 
       it 'should update the modified field from the existing dataset' do

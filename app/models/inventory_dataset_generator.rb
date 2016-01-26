@@ -50,10 +50,10 @@ class InventoryDatasetGenerator
   end
 
   def organization_catalog
-    @organization.catalog.present? ? @organization.catalog : build_catalog
+    @organization.catalog.present? ? @organization.catalog : create_catalog
   end
 
-  def build_catalog
+  def create_catalog
     @organization.create_catalog(published: false)
   end
 

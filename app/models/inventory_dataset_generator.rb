@@ -70,6 +70,7 @@ class InventoryDatasetGenerator
       dataset.landing_page = @organization.landing_page
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 8, 28)
+      dataset.editable = false
     end
   end
 

@@ -21,9 +21,6 @@ feature User, 'manages inventory datasets crud:' do
     click_on('Guardar')
 
     expect(current_path).to eq(inventories_path)
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
-    find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
-
     expect(page).to have_css('.table tbody tr.dataset', count: 2)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
@@ -33,7 +30,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text(distribution_attributes[:media_type])
     end
   end
 
@@ -62,7 +59,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text(distribution_attributes[:media_type])
     end
   end
 
@@ -129,15 +126,14 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     distribution_attributes = attributes_for(:distribution)
-    fill_distribution_form(distribution_attributes, 'json')
+    fill_distribution_form(distribution_attributes)
     click_on('Guardar')
 
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text(distribution_attributes[:media_type])
     end
   end
 
@@ -152,16 +148,15 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     distribution_attributes = attributes_for(:distribution)
-    fill_distribution_form(distribution_attributes, 'json')
+    fill_distribution_form(distribution_attributes)
     click_on('Guardar')
-
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
-    within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
-    end
 
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 1)
+
+    within find('tr.distribution', text: distribution_attributes[:title]) do
+      expect(page).to have_text(distribution_attributes[:media_type])
+    end
     expect(page).not_to have_text('Programa anual de Mantenimiento')
   end
 

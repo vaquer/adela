@@ -103,20 +103,8 @@ feature User, 'uploads inventory spreadsheet file:' do
     end
   end
 
-  scenario 'sees the invnentory activity log text area' do
-    upload_inventory_with_file('inventario_general_de_datos.xlsx')
-    within('.navbar') { click_on('Inventario de Datos') }
-
-    click_on('Actualizar Inventario')
-
-    expect(current_path).to eq(new_inventory_path)
-    expect(page).to have_css('#inventory_activity_logs_attributes_0_description')
-  end
-
   def submit_inventory_form_with_spreadsheet_file(file_name)
     attach_inventory_spreadsheet_file(file_name)
-    attach_inventory_designation_file
-    fill_activity_log
     submit_inventory_form_and_run_background_jobs
   end
 

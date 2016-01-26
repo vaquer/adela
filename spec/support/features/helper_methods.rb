@@ -7,6 +7,12 @@ module Features
       click_on("ENTRAR")
     end
 
+    def upload_inventory_with_file(file_name)
+      spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
+      inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)
+      InventoryDatasetsWorker.new.perform(inventory.id)
+    end
+
     def sees_success_message(message)
       within(".toast-success") do
         expect(page).to have_text(message)

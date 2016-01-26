@@ -17,12 +17,13 @@ describe CatalogXLSXParser do
 
     it 'should create datasets from the inventory spreadsheet file' do
       datasets = organization.catalog.datasets
-      expect(datasets.count).to eq(1)
+      expect(datasets.count).to eq(3)
     end
 
     it 'should create distributions from the inventory spreadsheet file' do
-      distributions = organization.catalog.datasets.first.distributions
-      expect(distributions.count).to eq(1)
+      organization.catalog.datasets.each do |dataset|
+        expect(dataset.distributions.count).to eq(1)
+      end
     end
   end
 end

@@ -11,4 +11,8 @@ class Catalog < ActiveRecord::Base
   def editable_datasets
     datasets.where(editable: true)
   end
+
+  def non_editable_datasets
+    datasets.where(editable: false)
+  end
 end

@@ -6,11 +6,9 @@
     %p
       Antes de poder publicar el Catálogo de Datos es necesario haber concluido los siguientes pasos:
     %ul.list
-      - unless current_inventory
-        %li.item
-          .index 1
-          = link_to 'Subir el Inventario de Datos', inventories_path
-      - unless current_organization.opening_plans.present?
-        %li.item
-          .index 2
-          = link_to 'Generar Plan de Apertura', opening_plan_index_path
+      %li.item
+        .index 1
+        = link_to 'Subir el Inventario de Datos', inventories_path
+      %li.item
+        .index 2
+        = link_to 'Generar Plan de Apertura', opening_plan_index_path

@@ -22,7 +22,7 @@
           %p= "Frecuencia de actualización: #{accrual_periodicity_translate(dataset.accrual_periodicity)}"
           %p= "Período de tiempo que cubre: #{dataset.temporal}"
           %p= "Fecha de última modificación: #{dataset.modified}"
-          %p= "Sector: #{dataset.sector.title}"
+          %p= "Sector: #{dataset.sector.try(:title)}"
           %p= "Palabras clave: #{dataset.keyword}"
           %p= "Dirección web de diccionario: #{dataset.landing_page}"
 

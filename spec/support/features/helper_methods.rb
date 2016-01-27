@@ -7,6 +7,10 @@ module Features
       click_on("ENTRAR")
     end
 
+    def given_organization_with_inventory
+      upload_inventory_with_file('inventario_general_de_datos.xlsx')
+    end
+
     def upload_inventory_with_file(file_name)
       spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
       inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)

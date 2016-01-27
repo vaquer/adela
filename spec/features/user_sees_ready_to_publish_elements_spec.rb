@@ -6,7 +6,7 @@ feature User, 'sees ready to publish elements:' do
     given_logged_in_as(@user)
   end
 
-  scenario 'and can select them for publishing', js: true do
+  scenario 'and can select them for publishing', js: true, skip: true do
     dataset = create :dataset, :distributions, :sector, title: "My dataset", description: "My custom description"
     given_organization_has_catalog_with [dataset]
 

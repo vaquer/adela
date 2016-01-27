@@ -71,6 +71,7 @@ class InventoryDatasetGenerator
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 8, 28)
       dataset.editable = false
+      dataset.published = true
     end
   end
 

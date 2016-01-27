@@ -20,6 +20,7 @@ web:
   environment:
     - AMAZON_ACCESS_KEY=''
     - AMAZON_SECRET_KEY=''
+    - AWS_REGION=''
     - APP_DESCRIPTION=''
     - CATALOG_URL=''
     - HOST=''

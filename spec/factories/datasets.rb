@@ -12,6 +12,9 @@ FactoryGirl.define do
     landing_page { Faker::Internet.url }
     accrual_periodicity 'R/P1Y'
     publish_date { Faker::Time.forward }
+    published true
+    public_access true
+    editable true
     catalog
 
     trait :distributions do

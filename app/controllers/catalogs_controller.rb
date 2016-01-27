@@ -67,8 +67,12 @@ class CatalogsController < ApplicationController
   end
 
   def require_opening_plan
-    return if current_organization.catalog.datasets.where(published: true).present?
+    return if current_organization.catalog && catalog_contains_editable_and_published_datasets?
     render :error
     return
+  end
+
+  def catalog_contains_editable_and_published_datasets?
+    current_organization.catalog.datasets.where(editable: true, published: true).present?
   end
 end

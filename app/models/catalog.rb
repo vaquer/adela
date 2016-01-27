@@ -8,6 +8,12 @@ class Catalog < ActiveRecord::Base
 
   accepts_nested_attributes_for :datasets
 
+  def opening_plan_datasets
+    datasets.where(public_access: true, editable: true).select do |dataset|
+      dataset.valid?(:inventory)
+    end
+  end
+
   def catalog_datasets
     datasets.where(public_access: true, published: true).select do |dataset|
       dataset.valid?(:opening_plan)

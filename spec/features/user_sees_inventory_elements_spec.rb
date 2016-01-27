@@ -25,12 +25,6 @@ feature User, 'sees inventory elements:' do
     end
   end
 
-  def upload_inventory_with_file(file_name)
-    spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
-    @inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)
-    InventoryXLSXParserWorker.new.perform(@inventory.id)
-  end
-
   def edit_catalog_first_set
     click_link "Catálogo de Datos"
     within set_row do

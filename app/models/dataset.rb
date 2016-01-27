@@ -10,6 +10,10 @@ class Dataset < ActiveRecord::Base
   accepts_nested_attributes_for :dataset_sector
   accepts_nested_attributes_for :distributions, allow_destroy: true
 
+  with_options on: :opening_plan do |dataset|
+    dataset.validates :description, :accrual_periodicity, :public_access, :publish_date, presence: true
+  end
+
   def identifier
     title.to_slug.normalize.to_s
   end

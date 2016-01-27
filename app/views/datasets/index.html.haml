@@ -27,7 +27,7 @@
             %th
               Acciones
         %tbody
-          - @catalog.datasets.where(published: true).sort_by(&:publish_date).each do |dataset|
+          - @catalog.catalog_datasets.sort_by(&:publish_date).each do |dataset|
             %tr.dataset
               %td= dataset.title
               %td

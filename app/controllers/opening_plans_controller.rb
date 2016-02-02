@@ -1,16 +1,6 @@
 class OpeningPlansController < ApplicationController
-  before_action :authenticate_user!, except: %i(export)
-
-  def index
-    @organization = current_organization
-    if current_inventory.present? && @organization.catalog.datasets.where(published: true).blank?
-      redirect_to new_opening_plan_path
-    end
-  end
-
-  def new
-    @organization = current_organization
-  end
+  before_action :authenticate_user!, except: [:export]
+  before_action :require_published_datasets, only: [:index]
 
   def export
     organization = Organization.find(params[:id])
@@ -22,7 +12,8 @@ class OpeningPlansController < ApplicationController
 
   private
 
-  def generate_opening_plan_dataset
-    OpeningPlanDatasetGenerator.new(@organization.catalog).generate
+  def require_published_datasets
+    return if current_inventory && current_organization.catalog.datasets.where(public_access: true, published: true, editable: true).present?
+    redirect_to new_opening_plan_path
   end
 end

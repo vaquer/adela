@@ -12,18 +12,17 @@
         %p
           Antes de generar el Plan de apertura de la institución debes de subir el Inventario de Datos.
     - else
-      = form_for @organization.catalog, html: { class: 'form', id: 'opening-plan-form' } do |f|
+      = form_for current_organization.catalog, html: { class: 'form', id: 'opening-plan-form' } do |f|
         %table.table.table-striped
           %thead
             %tr
               %th ¿Publicar?
               %th.col-md-4 Nombre del conjunto
               %th.col-md-4 Descripci&oacute;n
-              %th Acceso
               %th Frecuencia con la que actualizan
               %th Confirmar fecha de Publicaci&oacute;n
           %tbody
-            - @organization.catalog.opening_plan_datasets.each do |dataset|
+            - current_organization.catalog.opening_plan_datasets.each do |dataset|
               = f.fields_for :datasets, dataset do |builder|
                 %tr
                   %th.text-center= builder.check_box :published, { checked: true, class: 'validable' }
@@ -31,7 +30,6 @@
                     = builder.hidden_field :title, readonly: true, required: true
                     = dataset.title
                   %th= builder.text_area :description, required: true, class: 'fill'
-                  %th P&uacute;blico
                   %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
                   %th= builder.text_field :publish_date, value: dataset.publish_date.strftime('%F'), required: true, class: 'datepicker'
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
@@ -39,7 +37,7 @@
 :javascript
   function updateValidations(event) {
     function id() {
-      return event.target.id.match(/^catalog_datasets_attributes_(\d+)__destroy/)[1];
+      return event.target.id.match(/^catalog_datasets_attributes_(\d+)_published/)[1];
     }
 
     function description() {
@@ -92,7 +90,4 @@
   $(function() {
     $('textarea').autosize();
     $( ".validable" ).change(updateValidations);
-    $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
-    $( ".datepicker" ).datepicker();
-    $( "#opening-plan-form" ).validate();
   });

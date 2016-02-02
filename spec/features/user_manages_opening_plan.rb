@@ -10,7 +10,7 @@ feature User, 'manages catalog:' do
     within '.nav.navbar-nav.navbar-right' do
       expect(page).to have_text('Plan de Apertura')
       click_on('Plan de Apertura')
-      expect(current_path).to eq(opening_plan_index_path)
+      expect(current_path).to eq(opening_plans_path)
     end
   end
 

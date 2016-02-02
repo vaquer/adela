@@ -14,7 +14,7 @@ class CatalogsController < ApplicationController
   def update
     @catalog = Catalog.find(params['id'])
     @catalog.update(catalog_update_params)
-    redirect_to opening_plan_index_path
+    redirect_to opening_plans_path
   end
 
   def check

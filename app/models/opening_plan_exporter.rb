@@ -9,8 +9,8 @@ class OpeningPlanExporter
   def export
     CSV.generate do |csv|
       csv << csv_headers
-      @organization.opening_plans.each do |plan|
-        csv << opening_plan_to_csv(plan)
+      @organization.catalog.datasets.where(public_access: true, published: true, editable: true).each do |dataset|
+        csv << opening_plan_row(dataset)
       end
     end
   end
@@ -33,27 +33,27 @@ class OpeningPlanExporter
     ]
   end
 
-  def opening_plan_to_csv(opening_plan)
+  def opening_plan_row(dataset)
     [
-      opening_plan.vision,
-      liaison_official(opening_plan).try(:name),
-      liaison_official(opening_plan).try(:position),
-      liaison_official(opening_plan).try(:email),
-      admin_official(opening_plan).try(:name),
-      admin_official(opening_plan).try(:position),
-      admin_official(opening_plan).try(:email),
-      opening_plan.name,
-      opening_plan.description,
-      opening_plan.accrual_periodicity,
-      opening_plan.publish_date
+      nil, # TODO: issue #753 mxabierto/adela
+      liaison_official&.name,
+      nil, # TODO: issue #754 mxabierto/adela
+      liaison_official&.email,
+      admin_official&.name,
+      nil, # TODO: issue #755 mxabierto/adela
+      admin_official&.email,
+      dataset.title,
+      dataset.description,
+      dataset.accrual_periodicity,
+      dataset.publish_date
     ]
   end
 
-  def liaison_official(opening_plan)
-    opening_plan.officials.find(&:liaison?)
+  def liaison_official
+    @organization.liaison&.user
   end
 
-  def admin_official(opening_plan)
-    opening_plan.officials.find(&:admin?)
+  def admin_official
+    @organization.administrator&.user
   end
 end

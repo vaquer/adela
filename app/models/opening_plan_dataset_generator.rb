@@ -56,6 +56,8 @@ class OpeningPlanDatasetGenerator
       dataset.landing_page = @catalog.organization.landing_page
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 9, 25)
+      dataset.editable = false
+      dataset.published = true
     end
   end
 
@@ -70,7 +72,7 @@ class OpeningPlanDatasetGenerator
       distribution.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
       distribution.download_url = "http://adela.datos.gob.mx/plan-de-apertura/#{@catalog.organization.slug}/export.csv"
-      distribution.media_type = 'text/csv'
+      distribution.media_type = 'csv'
       distribution.temporal = "#{Date.new(2015, 9, 25)}/#{Date.new(2016, 9, 26)}"
       distribution.modified = Date.today
     end

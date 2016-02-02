@@ -12,8 +12,9 @@ class CatalogsController < ApplicationController
   end
 
   def update
-    @catalog = Catalog.find(params['id'])
-    @catalog.update(catalog_update_params)
+    catalog = current_organization.catalog
+    catalog.update(catalog_update_params)
+    OpeningPlanDatasetGenerator.new(catalog).generate
     redirect_to opening_plans_path
   end
 

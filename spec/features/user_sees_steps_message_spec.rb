@@ -15,7 +15,7 @@ feature User, 'sees steps message:' do
     expect(page).to have_content 'Generar Plan de Apertura'
 
     expect(step_link_href_for 'Subir el Inventario de Datos').to include inventories_path
-    expect(step_link_href_for 'Generar Plan de Apertura').to include opening_plan_index_path
+    expect(step_link_href_for 'Generar Plan de Apertura').to include opening_plans_path
   end
 
   scenario 'when inventory file has been uploaded' do

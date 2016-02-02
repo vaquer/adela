@@ -1,4 +1,4 @@
-class OpeningPlanController < ApplicationController
+class OpeningPlansController < ApplicationController
   before_action :authenticate_user!, except: %i(export)
 
   def index

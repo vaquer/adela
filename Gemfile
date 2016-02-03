@@ -79,6 +79,7 @@ end
 group :production do
   gem 'puma'
   gem 'rails_12factor'
+  gem 'rack-timeout'
 end
 
 # Dev tools and plugins

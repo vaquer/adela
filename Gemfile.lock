@@ -172,7 +172,6 @@ GEM
     json (1.8.3)
     json-schema (2.5.2)
       addressable (~> 2.3.8)
-    kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -193,6 +192,7 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    puma (2.16.0)
     rack (1.6.4)
     rack-cors (0.4.0)
     rack-pjax (0.8.0)
@@ -229,7 +229,6 @@ GEM
       activesupport (= 4.2.5.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.15.0)
     rake (10.5.0)
     rdoc (4.2.1)
       json (~> 1.4)
@@ -345,10 +344,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    unicorn (5.0.1)
-      kgio (~> 2.6)
-      rack
-      raindrops (~> 0.7)
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
@@ -402,6 +397,7 @@ DEPENDENCIES
   nested_form
   newrelic_rpm
   pg
+  puma
   rack-cors
   rack-pjax
   rails (~> 4.2.5)
@@ -425,7 +421,6 @@ DEPENDENCIES
   timecop
   toastr-rails
   uglifier (>= 1.3.0)
-  unicorn
   validate_url
   will_paginate (~> 3.0)
 

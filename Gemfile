@@ -76,7 +76,7 @@ group :doc do
 end
 
 group :production do
-  gem 'unicorn'
+  gem 'puma'
   gem 'rails_12factor'
 end
 

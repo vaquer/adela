@@ -116,6 +116,15 @@ es:
         password: "Contraseña"
         password_confirmation: "Confirmación de contraseña"
         current_password: "Contraseña actual"
+      dataset:
+        title: 'Nombre del Conjunto de Datos'
+        contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
+        public_access: '¿Tiene datos privados?'
+        publish_date: 'Fecha estimada de publicación en datos.gob.mx'
+      distribution:
+        title: 'Nombre del Recurso'
+        description: '¿De qué es?'
+        media_type: 'Formato del recurso'
       organization:
         title: "Nombre"
         description: "Descripción"
@@ -162,4 +171,3 @@ es:
     validated: "Confirmo que la información está validada por la institución"
   action:
     publish: "Publicar"
-

@@ -21,18 +21,12 @@ web:
     - AMAZON_ACCESS_KEY=''
     - AMAZON_SECRET_KEY=''
     - AWS_REGION=''
-    - APP_DESCRIPTION=''
-    - CATALOG_URL=''
     - HOST=''
-    - INVENTORY_DETAILS=''
-    - INVENTORY_TEMPLATE=''
     - MAILER_ADDRESS=''
     - MAILER_DOMAIN=''
     - MAILER_FROM=''
     - MAILER_PASSWORD=''
     - MAILER_USERNAME=''
-    - RACK_ENV=''
-    - RAILS_ENV=''
     - REDIS_PORT_6379_TCP_ADDR=''
     - REDIS_PORT_6379_TCP_PORT=''
     - S3_BUCKET_NAME=''
@@ -40,6 +34,7 @@ web:
     - SENDGRID_PASSWORD=''
     - SENDGRID_USERNAME=''
     - NEWRELIC_LICENSE_KEY=''
+    - PORT=''
   ports:
     - "80:80"
   links:

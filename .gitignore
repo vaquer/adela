@@ -25,6 +25,7 @@ config/secrets.yml
 .ruby-version
 .ruby-gemset
 .vagrant
+docker-compose.yml
 
 # Ignore application configuration
 /config/application.yml

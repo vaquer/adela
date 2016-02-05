@@ -14,7 +14,7 @@ es:
     password: contrasena
     search: buscar
     datasets: conjuntos
-    opening_plan: plan-de-apertura
+    opening_plans: plan-de-apertura
 
 en:
   routes:

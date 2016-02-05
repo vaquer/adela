@@ -1,0 +1,17 @@
+.container
+  .card
+    %h3.title Planea
+    %h5.subtitle Inventario de datos
+    %h5.subtitle Editar Recurso
+    = form_for [:inventories, @dataset, @distribution] do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, required: true, class: 'form-control'
+      .form-group
+        = f.label :description
+        = f.text_area :description, required: true, class: 'autosize form-control'
+      .form-group
+        = f.label :media_type
+        = f.text_field :media_type, required: true, class: 'form-control'
+      .form-group
+        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'

@@ -50,11 +50,11 @@ class InventoryDatasetGenerator
   end
 
   def organization_catalog
-    @organization.catalog.present? ? @organization.catalog : build_catalog
+    @organization.catalog.present? ? @organization.catalog : create_catalog
   end
 
-  def build_catalog
-    @organization.build_catalog(published: false)
+  def create_catalog
+    @organization.create_catalog(published: false)
   end
 
   def build_dataset
@@ -70,6 +70,8 @@ class InventoryDatasetGenerator
       dataset.landing_page = @organization.landing_page
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 8, 28)
+      dataset.editable = false
+      dataset.published = true
     end
   end
 
@@ -93,7 +95,7 @@ class InventoryDatasetGenerator
       distribution.title = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.description = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.download_url = @inventory.spreadsheet_file.url
-      distribution.media_type = 'application/vnd.ms-excel'
+      distribution.media_type = 'excel'
       distribution.byte_size = @inventory.spreadsheet_file.file.size
       distribution.temporal = build_temporal(dataset.modified)
       distribution.modified = dataset.modified

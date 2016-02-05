@@ -10,7 +10,7 @@ feature User, 'manages catalog:' do
     within '.nav.navbar-nav.navbar-right' do
       expect(page).to have_text('Plan de Apertura')
       click_on('Plan de Apertura')
-      expect(current_path).to eq(opening_plan_index_path)
+      expect(current_path).to eq(opening_plans_path)
     end
   end
 
@@ -27,7 +27,7 @@ feature User, 'manages catalog:' do
     inventory = create(:inventory, organization: @user.organization)
     InventoryXLSXParser.new(inventory).parse
     visit new_opening_plan_path
-    fill_in 'organization_opening_plans_attributes_0_description', with: 'osom dataset'
+    fill_in 'catalog_datasets_attributes_0_description', with: 'osom dataset'
     select('anual', from: 'organization[opening_plans_attributes][0][accrual_periodicity]')
     click_on('Generar Plan de Apertura')
     expect(page).to have_text('osom dataset')

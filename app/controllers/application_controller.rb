@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_inventory
-    current_organization && current_organization.inventories.order(created_at: :desc).find(&:compliant?)
+    current_organization && current_organization.inventories.order(created_at: :desc).find(&:valid?)
   end
 
   def record_activity(category, description)

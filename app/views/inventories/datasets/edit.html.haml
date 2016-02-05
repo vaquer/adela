@@ -1,0 +1,20 @@
+.container
+  .card
+    %h3.title Planea
+    %h5.subtitle Inventario de datos
+    %h5.subtitle Editar Conjunto de Datos
+    = form_for [:inventories, @dataset] do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, required: true, class: 'form-control'
+      .form-group
+        = f.label :contact_position
+        = f.text_field :contact_position, required: true, class: 'form-control'
+      .form-group
+        = f.label :public_access
+        = f.select :public_access, [['Público', true], ['Privado', false]], {}, required: true, class: 'form-control'
+      .form-group
+        = f.label :publish_date
+        = f.text_field :publish_date, class: 'datepicker form-control'
+      .form-group
+        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'

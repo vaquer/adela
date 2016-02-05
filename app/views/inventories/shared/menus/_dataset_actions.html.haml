@@ -1,0 +1,18 @@
+.dropdown
+  %button.btn.btn-default.dropdown-toggle{ 'type' => 'button', 'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'true' }
+    %span.caret
+  %ul.dropdown-menu
+    %li.dropdown-header
+      Conjunto de Datos
+    %li
+      = link_to edit_inventories_dataset_path(dataset) do
+        Editar
+    %li
+      = link_to inventories_dataset_path(dataset), data: {}, method: :delete do
+        Eliminar
+    %li.divider{ 'role' => 'separator' }
+    %li.dropdown-header
+      Recursos de Datos
+    %li
+      = link_to new_inventories_dataset_distribution_path(dataset) do
+        Agregar

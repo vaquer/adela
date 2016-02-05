@@ -4,7 +4,7 @@ feature User, 'sees pending documentation:' do
   background do
     @user = FactoryGirl.create(:user)
     given_logged_in_as(@user)
-    given_organization_has_catalog
+    given_organization_with_opening_plan
   end
 
   scenario 'when loading the catalog view for the first time' do

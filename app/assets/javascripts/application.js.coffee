@@ -9,12 +9,11 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery_nested_form
-//= require jquery/validate/messages
+//= require jquery/validate
 //= require spin
 //= require jquery.spin
 //= require bootstrap
 //= require toastr
-//= require fakeinputs
 //= require jquery.joyride-2.1
 //= require jquery.cookie
 //= require components/datepicker
@@ -24,7 +23,6 @@
 //= require_directory .
 
 ready = ->
-  initFileUploads()
   loadDatePicker()
   loadCheckboxes()
 

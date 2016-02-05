@@ -1,4 +1,5 @@
 class Dataset < ActiveRecord::Base
+  include DatasetXLSXBuilder
   belongs_to :catalog
 
   has_many :distributions, dependent: :destroy
@@ -7,6 +8,15 @@ class Dataset < ActiveRecord::Base
   has_one :sector, through: :dataset_sector
 
   accepts_nested_attributes_for :dataset_sector
+  accepts_nested_attributes_for :distributions, allow_destroy: true
+
+  with_options on: :inventory do |dataset|
+    dataset.validates :title, :contact_position, :public_access, :publish_date, presence: true
+  end
+
+  with_options on: :opening_plan do |dataset|
+    dataset.validates :description, :accrual_periodicity, :public_access, :publish_date, presence: true
+  end
 
   def identifier
     title.to_slug.normalize.to_s

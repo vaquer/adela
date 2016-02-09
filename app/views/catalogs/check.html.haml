@@ -9,7 +9,6 @@
 
     = form_for current_organization.catalog, url: publish_catalog_path(current_organization.catalog), method: :put do |f|
       - @datasets.each do |dataset|
-        - next unless documented_distributions?(dataset)
         %h5.subtitle= dataset.title
         .section
           .row

@@ -3,10 +3,6 @@ module DatasetsHelper
     ISO8601_DEFAULTS['accrual_periodicity'].invert[accrual_periodicity]
   end
 
-  def documented_distributions?(dataset)
-    dataset.distributions.select(&:documented?).present?
-  end
-
   def published_distributions?(dataset)
     dataset.distributions.select(&:published?).present?
   end

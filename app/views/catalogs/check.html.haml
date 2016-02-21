@@ -51,7 +51,7 @@
             .col-xs-12.col-sm-4
               %p.dark Fecha de &uacute;ltima modificaci&oacute;n
             .col-xs-12.col-sm-8
-              %p= dataset.modified
+              %p.timezone= dataset.modified
 
           .row
             .col-xs-12.col-sm-4
@@ -95,7 +95,7 @@
                   %td
                     = hidden_field_tag 'catalog[distribution_ids][]', distribution.id
                     = "#{distribution.title} en formato #{distribution.media_type}"
-                  %td= distribution.modified
+                  %td.timezone= distribution.modified
                   %td= distribution.temporal
                   %td= link_to truncate(distribution.download_url, length: 30), distribution.download_url
 

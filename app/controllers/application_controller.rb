@@ -25,13 +25,6 @@ class ApplicationController < ActionController::Base
     current_organization && current_organization.inventories.order(created_at: :desc).find(&:valid?)
   end
 
-  def record_activity(category, description)
-    if current_organization.present?
-      @activity = ActivityLog.new(:category => category, :description => description, :organization_id => current_organization.id, :done_at => DateTime.now)
-      @activity.save
-    end
-  end
-
   def set_locale
     I18n.locale = :es
   end

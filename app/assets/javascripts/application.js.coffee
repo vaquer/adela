@@ -10,6 +10,8 @@
 //= require jquery.validate.additional-methods
 //= require jquery_nested_form
 //= require jquery/validate
+//= require moment
+//= require moment/es
 //= require spin
 //= require jquery.spin
 //= require bootstrap

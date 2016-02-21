@@ -12,6 +12,7 @@
 //= require jquery/validate
 //= require moment
 //= require moment/es
+//= require moment/utc2local
 //= require spin
 //= require jquery.spin
 //= require bootstrap

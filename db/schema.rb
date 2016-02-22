@@ -19,10 +19,8 @@ ActiveRecord::Schema.define(version: 20160303180313) do
   create_table "activity_logs", force: :cascade do |t|
     t.integer  "organization_id"
     t.string   "description"
-    t.datetime "done_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
   end
 
   create_table "administrators", force: :cascade do |t|

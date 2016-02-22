@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160303180313) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "message"
   end
 
   create_table "administrators", force: :cascade do |t|

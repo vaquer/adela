@@ -1,5 +1,5 @@
 class ActivityLog < ActiveRecord::Base
-
+  belongs_to :loggeable, polymorphic: true
   belongs_to :organization
 
   scope :date_sorted, -> { order("created_at DESC") }

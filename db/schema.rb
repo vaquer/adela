@@ -22,7 +22,11 @@ ActiveRecord::Schema.define(version: 20160303180313) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "message"
+    t.integer  "loggeable_id"
+    t.string   "loggeable_type"
   end
+
+  add_index "activity_logs", ["loggeable_type", "loggeable_id"], name: "index_activity_logs_on_loggeable_type_and_loggeable_id", using: :btree
 
   create_table "administrators", force: :cascade do |t|
     t.integer  "organization_id"

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160303180313) do
 
   create_table "activity_logs", force: :cascade do |t|
     t.integer  "organization_id"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "message"

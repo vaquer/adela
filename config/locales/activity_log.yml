@@ -1,0 +1,4 @@
+es:
+  activity_log:
+    inventory:
+      create: 'publicó un nuevo Inventatio de Datos.'

@@ -15,9 +15,9 @@
           %ul.recent_activity
             - @logs.first_block.each_with_index do |activity, index|
               - if index.even?
-                %li.even "#{activity.organization.title} #{activity.description}"
+                %li.even #{activity.organization.title} #{I18n.t(activity.message)}
               - else
-                %li.odd "#{activity.organization.title} #{activity.description}"
+                %li.odd #{activity.organization.title} #{I18n.t(activity.message)}
         - else
           %p.bright No hay actividad reciente.
       - if !user_signed_in?

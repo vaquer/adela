@@ -5,6 +5,7 @@ class Inventory < ActiveRecord::Base
   validates_presence_of :spreadsheet_file
   validates :organization, presence: true
 
+  has_many :activity_logs, as: :loggeable
   belongs_to :organization
 
   after_commit :create_catalog_datasets, on: :create

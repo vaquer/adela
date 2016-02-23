@@ -9,6 +9,15 @@ class InventoriesController < ApplicationController
   private
 
   def inventory_params
-    params.require(:inventory).permit(:spreadsheet_file, :authorization_file)
+    params.require(:inventory).permit(
+      :spreadsheet_file,
+      :authorization_file,
+      :activity_log,
+      activity_logs_attributes: [
+        :message,
+        :description,
+        :organization_id
+      ]
+    )
   end
 end

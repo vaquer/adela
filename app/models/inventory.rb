@@ -10,6 +10,8 @@ class Inventory < ActiveRecord::Base
 
   after_commit :create_catalog_datasets, on: :create
 
+  accepts_nested_attributes_for :activity_logs
+
   private
 
   def create_catalog_datasets

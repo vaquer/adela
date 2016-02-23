@@ -1,10 +1,21 @@
-= form_for Inventory.new do |f|
-  .form-group
-    %label Selecciona el archivo *
-    = f.file_field :spreadsheet_file, required: true
-  .form-group
-    %label Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
-    = f.file_field :authorization_file
+= nested_form_for Inventory.new do |f|
+  .card.padding-top.bg--grey
+    .form-group
+      %label Selecciona el archivo *
+      = f.file_field :spreadsheet_file, required: true
+    .form-group
+      %label Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
+      = f.file_field :authorization_file
+  = f.fields_for :activity_logs, ActivityLog.new do |log_form|
+    .form-group
+      = log_form.hidden_field :organization_id, class: 'form-control', value: "#{current_organization.id}"
+    .form-group
+      = log_form.hidden_field :message, class: 'form-control', value: 'activity_log.inventory.create'
+    - if current_organization.inventories.present?
+      .form-group
+        = log_form.label :description, 'Describe los cambios realizados'
+      .form-group
+        = log_form.text_area :description, required: true, class: 'autosize form-control'
   .form-group
     %button.btn.btn-primary{ type: 'submit' } Subir inventario
   %p * Campos obligatorios

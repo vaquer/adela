@@ -38,7 +38,7 @@ class Distribution < ActiveRecord::Base
   end
 
   def update_dataset_metadata
-    last_modified_distribution = dataset.distributions.map(&:modified).sort.last
+    last_modified_distribution = dataset.distributions.map(&:modified).compact.sort.last
     dataset.update(modified: last_modified_distribution)
   end
 end

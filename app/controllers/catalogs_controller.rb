@@ -15,6 +15,7 @@ class CatalogsController < ApplicationController
     @datasets = catalog_params['distribution_ids'].map do |id|
       Distribution.find(id).dataset
     end
+    @datasets.uniq!
   end
 
   def publish

@@ -52,6 +52,7 @@ gem 'autosize-rails'
 gem 'babosa'
 gem 'tzinfo-data'
 gem 'momentjs-rails'
+gem 'active_link_to'
 
 group :development, :test do
   gem 'spring'

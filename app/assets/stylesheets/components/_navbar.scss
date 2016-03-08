@@ -45,6 +45,10 @@ nav {
   color: $navbar_default_links_color;
   line-height: $navbar_avatar_size / 2;
 
+  &.active {
+    color: $navbar_active_links_color;
+  }
+
   &:hover {
     color: $navbar_active_links_color;
   }

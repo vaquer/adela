@@ -1,11 +1,17 @@
 // Navbar default colors
 $navbar_background_color: $grey_800;
+
 $navbar_default_links_color: #fff;
-$navbar_active_links_color: $cartoon_green;
+$navbar_default_links_hover_color: #adadad;
+
+$navbar_active_links_color: #adadad;
+$navbar_active_links_background: #545454;
+
+$navbar_alt_active_links_color: $cartoon_green;
 
 // Paddings
-$navbar_padding_top: 10px;
-$navbar_padding_bottom: 10px;
+$navbar_padding_top: 0px;
+$navbar_padding_bottom: 20px;
 
 // Margins
 $navbar_margin_bottom: 50px;
@@ -13,13 +19,13 @@ $navbar_margin_bottom: 50px;
 // Avatar
 $navbar_avatar_size: 80px;
 
-
 nav {
   z-index: 1;
 
   margin-bottom: $navbar_margin_bottom !important;
   border: 0 !important;
   border-radius: 0 !important;
+  // font-weight: 300;
 
   span {
     color: $navbar_default_links_color;
@@ -44,18 +50,26 @@ nav {
 #navbar > ul > li > a {
   color: $navbar_default_links_color;
   line-height: $navbar_avatar_size / 2;
+  border-radius: 4px;
+  padding: $navbar_padding_top $navbar_padding_bottom;
+  margin-top: 15px;
 
   &.active {
     color: $navbar_active_links_color;
   }
 
   &:hover {
-    color: $navbar_active_links_color;
+    color: $navbar_default_links_hover_color;
   }
 
   &.dropdown-toggle {
-    color: $navbar_active_links_color;
+    color: $navbar_alt_active_links_color;
   }
+}
+
+#navbar > ul > li.active > a {
+  background-color: $navbar_active_links_color;
+  color: $navbar_active_links_background;
 }
 
 .navbar-default .navbar-nav > .open > a {

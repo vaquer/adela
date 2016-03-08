@@ -21,7 +21,7 @@
             %th Frecuencia con la que actualizan
             %th Confirmar fecha de Publicaci&oacute;n
         %tbody
-          - current_organization.catalog.datasets.where(public_access: true, published: true, editable: true).each do |dataset|
+          - current_organization.catalog.opening_plan_datasets.each do |dataset|
             %tr
               %th= dataset.title
               %th= dataset.description

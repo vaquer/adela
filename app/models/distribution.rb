@@ -38,6 +38,7 @@ class Distribution < ActiveRecord::Base
   end
 
   def update_dataset_metadata
+    return unless dataset
     last_modified_distribution = dataset.distributions.map(&:modified).compact.sort.last
     dataset.update(modified: last_modified_distribution)
   end

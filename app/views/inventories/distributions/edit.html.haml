@@ -4,14 +4,17 @@
     %h5.subtitle Inventario de datos
     %h5.subtitle Editar Recurso
     = form_for [:inventories, @distribution.dataset, @distribution] do |f|
-      .form-group
-        = f.label :title
+      .form-group.required
+        = f.label :title, class: 'control-label'
         = f.text_field :title, required: true, class: 'form-control'
-      .form-group
-        = f.label :description
+      .form-group.required
+        = f.label :description, class: 'control-label'
         = f.text_area :description, required: true, class: 'autosize form-control'
-      .form-group
-        = f.label :media_type
+      .form-group.required
+        = f.label :media_type, class: 'control-label'
         = f.text_field :media_type, required: true, class: 'form-control'
+      .form-group.required
+        %label.control-label
+          Campos obligatorios
       .form-group
         = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'

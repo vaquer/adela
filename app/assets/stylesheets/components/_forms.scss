@@ -17,6 +17,12 @@
   }
 }
 
+.form-group.required .control-label:after {
+  content: " *";
+  font-weight: 700;
+  color: #de6c6c;
+}
+
 .inline {
   display: inline-block !important;
 }

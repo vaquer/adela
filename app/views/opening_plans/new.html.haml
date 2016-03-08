@@ -22,7 +22,7 @@
               %th Frecuencia con la que actualizan
               %th Confirmar fecha de Publicaci&oacute;n
           %tbody
-            - current_organization.catalog.opening_plan_datasets.each do |dataset|
+            - current_organization.catalog.inventory_datasets.each do |dataset|
               = f.fields_for :datasets, dataset do |builder|
                 %tr
                   %th.text-center= builder.check_box :published, { checked: true, class: 'validable' }

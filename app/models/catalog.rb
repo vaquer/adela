@@ -1,4 +1,6 @@
 class Catalog < ActiveRecord::Base
+  include Loggable
+
   belongs_to :organization
 
   has_many :datasets, dependent: :destroy

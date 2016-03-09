@@ -32,6 +32,16 @@
                   %th= builder.text_area :description, required: true, class: 'fill'
                   %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
                   %th= builder.text_field :publish_date, value: dataset.publish_date.strftime('%F'), required: true, class: 'datepicker'
+        - unless current_organization.opening_plan_logs.blank?
+          = f.fields_for :catalog, ActivityLog.new do |log_form|
+            .form-group
+              = log_form.hidden_field :organization_id, class: 'form-control', value: "#{current_organization.id}"
+            .form-group
+              = log_form.hidden_field :message, class: 'form-control', value: 'activity_log.opening_plan.create'
+            .form-group
+              = log_form.label :description, 'Describe los cambios realizados'
+            .form-group
+              = log_form.text_area :description, required: true, class: 'autosize form-control'
         = f.button 'Generar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
 
 :javascript

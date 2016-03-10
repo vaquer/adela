@@ -1,38 +1,38 @@
 # See https://github.com/mxabierto/adela/wiki/Docker
+FROM mxabierto/ruby:2.3.0-alpine
 
-FROM phusion/passenger-ruby21:0.9.15
+ENV \
+  BUILD_PACKAGES="build-base" \
+  RAILS_PACKAGES="libxml2-dev libxslt-dev icu-dev postgresql-dev nodejs"
 
-ENV HOME /root
-ENV RAILS_ENV production
+RUN \
+  apk add --update $BUILD_PACKAGES $RAILS_PACKAGES
 
-# use baseimage-docker's init process
-CMD ["/sbin/my_init"]
+RUN mkdir /app
+WORKDIR /app
 
-# install dependencies
-RUN apt-get update && apt-get install -y \
-    libicu-dev
+# Use libxml2, libxslt a packages from alpine for building nokogiri
+RUN bundle config build.nokogiri --use-system-libraries
 
-# start nginx/passenger
-RUN rm -f /etc/service/nginx/down
+# Don't install any docs for ruby gems
+RUN echo 'gem: --no-rdoc --no-ri' > /etc/gemrc
 
-# remove the default site
-RUN rm /etc/nginx/sites-enabled/default
-
-# add nginx config file
-COPY .nginx/adela.conf /etc/nginx/sites-enabled/adela.conf
-
-# add environment variables in nginx
-COPY .nginx/env.conf /etc/nginx/main.d/env.conf
-
-# set up working directory
-RUN mkdir /home/app/adela
-WORKDIR /home/app/adela
-
-# caching bundler
-COPY Gemfile /home/app/adela/
-COPY Gemfile.lock /home/app/adela/
+# cache bundler
+COPY Gemfile /app
+COPY Gemfile.lock /app
 RUN bundle install
 
-# deploy app
-COPY . /home/app/adela
-RUN chown app:app -R /home/app/adela
+COPY . /app
+
+RUN \
+  apk del $BUILD_PACKAGES && \
+  rm -rf \
+    /usr/share/man \
+    /usr/share/doc \
+    /tmp/* \
+    /var/cache/apk/* \
+    /usr/lib/node_modules/npm/man \
+    /usr/lib/node_modules/npm/doc \
+    /usr/lib/node_modules/npm/html
+
+CMD bundle exec puma -C config/puma.rb

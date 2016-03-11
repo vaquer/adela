@@ -4,10 +4,5 @@
     %span.caret.white
   %ul.dropdown-menu
     %li.dropdown-header
-      Inventario de Datos
-    %li= link_to 'Actualizar', new_inventory_path
-    %li= link_to 'Descargar', current_inventory.spreadsheet_file.url
-    %li.divider{ 'role' => 'separator' }
-    %li.dropdown-header
       Conjunto de Datos
     %li= link_to 'Agregar', new_inventories_dataset_path

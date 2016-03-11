@@ -100,18 +100,6 @@ feature User, 'uploads inventory spreadsheet file:' do
     end
   end
 
-  scenario 'sees the inventory activity log in the landing page' do
-    within('.navbar') { click_on('Inventario de Datos') }
-    submit_inventory_form_with_spreadsheet_file('inventario_general_de_datos.xlsx')
-
-    visit '/'
-    expect(page).to have_css('ul.recent_activity li', count: 1)
-
-    within find('.recent_activity') do
-      expect(page).to have_text('publicó un nuevo Inventatio de Datos')
-    end
-  end
-
   scenario 'sees the invnentory activity log text area' do
     upload_inventory_with_file('inventario_general_de_datos.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }

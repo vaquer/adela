@@ -57,10 +57,7 @@ feature User, 'uploads inventory spreadsheet file:' do
     upload_inventory_with_file('inventario_general_de_datos.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within('.btn-group') do
-      click_on('Acciones')
-      click_on('Actualizar')
-    end
+    click_on('Actualizar Inventario')
 
     expect(current_path).to eq(new_inventory_path)
     submit_inventory_form_with_spreadsheet_file('another-inventory-spreadsheet-file.xlsx')
@@ -81,10 +78,7 @@ feature User, 'uploads inventory spreadsheet file:' do
     upload_inventory_with_file('inventario_general_de_datos.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within('.btn-group') do
-      click_on('Acciones')
-      click_on('Actualizar')
-    end
+    click_on('Actualizar Inventario')
 
     expect(current_path).to eq(new_inventory_path)
     submit_inventory_form_with_spreadsheet_file('inventario_general_de_datos_update.xlsx')
@@ -122,10 +116,7 @@ feature User, 'uploads inventory spreadsheet file:' do
     upload_inventory_with_file('inventario_general_de_datos.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within('.btn-group') do
-      click_on('Acciones')
-      click_on('Actualizar')
-    end
+    click_on('Actualizar Inventario')
 
     expect(current_path).to eq(new_inventory_path)
     expect(page).to have_css('#inventory_activity_logs_attributes_0_description')

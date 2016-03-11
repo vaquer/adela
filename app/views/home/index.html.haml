@@ -8,20 +8,8 @@
 
   .container
     .row.actions
-      .col-xs-12.col-md-6
-        %p.topic Actividad Reciente
-        %hr
-        - if @logs.any?
-          %ul.recent_activity
-            - @logs.first_block.each_with_index do |activity, index|
-              - if index.even?
-                %li.even #{activity.organization.title} #{I18n.t(activity.message)}
-              - else
-                %li.odd #{activity.organization.title} #{I18n.t(activity.message)}
-        - else
-          %p.bright No hay actividad reciente.
       - if !user_signed_in?
-        .col-xs-12.col-md-6
+        .col-xs-12.col-md-6.col-md-offset-3
           %p.topic Ingresar
           %hr
           = render 'shared/forms/user', resource: User.new, resource_name: :user

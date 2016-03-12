@@ -12,3 +12,8 @@
 .btn-default, .btn-default.disabled {
   @include button($grey_150, $grey_600);
 }
+
+.btn-glyph, .btn-glyph.disabled {
+  @include button(white, $cartoon_green);
+  font-size: 18px;
+}

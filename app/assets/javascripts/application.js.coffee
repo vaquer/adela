@@ -28,6 +28,7 @@
 ready = ->
   loadDatePicker()
   loadCheckboxes()
+  loadTooltip()
 
   toastr.options =
     'closeButton': false

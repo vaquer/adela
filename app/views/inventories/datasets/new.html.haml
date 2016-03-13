@@ -26,7 +26,9 @@
           = distribution_form.text_area :description, required: true, class: 'autosize form-control'
         .form-group.required
           = distribution_form.label :media_type, class: 'control-label'
-          = distribution_form.text_field :media_type, required: true, class: 'form-control'
+          = select_tag :media_type_select, options_for_media_type, class: 'form-control media_type_select'
+        .form-group
+          = distribution_form.text_field :media_type, required: true, class: 'form-control media_type'
         .form-group.required
           %label.control-label
             Campos obligatorios

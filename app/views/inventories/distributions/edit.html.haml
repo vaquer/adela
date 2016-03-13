@@ -12,6 +12,8 @@
         = f.text_area :description, required: true, class: 'autosize form-control'
       .form-group.required
         = f.label :media_type, class: 'control-label'
+        = select_tag :media_type_select, options_for_media_type, class: 'form-control'
+      .form-group
         = f.text_field :media_type, required: true, class: 'form-control'
       .form-group.required
         %label.control-label

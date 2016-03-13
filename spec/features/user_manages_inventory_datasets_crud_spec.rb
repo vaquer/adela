@@ -10,10 +10,7 @@ feature User, 'manages inventory datasets crud:' do
     upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within('.btn-group') do
-      click_on('Acciones')
-      click_on('Agregar')
-    end
+    click_link('add-new-dataset')
 
     dataset_attributes = attributes_for(:dataset)
     distribution_attributes = attributes_for(:distribution)
@@ -40,11 +37,7 @@ feature User, 'manages inventory datasets crud:' do
   scenario 'creates a new private dataset', js: true do
     upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
-
-    within('.btn-group') do
-      click_on('Acciones')
-      click_on('Agregar')
-    end
+    click_link('add-new-dataset')
 
     dataset_attributes = attributes_for(:dataset)
     distribution_attributes = attributes_for(:distribution)
@@ -70,11 +63,7 @@ feature User, 'manages inventory datasets crud:' do
   scenario 'cannot create a new dataset without distribution', js: true do
     upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
-
-    within('.btn-group') do
-      click_on('Acciones')
-      click_on('Agregar')
-    end
+    click_link('add-new-dataset')
 
     expect(page).not_to have_text('Guardar')
   end

@@ -16,13 +16,15 @@
       %table.table.table-striped
         %thead
           %tr
+            %th.text-center #
             %th Nombre del conjunto
             %th Descripci&oacute;n
             %th Frecuencia con la que actualizan
             %th Confirmar fecha de Publicaci&oacute;n
         %tbody
-          - current_organization.catalog.opening_plan_datasets.each do |dataset|
+          - current_organization.catalog.opening_plan_datasets.each_with_index do |dataset, index|
             %tr
+              %th.text-center= index + 1
               %th= dataset.title
               %th= dataset.description
               %th= parse_iso8601(dataset.accrual_periodicity)

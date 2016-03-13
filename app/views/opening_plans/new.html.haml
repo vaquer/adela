@@ -16,15 +16,17 @@
         %table.table.table-striped
           %thead
             %tr
+              %th.text-center #
               %th ¿Publicar?
               %th.col-md-4 Nombre del conjunto
               %th.col-md-4 Descripci&oacute;n
               %th Frecuencia con la que actualizan
               %th Confirmar fecha de Publicaci&oacute;n
           %tbody
-            - current_organization.catalog.inventory_datasets.each do |dataset|
+            - current_organization.catalog.inventory_datasets.each_with_index do |dataset, index|
               = f.fields_for :datasets, dataset do |builder|
                 %tr
+                  %th.text-center= index + 1
                   %th.text-center= builder.check_box :published, { checked: true, class: 'validable' }
                   %th
                     = builder.hidden_field :title, readonly: true, required: true

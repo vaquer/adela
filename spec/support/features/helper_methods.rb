@@ -43,7 +43,7 @@ module Features
       visit new_opening_plan_path
       fill_in 'catalog_datasets_attributes_0_description', with: 'osom dataset'
       select('anual', from: 'catalog[datasets_attributes][0][accrual_periodicity]')
-      click_on('Generar Plan de Apertura')
+      click_on('Guardar Plan de Apertura')
     end
 
     def given_organization_has_catalog_with(datasets)

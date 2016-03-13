@@ -30,7 +30,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
   end
 
@@ -56,7 +56,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
   end
 
@@ -121,14 +121,14 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     distribution_attributes = attributes_for(:distribution)
-    fill_distribution_form(distribution_attributes)
+    fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
   end
 
@@ -142,14 +142,14 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     distribution_attributes = attributes_for(:distribution)
-    fill_distribution_form(distribution_attributes)
+    fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 1)
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
     expect(page).not_to have_text('Programa anual de Mantenimiento')
   end
@@ -185,13 +185,13 @@ feature User, 'manages inventory datasets crud:' do
     within('.fields') do
       find("input[id^='dataset_distributions_attributes_'][id$='title']").set(distribution_attributes[:title])
       find("textarea[id^='dataset_distributions_attributes_'][id$='description']").set(distribution_attributes[:description])
-      find("input[id^='dataset_distributions_attributes_'][id$='media_type']").set(distribution_attributes[:media_type])
+      select('json', from: 'media_type_select')
     end
   end
 
-  def fill_distribution_form(distribution_attributes)
+  def fill_distribution_form(distribution_attributes, media_type)
     fill_in('distribution_title', with: distribution_attributes[:title])
     fill_in('distribution_description', with: distribution_attributes[:description])
-    fill_in('distribution_media_type', with: distribution_attributes[:media_type])
+    select(media_type, from: 'media_type_select')
   end
 end

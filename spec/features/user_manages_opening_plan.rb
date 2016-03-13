@@ -29,7 +29,7 @@ feature User, 'manages catalog:' do
     visit new_opening_plan_path
     fill_in 'catalog_datasets_attributes_0_description', with: 'osom dataset'
     select('anual', from: 'organization[opening_plans_attributes][0][accrual_periodicity]')
-    click_on('Generar Plan de Apertura')
+    click_on('Guardar Plan de Apertura')
     expect(page).to have_text('osom dataset')
     expect(page).to have_text('anual')
     expect(page).to have_text('Descargar Archivo')

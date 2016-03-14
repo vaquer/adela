@@ -1,0 +1,10 @@
+.container
+  .card
+    %h3.title Planea
+    %h5.subtitle Inventario de datos
+    .card.padding-top.bg--grey
+      %h5.primary.boldish Eliminar Recurso
+      %p
+        ¿Esta seguro de eliminar el recurso <strong>#{@distribution.title}</strong>, que pertenece al conjunto <strong>#{@distribution.dataset.title}</strong>?
+      = link_to 'Eliminar Recurso', inventories_dataset_distribution_path(@distribution.dataset, @distribution), data: {}, method: :delete, class: 'btn btn-primary'
+      = link_to 'Cancelar', inventories_path, class: 'btn btn-default'

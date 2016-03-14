@@ -73,7 +73,10 @@ Adela::Application.routes.draw do
 
   namespace :inventories do
     resources :datasets do
-      resources :distributions
+      get 'confirm_destroy', on: :member
+      resources :distributions do
+        get 'confirm_destroy', on: :member
+      end
     end
   end
 end

@@ -1,6 +1,10 @@
 class Inventories::DistributionsController < ApplicationController
   include DistributionActions
 
+  def confirm_destroy
+    @distribution = Distribution.find(params[:id])
+  end
+
   private
 
   def create_customization

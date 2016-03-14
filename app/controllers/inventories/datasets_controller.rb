@@ -3,6 +3,10 @@ class Inventories::DatasetsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def confirm_destroy
+    @dataset = Dataset.find(params[:id])
+  end
+
   private
 
   def create_customization

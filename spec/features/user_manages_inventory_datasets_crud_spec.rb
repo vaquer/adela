@@ -104,6 +104,8 @@ feature User, 'manages inventory datasets crud:' do
       click_on('Eliminar')
     end
 
+    click_on('Eliminar Conjunto')
+
     expect(page).to have_css('.table tbody tr.dataset', count: 2)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
@@ -162,6 +164,8 @@ feature User, 'manages inventory datasets crud:' do
       find('.dropdown').click
       click_on('Eliminar')
     end
+
+    click_on('Eliminar Recurso')
 
     expect(page).to have_css('.table tbody tr.dataset', count: 3)
     expect(page).to have_css('.table tbody tr.distribution', count: 3)

@@ -8,5 +8,5 @@
       = link_to edit_inventories_dataset_distribution_path(distribution.dataset, distribution) do
         Editar
     %li
-      = link_to inventories_dataset_distribution_path(distribution.dataset, distribution), data: {}, method: :delete do
+      = link_to confirm_destroy_inventories_dataset_distribution_path(distribution.dataset, distribution) do
         Eliminar

@@ -112,12 +112,14 @@ feature User, 'uploads inventory spreadsheet file:' do
 
   def submit_inventory_form_with_spreadsheet_file(file_name)
     attach_inventory_spreadsheet_file(file_name)
+    attach_inventory_designation_file
     fill_activity_log
     submit_inventory_form_and_run_background_jobs
   end
 
   def submit_inventory_form_with_spreadsheet_and_autorization_files(file_name)
     attach_inventory_spreadsheet_file(file_name)
+    attach_inventory_designation_file
     attach_inventory_authorization_file
     submit_inventory_form_and_run_background_jobs
   end
@@ -128,6 +130,10 @@ feature User, 'uploads inventory spreadsheet file:' do
 
   def attach_inventory_authorization_file
     attach_file('inventory_authorization_file', "#{Rails.root}/spec/fixtures/files/authorization_file.jpg")
+  end
+
+  def attach_inventory_designation_file
+    attach_file('inventory_designation_file', "#{Rails.root}/spec/fixtures/files/oficio_designacion.docx")
   end
 
   def fill_activity_log

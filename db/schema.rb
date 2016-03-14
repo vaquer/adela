@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303180313) do
+ActiveRecord::Schema.define(version: 20160314004034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160303180313) do
     t.datetime "updated_at"
     t.string   "authorization_file"
     t.string   "error_message"
+    t.string   "designation_file"
   end
 
   add_index "inventories", ["organization_id"], name: "index_inventories_on_organization_id", using: :btree

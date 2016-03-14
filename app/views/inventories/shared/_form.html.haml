@@ -1,8 +1,11 @@
 = nested_form_for Inventory.new do |f|
   .card.padding-top.bg--grey
     .form-group
-      %label Selecciona el archivo *
+      %label Selecciona el archivo del Inventario de Datos *
       = f.file_field :spreadsheet_file, required: true
+    .form-group
+      %label Selecciona el archivo del Oficio de Designación *
+      = f.file_field :designation_file, required: true
     .form-group
       %label Selecciona el archivo de la Minuta de Autorizaci&oacute;n del Grupo de Trabajo
       = f.file_field :authorization_file

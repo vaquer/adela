@@ -12,6 +12,7 @@
       %table.table.table-striped
         %thead.catalog-header
           %tr
+            %th.text-center #
             %th
               Conjuntos y recursos de datos
               %i.fa.fa-caret-down
@@ -27,8 +28,9 @@
             %th
               Acciones
         %tbody
-          - @catalog.catalog_datasets.sort_by(&:publish_date).each do |dataset|
+          - @catalog.catalog_datasets.sort_by(&:publish_date).each_with_index do |dataset, index|
             %tr.dataset
+              %td.text-center= index + 1
               %td= dataset.title
               %td
               %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
@@ -36,6 +38,7 @@
               %td.action= link_to 'Editar', edit_dataset_path(dataset)
             - dataset.distributions.each do |distribution|
               %tr.distribution
+                %td
                 %td.nested
                   - if distribution.documented?
                     = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')

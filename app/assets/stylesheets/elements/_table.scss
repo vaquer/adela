@@ -23,3 +23,7 @@
     @extend .table-cell;
   }
 }
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}

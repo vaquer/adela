@@ -1,8 +1,8 @@
-%table.table
+%table.table{ 'style' => 'border-collapse:collapse;' }
   %thead
     %tr
       %th #
-      %th 
+      %th
         Nombre del conjunto
       %th
         = link_to "", new_inventories_dataset_path, { :class => 'glyphicon glyphicon-plus-sign btn-glyph', "data-toggle" => "tooltip", :title => "Agregar nuevo conjunto", :id => "add-new-dataset" }

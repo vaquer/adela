@@ -16,6 +16,8 @@
 //= require spin
 //= require jquery.spin
 //= require bootstrap
+//= require bootstrap/collapse
+//= require bootstrap/transition
 //= require toastr
 //= require jquery.joyride-2.1
 //= require jquery.cookie

@@ -2,7 +2,7 @@
   %td= dataset_counter+1
   %td
     %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
-      = dataset.title
+      %strong= dataset.title
   %td
   %td.center= dataset.public_access? ? 'Público' : 'Privado'
   %td.center= dataset.publish_date.strftime('%F') if dataset.publish_date

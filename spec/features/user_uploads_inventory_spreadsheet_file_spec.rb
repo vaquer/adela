@@ -62,6 +62,8 @@ feature User, 'uploads inventory spreadsheet file:' do
     expect(current_path).to eq(new_inventory_path)
     submit_inventory_form_with_spreadsheet_file('another-inventory-spreadsheet-file.xlsx')
 
+
+    all(:css, '.table tbody tr.dataset a.accordion-toggle').each(&:click)
     expect(page).to have_css('.table tbody tr.dataset', count: 4)
     expect(page).to have_css('.table tbody tr.distribution', count: 4)
 
@@ -83,6 +85,7 @@ feature User, 'uploads inventory spreadsheet file:' do
     expect(current_path).to eq(new_inventory_path)
     submit_inventory_form_with_spreadsheet_file('inventario_general_de_datos_update.xlsx')
 
+    all(:css, '.table tbody tr.dataset a.accordion-toggle').each(&:click)
     expect(page).to have_css('.table tbody tr.dataset', count: 3)
     expect(page).to have_css('.table tbody tr.distribution', count: 4)
 

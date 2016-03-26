@@ -21,6 +21,9 @@ feature User, 'manages inventory datasets crud:' do
     click_on('Guardar')
 
     expect(current_path).to eq(inventories_path)
+    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
+    find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
+
     expect(page).to have_css('.table tbody tr.dataset', count: 2)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
@@ -46,6 +49,9 @@ feature User, 'manages inventory datasets crud:' do
     click_on('Agregar Recurso')
     fill_distribution_nested_form(distribution_attributes)
     click_on('Guardar')
+
+    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
+    find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
     expect(current_path).to eq(inventories_path)
     expect(page).to have_css('.table tbody tr.dataset', count: 2)
@@ -82,6 +88,7 @@ feature User, 'manages inventory datasets crud:' do
     click_on('Guardar')
 
     expect(current_path).to eq(inventories_path)
+    find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 1)
 
@@ -107,7 +114,6 @@ feature User, 'manages inventory datasets crud:' do
     click_on('Eliminar Conjunto')
 
     expect(page).to have_css('.table tbody tr.dataset', count: 2)
-    expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
     expect(page).not_to have_text('Tipos de vegetación')
     expect(page).not_to have_text('bosque de encinos, bosquie de coniferas, selva prenifolia, etc.')
@@ -126,6 +132,7 @@ feature User, 'manages inventory datasets crud:' do
     fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
+    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
@@ -138,6 +145,7 @@ feature User, 'manages inventory datasets crud:' do
     upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
+    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
     within find('tr.distribution', text: 'Programa anual de Mantenimiento') do
       find('.dropdown').click
       click_on('Editar')
@@ -147,12 +155,13 @@ feature User, 'manages inventory datasets crud:' do
     fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
-    expect(page).to have_css('.table tbody tr.dataset', count: 1)
-    expect(page).to have_css('.table tbody tr.distribution', count: 1)
-
+    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
     within find('tr.distribution', text: distribution_attributes[:title]) do
       expect(page).to have_text('json')
     end
+
+    expect(page).to have_css('.table tbody tr.dataset', count: 1)
+    expect(page).to have_css('.table tbody tr.distribution', count: 1)
     expect(page).not_to have_text('Programa anual de Mantenimiento')
   end
 
@@ -160,12 +169,17 @@ feature User, 'manages inventory datasets crud:' do
     upload_inventory_with_file('inventario_general_de_datos_update.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
+    find('tr.dataset td a.accordion-toggle', text: 'Tipos de vegetación').click
     within find('tr.distribution', text: 'Desierto') do
       find('.dropdown').click
       click_on('Eliminar')
     end
 
     click_on('Eliminar Recurso')
+
+    find('tr.dataset td a.accordion-toggle', text: 'Tipos de vegetación').click
+    find('tr.dataset td a.accordion-toggle', text: 'Montos Programa Adultos Mayores').click
+    find('tr.dataset td a.accordion-toggle', text: 'Peticiones de los ciudadanos').click
 
     expect(page).to have_css('.table tbody tr.dataset', count: 3)
     expect(page).to have_css('.table tbody tr.distribution', count: 3)

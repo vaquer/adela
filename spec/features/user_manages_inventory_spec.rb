@@ -37,7 +37,7 @@ feature User, 'manages inventory:' do
     expect(page).to have_text('Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula.')
   end
 
-  scenario 'uploads an invalid inventory file with ungrouped datasets' do
+  xscenario 'uploads an invalid inventory file with ungrouped datasets' do
     upload_inventory_with_file("inventario_general_de_datos-error_no_agrupados.xlsx")
     visit inventory_path(@inventory)
     expect(page).to have_text('Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:')

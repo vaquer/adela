@@ -4,7 +4,7 @@ class Inventory < ActiveRecord::Base
 
   validates_presence_of :spreadsheet_file
   validates :organization, presence: true
-  validate :duplicated_datasets, :compliant_elements, :non_empty
+  validate :compliant_elements, :non_empty
 
   belongs_to :organization
 

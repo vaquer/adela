@@ -24,14 +24,12 @@
 //= require components/datepicker
 //= require components/table-checkbox
 //= require components/agreement
-//= require components/tooltip
 //= require_self
 //= require_directory .
 
 ready = ->
   loadDatePicker()
   loadCheckboxes()
-  loadTooltip()
 
   toastr.options =
     'closeButton': false

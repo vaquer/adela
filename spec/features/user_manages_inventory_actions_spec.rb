@@ -16,6 +16,12 @@ feature User, 'manages inventory actions:' do
     end
   end
 
+  scenario 'visits new inventories dataset path' do
+    within('.navbar') { click_on('Inventario de Datos') }
+    click_on('Agregar un conjunto nuevo')
+    expect(current_path).to eq(new_inventories_dataset_path)
+  end
+
   scenario 'continue with opening plan' do
     upload_inventory_with_file('inventario_general_de_datos.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }

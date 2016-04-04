@@ -53,6 +53,7 @@ gem 'babosa'
 gem 'tzinfo-data'
 gem 'momentjs-rails'
 gem 'active_link_to'
+gem 'as_csv', '~> 2.0'
 
 group :development, :test do
   gem 'spring'

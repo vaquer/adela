@@ -44,6 +44,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.3)
+    as_csv (2.0.2)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      responders
     autoprefixer-rails (6.2.2)
       execjs
       json
@@ -367,6 +371,7 @@ DEPENDENCIES
   active_link_to
   active_model_serializers
   active_model_warnings
+  as_csv (~> 2.0)
   autosize-rails
   babosa
   bootstrap-sass

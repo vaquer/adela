@@ -18,11 +18,6 @@ describe Inventory do
     it_behaves_like 'a valid inventory'
   end
 
-  context 'without an spreadsheet file' do
-    let(:inventory) { build_stubbed(:inventory, spreadsheet_file: nil) }
-    it_behaves_like 'an invalid inventory'
-  end
-
   context 'without an organization' do
     let(:inventory) { build_stubbed(:inventory, organization: nil) }
     it_behaves_like 'an invalid inventory'

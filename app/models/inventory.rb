@@ -1,11 +1,9 @@
 class Inventory < ActiveRecord::Base
   include Loggable
 
-  mount_uploader :spreadsheet_file, FileUploader
   mount_uploader :authorization_file, FileUploader
   mount_uploader :designation_file, FileUploader
 
-  validates_presence_of :spreadsheet_file
   validates :organization, presence: true
 
   belongs_to :organization

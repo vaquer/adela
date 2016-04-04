@@ -10,7 +10,6 @@ class InventoriesController < ApplicationController
 
   def inventory_params
     params.require(:inventory).permit(
-      :spreadsheet_file,
       :authorization_file,
       :designation_file,
       :activity_log,

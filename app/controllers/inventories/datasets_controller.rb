@@ -28,6 +28,7 @@ class Inventories::DatasetsController < ApplicationController
   def dataset_params
     params.require(:dataset).permit(
       :title,
+      :description,
       :contact_position,
       :public_access,
       :publish_date,

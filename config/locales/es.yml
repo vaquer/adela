@@ -118,6 +118,7 @@ es:
         current_password: "Contraseña actual"
       dataset:
         title: 'Nombre del Conjunto de Datos'
+        description: 'Descripción'
         contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
         public_access: '¿Tiene datos privados?'
         publish_date: 'Fecha estimada de publicación en datos.gob.mx'

@@ -1,4 +1,6 @@
 class InventoryDatasetGenerator
+  include Rails.application.routes.url_helpers
+
   attr_reader :inventory, :organization, :catalog
 
   def initialize(inventory)
@@ -31,8 +33,6 @@ class InventoryDatasetGenerator
 
   def update_distribution
     distribution = inventory_dataset.distributions.first
-    distribution.download_url = @inventory.spreadsheet_file.url
-    distribution.byte_size = @inventory.spreadsheet_file.file.size
     distribution.modified = Time.current.iso8601
     distribution.temporal = build_temporal(distribution.modified)
     distribution.save
@@ -94,9 +94,8 @@ class InventoryDatasetGenerator
     dataset.distributions.build do |distribution|
       distribution.title = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.description = "Inventario Institucional de Datos de #{@organization.title}"
-      distribution.download_url = @inventory.spreadsheet_file.url
-      distribution.media_type = 'excel'
-      distribution.byte_size = @inventory.spreadsheet_file.file.size
+      distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@organization, format: :csv)}"
+      distribution.media_type = 'csv'
       distribution.temporal = build_temporal(dataset.modified)
       distribution.modified = dataset.modified
     end

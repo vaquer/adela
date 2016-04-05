@@ -94,12 +94,6 @@ describe InventoryDatasetGenerator do
         expect(new_distribution_modified).not_to eql(old_distribution_modified)
       end
 
-      it 'should update the download_url field from the existing distribution' do
-        old_distribution_download_url = @old_dataset.distributions.first.download_url
-        new_distribution_download_url = @new_dataset.distributions.first.download_url
-        expect(new_distribution_download_url).not_to eql(old_distribution_download_url)
-      end
-
       it 'should update temporal range for the existing distribution' do
         resource    = @new_dataset.distributions.first
         timestring  = "P3H33M/#{resource.modified.strftime("%FT%T%:z")}"

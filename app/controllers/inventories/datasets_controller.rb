@@ -1,5 +1,6 @@
 class Inventories::DatasetsController < ApplicationController
   include DatasetActions
+  include InventoryActions
 
   before_action :authenticate_user!
 

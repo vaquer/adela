@@ -1,5 +1,6 @@
 class Inventories::DistributionsController < ApplicationController
   include DistributionActions
+  include InventoryActions
 
   def confirm_destroy
     @distribution = Distribution.find(params[:id])

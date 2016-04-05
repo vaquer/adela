@@ -7,12 +7,4 @@ class Inventory < ActiveRecord::Base
   validates :organization, presence: true
 
   belongs_to :organization
-
-  after_commit :create_catalog_datasets, on: :create
-
-  private
-
-  def create_catalog_datasets
-    InventoryDatasetsWorker.perform_async(id)
-  end
 end

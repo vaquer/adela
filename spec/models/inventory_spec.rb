@@ -22,12 +22,4 @@ describe Inventory do
     let(:inventory) { build_stubbed(:inventory, organization: nil) }
     it_behaves_like 'an invalid inventory'
   end
-
-  context 'after creating an inventory' do
-    let(:inventory) { create(:inventory) }
-
-    it 'should be an InventoryDatasetsWorker enqueued job' do
-      expect { inventory.run_callbacks(:commit) }.to change { InventoryDatasetsWorker.jobs.count }.by(1)
-    end
-  end
 end

@@ -122,7 +122,7 @@ es:
         contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
         public_access: '¿Tiene datos privados?'
         accrual_periodicity: 'Frecuencia con la que actualizan'
-        publish_date: 'Fecha estimada de publicación en datos.gob.mx'
+        publish_date: 'Fecha de publicación'
       distribution:
         title: 'Nombre del Recurso'
         description: '¿De qué es?'

@@ -5,6 +5,8 @@
     %p Da click en el botón de “AGREGAR UN CONJUNTO” para comenzar a crear tu Inventario de Datos Abiertos.
     = link_to 'Agregar un conjunto nuevo', new_inventories_dataset_path, { class: 'btn btn-primary pull-right' }
     .clearfix
+    - if !(current_organization.inventory.designation_file.present? || current_organization.inventory.authorization_file.present?)
+      = render 'inventories/shared/form'
     - if current_organization.catalog && current_organization.catalog.datasets.present?
       .pull-right
       = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }

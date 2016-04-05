@@ -159,6 +159,8 @@ es:
       organization:
         create: "La organización se creó exitosamente."
         update: "Se ha actualizado la organización exitosamente."
+      inventory:
+        update: "Gracias por cargar tus oficios."
     alert:
       user:
         create: "Ocurrió un error al crear el usuario."

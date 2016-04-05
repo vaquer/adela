@@ -27,7 +27,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, only: [:index, :new, :create]
+    resources :inventories, only: [:index, :update]
 
     resources :opening_plans, only: [:index, :new, :create] do
       member do

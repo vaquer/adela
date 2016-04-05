@@ -31,6 +31,7 @@ class Inventories::DatasetsController < ApplicationController
       :description,
       :contact_position,
       :public_access,
+      :accrual_periodicity,
       :publish_date,
       distributions_attributes: [:id, :title, :description, :media_type, :_destroy]
     )

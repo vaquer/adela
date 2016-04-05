@@ -5,11 +5,11 @@ class Organization < ActiveRecord::Base
 
   has_one :administrator
   has_one :catalog, -> { order('created_at desc') }
+  has_one :inventory
   has_one :liaison
 
   has_many :users
   has_many :activity_logs
-  has_many :inventories
   has_many :opening_plan_logs, dependent: :destroy
   has_many :organization_sectors, dependent: :destroy
   has_many :sectors, through: :organization_sectors

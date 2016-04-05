@@ -5,6 +5,10 @@ FactoryGirl.define do
     logo_url { Faker::Company.logo }
     landing_page { Faker::Internet.url }
 
+    after(:build) do |organization|
+      build(:inventory, organization: organization)
+    end
+
     trait :federal do
       gov_type { 'federal' }
     end

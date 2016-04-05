@@ -13,7 +13,7 @@ class OpeningPlansController < ApplicationController
   private
 
   def require_published_datasets
-    return if current_inventory && current_organization.catalog.datasets.where(public_access: true, published: true, editable: true).present?
+    return if current_organization.inventory && current_organization.catalog.datasets.where(public_access: true, published: true, editable: true).present?
     redirect_to new_opening_plan_path
   end
 end

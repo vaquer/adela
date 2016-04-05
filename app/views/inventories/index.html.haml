@@ -7,6 +7,6 @@
     .clearfix
     - if current_organization.catalog && current_organization.catalog.datasets.present?
       .pull-right
-      = render partial: 'inventories/shared/list', locals: { inventory: current_inventory }
+      = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
       = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
       = link_to 'Descargar Inventario Actual', organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary' }

@@ -6,11 +6,6 @@ feature User, 'logs in:' do
     @user = FactoryGirl.create(:user)
   end
 
-  scenario "visits root page and sees landing page" do
-    visit "/"
-    expect(page).to have_text "Con la Administradora de la Apertura, planea, publica, perfecciona y promueve datos abiertos."
-  end
-
   scenario "visits root page and sees log in link" do
     visit "/"
     expect(page).to have_css("#new_user")

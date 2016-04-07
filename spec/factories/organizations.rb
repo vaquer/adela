@@ -6,7 +6,7 @@ FactoryGirl.define do
     landing_page { Faker::Internet.url }
 
     after(:build) do |organization|
-      build(:inventory, organization: organization)
+      build(:inventory, organization: organization, authorization_file: nil, designation_file: nil)
     end
 
     trait :federal do

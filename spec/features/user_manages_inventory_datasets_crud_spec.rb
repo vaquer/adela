@@ -7,7 +7,6 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'creates a new public dataset', js: true do
-    upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
 
     click_link('Agregar un conjunto nuevo')
@@ -16,16 +15,16 @@ feature User, 'manages inventory datasets crud:' do
     distribution_attributes = attributes_for(:distribution)
 
     fill_public_dataset_form(dataset_attributes)
+
     click_on('Agregar Recurso')
     fill_distribution_nested_form(distribution_attributes)
     click_on('Guardar')
 
     expect(current_path).to eq(inventories_path)
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
-    expect(page).to have_css('.table tbody tr.dataset', count: 2)
-    expect(page).to have_css('.table tbody tr.distribution', count: 2)
+    expect(page).to have_css('.table tbody tr.dataset', count: 1)
+    expect(page).to have_css('.table tbody tr.distribution', count: 1)
 
     within find('tr.dataset', text: dataset_attributes[:title]) do
       expect(page).to have_text('Público')
@@ -38,7 +37,6 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'creates a new private dataset', js: true do
-    upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
     click_link('Agregar un conjunto nuevo')
 
@@ -50,12 +48,11 @@ feature User, 'manages inventory datasets crud:' do
     fill_distribution_nested_form(distribution_attributes)
     click_on('Guardar')
 
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
     expect(current_path).to eq(inventories_path)
-    expect(page).to have_css('.table tbody tr.dataset', count: 2)
-    expect(page).to have_css('.table tbody tr.distribution', count: 2)
+    expect(page).to have_css('.table tbody tr.dataset', count: 1)
+    expect(page).to have_css('.table tbody tr.distribution', count: 1)
 
     within find('tr.dataset', text: dataset_attributes[:title]) do
       expect(page).to have_text('Privado')
@@ -67,7 +64,6 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'cannot create a new dataset without distribution', js: true do
-    upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
     within('.navbar') { click_on('Inventario de Datos') }
     click_link('Agregar un conjunto nuevo')
 
@@ -75,10 +71,11 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'edits a dataset', js: true do
-    upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
+    dataset = given_an_inventory_with_a_dataset
+
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within find('tr.dataset', text: 'Mantenimiento Portuario') do
+    within find('tr.dataset', text: dataset[:title]) do
       find('.dropdown').click
       click_on('Editar')
     end
@@ -96,34 +93,28 @@ feature User, 'manages inventory datasets crud:' do
       expect(page).to have_text('Público')
       expect(page).to have_text(dataset_attributes[:publish_date].strftime('%F'))
     end
-
-    within find('tr.distribution', text: 'Programa anual de Mantenimiento') do
-      expect(page).to have_text('Excel')
-    end
   end
 
   scenario 'deletes a dataset', js: true do
-    upload_inventory_with_file('inventario_general_de_datos.xlsx')
+    dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within find('tr.dataset', text: 'Tipos de vegetación') do
+    within find('tr.dataset', text: dataset[:title]) do
       find('.dropdown').click
       click_on('Eliminar')
     end
 
     click_on('Eliminar Conjunto')
 
-    expect(page).to have_css('.table tbody tr.dataset', count: 2)
-
-    expect(page).not_to have_text('Tipos de vegetación')
-    expect(page).not_to have_text('bosque de encinos, bosquie de coniferas, selva prenifolia, etc.')
+    expect(page).to have_css('.table tbody tr.dataset', count: 0)
+    expect(page).not_to have_text(dataset[:title])
   end
 
   scenario 'adds a distribution to a dataset', js: true do
-    upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
+    dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within find('tr.dataset', text: 'Mantenimiento Portuario') do
+    within find('tr.dataset', text: dataset[:title]) do
       find('.dropdown').click
       click_on('Agregar')
     end
@@ -132,7 +123,7 @@ feature User, 'manages inventory datasets crud:' do
     fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
+    find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
@@ -142,11 +133,11 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'edits a dataset distribution', js: true do
-    upload_inventory_with_file('another-inventory-spreadsheet-file.xlsx')
+    dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Inventario de Datos') }
 
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
-    within find('tr.distribution', text: 'Programa anual de Mantenimiento') do
+    find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
+    within find('tr.distribution', text: dataset[:distributions].first[:title]) do
       find('.dropdown').click
       click_on('Editar')
     end
@@ -155,48 +146,66 @@ feature User, 'manages inventory datasets crud:' do
     fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
-    find('tr.dataset td a.accordion-toggle', text: 'Mantenimiento Portuario').click
+    find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr.distribution', text: distribution_attributes[:title]) do
       expect(page).to have_text('json')
     end
 
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 1)
-    expect(page).not_to have_text('Programa anual de Mantenimiento')
+    expect(page).not_to have_text(dataset[:distributions].first[:title])
   end
 
   scenario 'deletes a distribution', js: true do
-    upload_inventory_with_file('inventario_general_de_datos_update.xlsx')
+    dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Inventario de Datos') }
 
-    find('tr.dataset td a.accordion-toggle', text: 'Tipos de vegetación').click
-    within find('tr.distribution', text: 'Desierto') do
+    find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
+    within find('tr.distribution', text: dataset[:distributions].first[:title]) do
       find('.dropdown').click
       click_on('Eliminar')
     end
 
     click_on('Eliminar Recurso')
 
-    find('tr.dataset td a.accordion-toggle', text: 'Tipos de vegetación').click
-    find('tr.dataset td a.accordion-toggle', text: 'Montos Programa Adultos Mayores').click
-    find('tr.dataset td a.accordion-toggle', text: 'Peticiones de los ciudadanos').click
+    find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
 
-    expect(page).to have_css('.table tbody tr.dataset', count: 3)
-    expect(page).to have_css('.table tbody tr.distribution', count: 3)
-    expect(page).not_to have_text('Desierto')
+    expect(page).to have_css('.table tbody tr.dataset', count: 1)
+    expect(page).to have_css('.table tbody tr.distribution', count: 0)
+    expect(page).not_to have_text(dataset[:distributions].first[:title])
+  end
+
+  def given_an_inventory_with_a_dataset
+    dataset = attributes_for(:dataset)
+    distribution = attributes_for(:distribution)
+    dataset[:distributions] = [distribution]
+
+    within('.navbar') { click_on('Inventario de Datos') }
+    click_link('Agregar un conjunto nuevo')
+
+    fill_public_dataset_form(dataset)
+    click_on('Agregar Recurso')
+    fill_distribution_nested_form(distribution)
+    click_on('Guardar')
+
+    dataset
   end
 
   def fill_public_dataset_form(dataset_attributes)
     fill_in('dataset_title', with: dataset_attributes[:title])
+    fill_in('dataset_description', with: dataset_attributes[:description])
     fill_in('dataset_contact_position', with: dataset_attributes[:contact_position])
     select('Público', from: 'dataset_public_access')
     fill_in('dataset_publish_date', with: dataset_attributes[:publish_date].strftime('%F'))
+    select('Diario', from: 'dataset_accrual_periodicity')
   end
 
   def fill_private_dataset_form(dataset_attributes)
     fill_in('dataset_title', with: dataset_attributes[:title])
+    fill_in('dataset_description', with: dataset_attributes[:description])
     fill_in('dataset_contact_position', with: dataset_attributes[:contact_position])
     select('Privado', from: 'dataset_public_access')
+    select('Diario', from: 'dataset_accrual_periodicity')
   end
 
   def fill_distribution_nested_form(distribution_attributes)

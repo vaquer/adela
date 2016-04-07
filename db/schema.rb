@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314004034) do
+ActiveRecord::Schema.define(version: 20160404151820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,12 +100,10 @@ ActiveRecord::Schema.define(version: 20160314004034) do
   add_index "distributions", ["dataset_id"], name: "index_distributions_on_dataset_id", using: :btree
 
   create_table "inventories", force: :cascade do |t|
-    t.string   "spreadsheet_file"
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "authorization_file"
-    t.string   "error_message"
     t.string   "designation_file"
   end
 

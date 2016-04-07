@@ -1,8 +1,10 @@
 class InventoriesController < ApplicationController
   before_action :authenticate_user!
 
-  def create
-    current_organization.inventories.create(inventory_params)
+  def update
+    if current_organization.inventory.update(inventory_params)
+      flash[:notice] = I18n.t('flash.notice.inventory.update')
+    end
     redirect_to inventories_path
   end
 
@@ -10,7 +12,6 @@ class InventoriesController < ApplicationController
 
   def inventory_params
     params.require(:inventory).permit(
-      :spreadsheet_file,
       :authorization_file,
       :designation_file,
       :activity_log,

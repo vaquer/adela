@@ -9,6 +9,7 @@ Adela::Application.routes.draw do
 
     get '/:slug/catalogo' => 'organizations#catalog', as: 'organization_catalog'
     get '/:slug/plan' => 'organizations#opening_plans'
+    get '/:slug/inventario' => 'organizations#inventory', as: 'organization_inventory'
 
     root to: 'home#index'
 
@@ -26,7 +27,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, only: [:index, :new, :create]
+    resources :inventories, only: [:index, :update]
 
     resources :opening_plans, only: [:index, :new, :create] do
       member do

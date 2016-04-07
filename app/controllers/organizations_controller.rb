@@ -1,6 +1,7 @@
 # TODO: needs refactoring
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: [:catalog, :search, :opening_plans]
+  before_action :authenticate_user!, except: [:catalog, :search, :opening_plans, :inventory]
+  respond_to :csv, only: :inventory
 
   # TODO: move action to home#dashboard
   def show
@@ -18,6 +19,12 @@ class OrganizationsController < ApplicationController
     else
       render json: {}
     end
+  end
+
+  def inventory
+    @organization = Organization.friendly.find(params[:slug])
+    @distributions = @organization.catalog.editable_datasets.map(&:distributions).flatten
+    respond_with @distributions, style: :inventory
   end
 
   # TODO: move action to a controller under the API namespace

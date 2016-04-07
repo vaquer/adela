@@ -7,18 +7,13 @@ module Features
       click_on("ENTRAR")
     end
 
-    def given_organization_with_inventory
-      upload_inventory_with_file('inventario_general_de_datos.xlsx')
+    def given_organization_with_catalog
+      create(:inventory, organization: @user.organization)
+      create(:catalog, :datasets, organization: @user.organization)
     end
 
     def given_organization_with_opening_plan
       create(:catalog, :datasets, organization: @user.organization)
-    end
-
-    def upload_inventory_with_file(file_name)
-      spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
-      inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)
-      InventoryDatasetsWorker.new.perform(inventory.id)
     end
 
     def sees_success_message(message)
@@ -47,7 +42,7 @@ module Features
     end
 
     def given_organization_has_catalog_with(datasets)
-      create :inventory, :elements, organization: @user.organization
+      create :inventory, organization: @user.organization
       create :opening_plan, organization: @user.organization
       create :catalog, datasets: datasets, organization: @user.organization
       @user.organization.reload

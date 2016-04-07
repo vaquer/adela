@@ -6,14 +6,10 @@ feature User, 'manages inventory actions:' do
     given_logged_in_as(@user)
   end
 
-  xscenario 'downloads the inventry plan', js: true do
-    upload_inventory_with_file('inventario_general_de_datos.xlsx')
+  scenario 'downloads the inventry plan' do
+    given_organization_with_catalog
     within('.navbar') { click_on('Inventario de Datos') }
-
-    within('.btn-group') do
-      click_on('Acciones')
-      have_text('Descargar')
-    end
+    have_text('Descargar inventario actual')
   end
 
   scenario 'visits new inventories dataset path' do
@@ -23,7 +19,7 @@ feature User, 'manages inventory actions:' do
   end
 
   scenario 'continue with opening plan' do
-    upload_inventory_with_file('inventario_general_de_datos.xlsx')
+    given_organization_with_catalog
     within('.navbar') { click_on('Inventario de Datos') }
     click_on('Continua con el Plan de Apertura')
     expect(current_path).to eq(new_opening_plan_path)

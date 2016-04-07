@@ -1,41 +1,61 @@
 .container
-  -# Card: List stuff / 'Planea'
   .card
-    %h3.title Planea
-    %h5.subtitle
-      %span Inventario de datos
-      |
-      %span.primary.boldish.uppercase Ago 28
-    %ul.list
-      %li.item
-        .index 1
-        %span Descarga la plantilla del inventario &nbsp;&nbsp;
-        = link_to 'Descargar', 'http://mxabierto.github.io/guia/docs/inventario_general_de_datos.xlsx', { class: 'btn btn-primary' }
-      %li.item
-        .index 2
-        %span Llena la plantilla con informaci&oacute;n
-      %li.item
-        .index 3
-        %span Sube el inventario &nbsp;&nbsp;
-        = link_to 'Subir', new_inventory_path, { class: 'btn btn-primary' }
-    %h5.subtitle
-      %span Plan de apertura
-      |
-      %span.primary.boldish.uppercase Sep 25
+    %h3.title ¡Bienvenido a ADELA!
     %p
-      El plan de apertura contiene el calendario de publicaci&oacute;n anual
-      de los datos abiertos de la instituci&oacute;n
-  .card
-    %h3.title Publica
-    %h5.subtitle Cat&aacute;logo de datos institucional
+      En ADELA podrás cargar, calendarizar, documentar, publicar y editar los Conjuntos y Recursos de Datos Abiertos de tu Institución que posteriormente se verán reflejados en el portal datos.gob.mx.
     %p
-      Publica el Cat&aacute;logo de datos Institucional en datos.gob.mx
-  .card
-    %h3.title Perfecciona
-    %h5.subtitle
-      Aqu&iacute; encontrar&aacute;s las recomendaciones para mejorar en la
-      implementaci&oacute;n de Datos Abiertos
-  .card
-    %h3.title Promueve
-    %h5.subtitle
-      Cat&aacutelogo de datos institucional
+      ADELA te ayuda a cumplir con los pasos establecidos en la [Guía de Implementación de la Política de Datos Abiertos]. Aquí podrás cumplir con:
+
+    .card.bg--grey.margin-top
+      %h5.subtitle
+        %span PASO 1
+        |
+        %span.primary.boldish.uppercase PLANEA
+      %ul.list
+        %li.item
+          .index 1
+          %span Formar un grupo de trabajo y designación de Enlace y Administrador de datos abiertos
+        %li.item
+          .index 2
+          %span Crear un Inventario de Datos
+        %li.item
+          .index 3
+          %span Priorizar los datos de valor
+        %li.item
+          .index 4
+          %span Generar y publicar el Plan de Apertura Institucional
+    .card.bg--grey.margin-top
+      %h5.subtitle
+        %span PASO 2
+        |
+        %span.primary.boldish.uppercase PUBLICA
+      %ul.list
+        %li.item
+          .index 1
+          %span Prepara los conjuntos de datos
+        %li.item
+          .index 2
+          %span Documentar los conjuntos de Datos Abiertos de acuerdo al estándar DCAT
+        %li.item
+          .index 3
+          %span Publicar el Catálogo de Datos Abiertos en www.datos.gob.mx
+    .card.bg--grey.margin-top
+      %h5.subtitle
+        %span PASO 3
+        |
+        %span.primary.boldish.uppercase PERFECCIONA
+      %ul.list
+        %li.item
+          .index 1
+          %span Atiende las recomendaciones para mejorar la implementación de Datos Abiertos
+    .card.bg--grey.margin-top
+      %h5.subtitle
+        %span PASO 4
+        |
+        %span.primary.boldish.uppercase PROMUEVE
+      %ul.list
+        %li.item
+          .index 1
+          %span Promover el uso, reúso y redistribución de los Datos Abiertos
+    %p
+      ¿Necesitas ayuda? Da click en Guías

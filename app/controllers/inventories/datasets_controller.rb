@@ -1,5 +1,6 @@
 class Inventories::DatasetsController < ApplicationController
   include DatasetActions
+  include InventoryActions
 
   before_action :authenticate_user!
 
@@ -27,8 +28,10 @@ class Inventories::DatasetsController < ApplicationController
   def dataset_params
     params.require(:dataset).permit(
       :title,
+      :description,
       :contact_position,
       :public_access,
+      :accrual_periodicity,
       :publish_date,
       distributions_attributes: [:id, :title, :description, :media_type, :_destroy]
     )

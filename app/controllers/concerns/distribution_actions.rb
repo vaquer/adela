@@ -1,4 +1,6 @@
 module DistributionActions
+  extend ActiveSupport::Concern
+
   def new
     @dataset = Dataset.find(params['dataset_id'])
     @distribution = @dataset.distributions.build

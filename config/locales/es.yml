@@ -118,9 +118,11 @@ es:
         current_password: "Contraseña actual"
       dataset:
         title: 'Nombre del Conjunto de Datos'
+        description: 'Descripción'
         contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
         public_access: '¿Tiene datos privados?'
-        publish_date: 'Fecha estimada de publicación en datos.gob.mx'
+        accrual_periodicity: 'Frecuencia con la que actualizan'
+        publish_date: 'Fecha de publicación'
       distribution:
         title: 'Nombre del Recurso'
         description: '¿De qué es?'
@@ -157,6 +159,8 @@ es:
       organization:
         create: "La organización se creó exitosamente."
         update: "Se ha actualizado la organización exitosamente."
+      inventory:
+        update: "Gracias por cargar tus oficios."
     alert:
       user:
         create: "Ocurrió un error al crear el usuario."

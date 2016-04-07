@@ -4,13 +4,11 @@
     %p El Inventario de Datos Abiertos es un listado de todos los Conjuntos y Recursos de Datos Abiertos con las fechas comprometidas de publicación y actualización para cada uno de ellos.
     %p Da click en el botón de “AGREGAR UN CONJUNTO” para comenzar a crear tu Inventario de Datos Abiertos.
     = link_to 'Agregar un conjunto nuevo', new_inventories_dataset_path, { class: 'btn btn-primary pull-right' }
-    - if current_inventory && current_inventory.error_message
-      = render partial: 'inventories/shared/error_message', locals: { inventory: current_inventory }
+    .clearfix
+    - if !(current_organization.inventory.designation_file.present? || current_organization.inventory.authorization_file.present?)
+      = render 'inventories/shared/form'
     - if current_organization.catalog && current_organization.catalog.datasets.present?
       .pull-right
-      = render partial: 'inventories/shared/list', locals: { inventory: current_inventory }
+      = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
       = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
-      = link_to 'Actualizar Inventario', new_inventory_path, { class: 'btn btn-primary' }
-      = link_to 'Descargar Inventario Actual', current_inventory.spreadsheet_file.url, { class: 'btn btn-primary' }
-    - else
-      = render 'inventories/shared/form'
+      = link_to 'Descargar Inventario Actual', organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary' }

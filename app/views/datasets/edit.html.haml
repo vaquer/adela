@@ -1,11 +1,12 @@
 .container
   - breadcrumb :dataset, @dataset
   .card
-    %h3.title= "Nombre del conjunto: #{@dataset.title}"
-    %h5.subtitle= "Fecha de compromiso - #{l(@dataset.publish_date, format: '%d %B %Y')}"
-    %p.instructions
-      Aqu&iacute; puedes documentar la informaci&oacute;n requerida para publicar
-      el conjunto de datos y sus recursos en datos.gob.mx
+    .card.bg--grey.padding-top.margin-top
+      %h3 Documenta el Conjunto de Datos Abiertos
+      %p Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.
+      %p Aquí puedes documentar los metadatos según el estándar DCAT para:
+      %p <strong class='highlight'>Nombre del conjunto:</strong> #{@dataset.title}
+      %p <strong class='highlight'>Fecha compromiso de publicación:</strong> #{@dataset.publish_date.strftime('%F')}
     .row
       .col-xs-12.col-sm-6
         %p.uppercase.dark Descripci&oacute;n

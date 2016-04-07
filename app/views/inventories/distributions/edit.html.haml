@@ -1,8 +1,10 @@
 .container
   .card
-    %h3.title Planea
-    %h5.subtitle Inventario de datos
-    %h5.subtitle Editar Recurso
+    %h3.title Recurso de Datos
+    %p
+      Un <span class='highlight'>Recurso de datos</span> es un archivo de Datos Abiertos que pertenece a un Conjunto de Datos. Cada Recurso de Datos puede estar disponible en diferentes estructuras (cartográfico, tabular), temporalidades (años, meses), formatos (CSV, API, RSS), agregaciones espaciales (nivel país, estatal, municipal, etc).
+    %p
+      Agrega un Recurso de datos al Conjunto
     = form_for [:inventories, @distribution.dataset, @distribution] do |f|
       .form-group.required
         = f.label :title, class: 'control-label'

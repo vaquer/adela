@@ -32,7 +32,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
   end
 
@@ -59,7 +59,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
   end
 
@@ -120,7 +120,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     distribution_attributes = attributes_for(:distribution)
-    fill_distribution_form(distribution_attributes)
+    fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
@@ -128,7 +128,7 @@ feature User, 'manages inventory datasets crud:' do
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text(distribution_attributes[:media_type])
+      expect(page).to have_text('json')
     end
   end
 
@@ -143,7 +143,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     distribution_attributes = attributes_for(:distribution)
-    fill_distribution_form(distribution_attributes)
+    fill_distribution_form(distribution_attributes, 'json')
     click_on('Guardar')
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click

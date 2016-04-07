@@ -95,7 +95,7 @@ es:
             resource_title:
               invalid: "El campo \"Nombre del recurso\" no puede ir en blanco."
             description:
-              invalid: "El campo \"¿De qué es?\" no puede ir en blanco."
+              invalid: "El campo \"Descripción del Recurso\" no puede ir en blanco."
             private:
               invalid: "El campo \"¿Tiene datos privados?\" no puede ir en blanco."
             media_type:
@@ -125,7 +125,7 @@ es:
         publish_date: 'Fecha de publicación'
       distribution:
         title: 'Nombre del Recurso'
-        description: '¿De qué es?'
+        description: 'Descripción del Recurso'
         media_type: 'Formato del recurso'
       organization:
         title: "Nombre"

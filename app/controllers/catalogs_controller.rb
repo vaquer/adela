@@ -82,6 +82,6 @@ class CatalogsController < ApplicationController
   end
 
   def catalog_contains_editable_and_published_datasets?
-    current_organization.catalog.datasets.where(editable: true, published: true).present?
+    current_organization.catalog.datasets.where(editable: true).present?
   end
 end

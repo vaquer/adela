@@ -1,10 +1,8 @@
 .container
   .card
-    %h3.title Planea
-    %h5.subtitle Inventario de datos
-    .card.padding-top.bg--grey
-      %h5.primary.boldish Eliminar Conjunto de Datos
+    .card.bg--grey.padding-top.margin-top
+      %h3 ¿Estás seguro que deseas eliminar este Conjunto de Datos?
       %p
-        Al borrar el conjunto <strong>#{@dataset.title}</strong>, se perderán los recursos asociados a el.
+        Al borrar el conjunto: <strong class='highlight'>#{@dataset.title}</strong>, se perderán también los recursos asociados a éste.
       = link_to 'Eliminar Conjunto de Datos', inventories_dataset_path(@dataset), data: {}, method: :delete, class: 'btn btn-primary'
       = link_to 'Cancelar', inventories_path, class: 'btn btn-default'

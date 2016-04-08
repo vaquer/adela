@@ -21,4 +21,7 @@
         %label.control-label
           Campos obligatorios
       .form-group
-        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'
+        = link_to 'Agregar otro recurso a este conjunto', new_inventories_dataset_distribution_path(@distribution.dataset), class: 'btn btn-primary pull-left'
+      .form-group
+        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary pull-right'
+      .clearfix

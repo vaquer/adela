@@ -28,12 +28,6 @@ Adela::Application.routes.draw do
     end
 
     resources :inventories, only: [:index, :update]
-
-    resources :opening_plans, only: [] do
-      member do
-        get 'export'
-      end
-    end
   end
 
   namespace :api, defaults: { format: 'json' } do

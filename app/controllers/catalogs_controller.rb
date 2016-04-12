@@ -1,6 +1,6 @@
 class CatalogsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_opening_plan, except: [:update]
+  before_action :require_opening_plan
 
   def index
     redirect_to catalog_datasets_path(current_organization.catalog)
@@ -9,14 +9,6 @@ class CatalogsController < ApplicationController
 
   def show
     @catalog = current_organization.catalog
-  end
-
-  def update
-    catalog = current_organization.catalog
-    catalog.update(catalog_update_params)
-    current_organization.opening_plan_logs.create(opening_plan: opening_plan_to_json(catalog))
-    OpeningPlanDatasetGenerator.new(catalog).generate
-    redirect_to opening_plans_path
   end
 
   def check
@@ -39,14 +31,6 @@ class CatalogsController < ApplicationController
 
   private
 
-  def catalog_update_params
-    params.require(:catalog).permit(
-      datasets_attributes: [
-        :id, :published, :title, :description, :accrual_periodicity, :publish_date
-      ]
-    )
-  end
-
   def catalog_params
     params.require(:catalog).permit(distribution_ids: [])
   end
@@ -66,13 +50,6 @@ class CatalogsController < ApplicationController
   def harvest_catalog
     slug = @catalog.organization.slug
     ShogunHarvestWorker.perform_async("http://adela.datos.gob.mx/#{slug}/catalogo.json")
-  end
-
-  def opening_plan_to_json(catalog)
-    ActiveModel::ArraySerializer.new(
-      catalog.opening_plan_datasets,
-      each_serializer: Loggers::OpeningPlanSerializer
-    ).to_json
   end
 
   def require_opening_plan

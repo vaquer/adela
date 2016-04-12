@@ -17,11 +17,4 @@ feature User, 'manages inventory actions:' do
     click_on('Agregar un conjunto nuevo')
     expect(current_path).to eq(new_inventories_dataset_path)
   end
-
-  scenario 'continue with opening plan' do
-    given_organization_with_catalog
-    within('.navbar') { click_on('Inventario de Datos') }
-    click_on('Continua con el Plan de Apertura')
-    expect(current_path).to eq(new_opening_plan_path)
-  end
 end

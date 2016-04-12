@@ -27,15 +27,6 @@ class OrganizationsController < ApplicationController
     respond_with @distributions, style: :inventory
   end
 
-  # TODO: move action to a controller under the API namespace
-  def opening_plans
-    @organization = Organization.friendly.find(params[:slug])
-    @opening_plan = OpeningPlan.new(catalog: @organization.catalog)
-    respond_to do |format|
-      format.json { render json: @opening_plan, root: false }
-    end
-  end
-
   # TODO: use show action instead of this one
   def profile
     @organization = Organization.friendly.find(params[:id])

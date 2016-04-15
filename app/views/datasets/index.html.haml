@@ -27,15 +27,19 @@
               Acciones
         %tbody
           - @catalog.catalog_datasets.sort_by(&:publish_date).each_with_index do |dataset, index|
+
             %tr.dataset
               %td.text-center= index + 1
-              %td= dataset.title
+              %td
+                %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
+                  %strong= dataset.title
+                  %span.caret
               %td
               %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
               %td= l dataset.publish_date.to_date
               %td.action= link_to 'Editar', edit_dataset_path(dataset)
             - dataset.distributions.each do |distribution|
-              %tr.distribution
+              %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
                 %td
                 %td.nested
                   - if distribution.documented?

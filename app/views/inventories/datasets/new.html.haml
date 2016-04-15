@@ -24,8 +24,15 @@
       .form-group.required
         = f.label :publish_date, class: 'control-label'
         = f.text_field :publish_date, class: 'datepicker form-control'
+
+      %h3.title Recursos de Datos
+      %p
+        Un <span class='highlight'>Recurso de datos</span> es un archivo de Datos Abiertos que pertenece a un Conjunto de Datos. Cada Recurso de Datos puede estar disponible en diferentes estructuras (cartográfico, tabular), temporalidades (años, meses), formatos (CSV, API, RSS), agregaciones espaciales (nivel país, estatal, municipal, etc).
+      %p
+        Agrega un Recurso de datos al Conjunto
+
       = f.fields_for :distributions do |distribution_form|
-        %h5.subtitle Recurso
+        %h3.title Recurso de Datos
         .form-group.required
           = distribution_form.label :title, class: 'control-label'
           = distribution_form.text_field :title, required: true, class: 'form-control'
@@ -40,11 +47,12 @@
         .form-group.required
           %label.control-label
             Campos obligatorios
-        .form-group.pull-right
+        .form-group
           = distribution_form.link_to_remove 'Eliminar Recurso', class: 'btn btn-primary'
-          = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'
       .form-group.required
         %label.control-label
           Campos obligatorios
       .form-group
         = f.link_to_add "Agregar Recurso", :distributions, class: 'btn btn-primary'
+        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary pull-right'
+      .clearfix

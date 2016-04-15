@@ -1,8 +1,10 @@
 .container
   .card
-    %h3.title Planea
-    %h5.subtitle Inventario de datos
-    %h5.subtitle Conjunto de Datos
+    %h3.title Conjunto de Datos
+    %p
+      Un <span class='highlight'>Conjunto de datos</span> es un grupo de Recursos de Datos Abiertos que tienen un tema en común. Por ejemplo: El Conjunto de Calidad del Aire agrupa los Recursos de concentraciones de calidad del aire de los 32 estados en un periodo determinado de tiempo.
+    %p
+      Agrega un Conjunto de Datos al Inventario de Datos Abiertos
     = nested_form_for [:inventories, Dataset.new] do |f|
       .form-group.required
         = f.label :title, class: 'control-label'

@@ -7,7 +7,7 @@
     %p
       Aquí puedes documentar los metadatos para los Conjuntos y Recursos de Datos Abiertos
     = form_for @catalog, url: check_organization_catalogs_path(current_organization.catalog), method: :get do |f|
-      %table.table.table-striped
+      %table.table
         %thead.catalog-header
           %tr
             %th.text-center #
@@ -27,8 +27,7 @@
               Acciones
         %tbody
           - @catalog.catalog_datasets.sort_by(&:publish_date).each_with_index do |dataset, index|
-
-            %tr.dataset
+            %tr.dataset.active
               %td.text-center= index + 1
               %td
                 %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}

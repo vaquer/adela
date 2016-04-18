@@ -11,3 +11,5 @@
       .pull-right
       = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
       = link_to 'Descargar Inventario Actual', organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary' }
+      = link_to 'Ir al Catálogo de Datos', organization_catalogs_path(current_organization), { class: 'btn btn-primary pull-right' }
+      .clearfix

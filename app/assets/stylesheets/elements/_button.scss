@@ -5,7 +5,10 @@
   text-transform: uppercase;
 }
 
-.btn-primary, .btn-primary.disabled {
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.disabled,  {
   @include button($cartoon_green, white);
 }
 

@@ -1,15 +1,13 @@
 .container
   - breadcrumb :datasets, @catalog
   .card
-    %h3.title Cat&aacute;logo de datos
-    %h5.subtitle Publica a datos.gob.mx
-    .row
-      .col-xs-12.col-sm-6
-        %p
-          Aqu&iacute; puedes revisar el avance de cada conjunto y editar sus recursos
-          para finalizar el proceso.
+    %h3.title Documenta tus Conjuntos y Recursos de Datos Abiertos
+    %p
+      Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.
+    %p
+      Aquí puedes documentar los metadatos para los Conjuntos y Recursos de Datos Abiertos
     = form_for @catalog, url: check_organization_catalogs_path(current_organization.catalog), method: :get do |f|
-      %table.table.table-striped
+      %table.table
         %thead.catalog-header
           %tr
             %th.text-center #
@@ -29,15 +27,18 @@
               Acciones
         %tbody
           - @catalog.catalog_datasets.sort_by(&:publish_date).each_with_index do |dataset, index|
-            %tr.dataset
+            %tr.dataset.active
               %td.text-center= index + 1
-              %td= dataset.title
+              %td
+                %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
+                  %strong= dataset.title
+                  %span.caret
               %td
               %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
               %td= l dataset.publish_date.to_date
               %td.action= link_to 'Editar', edit_dataset_path(dataset)
             - dataset.distributions.each do |distribution|
-              %tr.distribution
+              %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
                 %td
                 %td.nested
                   - if distribution.documented?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408162934) do
+ActiveRecord::Schema.define(version: 20160419203548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,15 @@ ActiveRecord::Schema.define(version: 20160408162934) do
 
   add_index "datasets", ["catalog_id"], name: "index_datasets_on_catalog_id", using: :btree
 
+  create_table "designation_files", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "designation_files", ["organization_id"], name: "index_designation_files_on_organization_id", using: :btree
+
   create_table "distributions", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
@@ -117,6 +126,15 @@ ActiveRecord::Schema.define(version: 20160408162934) do
 
   add_index "liaisons", ["organization_id"], name: "index_liaisons_on_organization_id", using: :btree
   add_index "liaisons", ["user_id"], name: "index_liaisons_on_user_id", using: :btree
+
+  create_table "opening_plan_logs", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.json     "opening_plan"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "opening_plan_logs", ["organization_id"], name: "index_opening_plan_logs_on_organization_id", using: :btree
 
   create_table "organization_sectors", force: :cascade do |t|
     t.integer  "sector_id"
@@ -190,4 +208,6 @@ ActiveRecord::Schema.define(version: 20160408162934) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "designation_files", "organizations"
+  add_foreign_key "opening_plan_logs", "organizations"
 end

@@ -10,6 +10,12 @@ FactoryGirl.define do
     spatial { Faker::Address.state }
     dataset
 
+    factory :catalog_distribution do
+      download_url nil
+      temporal nil
+      modified nil
+    end
+
     trait :broke do
       download_url nil
       temporal nil

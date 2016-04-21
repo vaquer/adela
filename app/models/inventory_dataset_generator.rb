@@ -64,7 +64,6 @@ class InventoryDatasetGenerator
       dataset.keyword = 'inventario'
       dataset.modified = Time.current.iso8601
       dataset.contact_position = ENV_CONTACT_POSITION_NAME
-      dataset.contact_point = organization_administrator.try(:name)
       dataset.mbox = organization_administrator.try(:email)
       dataset.temporal = Time.current.year
       dataset.landing_page = @organization.landing_page

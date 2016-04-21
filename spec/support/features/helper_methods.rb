@@ -50,5 +50,9 @@ module Features
     def resource_rows
       all('table tbody tr.distribution')
     end
+
+    def close_joyride
+      page.find('.joyride-close-tip').click
+    end
   end
 end

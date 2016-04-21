@@ -39,6 +39,10 @@ Adela::Application.routes.draw do
       get '/organizations' => 'organizations#organizations'
       get '/gov_types' => 'organizations#gov_types'
 
+      resources :datasets, only: [] do
+        get 'contact_point', on: :member
+      end
+
       resources :organizations, only: [:show] do
         collection do
           get 'catalogs'

@@ -16,6 +16,10 @@ Adela::Application.routes.draw do
       get 'profile', on: :member
       get 'search', on: :collection
 
+      resources :documents, controller: 'organizations/documents', only: [:index] do
+        put 'update', on: :collection, as: 'update'
+      end
+
       resources :catalogs, only: [:index, :show], shallow: true do
         get 'check', on: :collection
         put 'publish', on: :member
@@ -26,7 +30,7 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, only: [:index, :update]
+    resources :inventories, only: [:index]
   end
 
   namespace :api, defaults: { format: 'json' } do

@@ -17,7 +17,7 @@ class DatasetSerializer < ActiveModel::Serializer
   end
 
   def contactPoint
-    object.contact_point
+    "http://adela.datos.gob.mx/api/v1/datasets/#{object.id}/contact_point.vcf"
   end
 
   def distributions

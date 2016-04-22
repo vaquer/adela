@@ -124,6 +124,7 @@ es:
         accrual_periodicity: 'Frecuencia con la que actualizan'
         publish_date: 'Fecha de publicación'
         temporal: 'Cobertura temporal'
+        spatial: 'Espacio geográfico'
       distribution:
         title: 'Nombre del Recurso'
         description: 'Descripción del Recurso'

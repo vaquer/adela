@@ -54,6 +54,7 @@ gem 'tzinfo-data'
 gem 'momentjs-rails'
 gem 'active_link_to'
 gem 'as_csv', '~> 2.0'
+gem 'vcardigan'
 
 group :development, :test do
   gem 'spring'

@@ -28,6 +28,7 @@ class DatasetsController < ApplicationController
       :contact_position,
       :mbox,
       :landing_page,
+      :temporal,
       :keyword,
       dataset_sector_attributes: [:sector_id]
     )

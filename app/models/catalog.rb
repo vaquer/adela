@@ -18,7 +18,7 @@ class Catalog < ActiveRecord::Base
 
   def catalog_datasets
     datasets.where(public_access: true).select do |dataset|
-      dataset.valid?(:opening_plan)
+      dataset.valid?(:catalog)
     end
   end
 

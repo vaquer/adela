@@ -21,6 +21,10 @@ class DatasetsController < ApplicationController
 
   def dataset_params
     params.require(:dataset).permit(
+      :title,
+      :description,
+      :publish_date,
+      :accrual_periodicity,
       :contact_position,
       :mbox,
       :landing_page,

@@ -13,7 +13,7 @@ class Dataset < ActiveRecord::Base
     dataset.validates :title, :contact_position, :public_access, :publish_date, presence: true
   end
 
-  with_options on: :opening_plan do |dataset|
+  with_options on: :catalog do |dataset|
     dataset.validates :description, :accrual_periodicity, :public_access, :publish_date, presence: true
   end
 

@@ -22,6 +22,7 @@ feature 'Catalog dataset metadata' do
 
     expect(page).to have_field('dataset_contact_position', with: dataset_attributes[:contact_position])
     expect(page).to have_field('dataset_mbox', with: dataset_attributes[:mbox])
+    expect(page).to have_field('dataset_spatial', with: dataset_attributes[:spatial])
     expect(page).to have_field('dataset_temporal', with: dataset_attributes[:temporal])
     expect(page).to have_field('dataset_landing_page', with: dataset_attributes[:landing_page])
     expect(page).to have_field('dataset_keyword', with: dataset_attributes[:keyword])
@@ -30,6 +31,7 @@ feature 'Catalog dataset metadata' do
   def fill_catalog_dataset_metadata(dataset_attributes)
     fill_in('dataset_contact_position', with: dataset_attributes[:contact_position])
     fill_in('dataset_mbox', with: dataset_attributes[:mbox])
+    fill_in('dataset_spatial', with: dataset_attributes[:spatial])
     fill_in('dataset_temporal', with: dataset_attributes[:temporal])
     fill_in('dataset_landing_page', with: dataset_attributes[:landing_page])
     fill_in('dataset_keyword', with: dataset_attributes[:keyword])

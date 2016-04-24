@@ -44,6 +44,8 @@ class CatalogsController < ApplicationController
     catalog_params['distribution_ids'].each do |id|
       distribution = Distribution.find(id)
       distribution.update_column(:state, 'published')
+      distribution.dataset.update_column(:issued, Time.current) if distribution.dataset.issued.blank?
+      distribution.update_column(:issued, Time.current) if distribution.issued.blank?
     end
   end
 

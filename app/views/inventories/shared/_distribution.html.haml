@@ -5,6 +5,7 @@
     %span.label.label-default
       = distribution.media_type
   %td
-  %td
+  %td.center
+    = distribution.publish_date&.strftime('%F')
   %td.center
     = render partial: 'inventories/shared/menus/distribution_actions', locals: { distribution: distribution }

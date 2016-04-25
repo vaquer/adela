@@ -48,6 +48,12 @@
 
           .form-group
             .col-xs-12.col-sm-12
+              = f.label :spatial
+            .col-xs-12.col-sm-12
+              = f.text_field :spatial, class: 'form-control auto_submit_item'
+
+          .form-group
+            .col-xs-12.col-sm-12
               = f.label :temporal
             .col-xs-12.col-sm-12
               = f.text_field :temporal, class: 'form-control auto_submit_item'

@@ -7,7 +7,7 @@ FactoryGirl.define do
     contact_position { Faker::Company.profession }
     mbox { Faker::Internet.email }
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }
-    spatial { Faker::Address.state }
+    spatial { "#{Faker::Address.latitude}/#{Faker::Address.longitude}" }
     landing_page { Faker::Internet.url }
     accrual_periodicity 'R/P1Y'
     publish_date { Faker::Time.forward }

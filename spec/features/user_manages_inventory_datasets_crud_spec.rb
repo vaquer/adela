@@ -212,6 +212,7 @@ feature User, 'manages inventory datasets crud:' do
     within('.fields') do
       find("input[id^='dataset_distributions_attributes_'][id$='title']").set(distribution_attributes[:title])
       find("textarea[id^='dataset_distributions_attributes_'][id$='description']").set(distribution_attributes[:description])
+      find("input[id^='dataset_distributions_attributes_'][id$='publish_date']").set(distribution_attributes[:publish_date])
       select('json', from: 'media_type_select')
     end
   end

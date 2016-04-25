@@ -2,7 +2,7 @@ include ActiveModel::Serialization
 
 class DatasetSerializer < ActiveModel::Serializer
   has_many :distributions, root: :distribution
-  attributes :identifier, :title, :description, :modified, :contactPoint, :spatial
+  attributes :identifier, :title, :description, :modified, :contactPoint, :spatial, :temporal
 
   def attributes
     data = super

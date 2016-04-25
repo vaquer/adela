@@ -38,7 +38,7 @@
           = f.label(:modified, 'Fecha de última modificación de datos *')
         .col-xs-12.col-sm-3
           .input-group
-            = f.text_field(:modified, class: 'input-icon datepicker', required: true)
+            = f.text_field(:modified, value: f.object.modified&.strftime('%F'), class: 'input-icon datepicker', required: true)
             %span.input-group-addon
               %i.fa.fa-calendar
 

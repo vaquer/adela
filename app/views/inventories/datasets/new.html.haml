@@ -40,6 +40,9 @@
           = distribution_form.label :description, class: 'control-label'
           = distribution_form.text_area :description, required: true, class: 'autosize form-control'
         .form-group.required
+          = distribution_form.label :publish_date, class: 'control-label'
+          = distribution_form.text_field :publish_date, value: distribution_form.object.publish_date&.strftime('%F'), required: true, class: 'datepicker auto_submit_item form-control'
+        .form-group.required
           = distribution_form.label :media_type, class: 'control-label'
           = select_tag :media_type_select, options_for_media_type, class: 'form-control media_type_select'
         .form-group

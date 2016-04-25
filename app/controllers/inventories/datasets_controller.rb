@@ -33,7 +33,7 @@ class Inventories::DatasetsController < ApplicationController
       :public_access,
       :accrual_periodicity,
       :publish_date,
-      distributions_attributes: [:id, :title, :description, :media_type, :_destroy]
+      distributions_attributes: [:id, :title, :description, :publish_date, :media_type, :_destroy]
     )
   end
 end

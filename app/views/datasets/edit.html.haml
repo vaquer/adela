@@ -81,7 +81,7 @@
       %p.instructions
         Continúa con la documentación de los recursos de este conjunto de datos
 
-    %table.table.table-striped.table-condensed
+    %table.table.table-condensed
       %thead
         %tr
           %th
@@ -95,7 +95,7 @@
             %i.fa.fa-caret-down
       %tbody
         - @dataset.distributions.each do |distribution|
-          %tr
+          %tr.distribution
             %td= distribution.title
             %td.status= state_description(distribution)
             %td.action= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)

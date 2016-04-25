@@ -48,6 +48,12 @@
 
           .form-group
             .col-xs-12.col-sm-12
+              = f.label :temporal
+            .col-xs-12.col-sm-12
+              = f.text_field :temporal, class: 'form-control auto_submit_item'
+
+          .form-group
+            .col-xs-12.col-sm-12
               = f.label :landing_page, 'URL para consultar diccionario de datos *'
             .col-xs-12.col-sm-12
               = f.url_field :landing_page, class: 'form-control auto_submit_item'

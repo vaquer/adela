@@ -10,6 +10,7 @@ FactoryGirl.define do
     spatial { "#{Faker::Address.latitude}/#{Faker::Address.longitude}" }
     landing_page { Faker::Internet.url }
     accrual_periodicity 'R/P1Y'
+    issued { Faker::Time.forward }
     publish_date { Faker::Time.forward }
     public_access true
     editable true

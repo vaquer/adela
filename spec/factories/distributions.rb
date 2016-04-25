@@ -8,6 +8,7 @@ FactoryGirl.define do
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }
     modified { Faker::Time.forward }
     spatial { Faker::Address.state }
+    issued {  Faker::Time.forward }
     dataset
 
     factory :catalog_distribution do

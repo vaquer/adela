@@ -15,6 +15,7 @@ FactoryGirl.define do
       download_url nil
       temporal nil
       modified nil
+      byte_size nil
     end
 
     trait :broke do

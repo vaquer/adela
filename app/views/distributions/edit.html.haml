@@ -38,9 +38,15 @@
           = f.label(:modified, 'Fecha de última modificación de datos *')
         .col-xs-12.col-sm-3
           .input-group
-            = f.text_field(:modified, class: 'input-icon datepicker', required: true)
+            = f.text_field(:modified, value: f.object.modified&.strftime('%F'), class: 'input-icon datepicker', required: true)
             %span.input-group-addon
               %i.fa.fa-calendar
+
+      .form-group
+        .col-xs-12.col-sm-12
+          = f.label(:byte_size, 'Tamaño en Bytes')
+        .col-xs-12.col-sm-3
+          = f.text_field(:byte_size,  class: 'form-control')
 
       = f.button 'Guardar avance', type: 'submit', class: 'btn btn-primary'
       = link_to 'Cancelar', edit_dataset_path(@distribution.dataset), class: 'btn btn-primary'

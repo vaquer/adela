@@ -128,6 +128,7 @@ es:
       distribution:
         title: 'Nombre del Recurso'
         description: 'Descripción del Recurso'
+        publish_date: 'Fecha de publicación'
         media_type: 'Formato del recurso'
       organization:
         title: "Nombre"

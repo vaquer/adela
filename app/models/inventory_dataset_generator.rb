@@ -94,6 +94,7 @@ class InventoryDatasetGenerator
       distribution.description = "Inventario Institucional de Datos de #{@organization.title}"
       distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@organization, format: :csv)}"
       distribution.media_type = 'csv'
+      distribution.publish_date = DateTime.new(2015, 8, 28)
       distribution.temporal = build_temporal(dataset.modified)
       distribution.modified = dataset.modified
     end

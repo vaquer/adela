@@ -9,6 +9,7 @@ FactoryGirl.define do
     modified { Faker::Time.forward }
     spatial { Faker::Address.state }
     issued {  Faker::Time.forward }
+    publish_date { Time.current }
     dataset
 
     factory :catalog_distribution do

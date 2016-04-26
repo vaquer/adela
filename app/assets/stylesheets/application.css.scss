@@ -45,3 +45,51 @@ body {
 .toast-top-right {
   top: 90px;
 }
+
+.content-dashboard {
+  margin-top: 40px;
+}
+
+.content-sub-dashboard {
+  margin-top: 80px;
+}
+
+.calificacion-dashboard {
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.lugar-dashboard {
+    float: left;
+    margin-left: 15px;
+}
+
+.content-dashboard .title, .content-dashboard .subtitle {
+    color: #585858;
+    margin-bottom: 5px !important;
+}
+
+.content-dashboard p {
+    color: #777777;
+}
+
+.content-dashboard h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.content-dashboard h2 {
+    font-size: 34px;
+}
+
+.content-dashboard hr {
+    border-top: 1px solid #cccccc;
+}
+
+.content-dashboard table {
+    font-size: 12px
+}
+
+.high-light-dashboard{
+  color:#00cc99;
+}

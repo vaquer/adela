@@ -60,6 +60,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'thin'
   gem 'timecop'
+  gem 'therubyracer', platforms: :ruby
 end
 
 group :test do

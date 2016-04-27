@@ -13,6 +13,7 @@ class DatasetSerializer < ActiveModel::Serializer
     }
     data[:keyword] = object.keywords.split(',').map(&:squish)
     data[:landingPage] = object.landing_page
+    data[:accrualPeriodicity] = object.accrual_periodicity
     data
   end
 

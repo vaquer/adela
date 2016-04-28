@@ -55,6 +55,7 @@ gem 'momentjs-rails'
 gem 'active_link_to'
 gem 'as_csv', '~> 2.0'
 gem 'vcardigan'
+gem 'inline_svg'
 
 group :development, :test do
   gem 'spring'

@@ -48,9 +48,8 @@ GEM
       actionpack (>= 3.0)
       activemodel (>= 3.0)
       responders
-    autoprefixer-rails (6.2.2)
+    autoprefixer-rails (6.3.6)
       execjs
-      json
     autosize-rails (1.18.17)
       rails (>= 3.1)
     aws-sdk (2.2.8)

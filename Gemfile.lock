@@ -202,8 +202,14 @@ GEM
     newrelic_rpm (3.14.1.311)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    nokogumbo (1.4.7)
+      nokogiri
     orm_adapter (0.5.0)
     pg (0.18.4)
+    polymer-rails (1.1.0)
+      nokogiri (~> 1.6)
+      nokogumbo (~> 1.1)
+      rails (>= 3.1.0)
     puma (2.16.0)
     rack (1.6.4)
     rack-cors (0.4.0)
@@ -416,6 +422,7 @@ DEPENDENCIES
   nested_form
   newrelic_rpm
   pg
+  polymer-rails
   puma
   rack-cors
   rack-pjax

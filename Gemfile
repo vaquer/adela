@@ -56,6 +56,7 @@ gem 'active_link_to'
 gem 'as_csv', '~> 2.0'
 gem 'vcardigan'
 gem 'inline_svg'
+gem 'polymer-rails'
 
 group :development, :test do
   gem 'spring'

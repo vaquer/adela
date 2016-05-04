@@ -1,0 +1,14 @@
+es:
+  tooltip:
+    distribution:
+      title: title
+      description: description
+      media_type_select: media_type_select
+      media_type: media_type
+      publish_date: publish_date
+      download_url: download_url
+      temporal:
+        init: temporal_init
+        term: temporal_term
+      modified: modified
+      byte_size: byte_size

@@ -1,0 +1,15 @@
+es:
+  tooltip:
+    dataset:
+      title: title
+      description: description
+      contact_position: contact_position
+      public_access: public_access
+      accrual_periodicity: accrual_periodicity
+      publish_date: publish_date
+      email_field: email_field
+      spatial: spatial
+      temporal: temporal
+      landing_page: landing_page
+      sector: sector
+      keyword: keyword

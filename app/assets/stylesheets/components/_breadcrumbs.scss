@@ -1,16 +1,13 @@
 .breadcrumb {
-  background-color: #FFF;
-  margin-bottom: 30px;
-  font-size: 16px;
+  font-size: 14px;
+  background-color: $white;
+  padding: 8px 0px;
+  margin-top: 20px;
 
-  a {
-    color: $cartoon_green;
-    &.hover {
-      color: $cartoon_green;
-    }
+  li + li::before, li > a {
+    color: $gray;
   }
-}
-
-.breadcrumbs {
-  padding: 20px 0;
+  li.current {
+    color: $light_green;
+  }
 }

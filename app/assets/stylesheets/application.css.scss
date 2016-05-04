@@ -1,60 +1,65 @@
 /*
  *= require toastr
  *= require joyride-2.1
- *= require_self
  */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@font-face{
+ font-family:'Glyphicons Halflings';
+ src: image-url("bootstrap/glyphicons-halflings-regular.eot");
+ src: image-url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
+      image-url("bootstrap/glyphicons-halflings-regular.woff") format("woff"),
+      image-url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"),
+      image-url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
+}
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@font-face{
-  font-family:'Glyphicons Halflings';
-  src: image-url("bootstrap/glyphicons-halflings-regular.eot");
-  src: image-url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
-       image-url("bootstrap/glyphicons-halflings-regular.woff") format("woff"),
-       image-url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"),
-       image-url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
-}
-
 @import "jquery.ui.core";
 @import "jquery.ui.theme";
 @import "jquery.ui.datepicker";
-@import "font-awesome";
 
-// Defaults
-@import 'defaults/colors';
-@import 'defaults/utilities';
-@import 'defaults/mixins';
+@import "template/colors";
 
-// Elements
-@import "elements/text";
-@import "elements/input";
-@import "elements/button";
-@import "elements/link";
-@import "elements/label";
-@import "elements/table";
-@import "elements/textarea";
-
-// Components
+// components
 @import "components/alert";
-@import "components/carret";
-@import "components/navbar";
-@import "components/nav-pills";
-@import "components/footer";
-@import "components/landing";
-@import "components/forms";
-@import "components/newsletter";
 @import "components/breadcrumbs";
-@import "components/datepicker";
+@import "components/callouts";
+@import "components/forms";
+@import "components/icons";
 @import "components/joyride";
+@import "components/jumbotron";
+@import "components/labels";
+@import "components/navbar";
+@import "components/toast";
 
-// Cards
-@import "components/cards";
+// elements
+@import "elements/a";
+@import "elements/button";
+@import "elements/headings";
+@import "elements/table";
 
 body {
-  background-color: $grey_100;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  padding-top: 50px; // navbar height
+  color: $gray_400;
 }
 
-.toast-top-right {
-  top: 90px;
+p {
+  margin-bottom: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.semibold {
+  font-weight: 600;
 }

@@ -1,23 +1,22 @@
 .joyride-tip-guide {
 
   .joyride-content-wrapper {
-    background-color: $grey_100;
-    border: 1px solid $grey_900;
+    background-color: $gray_300;
+    border: 1px solid $gray_800;
     padding: 20px;
 
     .joyride-next-tip {
       @extend .btn, .btn-primary;
-      background: $cartoon_green !important;
+      background: $dark_green !important;
       text-shadow: none;
     }
 
     a.joyride-close-tip {
-      color: $grey_900 !important;
+      color: $gray_800 !important;
     }
 
     p {
-      color: $grey_900;
+      color: $gray_800;
     }
   }
-
 }

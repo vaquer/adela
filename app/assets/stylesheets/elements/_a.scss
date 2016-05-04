@@ -1,0 +1,15 @@
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';
+
+#{$a-tags}, #{$a-tags-hover} {
+  text-decoration: none;
+  color: $gray_400;
+
+  &.btn {
+    color: $white;
+  }
+
+  &.green {
+    color: $light_green !important;
+  }
+}

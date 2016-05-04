@@ -1,29 +1,25 @@
-@import "defaults/colors";
-
-.table-cell {
-  @include text__decorator($grey_800);
-  padding: 15px;
+.table thead > tr > th {
+  font-weight: 300;
 }
 
-.table {
-  & > thead > tr > th,
-  & > tbody > tr > td {
-    @extend .table-cell;
+.table tbody > tr.active > td {
+  background-color: $gray_800 !important;
+  border-top: 2px solid $gray_700;
 
-    &.nested {
-      padding-left: 5em;
-    }
-
-    &.center {
-      text-align: center;
-    }
+  strong {
+    color: $gray_500;
   }
+}
 
-  & > thead > tr > th {
-    @extend .table-cell;
-  }
+.table tbody > tr.active > td > a {
+  color: $gray_400;
 }
 
 .table > tbody > tr > td {
   vertical-align: middle;
+}
+
+.table td.center,
+.table th.center {
+   text-align: center;
 }

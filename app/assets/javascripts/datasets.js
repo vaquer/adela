@@ -41,4 +41,5 @@ $(document).on('nested:fieldAdded', function(event){
     })();
 
     $('.media_type_select').on('change', updateMediaType);
+    $('.datepicker').datepicker();
 })

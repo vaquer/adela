@@ -1,13 +1,25 @@
-.container
-  .card
-    %h3.title Inventario de Datos Abiertos
-    %p El Inventario de Datos Abiertos es un listado de todos los Conjuntos y Recursos de Datos Abiertos con las fechas comprometidas de publicación y actualización para cada uno de ellos.
-    %p Da click en el botón de “AGREGAR UN CONJUNTO” para comenzar a crear tu Inventario de Datos Abiertos.
-    = link_to 'Agregar un conjunto nuevo', new_inventories_dataset_path, { class: 'btn btn-primary pull-right' }
-    .clearfix
-    - if current_organization.catalog && current_organization.catalog.datasets.present?
-      .pull-right
-      = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
-      = link_to 'Descargar Inventario Actual', organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary' }
-      = link_to 'Ir al Catálogo de Datos', organization_catalogs_path(current_organization), { class: 'btn btn-primary pull-right' }
-      .clearfix
+- breadcrumb :inventory
+%h3 Inventario de Datos Abiertos
+.row
+  .col-md-9
+    %p
+      El Inventario de Datos Abiertos es un listado de todos los Conjuntos y Recursos de Datos Abiertos con las fechas comprometidas de publicación y actualización para cada uno de ellos.
+    %p
+      Da click en el botón de <strong>agregar un conjunto</strong> para comenzar a crear tu Inventario de Datos Abiertos.
+- if current_organization.catalog && current_organization.catalog.datasets.present?
+  = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
+  = link_to organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary btn-default btn-lg' } do
+    %span.icon.icon-right
+      = inline_svg 'download.svg'
+    Descargar inventario actual
+
+= link_to new_inventories_dataset_path, { class: 'btn btn-primary btn-lg pull-right' } do
+  %span.icon.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+  Agregar un conjunto nuevo
+.clearfix
+%hr
+  = link_to organization_catalogs_path(current_organization), { class: 'btn btn-alt btn-default btn-lg pull-right' } do
+    Catálogo de Datos
+    %span.icon.icon-left
+      = inline_svg 'next.svg'
+.clearfix

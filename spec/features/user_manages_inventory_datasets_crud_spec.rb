@@ -16,9 +16,9 @@ feature User, 'manages inventory datasets crud:' do
 
     fill_public_dataset_form(dataset_attributes)
 
-    click_on('Agregar Recurso')
+    click_on('Agregar un recurso nuevo')
     fill_distribution_nested_form(distribution_attributes)
-    click_on('Guardar')
+    click_on('Publicar')
 
     expect(current_path).to eq(inventories_path)
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
@@ -32,7 +32,7 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text('JSON')
     end
   end
 
@@ -44,9 +44,9 @@ feature User, 'manages inventory datasets crud:' do
     distribution_attributes = attributes_for(:distribution)
 
     fill_private_dataset_form(dataset_attributes)
-    click_on('Agregar Recurso')
+    click_on('Agregar un recurso nuevo')
     fill_distribution_nested_form(distribution_attributes)
-    click_on('Guardar')
+    click_on('Publicar')
 
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
@@ -59,15 +59,8 @@ feature User, 'manages inventory datasets crud:' do
     end
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text('JSON')
     end
-  end
-
-  scenario 'cannot create a new dataset without distribution', js: true do
-    within('.navbar') { click_on('Inventario de Datos') }
-    click_link('Agregar un conjunto nuevo')
-
-    expect(page).not_to have_text('Guardar')
   end
 
   scenario 'edits a dataset', js: true do
@@ -76,7 +69,6 @@ feature User, 'manages inventory datasets crud:' do
     within('.navbar') { click_on('Inventario de Datos') }
 
     within find('tr.dataset', text: dataset[:title]) do
-      find('.dropdown').click
       click_on('Editar')
     end
 
@@ -100,7 +92,6 @@ feature User, 'manages inventory datasets crud:' do
     within('.navbar') { click_on('Inventario de Datos') }
 
     within find('tr.dataset', text: dataset[:title]) do
-      find('.dropdown').click
       click_on('Eliminar')
     end
 
@@ -114,13 +105,14 @@ feature User, 'manages inventory datasets crud:' do
     dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Inventario de Datos') }
 
-    within find('tr.dataset', text: dataset[:title]) do
-      find('.dropdown').click
-      click_on('Agregar')
+    find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
+    within find('tr td.add-distribution') do
+      click_on('Agregar un recurso nuevo')
     end
 
     distribution_attributes = attributes_for(:distribution)
     fill_distribution_form(distribution_attributes, 'json')
+
     click_on('Guardar')
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
@@ -128,7 +120,7 @@ feature User, 'manages inventory datasets crud:' do
     expect(page).to have_css('.table tbody tr.distribution', count: 2)
 
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text('JSON')
     end
   end
 
@@ -138,7 +130,6 @@ feature User, 'manages inventory datasets crud:' do
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr.distribution', text: dataset[:distributions].first[:title]) do
-      find('.dropdown').click
       click_on('Editar')
     end
 
@@ -148,7 +139,7 @@ feature User, 'manages inventory datasets crud:' do
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr.distribution', text: distribution_attributes[:title]) do
-      expect(page).to have_text('json')
+      expect(page).to have_text('JSON')
     end
 
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
@@ -162,7 +153,6 @@ feature User, 'manages inventory datasets crud:' do
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr.distribution', text: dataset[:distributions].first[:title]) do
-      find('.dropdown').click
       click_on('Eliminar')
     end
 
@@ -184,9 +174,9 @@ feature User, 'manages inventory datasets crud:' do
     click_link('Agregar un conjunto nuevo')
 
     fill_public_dataset_form(dataset)
-    click_on('Agregar Recurso')
+    click_on('Agregar un recurso nuevo')
     fill_distribution_nested_form(distribution)
-    click_on('Guardar')
+    click_on('Publicar')
 
     dataset
   end
@@ -220,6 +210,7 @@ feature User, 'manages inventory datasets crud:' do
   def fill_distribution_form(distribution_attributes, media_type)
     fill_in('distribution_title', with: distribution_attributes[:title])
     fill_in('distribution_description', with: distribution_attributes[:description])
+    fill_in('distribution_publish_date', with: distribution_attributes[:publish_date].strftime('%F'))
     select(media_type, from: 'media_type_select')
   end
 end

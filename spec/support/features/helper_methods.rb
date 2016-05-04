@@ -4,7 +4,7 @@ module Features
       visit "/usuarios/ingresa"
       fill_in("Correo electrónico", :with => user.email)
       fill_in("Contraseña", :with => user.password)
-      click_on("ENTRAR")
+      click_on("Entrar")
     end
 
     def given_organization_with_catalog

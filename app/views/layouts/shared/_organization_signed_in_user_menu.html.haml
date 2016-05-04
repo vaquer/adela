@@ -1,16 +1,14 @@
+= active_link_to 'Documentos', organization_documents_path(current_organization), active: :inclusive, wrap_tag: :li
 = active_link_to 'Inventario de Datos', inventories_path, active: :inclusive, wrap_tag: :li
 = active_link_to 'Catálogo de Datos', organization_catalogs_path(current_organization), active: [['catalogs', 'datasets', 'distributions'], []], wrap_tag: :li
-= active_link_to 'Documentos', organization_documents_path(current_organization), active: :inclusive, wrap_tag: :li
 %li
   = link_to 'Guía', 'http://datos.gob.mx/guia/', target: '_blank'
 %li.dropdown
-  %a.dropdown-toggle{ :href => '#', 'data-toggle' => 'dropdown', :role => 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false' }
-    = image_tag 'adelitas.gif', class: 'avatar'
+  %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' }
     = current_user.name
     %span.caret
-  %ul.dropdown-menu{ role: 'menu' }
-    - if current_user.has_role?(:admin)
-      %li= link_to 'Administrador', admin_root_path
+  %ul.dropdown-menu
+    %li= link_to 'Administrador', admin_root_path if current_user.has_role?(:admin)
     %li= link_to 'Editar Perfil', profile_organization_path(current_organization), role: 'menuitem', tabindex: '-1'
     %li= link_to 'Cambiar contraseña', edit_user_registration_path, role: 'menuitem', tabindex: '-1'
     %li= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete

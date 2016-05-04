@@ -24,6 +24,7 @@
 //= require components/datepicker
 //= require components/table-checkbox
 //= require components/agreement
+//= require webcomponentsjs/webcomponents-lite
 //= require_self
 //= require_directory .
 

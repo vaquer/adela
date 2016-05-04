@@ -1,16 +1,23 @@
 !!!
-%html
+%html{lang: 'es'}
   %head
     %title Adela
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
+    %meta{charset: 'utf-8'}
+    %meta{'http-equiv': 'X-UA-Compatible', content: 'IE=edge'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
     = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = html_import_tag 'application'
+    /[if lt IE 9]
+      %script{src: 'https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'}
+      %script{src: 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js'}
   %body
-    = render "layouts/header"
-    = render "layouts/shared/breadcrumbs"
-    = render "layouts/flash_messages", flash: flash
-    = yield
-    = render "layouts/footer"
+    = render 'layouts/header'
+    = render 'layouts/flash_messages', flash: flash
+    .container
+      = breadcrumbs style: :ol, class: 'breadcrumb'
+      = yield
     :javascript
       var _sf_async_config = { uid: 62850, domain: 'adela.datos.gob.mx', useCanonical: true };
       (function() {

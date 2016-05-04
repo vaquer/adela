@@ -30,7 +30,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message "La organización se creó exitosamente."
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('FEDERAL')
+    expect(page).to have_text('Federal')
   end
 
   scenario "can edit an organization", js: true do
@@ -53,7 +53,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message 'Se ha actualizado la organización exitosamente.'
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('FEDERAL')
+    expect(page).to have_text('Federal')
   end
 
   scenario 'can edit an organization', js: true do
@@ -91,7 +91,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message 'Se ha actualizado la organización exitosamente.'
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('ESTATAL')
+    expect(page).to have_text('Estatal')
   end
 
   scenario "can add a sector", js: true do

@@ -1,11 +1,11 @@
-.container
-  .card
-    %h3.title Conjunto de Datos
-    %p
-      Un <span class='highlight'>Conjunto de datos</span> es un grupo de Recursos de Datos Abiertos que tienen un tema en común. Por ejemplo: El Conjunto de Calidad del Aire agrupa los Recursos de concentraciones de calidad del aire de los 32 estados en un periodo determinado de tiempo.
-    %p
-      Agrega un Conjunto de Datos al Inventario de Datos Abiertos
-    = nested_form_for [:inventories, Dataset.new] do |f|
+- breadcrumb :inventory_new_dataset
+= nested_form_for [:inventories, Dataset.new] do |f|
+  .row
+    .col-md-9
+      %h3 Agrega un Conjunto de Datos
+  .row
+    .col-md-9
+      %br
       .form-group.required
         = f.label :title, class: 'control-label'
         = f.text_field :title, required: true, class: 'form-control'
@@ -15,47 +15,60 @@
       .form-group.required
         = f.label :contact_position, class: 'control-label'
         = f.text_field :contact_position, required: true, class: 'form-control'
-      .form-group.required
-        = f.label :public_access, class: 'control-label'
-        = f.select :public_access, [['Público', true], ['Privado', false]], {}, required: true, class: 'form-control'
-      .form-group.required
-        = f.label :accrual_periodicity, class: 'control-label'
-        = f.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(f.object.accrual_periodicity), {}, required: true, class: 'form-control'
-      .form-group.required
-        = f.label :publish_date, class: 'control-label'
-        = f.text_field :publish_date, class: 'datepicker form-control'
-
-      %h3.title Recursos de Datos
+      .row
+        .col-xs-4
+          .form-group.required
+            = f.label :public_access, class: 'control-label'
+            = f.select :public_access, [['Público', true], ['Privado', false]], {}, required: true, class: 'form-control'
+        .col-xs-4
+          .form-group.required
+            = f.label :accrual_periodicity, class: 'control-label'
+            = f.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(f.object.accrual_periodicity), {}, required: true, class: 'form-control'
+        .col-xs-4
+          .form-group.required
+            = f.label :publish_date, class: 'control-label'
+            = f.text_field :publish_date, class: 'datepicker form-control'
+    .col-md-3
       %p
-        Un <span class='highlight'>Recurso de datos</span> es un archivo de Datos Abiertos que pertenece a un Conjunto de Datos. Cada Recurso de Datos puede estar disponible en diferentes estructuras (cartográfico, tabular), temporalidades (años, meses), formatos (CSV, API, RSS), agregaciones espaciales (nivel país, estatal, municipal, etc).
+        Un <strong>Conjunto de datos</strong> es un grupo de Recursos de Datos Abiertos que tienen un tema en común.
       %p
-        Agrega un Recurso de datos al Conjunto
-
-      = f.fields_for :distributions do |distribution_form|
-        %h3.title Recurso de Datos
-        .form-group.required
-          = distribution_form.label :title, class: 'control-label'
-          = distribution_form.text_field :title, required: true, class: 'form-control'
-        .form-group.required
-          = distribution_form.label :description, class: 'control-label'
-          = distribution_form.text_area :description, required: true, class: 'autosize form-control'
-        .form-group.required
-          = distribution_form.label :publish_date, class: 'control-label'
-          = distribution_form.text_field :publish_date, value: distribution_form.object.publish_date&.strftime('%F'), required: true, class: 'datepicker auto_submit_item form-control'
-        .form-group.required
-          = distribution_form.label :media_type, class: 'control-label'
-          = select_tag :media_type_select, options_for_media_type, class: 'form-control media_type_select'
-        .form-group
-          = distribution_form.text_field :media_type, required: true, class: 'form-control media_type'
-        .form-group.required
-          %label.control-label
-            Campos obligatorios
-        .form-group
-          = distribution_form.link_to_remove 'Eliminar Recurso', class: 'btn btn-primary'
-      .form-group.required
-        %label.control-label
-          Campos obligatorios
-      .form-group
-        = f.link_to_add "Agregar Recurso", :distributions, class: 'btn btn-primary'
-        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary pull-right'
-      .clearfix
+        Por ejemplo: El Conjunto de Calidad del Aire agrupa los Recursos de concentraciones de calidad del aire de los 32 estados en un periodo determinado de tiempo.
+  .row
+    .col-md-9
+      .bs-callout.bs-callout-default
+        %h3 Recursos sus Recursos de Datos
+        = f.fields_for :distributions do |distribution_form|
+          .jumbotron
+            .form-group.required
+              = distribution_form.label :title, class: 'control-label'
+              = distribution_form.text_field :title, required: true, class: 'form-control'
+            .form-group.required
+              = distribution_form.label :description, class: 'control-label'
+              = distribution_form.text_area :description, required: true, class: 'autosize form-control'
+            .row
+              .col-xs-6
+                .form-group.required
+                  = distribution_form.label :media_type, class: 'control-label'
+                  = select_tag :media_type_select, options_for_media_type, class: 'form-control media_type_select'
+              .col-xs-6
+                .form-group
+                  = distribution_form.label :media_type, class: 'control-label invisible'
+                  = distribution_form.text_field :media_type, required: true, class: 'form-control media_type'
+            .row
+              .col-xs-6
+                .form-group.required
+                  = distribution_form.label :publish_date, class: 'control-label'
+                  = distribution_form.text_field :publish_date, class: 'datepicker form-control'
+            .form-group
+              = distribution_form.link_to_remove class: 'btn btn-danger pull-right' do
+                %span.icon.icon-right
+                  = inline_svg 'remove.svg'
+                Eliminar
+              .clearfix
+        = f.link_to_add :distributions, class: 'btn btn-primary btn-lg' do
+          %span.icon.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+          Agregar un recurso nuevo
+    .col-md-3
+      %p
+        Un <strong>Recurso de datos</strong> es un archivo de Datos Abiertos que pertenece a un Conjunto de Datos. Cada Recurso de Datos puede estar disponible en diferentes estructuras (cartográfico, tabular), temporalidades (años, meses), formatos (CSV, API, RSS), agregaciones espaciales (nivel país, estatal, municipal, etc).
+  = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary'

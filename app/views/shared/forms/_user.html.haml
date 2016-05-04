@@ -1,7 +1,8 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-group
+  .form-group.required
     = f.email_field :email, autofocus: true, placeholder: 'Correo electrónico', class: 'form-control'
     = f.password_field :password, placeholder: 'Contraseña', class: 'form-control'
-  .form-group.pull-righ
-    = f.submit 'ENTRAR', class: 'btn btn-primary'
-    = link_to '¿Olvidaste tu contraseña?', new_password_path(resource_name), class:'pull-right form-link'
+  .form-group.required
+    = f.submit 'Entrar', class: 'btn btn-primary'
+    = link_to '¿Olvidaste tu contraseña?', new_password_path(resource_name), class:'btn btn-alt pull-right'
+  .clearfix

@@ -20,14 +20,14 @@ feature User, 'logs in:' do
   scenario "fails to log in with an invalid account", :js => true do
     visit new_user_session_path
     fill_the_form_with(@user.email, "wrong_password")
-    click_on("ENTRAR")
+    click_on('Entrar')
     sees_error_message "Correo o contraseña inválidos."
   end
 
   scenario "succeed to log in with a valid account", :js => true do
     visit new_user_session_path
     fill_the_form_with(@user.email, @user.password)
-    click_on("ENTRAR")
+    click_on('Entrar')
     sees_success_message "Ingreso exitoso"
     expect(current_path).to eq(organization_path(@user.organization))
   end

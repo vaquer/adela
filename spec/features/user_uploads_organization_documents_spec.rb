@@ -19,7 +19,7 @@ feature User, 'Uploads organization documents:' do
     within('.edit_organization') do
       attach_file('organization_designation_files_attributes_0_file', "#{Rails.root}/spec/fixtures/files/designation_file.docx")
       attach_file('organization_memo_files_attributes_0_file', "#{Rails.root}/spec/fixtures/files/memo_file.pdf")
-      click_on('Subir oficios')
+      click_on('Subir documentos')
     end
   end
 end

@@ -7,7 +7,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-FactoryGirl.create(:user)
+organization = FactoryGirl.create(:organization, title: 'México Abierto', landing_page: 'http://mxabierto.org/')
+FactoryGirl.create(:user, organization: organization)
 
 FactoryGirl.create(:sector, title: 'Educación')
 FactoryGirl.create(:sector, title: 'Economía')

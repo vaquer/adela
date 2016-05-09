@@ -130,6 +130,7 @@ es:
         description: 'Descripción del Recurso'
         publish_date: 'Fecha de publicación'
         media_type: 'Formato del recurso'
+        format: 'Extensión del recurso'
       organization:
         title: "Nombre"
         description: "Descripción"

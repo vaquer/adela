@@ -18,7 +18,7 @@ feature User, 'manages inventory datasets crud:' do
 
     click_on('Agregar un recurso nuevo')
     fill_distribution_nested_form(distribution_attributes)
-    click_on('Publicar')
+    click_on('Guardar')
 
     expect(current_path).to eq(inventories_path)
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
@@ -46,7 +46,7 @@ feature User, 'manages inventory datasets crud:' do
     fill_private_dataset_form(dataset_attributes)
     click_on('Agregar un recurso nuevo')
     fill_distribution_nested_form(distribution_attributes)
-    click_on('Publicar')
+    click_on('Guardar')
 
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
@@ -176,7 +176,7 @@ feature User, 'manages inventory datasets crud:' do
     fill_public_dataset_form(dataset)
     click_on('Agregar un recurso nuevo')
     fill_distribution_nested_form(distribution)
-    click_on('Publicar')
+    click_on('Guardar')
 
     dataset
   end

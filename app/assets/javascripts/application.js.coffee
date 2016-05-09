@@ -23,6 +23,7 @@
 //= require jquery.cookie
 //= require components/datepicker
 //= require components/table-checkbox
+//= require components/tooltip
 //= require components/agreement
 //= require webcomponentsjs/webcomponents-lite
 //= require_self

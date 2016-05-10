@@ -119,6 +119,7 @@ es:
       dataset:
         title: 'Nombre del Conjunto de Datos'
         description: 'Descripción'
+        contact_name: 'Nombre del responsable'
         contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
         public_access: '¿Tiene datos privados?'
         accrual_periodicity: 'Frecuencia con la que actualizan'

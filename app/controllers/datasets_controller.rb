@@ -25,6 +25,7 @@ class DatasetsController < ApplicationController
       :description,
       :publish_date,
       :accrual_periodicity,
+      :contact_name,
       :contact_position,
       :mbox,
       :landing_page,

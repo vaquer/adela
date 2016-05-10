@@ -20,6 +20,9 @@
           .form-group.required
             = f.label :publish_date, class: 'control-label'
             = f.text_field :publish_date, value: f.object.publish_date.strftime('%F'), class: 'datepicker auto_submit_item form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.publish_date')}"
+      .form-group
+        = f.label :contact_name, class: 'control-label'
+        = f.text_field :contact_name, class: 'auto_submit_item form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.contact_name')}"
       .row
         .col-xs-6
           .form-group.required

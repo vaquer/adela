@@ -44,6 +44,7 @@ Adela::Application.routes.draw do
       end
 
       resources :organizations, only: [:show] do
+        get 'inventory', on: :member
         collection do
           get 'catalogs'
           get 'organizations'

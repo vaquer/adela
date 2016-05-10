@@ -10,6 +10,13 @@ module Api
         render json: @organization, root: false
       end
 
+      def inventory
+        @organization = Organization.friendly.find(params[:id])
+        respond_to do |format|
+          format.json { render json: @organization.catalog, serializer: InventoriesSerializer, root: false }
+        end
+      end
+
       def catalogs
         @catalogs_urls = Organization.all.select do |organization|
           organization.catalog.present? && organization.catalog.distributions.map(&:published?).any?

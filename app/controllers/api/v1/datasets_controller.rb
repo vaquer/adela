@@ -8,8 +8,9 @@ class Api::V1::DatasetsController < ApplicationController
 
   def vcard(dataset)
     vcard = VCardigan.create
-    vcard.fullname dataset.contact_position
-    vcard.email dataset.mbox, type: ['work', 'internet'], preferred: 1
+    vcard.name dataset.contact_position
+    vcard.fullname dataset.contact_name
+    vcard.email dataset.mbox, type: %w(work internet), preferred: 1
     vcard
   end
 end

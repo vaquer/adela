@@ -27,16 +27,18 @@ $(function () {
 
 $(document).on('nested:fieldAdded', function(event){
     var updateMediaType;
-    (updateMediaType = function() {
-      var mediaType = event.field.find('.form-group .media_type_select');
-      var inputText = event.field.find('.form-group input.media_type');
+    (updateMediaType = function () {
+      var mediaType = event.field.find('.form-group .media_type_select option:selected').val();
+      var format = event.field.find('.form-group .media_type_select option:selected').text();
 
-      inputText.val(mediaType.val());
-      if (mediaType.val() == 'otro') {
-        inputText.val('');
-        inputText.show();
+      if (format === 'otro') {
+        event.field.find('.form-group input.media_type').val('');
+        event.field.find('.form-group input.format').val('');
+        event.field.find('.form-group input.format').parent().show();
       } else {
-        inputText.hide();
+        event.field.find('.form-group input.media_type').val(mediaType);
+        event.field.find('.form-group input.format').val(format);
+        event.field.find('.form-group input.format').parent().hide();
       }
     })();
 

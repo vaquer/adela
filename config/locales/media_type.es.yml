@@ -1,9 +1,9 @@
 es:
   media_type:
-    csv: 'csv'
-    excel: 'excel'
-    json: 'json'
-    kml: 'kml'
-    shp: 'shp'
-    kmz: 'kmz'
-    otro: 'otro'
+    csv: 'text/csv'
+    xls: 'application/vnd.ms-excel'
+    json: 'application/json'
+    kml: 'application/vnd.google-earth.kml+xml'
+    shp: ''
+    kmz: 'application/vnd.google-earth.kmz'
+    otro: ''

@@ -1,6 +1,6 @@
 class DistributionSerializer < ActiveModel::Serializer
   attributes :title, :description, :downloadURL, :mediaType, :byteSize,
-             :temporal, :spatial, :license, :issued
+             :temporal, :spatial, :license, :issued, :format
 
   def license
     'http://datos.gob.mx/libreusomx/'

@@ -17,8 +17,10 @@
       .form-group.required
         = f.label :media_type, class: 'control-label'
         = select_tag :media_type_select, options_for_media_type, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.media_type_select')}"
+        = f.hidden_field :media_type, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.media_type')}"
       .form-group
-        = f.text_field :media_type, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.media_type')}"
+        = f.label :format, class: 'control-label'
+        = f.text_field :format, required: true, class: 'form-control'
       .form-group.required
         %label.control-label
           Campos obligatorios

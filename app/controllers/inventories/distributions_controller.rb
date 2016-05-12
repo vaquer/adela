@@ -24,6 +24,6 @@ class Inventories::DistributionsController < ApplicationController
   end
 
   def distribution_params
-    params.require(:distribution).permit(:title, :description, :publish_date, :media_type)
+    params.require(:distribution).permit(:title, :description, :publish_date, :media_type, :format)
   end
 end

@@ -42,7 +42,7 @@ feature 'data catalog management' do
 
     dcat_keys = %w(title description homepage issued modified language license dataset)
     dcat_dataset_keys = %w(identifier title description keyword modified contactPoint spatial landingPage language publisher distribution temporal issued)
-    dcat_distribution_keys = %w(title description license downloadURL mediaType byteSize temporal spatial issued)
+    dcat_distribution_keys = %w(title description license downloadURL mediaType byteSize temporal spatial issued format)
 
     get "/#{organization.slug}/catalogo.json"
     json_response = JSON.parse(response.body)

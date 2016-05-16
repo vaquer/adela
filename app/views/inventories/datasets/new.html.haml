@@ -58,7 +58,7 @@
               .col-xs-6
                 .form-group.required
                   = distribution_form.label :publish_date, class: 'control-label'
-                  = distribution_form.text_field :publish_date, class: 'datepicker form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.publish_date')}"
+                  = distribution_form.text_field :publish_date, class: 'datepicker publish-date form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.publish_date')}"
               .col-xs-6
                 .form-group
                   = distribution_form.hidden_field :media_type, class: 'form-control media_type'

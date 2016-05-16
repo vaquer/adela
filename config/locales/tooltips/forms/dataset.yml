@@ -3,6 +3,7 @@ es:
     dataset:
       title: Título descriptivo del Conjunto de Datos. Por ejemplo, "Programa de fomento a la agricultura","Vuelos comerciales", etc.
       description: Una explicación detallada de los datos contenidos en el Conjunto de Datos. Por ejemplo, "Apoyos otorgados a través del programa Opciones Productivas, desglosado a nivel localidad de 2000 a 2015".
+      contact_name: Nombre del contacto que atenderá dudas y comentarios sobre el conjunto de datos.
       contact_position: Cargo de la persona de contacto que atenderá dudas y comentarios sobre el conjunto de datos. Por ejemplo, "Administrador Institucional de Datos".
       public_access: Tipo de Datos contenidos dentro del Conjunto de Datos que se está documentando, Puede ser "Público" ó "Privado"
       accrual_periodicity: Frecuencia con la cual el conjunto de datos será publicado o actualizado. Por ejemplo, "mensualmente"

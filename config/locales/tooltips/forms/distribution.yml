@@ -1,6 +1,8 @@
 es:
   tooltip:
     distribution:
+      actions:
+        destroy: 'No se puede eliminar un recurso de datos que ha sido publicado.'
       title: La clave que identifica al conjunto de datos al que pertenece (y bajo el que se agrupa) este recurso. Algunos ejemplos son, "Otorgamientos del 2013”, “Otorgamientos del 2014”, “Apoyos por municipio”, “Apoyos por localidad”.
       description: Una explicación detallada de los datos contenidos en el Recurso de Datos. Por ejemplo, “Apoyos otorgados a través del programa Opciones Productivas, desglosado a nivel localidad de 2000 a 2015”.
       media_type_select: Formato de archivo del Recurso de Datos a descargar.

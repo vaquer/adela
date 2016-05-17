@@ -4,19 +4,33 @@ class Distribution < ActiveRecord::Base
 
   before_save :fix_distribution
   before_save :break_distibution
+
+  before_save :break_published_distribution
+  before_save :fix_published_distribution
+
   after_commit :update_dataset_metadata
 
   state_machine initial: :broke do
     state :broke
     state :documented
+    state :refining
+    state :refined
     state :published
 
     event :document do
-      transition [:broke, :published] => :documented, if: lambda { |distribution| distribution.compliant? }
+      transition [:broke] => :documented, if: lambda { |distribution| distribution.compliant? }
     end
 
     event :break_dist do
-      transition [:documented, :published] => :broke, unless: lambda { |distribution| distribution.compliant? }
+      transition [:documented] => :broke, unless: lambda { |distribution| distribution.compliant? }
+    end
+
+    event :break_published_dist do
+      transition [:published] => :refining, unless: lambda { |distribution| distribution.compliant? }
+    end
+
+    event :refine_published_dist do
+      transition [:published, :refining] => :refined, if: lambda { |distribution| distribution.compliant? }
     end
   end
 
@@ -43,8 +57,16 @@ class Distribution < ActiveRecord::Base
     document if can_document?
   end
 
+  def fix_published_distribution
+    break_published_dist if can_break_published_dist?
+  end
+
   def break_distibution
     break_dist if can_break_dist?
+  end
+
+  def break_published_distribution
+    refine_published_dist if can_refine_published_dist?
   end
 
   def mandatory_fields

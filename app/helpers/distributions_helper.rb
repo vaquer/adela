@@ -8,12 +8,13 @@ module DistributionsHelper
   end
 
   def state_description(distribution)
-    if distribution.broke?
-      'Falta información'
-    elsif distribution.documented?
+    case distribution.state
+    when 'documented', 'refined'
       'Listo para publicar'
-    else
+    when 'published'
       'Publicado'
+    else
+      'Falta información'
     end
   end
 end

@@ -89,7 +89,7 @@
                   %i.fa.fa-caret-down
             %tbody
               - dataset.distributions.each do |distribution|
-                - next unless distribution.documented?
+                - next unless distribution.documented? || distribution.refined?
                 - next unless params['catalog']['distribution_ids'].map(&:to_i).include? distribution.id
                 %tr
                   %td

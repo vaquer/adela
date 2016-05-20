@@ -1,6 +1,8 @@
 es:
   tooltip:
     dataset:
+      actions:
+        destroy: 'No se puede eliminar un conjunto de datos que ha sido publicado.'
       title: Título descriptivo del Conjunto de Datos. Por ejemplo, "Programa de fomento a la agricultura","Vuelos comerciales", etc.
       description: Una explicación detallada de los datos contenidos en el Conjunto de Datos. Por ejemplo, "Apoyos otorgados a través del programa Opciones Productivas, desglosado a nivel localidad de 2000 a 2015".
       contact_name: Nombre del contacto que atenderá dudas y comentarios sobre el conjunto de datos.

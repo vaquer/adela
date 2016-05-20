@@ -8,7 +8,7 @@ module DatasetsHelper
   end
 
   def documented_distributions(dataset)
-    dataset.distributions.select { |d| d.published? || d.documented? }
+    dataset.distributions.reject { |distribution| distribution.refining? || distribution.broke? }
   end
 
   def next_dataset(dataset)

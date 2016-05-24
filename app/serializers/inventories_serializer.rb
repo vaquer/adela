@@ -1,5 +1,5 @@
 class InventoriesSerializer < ActiveModel::Serializer
-  has_many :datasets, root: :dataset, serializer: Inventories::DatasetsSerializer
+  has_many :datasets, root: :dataset, serializer: DatasetSerializer
 
   def attributes
     data ||= {}

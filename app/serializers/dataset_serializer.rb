@@ -1,26 +1,37 @@
-include ActiveModel::Serialization
-
 class DatasetSerializer < ActiveModel::Serializer
-  has_many :distributions, root: :distribution
-  attributes :identifier, :title, :description, :modified, :contactPoint, :spatial, :issued, :temporal
+  has_many :distributions, root: :distribution, serializer: DistributionSerializer
+  attributes :id, :title, :description, :issued, :modified, :identifier, :keyword, :language,
+             :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage
 
   def attributes
     data = super
-    data[:language] = 'es'
     data[:publisher] = {
-      name: object.publisher,
+      name: object.contact_name,
+      position: object.contact_position,
       mbox: object.mbox
     }
-    data[:keyword] = object.keywords.split(',').map(&:squish)
-    data[:landingPage] = object.landing_page
+    data[:public] = object.public_access
+    data[:publishDate] = object.publish_date
     data
+  end
+
+  def keyword
+    object.keywords.split(',').map(&:squish)
+  end
+
+  def language
+    'es'
   end
 
   def contactPoint
     "http://adela.datos.gob.mx/api/v1/datasets/#{object.id}/contact_point.vcf"
   end
 
-  def distributions
-    object.distributions.select(&:published?)
+  def accrualPeriodicity
+    object.accrual_periodicity
+  end
+
+  def landingPage
+    object.landing_page
   end
 end

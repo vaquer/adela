@@ -7,7 +7,7 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'creates a new public dataset', js: true do
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
 
     click_link('Agregar un conjunto nuevo')
 
@@ -37,7 +37,7 @@ feature User, 'manages inventory datasets crud:' do
   end
 
   scenario 'creates a new private dataset', js: true do
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
     click_link('Agregar un conjunto nuevo')
 
     dataset_attributes = attributes_for(:dataset)
@@ -66,7 +66,7 @@ feature User, 'manages inventory datasets crud:' do
   scenario 'edits a dataset', js: true do
     dataset = given_an_inventory_with_a_dataset
 
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
 
     within find('tr.dataset', text: dataset[:title]) do
       click_on('Editar')
@@ -89,7 +89,7 @@ feature User, 'manages inventory datasets crud:' do
 
   scenario 'deletes a dataset', js: true do
     dataset = given_an_inventory_with_a_dataset
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
 
     within find('tr.dataset', text: dataset[:title]) do
       click_on('Eliminar')
@@ -103,7 +103,7 @@ feature User, 'manages inventory datasets crud:' do
 
   scenario 'adds a distribution to a dataset', js: true do
     dataset = given_an_inventory_with_a_dataset
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr td.add-distribution') do
@@ -126,7 +126,7 @@ feature User, 'manages inventory datasets crud:' do
 
   scenario 'edits a dataset distribution', js: true do
     dataset = given_an_inventory_with_a_dataset
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr.distribution', text: dataset[:distributions].first[:title]) do
@@ -149,7 +149,7 @@ feature User, 'manages inventory datasets crud:' do
 
   scenario 'deletes a distribution', js: true do
     dataset = given_an_inventory_with_a_dataset
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
 
     find('tr.dataset td a.accordion-toggle', text: dataset[:title]).click
     within find('tr.distribution', text: dataset[:distributions].first[:title]) do
@@ -170,7 +170,7 @@ feature User, 'manages inventory datasets crud:' do
     distribution = attributes_for(:distribution)
     dataset[:distributions] = [distribution]
 
-    within('.navbar') { click_on('Inventario de Datos') }
+    within('.navbar') { click_on('Plan de Apertura') }
     click_link('Agregar un conjunto nuevo')
 
     fill_public_dataset_form(dataset)

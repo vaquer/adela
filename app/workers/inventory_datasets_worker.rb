@@ -10,7 +10,7 @@ class InventoryDatasetsWorker
 
   def create_inventory_dataset(inventory)
     return unless inventory.valid?
-    generator = InventoryDatasetGenerator.new(inventory)
+    generator = OpeningPlanDatasetGenerator.new(inventory)
     generator.generate
   end
 end

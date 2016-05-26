@@ -1,4 +1,4 @@
-class InventoryDatasetGenerator
+class OpeningPlanDatasetGenerator
   include Rails.application.routes.url_helpers
 
   attr_reader :inventory, :organization, :catalog
@@ -39,7 +39,7 @@ class InventoryDatasetGenerator
   end
 
   def inventory_dataset
-    @catalog.datasets.where("title LIKE 'Inventario Institucional de Datos de #{@organization.title}'").last
+    @catalog.datasets.where("title LIKE 'Plan de Apertura Institucional de #{@organization.title}'").last
   end
 
   def create_dataset_and_distribution
@@ -59,9 +59,9 @@ class InventoryDatasetGenerator
 
   def build_dataset
     @catalog.datasets.build do |dataset|
-      dataset.title = "Inventario Institucional de Datos de #{@organization.title}"
-      dataset.description = "Inventario Institucional de Datos de #{@organization.title}"
-      dataset.keyword = 'inventario'
+      dataset.title = "Plan de Apertura Institucional de #{@organization.title}"
+      dataset.description = "Plan de Apertura Institucional de #{@organization.title}"
+      dataset.keyword = 'plan de apertura'
       dataset.modified = Time.current.iso8601
       dataset.contact_position = ENV_CONTACT_POSITION_NAME
       dataset.mbox = organization_administrator.try(:email)
@@ -90,8 +90,8 @@ class InventoryDatasetGenerator
 
   def build_distribution(dataset)
     dataset.distributions.build do |distribution|
-      distribution.title = "Inventario Institucional de Datos de #{@organization.title}"
-      distribution.description = "Inventario Institucional de Datos de #{@organization.title}"
+      distribution.title = "Plan de Apertura Institucional de #{@organization.title}"
+      distribution.description = "Plan de Apertura Institucional de #{@organization.title}"
       distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@organization, format: :csv)}"
       distribution.media_type = 'csv'
       distribution.publish_date = DateTime.new(2015, 8, 28)

@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe InventoryDatasetGenerator do
+describe OpeningPlanDatasetGenerator do
   describe '#generate' do
     context 'a new inventory' do
       let(:organization) { create(:organization) }
       let(:inventory) { create(:inventory, organization: organization) }
 
       before(:each) do
-        InventoryDatasetGenerator.new(inventory).generate
+        OpeningPlanDatasetGenerator.new(inventory).generate
       end
 
       it 'should create an organization catalog' do
@@ -25,14 +25,14 @@ describe InventoryDatasetGenerator do
 
       it 'should contain a dataset with the organization name in the title' do
         dataset_title = organization.catalog.datasets.last.title
-        expected_title = "Inventario Institucional de Datos de #{organization.title}"
+        expected_title = "Plan de Apertura Institucional de #{organization.title}"
 
         expect(dataset_title).to eql(expected_title)
       end
 
       it 'should contain a distribution with the organization name in the title' do
         distribution_title = organization.catalog.datasets.last.distributions.last.title
-        expected_title = "Inventario Institucional de Datos de #{organization.title}"
+        expected_title = "Plan de Apertura Institucional de #{organization.title}"
 
         expect(distribution_title).to eql(expected_title)
       end
@@ -40,7 +40,7 @@ describe InventoryDatasetGenerator do
       it 'should contain an identifier with the organization slug' do
         organization_slug = organization.title.to_slug.normalize.to_s
         dataset_identifier = organization.catalog.datasets.last.identifier
-        expected_identifier = "inventario-institucional-de-datos-de-#{organization_slug}"
+        expected_identifier = "plan-de-apertura-institucional-de-#{organization_slug}"
 
         expect(dataset_identifier).to eql(expected_identifier)
       end
@@ -70,7 +70,7 @@ describe InventoryDatasetGenerator do
         Timecop.travel(Faker::Date.forward)
 
         new_inventory = create(:inventory, organization: @organization)
-        InventoryDatasetGenerator.new(new_inventory).generate
+        OpeningPlanDatasetGenerator.new(new_inventory).generate
         @new_dataset = @organization.catalog.datasets.first.deep_clone(include: [:distributions])
       end
 

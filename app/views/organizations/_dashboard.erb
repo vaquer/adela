@@ -2,11 +2,11 @@
 <div class="content-dashboard">
   <div class="row">
     <div class="col-sm-8">
-      <h2 class='title'>Secretaría de Salud</h2>
+      <h2 class='title' id="title_org"></h2>
       <p>Este tablero de control se actualiza cada 24 horas.</p>
     </div>
     <div class="col-sm-3">
-      <img src="../assets/logo-ssa.png" alt="Secretaría de Salud" class="responsive"/>
+      <img id="logo_org" class="responsive"/>
     </div>
   </div>
 </div>
@@ -51,13 +51,31 @@
             <td class="text-center"><a href="#">Notifica</a></td>
           </tr>
           <tr>
-            <td>Calidad</td>
+            <td>Metadatos</td>
             <td>Encuesta nacional de seroepidemiología</td>
             <td class="text-center"><a href="#">ISO9000</a></td>
             <td class="text-center"><a href="#">Notifica</a></td>
           </tr>
           <tr>
-            <td>Calidad</td>
+            <td>URL</td>
+            <td>Encuesta nacional de seroepidemiología</td>
+            <td class="text-center"><a href="#">ISO9000</a></td>
+            <td class="text-center"><a href="#">Notifica</a></td>
+          </tr>
+          <tr>
+            <td>Incompleto</td>
+            <td>Encuesta nacional de seroepidemiología</td>
+            <td class="text-center"><a href="#">ISO9000</a></td>
+            <td class="text-center"><a href="#">Notifica</a></td>
+          </tr>
+          <tr>
+            <td>Microdatos</td>
+            <td>Encuesta nacional de seroepidemiología</td>
+            <td class="text-center"><a href="#">ISO9000</a></td>
+            <td class="text-center"><a href="#">Notifica</a></td>
+          </tr>
+          <tr>
+            <td>Solicitud</td>
             <td>Encuesta nacional de seroepidemiología</td>
             <td class="text-center"><a href="#">ISO9000</a></td>
             <td class="text-center"><a href="#">Notifica</a></td>
@@ -133,7 +151,6 @@
         <div class="col-xs-12">
           <span class="pull-left calificacion-dashboard high-light-dashboard">7</span>
           <span class="pull-left calificacion-dashboard">/25</span>
-          <p class="lugar-dashboard" style="margin-top: 28px;">Lugar 80 de 265 instituciones.</p>
         </div>
       </div>
       <div class="content-sub-dashboard">
@@ -157,6 +174,9 @@
           <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
           <li><i class="fa fa-star-o fa-3x high-light-dashboard"></i></li>
         </ul>
+      </div>
+      <div class="content-sub-dashboard">
+        <a class="btn btn-primary" href="#">Descargar como PDF</a>
       </div>
     </div>
     <div class="col-sm-5 col-sm-offset-1">
@@ -183,28 +203,42 @@
             <td class="text-center">dd/mm/aaaa</td>
             <td class="text-center">250</td>
           </tr>
+          <tr>
+            <td>Encuesta nacional de seroepidemiología 1998</td>
+            <td class="text-center">dd/mm/aaaa</td>
+            <td class="text-center">250</td>
+          </tr>
+          <tr>
+            <td>Encuesta nacional de seroepidemiología 1998</td>
+            <td class="text-center">dd/mm/aaaa</td>
+            <td class="text-center">250</td>
+          </tr>
         </table>
       </div>
       <h3 class='title'>Indicadores generales</h3>
       <p>Los siguientes indicadores muestran el estado actual de tu inventario, recursos de datos, actualizaciones, solicitudes y URLs.</p><hr>
       <div class="row">
         <div class="col-sm-6">
-          <h5 class='title'>Inventario</h5>
+          <h6 class='title'>Inventario</h6>
           <div id="bar-chart1"></div>
         </div>
         <div class="col-sm-6">
-          <h5 class='title'>Actualizaciones</h5>
+          <h6 class='title'>Actualizaciones</h6>
           <div id="bar-chart2"></div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <h5 class='title'>URLs</h5>
+          <h6 class='title'>URLs</h6>
           <div id="bar-chart3"></div>
         </div>
         <div class="col-sm-6">
-          <h5 class='title'>Solicitudes</h5>
+          <h6 class='title'>Solicitudes</h6>
           <div id="bar-chart4"></div>
+        </div>
+        <div class="col-sm-6">
+          <h6 class='title'>Recursos de datos</h6>
+          <div id="bar-chart5"></div>
         </div>
       </div>
   </div>
@@ -214,9 +248,40 @@
 
 <script type="text/javascript">
 
+  var orgName = 'conagua';
+  //API BUda
+  var dataApi, orgTitle, orgLogoUrl;
+  //Ajax Get
+  $.ajax({
+      //url: 'http://api.datos.gob.mx/v1/data-fusion?catalog-dataset.publisher.name=SHCP&pageSize=1000',
+      url: 'http://api.datos.gob.mx/v1/data-fusion?adela.inventory.slug=' + orgName,
+      async: false,
+      type: 'GET',
+      success: function(data) {
+        dataApi = data;
+      },
+      error: function(data){
+        console.log("error- ",data);
+      }
+  });
+  console.log("dataApi --> ",dataApi.results);
+
+  console.log("dataApiDataSet --> ",dataApi.results[0].ckan.dataset.organization);
+  var dataOrg = dataApi.results[0].ckan.dataset.organization;
+  orgLogoUrl = dataOrg["image-url"];
+  orgTitle = dataOrg.title;
+  $('#title_org').html(orgTitle);
+  $('#logo_org').attr('src',orgLogoUrl);
+
+  $.each(dataApi.results,function(key, value){
+      //console.log("dataApiDataSet --> ",value);
+      console.log("Adela --> ",value.adela);
+      console.log("Ckan --> ",value.ckan);
+      //var ckanData = value.ckan;
+      console.log("Analytics --> ",value.analytics);
+  });
+
   ///// BarChart
-  // google.charts.load('43', {'packages':['corechart']});
-  // google.charts.setOnLoadCallback();
   google.charts.load('current', {packages: ['corechart', 'bar']});
   google.charts.setOnLoadCallback(drawChart);
 
@@ -244,11 +309,17 @@
     data3 = google.visualization.arrayToDataTable(dataArray3);
     var dataArray4 = [
       ['Presupuesto', 'Cantidad', { role: 'annotation' }, { role: 'style' }],
-      ['Privado', 13, '13%', 'color: #00cc99'],
-      ['Público', 35, '35%', 'color: #9400CC'],
-      ['Restringido', 100,  '100%', 'color: #FF5F3E']
+      ['Atendidas', 13, '13%', 'color: #00cc99'],
+      ['Por atender', 35, '35%', 'color: #9400CC'],
+      ['No atendidas', 100,  '100%', 'color: #FF5F3E']
     ];
     data4 = google.visualization.arrayToDataTable(dataArray4);
+    var dataArray5 = [
+      ['Presupuesto', 'Cantidad', { role: 'annotation' }, { role: 'style' }],
+      ['Publicados', 35, '35%', 'color: #9400CC'],
+      ['Por publicar', 100,  '100%', 'color: #FF5F3E']
+    ];
+    data5 = google.visualization.arrayToDataTable(dataArray5);
     var options = {
       //width:280, height:180,
       animation:{
@@ -258,7 +329,7 @@
       annotations: {
         textStyle: {
           color: 'gray',
-          fontSize: 12
+          fontSize: 10
         },
         highContrast: false,
         alwaysOutside: true
@@ -275,6 +346,8 @@
     chart3.draw(data3, options);
     var chart4 = new google.visualization.BarChart(document.getElementById('bar-chart4'));
     chart4.draw(data4, options);
+    var chart5 = new google.visualization.BarChart(document.getElementById('bar-chart5'));
+    chart5.draw(data5, options);
   };
 
   //Chroma js

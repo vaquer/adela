@@ -15,6 +15,6 @@ class DistributionsController < ApplicationController
   private
 
   def distribution_params
-    params.require(:distribution).permit(:title, :publish_date, :download_url, :modified, :temporal, :byte_size)
+    params.require(:distribution).permit(:title, :description, :publish_date, :download_url, :modified, :temporal, :byte_size)
   end
 end

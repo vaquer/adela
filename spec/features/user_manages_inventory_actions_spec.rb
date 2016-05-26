@@ -9,7 +9,7 @@ feature User, 'manages inventory actions:' do
   scenario 'downloads the inventry plan' do
     given_organization_with_catalog
     within('.navbar') { click_on('Inventario de Datos') }
-    have_text('Descargar inventario actual')
+    have_text('Descargar el plan de apertura actual')
   end
 
   scenario 'visits new inventories dataset path' do

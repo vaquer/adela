@@ -1,11 +1,11 @@
 - breadcrumb :inventory
-%h3 Inventario de Datos Abiertos
+%h3 Plan de Apertura Institucional
 .row
   .col-md-9
     %p
-      El Inventario de Datos Abiertos es un listado de todos los Conjuntos y Recursos de Datos Abiertos con las fechas comprometidas de publicación y actualización para cada uno de ellos.
+      El Plan de Apertura Institucional es un listado de todos los Conjuntos y Recursos de Datos Abiertos con las fechas comprometidas de publicación y actualización para cada uno de ellos.
     %p
-      Da click en el botón de <strong>agregar un conjunto</strong> para comenzar a crear tu Inventario de Datos Abiertos.
+      Da click en el botón de <strong>agregar un conjunto</strong> para comenzar a crear tu Plan de Apertura Institucional.
 - if current_organization.catalog && current_organization.catalog.datasets.present?
   = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
   = link_to organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary btn-default btn-lg' } do

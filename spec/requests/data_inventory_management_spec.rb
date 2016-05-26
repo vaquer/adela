@@ -10,7 +10,7 @@ feature 'data inventory management' do
 
     get "/api/v1/organizations/#{organization.slug}/inventory.json"
     json_response = JSON.parse(response.body)
-    expect(json_response['title']).to eql("Inventario de Datos de #{organization.title}")
+    expect(json_response['title']).to eql("Plan de Apertura Institucional de #{organization.title}")
     expect(json_response['dataset']).not_to be_empty
   end
 

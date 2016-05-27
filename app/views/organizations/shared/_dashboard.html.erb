@@ -1,8 +1,9 @@
 <!-- header organizacion -->
-<div class="content-dashboard">
+<div class="container content-dashboard">
   <div class="row">
     <div class="col-sm-8">
-      <h2 class='title' id="title_org"></h2>
+      <!-- <h2 class='title' id="title_org"></h2> -->
+      <img id="logo_org" class="responsive"/>
       <p>Este tablero de control se actualiza cada 24 horas.</p>
     </div>
     <div class="col-sm-3">
@@ -11,138 +12,142 @@
   </div>
 </div>
 
-<div class="content-dashboard">
-  <div class="row">
-    <div class="col-sm-6">
-      <h3 class='title'>Calificación total de la institución</h3>
-      <p>Para conocer cómo se calcúla esta calificación da <a href="#">click aqui.</a></p><hr>
-      <div class="row">
-        <div class="col-xs-12">
-          <span class="pull-left calificacion-dashboard high-light-dashboard">7</span>
-          <span class="pull-left calificacion-dashboard">/10</span>
-          <p class="lugar-dashboard" style="margin-top: 28px;">Lugar 80 de 265 instituciones.</p>
+<div class="gray_back">
+  <div class="container content-dashboard">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class='title'>Calificación total de la institución</h3>
+        <p>Para conocer cómo se calcúla esta calificación da <a href="#">click aqui.</a></p><hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="pull-left calificacion-dashboard high-light-dashboard">7</span>
+            <span class="pull-left calificacion-dashboard-gray">/10</span>
+          </div>
+          <div class="col-xs-12">
+            <p>Lugar 80 de 265 instituciones.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5 col-sm-offset-1">
+        <span class="glyphicon glyphicon-info-sign gly-warning pull-left title"></span>
+        <p class="media-body">Para mejorar tu calificación te sugerimos: primero, atender tus recomendaciones y, posteriormente, realizar las actividades que tienes pendientes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content-dashboard">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class='title'>Atiende tus recomendaciones</h3>
+        <p>Da click en "Error" para ver más detalles al respecto. Para notificar al responsable del recurso, da click en Notifica.</p><br>
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th class="text-center">Tipo</th>
+              <th class="text-center">Recurso</th>
+              <th class="text-center">Error</th>
+              <th class="text-center">Notifica</th>
+            </tr>
+            <tr>
+              <td>Calidad</td>
+              <td>Encuesta nacional de seroepidemiología</td>
+              <td class="text-center"><a href="#">ISO9000</a></td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td>Metadatos</td>
+              <td>Encuesta nacional de seroepidemiología</td>
+              <td class="text-center"><a href="#">ISO9000</a></td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td>URL</td>
+              <td>Encuesta nacional de seroepidemiología</td>
+              <td class="text-center"><a href="#">ISO9000</a></td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td>Incompleto</td>
+              <td>Encuesta nacional de seroepidemiología</td>
+              <td class="text-center"><a href="#">ISO9000</a></td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td>Microdatos</td>
+              <td>Encuesta nacional de seroepidemiología</td>
+              <td class="text-center"><a href="#">ISO9000</a></td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td>Solicitud</td>
+              <td>Encuesta nacional de seroepidemiología</td>
+              <td class="text-center"><a href="#">ISO9000</a></td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-5 col-sm-offset-1">
+        <h3 class='title'>Actividades pendientes</h3>
+        <p>A continuación puedes ver por categoría las actividades pendientes que tiene tu Institución.</p><br>
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th class="text-center">Fecha</th>
+              <th class="text-center">Recurso</th>
+              <th class="text-center">Tipo</th>
+              <th class="text-center">Notifica</th>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+            <tr>
+              <td class="text-center code-color-dashboard">25 Feb</td>
+              <td>Porcentaje de egresos...</td>
+              <td class="text-center">Publicación</td>
+              <td class="text-center"><a href="#">Notifica</a></td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
-    <div class="col-sm-5 col-sm-offset-1">
-      <span class="fa fa-warning fa-3x pull-left title" style="margin-top: 12px;"></span>
-      <p class="media-body">Para mejorar tu calificación te sugerimos: primero, atender tus recomendaciones y, posteriormente, realizar las actividades que tienes pendientes.</p>
-    </div>
   </div>
 </div>
 
-<div class="content-dashboard">
-  <div class="row">
-    <div class="col-sm-6">
-      <h3 class='title'>Atiende tus recomendaciones</h3>
-      <p>Da click en "Error" para ver más detalles al respecto. Para notificar al responsable del recurso, da click en Notifica.</p><br>
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th class="text-center">Tipo</th>
-            <th class="text-center">Recurso</th>
-            <th class="text-center">Error</th>
-            <th class="text-center">Notifica</th>
-          </tr>
-          <tr>
-            <td>Calidad</td>
-            <td>Encuesta nacional de seroepidemiología</td>
-            <td class="text-center"><a href="#">ISO9000</a></td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td>Metadatos</td>
-            <td>Encuesta nacional de seroepidemiología</td>
-            <td class="text-center"><a href="#">ISO9000</a></td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td>URL</td>
-            <td>Encuesta nacional de seroepidemiología</td>
-            <td class="text-center"><a href="#">ISO9000</a></td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td>Incompleto</td>
-            <td>Encuesta nacional de seroepidemiología</td>
-            <td class="text-center"><a href="#">ISO9000</a></td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td>Microdatos</td>
-            <td>Encuesta nacional de seroepidemiología</td>
-            <td class="text-center"><a href="#">ISO9000</a></td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td>Solicitud</td>
-            <td>Encuesta nacional de seroepidemiología</td>
-            <td class="text-center"><a href="#">ISO9000</a></td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <div class="col-sm-5 col-sm-offset-1">
-      <h3 class='title'>Actividades pendientes</h3>
-      <p>A continuación puedes ver por categoría las actividades pendientes que tiene tu Institución.</p><br>
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Recurso</th>
-            <th class="text-center">Tipo</th>
-            <th class="text-center">Notifica</th>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-          <tr>
-            <td class="text-center code-color-dashboard">25 Feb</td>
-            <td>Porcentaje de egresos...</td>
-            <td class="text-center">Publicación</td>
-            <td class="text-center"><a href="#">Notifica</a></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="content-dashboard">
+<div class="container content-dashboard">
   <div class="row">
     <div class="col-sm-6">
       <h3 class='title'>Recursos publicados</h3>
@@ -150,29 +155,29 @@
       <div class="row">
         <div class="col-xs-12">
           <span class="pull-left calificacion-dashboard high-light-dashboard">7</span>
-          <span class="pull-left calificacion-dashboard">/25</span>
+          <span class="pull-left calificacion-dashboard-gray">/25</span>
         </div>
       </div>
       <div class="content-sub-dashboard">
         <h3 class='title'>Calificación de apertura | Beta</h3>
         <p>Esta calificación depende del tipo de los tipos de archivos que son publicados. Para conocer más da <a href="#">click aquí.</a></p><hr>
         <ul class="list-inline">
-          <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star-o fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star-o fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star-o fa-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star-empty gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star-empty gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star-empty gly-3x high-light-dashboard"></i></li>
         </ul>
       </div>
       <div class="content-sub-dashboard">
         <h3 class='title'>Calidad de datos | Beta</h3>
         <p>Para conocer cómo se genera esta calificación de calidad de los datos da <a href="#">click aquí.</a></p><hr>
         <ul class="list-inline">
-          <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star fa-3x high-light-dashboard"></i></li>
-          <li><i class="fa fa-star-o fa-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star gly-3x high-light-dashboard"></i></li>
+          <li><i class="glyphicon glyphicon-star-empty gly-3x high-light-dashboard"></i></li>
         </ul>
       </div>
       <div class="content-sub-dashboard">
@@ -180,8 +185,9 @@
       </div>
     </div>
     <div class="col-sm-5 col-sm-offset-1">
-      <h3 class='title'>Top 5 Recursos Descargados</h3><br>
-      <div class="table-responsive">
+      <h3 class='title'>Top 5 Recursos Descargados</h3>
+      <p>Información de los 5 recursos más descargados de tu institución.</p>
+      <div class="table-responsive" style="margin-top: 20px;">
         <table class="table">
           <tr>
             <th>Recurso</th>
@@ -241,8 +247,10 @@
           <div id="bar-chart5"></div>
         </div>
       </div>
+    </div>
   </div>
 </div>
+
 <!-- Google Charts -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -329,8 +337,13 @@
         highContrast: false,
         alwaysOutside: true
       },
-      legend: {position: 'none'},
-      hAxis: { textPosition: 'none' },
+      legend: { position: 'none' },
+      hAxis: {
+        textPosition: 'none',
+        gridlines: {
+          color: 'transparent'
+        }
+      },
       isStacked: false
     };
     var chart1 = new google.visualization.BarChart(document.getElementById('bar-chart1'));

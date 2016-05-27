@@ -97,13 +97,13 @@ es:
             description:
               invalid: "El campo \"Descripción del Recurso\" no puede ir en blanco."
             private:
-              invalid: "El campo \"¿Tiene datos privados?\" no puede ir en blanco."
+              invalid: "El campo \"¿Son datos privados o públicos?\" no puede ir en blanco."
             media_type:
               invalid: "El campo \"¿En qué plataforma, tecnología, programa o sistema se albergan?\" no puede ir en blanco."
             publish_date:
               invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
             access_comment:
-              blank: "Cuando el valor del dato ¿Tiene datos privados? no es Público la columna F no puede estar vacía o nula."
+              blank: "Cuando el valor del dato ¿Son datos privados o públicos? no es Público la columna F no puede estar vacía o nula."
     attributes:
       user:
         name: "Nombre"
@@ -116,7 +116,7 @@ es:
         description: 'Descripción'
         contact_name: 'Nombre del responsable'
         contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
-        public_access: '¿Tiene datos privados?'
+        public_access: '¿Son datos privados o públicos?'
         accrual_periodicity: 'Frecuencia con la que actualizan'
         publish_date: 'Fecha de publicación'
         temporal: 'Cobertura temporal'

@@ -77,7 +77,13 @@
               %tr.distribution
                 %td= distribution.title
                 %td.center= state_description(distribution)
-                %td.center= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
+                %td.center
+                  %ul.nav.nav-pills.nav-justified
+                    %li{role: 'presentation'}
+                      = link_to edit_distribution_path(distribution) do
+                        %span.icon.icon-right
+                          = inline_svg 'edit.svg'
+                        Documentar
     = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-alt btn-default btn-lg'
     - if (next_dataset = next_dataset(@dataset))
       = link_to edit_dataset_path(next_dataset), { class: 'btn btn-alt btn-default btn-lg pull-right' } do

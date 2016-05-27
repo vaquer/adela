@@ -46,7 +46,7 @@
                   = link_to edit_dataset_path(dataset) do
                     %span.icon.icon-right
                       = inline_svg 'edit.svg'
-                    Editar
+                    Documentar
           - dataset.distributions.each do |distribution|
             %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
               %td
@@ -62,7 +62,10 @@
               %td
                 %ul.nav.nav-pills.nav-justified
                   %li{role: 'presentation'}
-                    = link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
+                    = link_to edit_distribution_path(distribution) do
+                      %span.icon.icon-right
+                        = inline_svg 'edit.svg'
+                      Documentar
 
   .pull-right
     = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-alt btn-lg' : 'btn btn-alt disabled'

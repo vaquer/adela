@@ -84,6 +84,8 @@
                         %span.icon.icon-right
                           = inline_svg 'edit.svg'
                         Documentar
+.row
+  .col-md-9.margin-top-20
     = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-alt btn-default btn-lg'
     - if (next_dataset = next_dataset(@dataset))
       = link_to edit_dataset_path(next_dataset), { class: 'btn btn-alt btn-default btn-lg pull-right' } do

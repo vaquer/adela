@@ -12,12 +12,12 @@ feature 'Catalog distribution metadata' do
     close_joyride
 
     within set_row do
-      click_on('Editar')
+      click_on('Documentar')
     end
 
     within resource_row do
       expect(page).to have_text('Falta información')
-      click_on('Completar')
+      click_on('Documentar')
     end
 
     distribution_attributes = attributes_for(:distribution)
@@ -25,7 +25,7 @@ feature 'Catalog distribution metadata' do
 
     within resource_row do
       expect(page).to have_text('Listo para publicar')
-      click_on('Actualizar')
+      click_on('Documentar')
     end
 
     expect(page).to have_field('distribution_download_url', with: distribution_attributes[:download_url])

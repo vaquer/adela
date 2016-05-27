@@ -12,7 +12,7 @@ feature 'Catalog dataset metadata' do
     close_joyride
 
     within set_row do
-      click_on('Editar')
+      click_on('Documentar')
     end
 
     dataset_attributes = attributes_for(:dataset)

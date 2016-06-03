@@ -71,8 +71,14 @@
   .row.margin-top-20
     .col-md-12
       .pull-right
-        = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-alt btn-lg' : 'btn btn-alt disabled'
-        = f.button 'Publicar', type: 'submit', id: 'publish', class: can_publish?(@catalog) ? 'btn btn-lg btn-primary' : 'btn btn-primary disabled'
+        - if @catalog.publish_date?
+          = link_to 'Ver último folio', catalog_path(@catalog), class: 'btn btn-alt btn-lg'
+        - else
+          = link_to 'Ver último folio', catalog_path(@catalog), class: 'btn btn-alt btn-lg disabled', disabled: true
+        - if can_publish?(@catalog)
+          = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary'
+        - else
+          = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary disabled', disabled: true
       .clearfix
 
 = render "tour_index"

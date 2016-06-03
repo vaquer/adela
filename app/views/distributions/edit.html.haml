@@ -26,7 +26,7 @@
         .col-xs-6
           .form-group.required
             = f.label :modified, 'Fecha de última modificación de datos',  class: 'control-label'
-            = f.text_field :modified, value: f.object.modified&.strftime('%F'), class: 'form-control input-icon datepicker', required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.modified')}"
+            = f.text_field :modified, value: f.object.modified&.strftime('%F'), class: 'form-control input-icon datepicker', required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.modified')}", 'data-placement': 'bottom'
         .col-xs-6
           .form-group.required
             = f.label :byte_size, 'Tamaño en Bytes'

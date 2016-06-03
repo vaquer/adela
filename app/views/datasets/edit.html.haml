@@ -94,7 +94,6 @@
           = inline_svg 'next.svg'
     .clearfix
     %br
-    = render 'tour_edit'
 
 :javascript
   $(function() {
@@ -103,12 +102,4 @@
       toastr.success("#{t('flash.notice.dataset.update')}");
     });
     $('tr:contains("Listo para publicar")').addClass('success');
-    // Init
-    $("#tour").joyride({
-      autoStart: false
-    });
-    $('#get-tour').click(function() {
-      // Show on click
-      $("#tour").joyride({});
-    });
   });

@@ -9,7 +9,6 @@ feature 'Catalog distribution metadata' do
   scenario 'fills the distribution metadata', js: true do
     given_organization_with_catalog
     within('.navbar') { click_on('Catálogo de Datos') }
-    close_joyride
 
     within set_row do
       click_on('Documentar')

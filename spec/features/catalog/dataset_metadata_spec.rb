@@ -9,7 +9,6 @@ feature 'Catalog dataset metadata' do
   scenario 'fills the dataset metadata', js: true do
     given_organization_with_catalog
     within('.navbar') { click_on('Catálogo de Datos') }
-    close_joyride
 
     within set_row do
       click_on('Documentar')

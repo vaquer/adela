@@ -86,11 +86,6 @@
 :javascript
   $(function() {
     $('tr:contains("Listo para publicar")').addClass('success');
-    $("#tour").joyride({
-      autoStart : true,
-      'cookieMonster': true,
-      'cookieName': 'JoyRide'
-    });
     // Every time a checkbox is checked or unchecked we will...
     $("input:checked").click(function() {
       // activate the Publish button if there are some checkboxes activated

@@ -54,9 +54,5 @@ module Features
     def resource_row
       resource_rows.first
     end
-
-    def close_joyride
-      page.find('.joyride-close-tip').click
-    end
   end
 end

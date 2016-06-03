@@ -21,7 +21,6 @@ feature User, 'sees ready to publish elements:' do
       end
     end
 
-    find(".joyride-close-tip").click
     click_button "Publicar"
 
     expect(page).to have_content "My dataset"

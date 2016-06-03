@@ -45,7 +45,7 @@
         = f.label :landing_page, 'URL para consultar diccionario de datos'
         = f.url_field :landing_page, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.landing_page')}"
       .form-group.required
-        = f.label :dataset_sectors, 'Sector'
+        = f.label :dataset_sectors, 'Categoría en datos.gob.mx'
         = f.fields_for :dataset_sector do |sector_form|
           = sector_form.select :sector_id, options_for_sectors_select, { include_blank: true }, { class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.sector')}" }
       .form-group.required

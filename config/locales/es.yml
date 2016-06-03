@@ -133,7 +133,7 @@ es:
         logo_url: "URL Logo"
         landing_page: "Sitio Web"
         gov_type: "Tipo de Gobierno"
-        sectors: "Sectores"
+        sectors: "Categoría en datos.gob.mx"
         administrator: "Administrador de Datos"
         liaison: "Enlace"
   mailers:

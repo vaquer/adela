@@ -2,8 +2,6 @@
 .row
   .col-md-9
     %h3 Documentar un Conjunto de Datos
-.row
-  .col-md-9
     = form_for(@dataset, remote: true) do |f|
       .form-group.required
         = f.label :title, class: 'control-label'
@@ -52,7 +50,7 @@
         = f.label :keyword, 'Palabras clave (separadas por coma)'
         = f.text_area :keyword, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.keyword')}"
   .col-md-3
-    %p
+    %p.margin-top
       Los metadatos ayudan a que los usuarios entiendan las características de la información que
       se está publicando. La documentación es importante porque afecta la calidad de los datos y el
       potencial de su uso e impacto.

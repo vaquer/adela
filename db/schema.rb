@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606143226) do
+ActiveRecord::Schema.define(version: 20160606181544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20160606143226) do
   add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
   add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
   add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
+
+  create_table "catalog_versions", force: :cascade do |t|
+    t.integer  "catalog_id"
+    t.json     "version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "catalog_versions", ["catalog_id"], name: "index_catalog_versions_on_catalog_id", using: :btree
 
   create_table "catalogs", force: :cascade do |t|
     t.integer  "organization_id"
@@ -235,6 +244,7 @@ ActiveRecord::Schema.define(version: 20160606143226) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "catalog_versions", "catalogs"
   add_foreign_key "designation_files", "organizations"
   add_foreign_key "memo_files", "organizations"
 end

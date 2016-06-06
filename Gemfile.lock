@@ -48,6 +48,11 @@ GEM
       actionpack (>= 3.0)
       activemodel (>= 3.0)
       responders
+    audited (4.2.0)
+      rails-observers (~> 0.1.2)
+    audited-activerecord (4.2.0)
+      activerecord (~> 4.0)
+      audited (= 4.2.0)
     autoprefixer-rails (6.3.6)
       execjs
     autosize-rails (1.18.17)
@@ -237,6 +242,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -382,6 +389,7 @@ DEPENDENCIES
   active_model_serializers
   active_model_warnings
   as_csv (~> 2.0)
+  audited-activerecord
   autosize-rails
   babosa
   bootstrap-sass

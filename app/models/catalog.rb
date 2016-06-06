@@ -1,6 +1,9 @@
 class Catalog < ActiveRecord::Base
   include Loggable
 
+  has_associated_audits
+  audited
+
   belongs_to :organization
 
   has_many :datasets, dependent: :destroy

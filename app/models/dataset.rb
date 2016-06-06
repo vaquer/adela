@@ -1,6 +1,9 @@
 class Dataset < ActiveRecord::Base
   belongs_to :catalog
 
+  has_associated_audits
+  audited associated_with: :catalog
+
   has_many :distributions, dependent: :destroy
 
   has_one :dataset_sector, dependent: :destroy

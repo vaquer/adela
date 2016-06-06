@@ -1,5 +1,6 @@
 class Distribution < ActiveRecord::Base
   belongs_to :dataset
+  audited associated_with: :dataset
   validate :mandatory_fields
 
   before_save :fix_distribution

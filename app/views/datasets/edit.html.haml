@@ -2,8 +2,6 @@
 .row
   .col-md-9
     %h3 Documentar un Conjunto de Datos
-.row
-  .col-md-9
     = form_for(@dataset, remote: true) do |f|
       .form-group.required
         = f.label :title, class: 'control-label'
@@ -45,26 +43,21 @@
         = f.label :landing_page, 'URL para consultar diccionario de datos'
         = f.url_field :landing_page, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.landing_page')}"
       .form-group.required
-        = f.label :dataset_sectors, 'Sector'
+        = f.label :dataset_sectors, 'Categoría en datos.gob.mx'
         = f.fields_for :dataset_sector do |sector_form|
           = sector_form.select :sector_id, options_for_sectors_select, { include_blank: true }, { class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.sector')}" }
       .form-group.required
         = f.label :keyword, 'Palabras clave (separadas por coma)'
         = f.text_area :keyword, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.keyword')}"
   .col-md-3
-    .jumbotron.center
-      %p
-        %strong Tour de Ayuda
-      %p
-        = link_to 'Comenzar', '#no-scroll-please', class: 'btn btn-primary btn-lg btn-block', id: 'get-tour'
-    %p
+    %p.margin-top
       Los metadatos ayudan a que los usuarios entiendan las características de la información que
       se está publicando. La documentación es importante porque afecta la calidad de los datos y el
       potencial de su uso e impacto.
 .row
   .col-md-9
     .bs-callout.bs-callout-default
-      %h3 Continúa con la documentación de sus recursos de datos
+      %h3 Continúa con la documentación de los recursos de datos
       .table-responsive
         %table.table
           %thead.catalog-header
@@ -77,7 +70,15 @@
               %tr.distribution
                 %td= distribution.title
                 %td.center= state_description(distribution)
-                %td.center= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
+                %td.center
+                  %ul.nav.nav-pills.nav-justified
+                    %li{role: 'presentation'}
+                      = link_to edit_distribution_path(distribution) do
+                        %span.icon.icon-right
+                          = inline_svg 'edit.svg'
+                        Documentar
+.row
+  .col-md-9.margin-top-20
     = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-alt btn-default btn-lg'
     - if (next_dataset = next_dataset(@dataset))
       = link_to edit_dataset_path(next_dataset), { class: 'btn btn-alt btn-default btn-lg pull-right' } do
@@ -86,7 +87,6 @@
           = inline_svg 'next.svg'
     .clearfix
     %br
-    = render 'tour_edit'
 
 :javascript
   $(function() {
@@ -95,12 +95,4 @@
       toastr.success("#{t('flash.notice.dataset.update')}");
     });
     $('tr:contains("Listo para publicar")').addClass('success');
-    // Init
-    $("#tour").joyride({
-      autoStart: false
-    });
-    $('#get-tour').click(function() {
-      // Show on click
-      $("#tour").joyride({});
-    });
   });

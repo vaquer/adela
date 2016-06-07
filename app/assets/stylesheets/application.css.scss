@@ -1,6 +1,5 @@
 /*
  *= require toastr
- *= require joyride-2.1
  */
 
 @import url(https://fonts.googleapis.com/css?family=OpenSans:400,300,600,700);
@@ -28,7 +27,6 @@
 @import "components/callouts";
 @import "components/forms";
 @import "components/icons";
-@import "components/joyride";
 @import "components/jumbotron";
 @import "components/labels";
 @import "components/navbar";
@@ -38,6 +36,7 @@
 @import "elements/a";
 @import "elements/button";
 @import "elements/headings";
+@import "elements/p";
 @import "elements/table";
 
 body {
@@ -46,6 +45,7 @@ body {
   font-size: 14px;
   padding-top: 50px; // navbar height
   color: $gray_400;
+  margin-bottom: 20px;
 }
 
 p {
@@ -62,6 +62,10 @@ p {
 
 .semibold {
   font-weight: 600;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
 }
 
 // dashboard opi
@@ -114,10 +118,40 @@ p {
   color:#00cc99;
 }
 
+.calificacion-dashboard-gray  {
+    color: #b7b7b7;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.table-cell, .table > tbody > tr > td, .table > thead > tr > th {
+    color: #474747;
+    font-weight: 300;
+    padding: 15px;
+}
+
 #logo_org{
   min-width: 200px;
   width: 100%;
-  margin-top: 15px;
+  max-width: 245px;
+  margin-left: -18px;
 }
 
 svg { overflow: visible !important; }
+
+.gly-3x { font-size: 2.5em }
+.gly-warning { font-size: 3em; margin: 0 15px;  }
+
+.gray_back {
+  background-color: #F7F5F5;
+}
+
+.gray_back .container {
+  padding: 40px 0 15px;
+}
+
+.overlay-dashboard{
+  position: absolute;
+  right: 0;
+  width: 100%;
+}

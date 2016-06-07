@@ -1,10 +1,8 @@
 - breadcrumb :catalog_distribution, @distribution
-.row
-  .col-md-9
-    %h3 Documentar un Recurso de Datos
-.row
-  .col-md-9
-    = form_for(@distribution) do |f|
+= form_for(@distribution) do |f|
+  .row
+    .col-md-9
+      %h3 Documentar un Recurso de Datos
       .form-group.required
         = f.label :title, class: 'control-label'
         = f.text_field :title, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.title')}"
@@ -28,23 +26,23 @@
         .col-xs-6
           .form-group.required
             = f.label :modified, 'Fecha de última modificación de datos',  class: 'control-label'
-            = f.text_field :modified, value: f.object.modified&.strftime('%F'), class: 'form-control input-icon datepicker', required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.modified')}"
+            = f.text_field :modified, value: f.object.modified&.strftime('%F'), class: 'form-control input-icon datepicker', required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.modified')}", 'data-placement': 'bottom'
         .col-xs-6
           .form-group.required
             = f.label :byte_size, 'Tamaño en Bytes'
             = f.text_field :byte_size,  class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.byte_size')}"
-      .row
-        .col-xs-6
-          - unless @distribution.issued?
-            .form-group.required
-              = f.label :publish_date, class: 'control-label'
-              = f.text_field :publish_date, value: f.object.publish_date&.strftime('%F'), required: true, class: 'datepicker auto_submit_item form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.publish_date')}"
-      = f.button 'Guardar avance', type: 'submit', class: 'btn btn-primary btn-lg pull-right'
+    .col-md-3
+      %p.margin-top
+        Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.
+      %p
+        <strong>Nombre del recurso:</strong> #{@distribution.title}
+      %p
+        <strong>Fecha compromiso de publicación:</strong> #{@distribution.dataset.publish_date.strftime('%F')}
+  .row
+    .col-xs-9.margin-top-20
+      = f.button 'Guardar', type: 'submit', class: 'btn btn-primary btn-lg'
       = link_to 'Cancelar', edit_dataset_path(@distribution.dataset), class: 'btn btn-alt btn-lg'
-      .clearfix
-  .col-md-3
-    %p
-      Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.
+
 :javascript
   $(function () {
     $("form").validate({

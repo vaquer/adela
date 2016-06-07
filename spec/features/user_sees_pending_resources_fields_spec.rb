@@ -16,7 +16,7 @@ feature User, 'sees pending documentation:' do
 
     resource_rows.each do |row|
       expect(row.text).to have_content(/(Falta información|Listo para publicar)/)
-      expect(row.text).to have_content(/(Actualizar)|(Completar)/)
+      expect(row.text).to have_content('Documentar')
     end
   end
 end

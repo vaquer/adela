@@ -9,15 +9,14 @@ feature 'Catalog distribution metadata' do
   scenario 'fills the distribution metadata', js: true do
     given_organization_with_catalog
     within('.navbar') { click_on('Catálogo de Datos') }
-    close_joyride
 
     within set_row do
-      click_on('Editar')
+      click_on('Documentar')
     end
 
     within resource_row do
       expect(page).to have_text('Falta información')
-      click_on('Completar')
+      click_on('Documentar')
     end
 
     distribution_attributes = attributes_for(:distribution)
@@ -25,7 +24,7 @@ feature 'Catalog distribution metadata' do
 
     within resource_row do
       expect(page).to have_text('Listo para publicar')
-      click_on('Actualizar')
+      click_on('Documentar')
     end
 
     expect(page).to have_field('distribution_download_url', with: distribution_attributes[:download_url])
@@ -42,6 +41,6 @@ feature 'Catalog distribution metadata' do
     fill_in('distribution_modified', with: distribution_attributes[:modified].strftime('%F'))
     fill_in('distribution_byte_size', with: distribution_attributes[:byte_size])
     page.find('form').click # close the date picker by clicking anywhere
-    click_on('Guardar avance')
+    click_on('Guardar')
   end
 end

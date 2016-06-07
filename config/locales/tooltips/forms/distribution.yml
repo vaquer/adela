@@ -9,7 +9,7 @@ es:
       media_type: media_type
       format: El formato del archivo del recurso de datos. Algunos ejemplos son, "shp".
       publish_date: Fecha estimada de publicación del Recurso de datos en el sitio de datos.gob.mx.
-      download_url: Dirección electrónica (enlace) para la descarga del recurso. Por ejemplo, "http://datos.sedesol.gob.mx/padronbeneficiarios/140930/sp/DIRECTORIO_OSC.csv".
+      download_url: Dirección electrónica (enlace) para la descarga del recurso. Por ejemplo, "http://bit.ly/1t5IFsb".
       temporal:
         init: Inicio del período temporal que abarca el recurso de datos. Algunos ejemplos son, "2013”, "2014-01", etc.
         term: Fin del período temporal que abarca el recurso de datos. Algunos ejemplos son, "2014”, "2014-04", etc.

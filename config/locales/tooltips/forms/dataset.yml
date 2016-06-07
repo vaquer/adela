@@ -13,6 +13,6 @@ es:
       email_field: Correo electrónico de contacto para atender dudas y comentarios sobre el conjunto de datos.
       spatial: Cobertura espacial del conjunto de datos. Algunos ejemplos son, "Baja California”, 002, "estatal” ó especificar un rango de coordenadas como "32.71,-112.32 27.99, -118.45”.
       temporal: El período temporal que abarca el conjunto de datos. Algunos ejemplos son, "2013”, "2010/2012”, "2014-01/2014-04".
-      landing_page: Dirección electrónica del diccionario de datos del Conjunto. Por ejemplo, "http://www.coneval.org.mx/Informes/Coordinacion/INFORMES_Y_PUBLICACIONES_PDF/Metodologia_Multidimensional_web.pdf".
+      landing_page: Dirección electrónica del diccionario de datos del Conjunto. Por ejemplo, "http://bit.ly/1t5IFsb".
       sector: Sector al que pertenece el Conjunto de Datos según el tema que trata.
       keyword: Lista de términos clave separados por coma, que facilitarán al usuario la búsqueda del conjunto de datos. Es importante considerar el uso de términos no técnicos; por ejemplo, "salud", "medicinas", "compras", "agricultura", etc.

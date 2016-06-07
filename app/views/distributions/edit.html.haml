@@ -40,9 +40,8 @@
         <strong>Fecha compromiso de publicación:</strong> #{@distribution.dataset.publish_date.strftime('%F')}
   .row
     .col-xs-9.margin-top-20
-      = f.button 'Guardar avance', type: 'submit', class: 'btn btn-primary btn-lg pull-right'
+      = f.button 'Guardar', type: 'submit', class: 'btn btn-primary btn-lg'
       = link_to 'Cancelar', edit_dataset_path(@distribution.dataset), class: 'btn btn-alt btn-lg'
-      .clearfix
 
 :javascript
   $(function () {

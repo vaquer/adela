@@ -41,6 +41,6 @@ feature 'Catalog distribution metadata' do
     fill_in('distribution_modified', with: distribution_attributes[:modified].strftime('%F'))
     fill_in('distribution_byte_size', with: distribution_attributes[:byte_size])
     page.find('form').click # close the date picker by clicking anywhere
-    click_on('Guardar avance')
+    click_on('Guardar')
   end
 end

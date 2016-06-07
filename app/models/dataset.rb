@@ -1,4 +1,6 @@
 class Dataset < ActiveRecord::Base
+  include Versionable
+
   belongs_to :catalog
 
   has_associated_audits

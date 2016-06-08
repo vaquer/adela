@@ -1,7 +1,7 @@
 class DatasetSerializer < ActiveModel::Serializer
   has_many :distributions, root: :distribution, serializer: DistributionSerializer
   attributes :id, :title, :description, :issued, :modified, :identifier, :keyword, :language,
-             :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage
+             :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage, :openessRating
 
   def attributes
     data = super
@@ -33,5 +33,9 @@ class DatasetSerializer < ActiveModel::Serializer
 
   def landingPage
     object.landing_page
+  end
+
+  def openessRating
+    object.openess_rating
   end
 end

@@ -34,6 +34,22 @@ class Dataset < ActiveRecord::Base
     "#{keyword},#{gov_type},#{sectors}".chomp(',').lchomp(',').downcase.strip
   end
 
+  def openess_rating
+    formats = distributions.map(&:format)
+    case
+    when formats.grep(/^(xls|xlsx)$/i).present?
+      2
+    when formats.grep(/^(csv|tsv|psv|json|shp|kml|kmz|xml)$/i).present?
+      3
+    when formats.grep(/^(rdf)$/i).present?
+      4
+    when formats.grep(/^(lod)$/i).present?
+      5
+    else
+      1
+    end
+  end
+
   private
 
   def sectors

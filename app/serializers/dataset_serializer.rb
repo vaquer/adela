@@ -1,7 +1,9 @@
 class DatasetSerializer < ActiveModel::Serializer
   has_many :distributions, root: :distribution, serializer: DistributionSerializer
+
   attributes :id, :title, :description, :issued, :modified, :identifier, :keyword, :language,
-             :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage, :openessRating
+             :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage, :openessRating,
+             :govType
 
   def attributes
     data = super
@@ -37,5 +39,9 @@ class DatasetSerializer < ActiveModel::Serializer
 
   def openessRating
     object.openess_rating
+  end
+
+  def govType
+    object.catalog.organization.gov_type
   end
 end

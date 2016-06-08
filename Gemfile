@@ -57,6 +57,7 @@ gem 'as_csv', '~> 2.0'
 gem 'vcardigan'
 gem 'inline_svg'
 gem 'polymer-rails'
+gem 'audited-activerecord'
 
 group :development, :test do
   gem 'spring'

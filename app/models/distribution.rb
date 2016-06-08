@@ -1,6 +1,11 @@
 class Distribution < ActiveRecord::Base
+  include Versionable
+
   belongs_to :dataset
+  audited associated_with: :dataset
   validate :mandatory_fields
+
+  has_one :catalog, through: :dataset
 
   before_save :fix_distribution
   before_save :break_distibution

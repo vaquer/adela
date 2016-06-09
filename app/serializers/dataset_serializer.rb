@@ -3,7 +3,7 @@ class DatasetSerializer < ActiveModel::Serializer
 
   attributes :id, :title, :description, :issued, :modified, :identifier, :keyword, :language,
              :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage, :openessRating,
-             :govType
+             :govType, :theme
 
   def attributes
     data = super
@@ -43,5 +43,9 @@ class DatasetSerializer < ActiveModel::Serializer
 
   def govType
     object.catalog.organization.gov_type
+  end
+
+  def theme
+    object.sector&.title
   end
 end

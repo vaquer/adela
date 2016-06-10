@@ -13,6 +13,7 @@ FactoryGirl.define do
     accrual_periodicity 'R/P1Y'
     issued { Faker::Time.forward }
     publish_date { Faker::Time.forward }
+    comments { Faker::Lorem.paragraph }
     public_access true
     editable true
     catalog

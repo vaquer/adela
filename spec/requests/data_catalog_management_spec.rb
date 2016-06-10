@@ -41,7 +41,7 @@ feature 'data catalog management' do
     distribution.update_column(:state, 'published')
 
     dcat_keys = %w(title description homepage issued modified language license dataset)
-    dcat_dataset_keys = %w(id title description issued modified identifier keyword language contactPoint temporal spatial accrualPeriodicity landingPage publisher public publishDate distribution openessRating govType theme)
+    dcat_dataset_keys = %w(id title description issued modified identifier keyword language contactPoint temporal spatial accrualPeriodicity landingPage publisher public publishDate distribution openessRating govType theme comments)
     dcat_distribution_keys = %w(id title description issued modified license downloadURL mediaType format byteSize temporal spatial publishDate)
 
     get "/#{organization.slug}/catalogo.json"

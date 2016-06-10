@@ -3,7 +3,7 @@ class DatasetSerializer < ActiveModel::Serializer
 
   attributes :id, :title, :description, :issued, :modified, :identifier, :keyword, :language,
              :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage, :openessRating,
-             :govType, :theme
+             :govType, :theme, :comments
 
   def attributes
     data = super

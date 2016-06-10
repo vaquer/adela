@@ -15,6 +15,7 @@ class DatasetSerializer < ActiveModel::Serializer
     data[:landingPage] = object.landing_page
     data[:accrualPeriodicity] = object.accrual_periodicity
     data[:govType] = object.catalog.organization.gov_type
+    data[:theme] = object.sector&.title
     data
   end
 

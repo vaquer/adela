@@ -25,6 +25,7 @@ feature 'Catalog dataset metadata' do
     expect(page).to have_field('dataset_temporal', with: dataset_attributes[:temporal])
     expect(page).to have_field('dataset_landing_page', with: dataset_attributes[:landing_page])
     expect(page).to have_field('dataset_keyword', with: dataset_attributes[:keyword])
+    expect(page).to have_field('dataset_comments', with: dataset_attributes[:comments])
   end
 
   def fill_catalog_dataset_metadata(dataset_attributes)
@@ -34,6 +35,7 @@ feature 'Catalog dataset metadata' do
     fill_in('dataset_temporal', with: dataset_attributes[:temporal])
     fill_in('dataset_landing_page', with: dataset_attributes[:landing_page])
     fill_in('dataset_keyword', with: dataset_attributes[:keyword])
+    fill_in('dataset_comments', with: dataset_attributes[:comments])
     page.find('form').click # trigger the autosubmit by clicking anywhere
   end
 end

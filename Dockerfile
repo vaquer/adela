@@ -2,6 +2,7 @@
 FROM ruby:2.3.0-alpine
 
 ENV \
+  RAILS_ENV="production" \
   BUILD_PACKAGES="build-base curl-dev" \
   RAILS_PACKAGES="icu-dev zlib-dev libxml2-dev libxslt-dev tzdata postgresql-dev nodejs"
 
@@ -25,6 +26,9 @@ COPY Gemfile.lock /app
 RUN bundle install
 
 COPY . /app
+
+# Precompile Rails assets
+RUN bundle exec rake assets:precompile
 
 RUN \
   apk del $BUILD_PACKAGES && \

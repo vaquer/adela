@@ -10,7 +10,10 @@
     "description": {
       "type": ["string","null"]
     },
-    "gov_type": {
+    "govType": {
+      "type": ["string","null"]
+    },
+    "imageUrl": {
       "type": ["string","null"]
     },
     "created_at": {
@@ -27,6 +30,7 @@
     "slug",
     "description",
     "gov_type",
+    "imageUrl",
     "created_at",
     "updated_at"
   ]

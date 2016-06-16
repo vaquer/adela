@@ -29,7 +29,7 @@
     "title",
     "slug",
     "description",
-    "gov_type",
+    "govType",
     "imageUrl",
     "created_at",
     "updated_at"

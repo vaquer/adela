@@ -15,9 +15,6 @@
           "description": {
             "type": ["string","null"]
           },
-          "logo_url": {
-            "type": ["string","null"]
-          },
           "gov_type": {
             "type": ["string","null"]
           },
@@ -34,7 +31,6 @@
           "title",
           "slug",
           "description",
-          "logo_url",
           "gov_type",
           "created_at",
           "updated_at"

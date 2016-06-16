@@ -13,6 +13,9 @@
     "gov_type": {
       "type": ["string","null"]
     },
+    "imageUrl": {
+      "type": ["string","null"]
+    },
     "created_at": {
       "type": "string",
       "format": "date-time"
@@ -27,6 +30,7 @@
     "slug",
     "description",
     "gov_type",
+    "imageUrl",
     "created_at",
     "updated_at"
   ]

@@ -47,6 +47,6 @@ class OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:title, :description, :logo_url, :gov_type, :landing_page)
+    params.require(:organization).permit(:title, :description, :gov_type, :landing_page)
   end
 end

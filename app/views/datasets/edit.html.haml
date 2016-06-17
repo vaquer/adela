@@ -31,21 +31,28 @@
             = f.label :mbox, 'Correo del responsable'
             = f.email_field :mbox, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.email_field')}"
       .row
+        = f.hidden_field(:temporal)
+        .col-xs-6
+          .form-group.required
+            = f.label :temporal, 'Inicio del período de tiempo cubierto', class: 'control-label'
+            %input#init-date.dcat-temporal.datepicker.form-control.auto_submit_item{ type: "text", placeholder: "Inicio", required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.temporal.init')}", 'data-placement': 'bottom' }
+        .col-xs-6
+          .form-group.required
+            = f.label :temporal, 'Fin del período de tiempo cubierto', class: 'control-label'
+            %input#term-date.dcat-temporal.datepicker.form-control.auto_submit_items{ type: "text", placeholder: "Fin", required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.temporal.term')}", 'data-placement': 'bottom' }
+      .row
         .col-xs-6
           .form-group.required
             = f.label :spatial
             = f.text_field :spatial, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.spatial')}"
         .col-xs-6
           .form-group.required
-            = f.label :temporal
-            = f.text_field :temporal, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.temporal')}"
+            = f.label :dataset_sectors, 'Categoría en datos.gob.mx'
+            = f.fields_for :dataset_sector do |sector_form|
+              = sector_form.select :sector_id, options_for_sectors_select, { include_blank: true }, { class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.sector')}" }
       .form-group.required
         = f.label :landing_page, 'URL para consultar diccionario de datos'
         = f.url_field :landing_page, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.landing_page')}"
-      .form-group.required
-        = f.label :dataset_sectors, 'Categoría en datos.gob.mx'
-        = f.fields_for :dataset_sector do |sector_form|
-          = sector_form.select :sector_id, options_for_sectors_select, { include_blank: true }, { class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.sector')}" }
       .form-group.required
         = f.label :keyword, 'Palabras clave (separadas por coma)'
         = f.text_area :keyword, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.keyword')}"
@@ -89,7 +96,29 @@
     %br
 
 :javascript
+  function onDistributionTemporalChange() {
+    var initDate, termDate, dcatTemporal;
+
+    initDate = $('#init-date').val();
+    termDate = $('#term-date').val();
+
+    dcatTemporal = initDate + "/" + termDate;
+    $('#dataset_temporal').val(dcatTemporal);
+  }
+
   $(function() {
+    (function () {
+      var initDate, termDate, dcatTemporal;
+
+      dcatTemporal = $('#dataset_temporal').val().split('/');
+      initDate = dcatTemporal[0];
+      termDate = dcatTemporal[1];
+
+      $('#init-date').val(initDate);
+      $('#term-date').val(termDate);
+    })();
+
+    $('.dcat-temporal').change(onDistributionTemporalChange);
     $('.auto_submit_item').change(function() {
       $('form').submit();
       toastr.success("#{t('flash.notice.dataset.update')}");

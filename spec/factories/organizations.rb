@@ -2,7 +2,6 @@ FactoryGirl.define do
   factory :organization do
     title { Faker::Company.name }
     description { Faker::Company.catch_phrase }
-    logo_url { Faker::Company.logo }
     landing_page { Faker::Internet.url }
 
     trait :federal do

@@ -119,7 +119,6 @@ es:
       organization:
         title: "Nombre"
         description: "Descripción"
-        logo_url: "URL Logo"
         landing_page: "Sitio Web"
         gov_type: "Tipo de Gobierno"
         sectors: "Sectores"
@@ -162,4 +161,3 @@ es:
     validated: "Confirmo que la información está validada por la institución"
   action:
     publish: "Publicar"
-

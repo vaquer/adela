@@ -16,7 +16,6 @@ feature Organization, 'manages profile:' do
 
     expect(page).to have_text 'Nombre'
     expect(page).to have_text 'Descripción'
-    expect(page).to have_text 'URL Logo'
     expect(page).to have_text 'Sitio Web'
     expect(page).to have_text 'Tipo de Gobierno'
   end
@@ -26,7 +25,6 @@ feature Organization, 'manages profile:' do
 
     fill_in 'Nombre', with: Faker::Company.name
     fill_in 'Descripción', with: 'Esta es una descripción de una institución'
-    fill_in 'URL Logo', with: 'http://www.imageurl.com'
     fill_in 'Sitio Web', with: Faker::Internet.url
     select 'Federal', from: 'organization[gov_type]'
     click_button 'Guardar'

@@ -49,6 +49,9 @@
       .form-group.required
         = f.label :keyword, 'Palabras clave (separadas por coma)'
         = f.text_area :keyword, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.keyword')}"
+      .form-group
+        = f.label :comments, 'Observaciones'
+        = f.text_area :comments, class: 'form-control auto_submit_item', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.comments')}"
   .col-md-3
     %p.margin-top
       Los metadatos ayudan a que los usuarios entiendan las características de la información que

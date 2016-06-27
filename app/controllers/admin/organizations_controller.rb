@@ -43,7 +43,6 @@ module Admin
       params.require(:organization).permit(
         :title,
         :description,
-        :logo_url,
         :landing_page,
         :gov_type,
         administrator_attributes: [:user_id],

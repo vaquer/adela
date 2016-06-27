@@ -85,10 +85,6 @@ describe Admin::OrganizationsController do
         expect(@organization.description).to eq(@attributes[:description])
       end
 
-      it 'should update organization logo_url' do
-        expect(@organization.logo_url).to eq(@attributes[:logo_url])
-      end
-
       it 'should update organization gov_type' do
         expect(@organization.gov_type).to eq(@attributes[:gov_type])
       end

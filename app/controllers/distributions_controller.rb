@@ -1,20 +1,25 @@
 class DistributionsController < ApplicationController
+  include DistributionActions
   before_action :authenticate_user!
 
-  def edit
-    @distribution = Distribution.find(params['id'])
-  end
+  private
 
-  def update
-    @distribution = Distribution.find(params['id'])
-    @distribution.update(distribution_params)
+  def update_customization
     redirect_to edit_dataset_path(@distribution.dataset)
     return
   end
 
-  private
-
   def distribution_params
-    params.require(:distribution).permit(:title, :description, :publish_date, :download_url, :modified, :temporal, :byte_size)
+    params.require(:distribution).permit(
+      :title,
+      :description,
+      :publish_date,
+      :download_url,
+      :modified,
+      :temporal,
+      :byte_size,
+      :media_type,
+      :format
+    )
   end
 end

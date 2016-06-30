@@ -7,23 +7,24 @@ module DatasetActions
 
   def create
     @dataset = current_organization.catalog.datasets.create(dataset_params)
-    create_customization if create_customization.present?
+    create_customization if self.class.private_method_defined? :create_customization
   end
 
   def edit
     @dataset = Dataset.find(params['id'])
+    edit_customization if self.class.private_method_defined? :edit_customization
   end
 
   def update
     @dataset = Dataset.find(params['id'])
     @dataset.update(dataset_params)
-    update_customization if update_customization.present?
+    update_customization if self.class.private_method_defined? :update_customization
   end
 
   def destroy
     @dataset = Dataset.find(params['id'])
     @dataset.destroy
-    destroy_customization if destroy_customization.present?
+    destroy_customization if self.class.private_method_defined? :destroy_customization
   end
 
   private

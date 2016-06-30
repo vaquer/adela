@@ -9,7 +9,7 @@ module DistributionActions
   def create
     @dataset = Dataset.find(params['dataset_id'])
     @distribution = @dataset.distributions.create(distribution_params)
-    create_customization if create_customization.present?
+    create_customization if self.class.private_method_defined? :create_customization
   end
 
   def edit
@@ -19,12 +19,12 @@ module DistributionActions
   def update
     @distribution = Distribution.find(params['id'])
     @distribution.update(distribution_params)
-    update_customization if update_customization.present?
+    update_customization if self.class.private_method_defined? :update_customization
   end
 
   def destroy
     @distribution = Distribution.find(params['id'])
     @distribution.destroy
-    destroy_customization if destroy_customization.present?
+    destroy_customization if self.class.private_method_defined? :destroy_customization
   end
 end

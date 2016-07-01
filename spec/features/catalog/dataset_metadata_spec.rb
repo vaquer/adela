@@ -16,8 +16,11 @@ feature 'Catalog dataset metadata' do
 
     dataset_attributes = attributes_for(:dataset)
     fill_catalog_dataset_metadata(dataset_attributes)
+    click_on 'Guardar'
 
-    visit(current_path)
+    within set_row do
+      click_on('Documentar')
+    end
 
     expect(page).to have_field('dataset_contact_position', with: dataset_attributes[:contact_position])
     expect(page).to have_field('dataset_mbox', with: dataset_attributes[:mbox])
@@ -38,6 +41,5 @@ feature 'Catalog dataset metadata' do
     fill_in('dataset_landing_page', with: dataset_attributes[:landing_page])
     fill_in('dataset_keyword', with: dataset_attributes[:keyword])
     fill_in('dataset_comments', with: dataset_attributes[:comments])
-    page.find('form').click # trigger the autosubmit by clicking anywhere
   end
 end

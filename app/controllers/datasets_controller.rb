@@ -1,23 +1,21 @@
 class DatasetsController < ApplicationController
+  include DatasetActions
   before_action :authenticate_user!
 
   def index
     @catalog = current_organization.catalog
   end
 
-  def edit
-    @dataset = Dataset.find(params['id'])
+  private
+
+  def edit_customization
     @dataset.dataset_sector || @dataset.build_dataset_sector
   end
 
-  def update
-    @dataset = Dataset.find(params['id'])
-    @dataset.update(dataset_params)
-    render nothing: true
+  def update_customization
+    redirect_to organization_catalogs_path(current_organization)
     return
   end
-
-  private
 
   def dataset_params
     params.require(:dataset).permit(

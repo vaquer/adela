@@ -104,6 +104,19 @@ es:
               invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
             access_comment:
               blank: "Cuando el valor del dato ¿Son datos privados o públicos? no es Público la columna F no puede estar vacía o nula."
+        inventory:
+          attributes:
+            inventory_elements:
+              duplicated: "Todos los recursos de un mismo conjunto de datos deben de estar agrupados."
+              invalid: "Las filas del inventario de datos son inválidas."
+        dataset:
+          attributes:
+            title:
+              taken: 'Existe otro conjunto de datos con el mismo nombre, verifica tu plan de apertura.'
+        distribution:
+          attributes:
+            title:
+              taken: 'Existe otro recurso con el mismo nombre, verifica tu plan de apertura.'
     attributes:
       user:
         name: "Nombre"

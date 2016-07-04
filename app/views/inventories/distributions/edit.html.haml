@@ -2,6 +2,8 @@
 .row
   .col-md-9
     %h3 Editar un Recurso de Datos
+    - if @distribution.errors.any?
+      = render partial: '/layouts/shared/errors', locals: { errors: @distribution.errors }
 .row
   .col-md-9
     = form_for [:inventories, @distribution.dataset, @distribution] do |f|

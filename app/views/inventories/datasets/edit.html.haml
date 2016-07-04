@@ -3,6 +3,8 @@
   .row
     .col-md-9
       %h3 Editar un Conjunto de Datos
+      - if @dataset.errors.any?
+        = render partial: '/layouts/shared/errors', locals: { errors: @dataset.errors }
   .row
     .col-md-9
       .form-group.required

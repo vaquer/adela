@@ -3,7 +3,9 @@ class Distribution < ActiveRecord::Base
 
   belongs_to :dataset
   audited associated_with: :dataset
+
   validate :mandatory_fields
+  validates_uniqueness_of :title
 
   has_one :catalog, through: :dataset
 

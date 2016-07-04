@@ -86,29 +86,6 @@ es:
               invalid: "no es válida."
             name:
               blank: "no puede estar en blanco."
-        inventory_element:
-          attributes:
-            responsible:
-              invalid: "El campo \"¿En qué plataforma, tecnología, programa o sistema se albergan?\" no puede ir en blanco."
-            dataset_title:
-              invalid: "El campo \"Nombre del conjunto\" no puede ir en blanco."
-            resource_title:
-              invalid: "El campo \"Nombre del recurso\" no puede ir en blanco."
-            description:
-              invalid: "El campo \"Descripción del Recurso\" no puede ir en blanco."
-            private:
-              invalid: "El campo \"¿Son datos privados o públicos?\" no puede ir en blanco."
-            media_type:
-              invalid: "El campo \"¿En qué plataforma, tecnología, programa o sistema se albergan?\" no puede ir en blanco."
-            publish_date:
-              invalid: "La fecha estimada de publicación no está en el formato AAAA-MM."
-            access_comment:
-              blank: "Cuando el valor del dato ¿Son datos privados o públicos? no es Público la columna F no puede estar vacía o nula."
-        inventory:
-          attributes:
-            inventory_elements:
-              duplicated: "Todos los recursos de un mismo conjunto de datos deben de estar agrupados."
-              invalid: "Las filas del inventario de datos son inválidas."
         dataset:
           attributes:
             title:

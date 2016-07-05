@@ -94,6 +94,8 @@ es:
           attributes:
             title:
               taken: 'Existe otro recurso con el mismo nombre, verifica tu plan de apertura.'
+            download_url:
+              taken: 'Existe otro recurso con la misma URL de descarga.'
     attributes:
       user:
         name: "Nombre"

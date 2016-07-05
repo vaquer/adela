@@ -5,7 +5,11 @@ class DistributionsController < ApplicationController
   private
 
   def update_customization
-    redirect_to edit_dataset_path(@distribution.dataset)
+    if @distribution.valid?
+      redirect_to edit_dataset_path(@distribution.dataset)
+      return
+    end
+    render :edit
     return
   end
 

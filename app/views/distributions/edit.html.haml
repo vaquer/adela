@@ -3,6 +3,10 @@
   .row
     .col-md-9
       %h3 Documentar un Recurso de Datos
+      - if @distribution.errors.any?
+        = render partial: '/layouts/shared/errors', locals: { errors: @distribution.errors }
+  .row
+    .col-md-9
       .form-group.required
         = f.label :title, class: 'control-label'
         = f.text_field :title, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.title')}"

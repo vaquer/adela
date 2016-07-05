@@ -9,12 +9,20 @@ class Inventories::DistributionsController < ApplicationController
   private
 
   def create_customization
-    redirect_to inventories_path
+    if @distribution.valid?
+      redirect_to inventories_path
+      return
+    end
+    render :new
     return
   end
 
   def update_customization
-    redirect_to inventories_path
+    if @distribution.valid?
+      redirect_to inventories_path
+      return
+    end
+    render :edit
     return
   end
 

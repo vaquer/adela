@@ -1,7 +1,6 @@
 class Inventories::DatasetsController < ApplicationController
   include DatasetActions
   include InventoryActions
-
   before_action :authenticate_user!
 
   def confirm_destroy
@@ -11,12 +10,20 @@ class Inventories::DatasetsController < ApplicationController
   private
 
   def create_customization
-    redirect_to inventories_path
+    if @dataset.valid?
+      redirect_to inventories_path
+      return
+    end
+    render :new
     return
   end
 
   def update_customization
-    redirect_to inventories_path
+    if @dataset.valid?
+      redirect_to inventories_path
+      return
+    end
+    render :edit
     return
   end
 
@@ -33,7 +40,15 @@ class Inventories::DatasetsController < ApplicationController
       :public_access,
       :accrual_periodicity,
       :publish_date,
-      distributions_attributes: [:id, :title, :description, :publish_date, :media_type, :format, :_destroy]
+      distributions_attributes: [
+        :id,
+        :title,
+        :description,
+        :publish_date,
+        :media_type,
+        :format,
+        :_destroy
+      ]
     )
   end
 end

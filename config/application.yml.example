@@ -14,9 +14,3 @@ HOST: ''
 
 # Redis server URL
 REDISTOGO_URL: ''
-
-# AWS S3 credentials
-S3_BUCKET_NAME: ''
-AMAZON_ACCESS_KEY: ''
-AMAZON_SECRET_KEY: ''
-AWS_REGION: ''

@@ -18,9 +18,6 @@ sidekiq:
 web:
   build: .
   environment:
-    - AMAZON_ACCESS_KEY=''
-    - AMAZON_SECRET_KEY=''
-    - AWS_REGION=''
     - HOST=''
     - MAILER_ADDRESS=''
     - MAILER_DOMAIN=''
@@ -29,7 +26,6 @@ web:
     - MAILER_USERNAME=''
     - REDIS_PORT_6379_TCP_ADDR=''
     - REDIS_PORT_6379_TCP_PORT=''
-    - S3_BUCKET_NAME=''
     - SECRET_KEY_BASE=''
     - SENDGRID_PASSWORD=''
     - SENDGRID_USERNAME=''

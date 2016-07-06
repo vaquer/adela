@@ -57,6 +57,7 @@ gem 'vcardigan'
 gem 'inline_svg'
 gem 'polymer-rails'
 gem 'audited-activerecord'
+gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
 
 group :development, :test do
   gem 'spring'

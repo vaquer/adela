@@ -76,6 +76,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-ftp (0.2.8)
+      carrierwave (>= 0.6.2)
+      net-sftp (~> 2.1.2)
     charlock_holmes (0.7.3)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
@@ -192,6 +195,9 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     nested_form (0.3.2)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.2.0)
     netrc (0.11.0)
     newrelic_rpm (3.14.1.311)
     nokogiri (1.6.7.2)
@@ -387,6 +393,7 @@ DEPENDENCIES
   cancancan
   capybara
   carrierwave
+  carrierwave-ftp
   charlock_holmes
   coffee-rails (~> 4.0.0)
   coveralls

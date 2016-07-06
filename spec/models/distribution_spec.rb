@@ -44,6 +44,15 @@ describe Distribution do
     it_behaves_like 'a non compliant distribution'
   end
 
+  context 'with a duplicated download_url' do
+    let(:distribution) { create(:distribution, download_url: Faker::Internet.url ) }
+
+    it 'should not be valid' do
+      invalid_distribution = build(:distribution, download_url: distribution.download_url )
+      expect(invalid_distribution).not_to be_valid
+    end
+  end
+
   context 'after save' do
     let(:dataset) { create(:dataset, modified: Date.yesterday) }
     let(:distribution) { build(:distribution, dataset: dataset, modified: Date.today) }

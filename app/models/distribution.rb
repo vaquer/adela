@@ -5,7 +5,7 @@ class Distribution < ActiveRecord::Base
   audited associated_with: :dataset
 
   validate :mandatory_fields
-  validates_uniqueness_of :title
+  validates_uniqueness_of :title, :download_url
 
   has_one :catalog, through: :dataset
 

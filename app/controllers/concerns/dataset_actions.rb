@@ -5,6 +5,11 @@ module DatasetActions
     load_and_authorize_resource except: [:new, :create]
   end
 
+  def index
+    @datasets = current_organization.catalog.datasets
+    index_customization if self.class.private_method_defined? :index_customization
+  end
+
   def new
     @dataset = Dataset.new
     @dataset.catalog = current_organization.catalog

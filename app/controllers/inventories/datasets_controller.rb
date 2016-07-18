@@ -9,9 +9,13 @@ class Inventories::DatasetsController < ApplicationController
 
   private
 
+  def index_customization
+    @datasets.where(editable: true).order("#{params[:sort]} #{params[:direction]}")
+  end
+
   def create_customization
     if @dataset.valid?
-      redirect_to inventories_path
+      redirect_to inventories_datasets_path
       return
     end
     render :new
@@ -20,7 +24,7 @@ class Inventories::DatasetsController < ApplicationController
 
   def update_customization
     if @dataset.valid?
-      redirect_to inventories_path
+      redirect_to inventories_datasets_path
       return
     end
     render :edit
@@ -28,7 +32,7 @@ class Inventories::DatasetsController < ApplicationController
   end
 
   def destroy_customization
-    redirect_to inventories_path
+    redirect_to inventories_datasets_path
     return
   end
 

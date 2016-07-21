@@ -2,16 +2,20 @@ module DatasetActions
   extend ActiveSupport::Concern
 
   included do
+    load_and_authorize_resource except: [:new, :create]
     before_action :create_catalog, only: :create
   end
 
   def new
     @dataset = Dataset.new
     @dataset.catalog = current_organization.catalog
+    authorize! :new, @dataset
   end
 
   def create
-    @dataset = current_organization.catalog.datasets.create(dataset_params)
+    @dataset = current_organization.catalog.datasets.build(dataset_params)
+    authorize! :create, @dataset
+    @dataset.save
     create_customization if self.class.private_method_defined? :create_customization
   end
 

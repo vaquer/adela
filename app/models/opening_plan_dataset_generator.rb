@@ -1,12 +1,9 @@
 class OpeningPlanDatasetGenerator
   include Rails.application.routes.url_helpers
-
-  attr_reader :inventory, :organization, :catalog
+  attr_reader :inventory
 
   def initialize(inventory)
     @inventory = inventory
-    @organization = inventory.organization
-    @catalog = organization_catalog
   end
 
   def generate
@@ -39,34 +36,26 @@ class OpeningPlanDatasetGenerator
   end
 
   def inventory_dataset
-    @catalog.datasets.where("title LIKE 'Plan de Apertura Institucional de #{@organization.title}'").last
+    @inventory.organization.catalog.datasets.where("title LIKE 'Plan de Apertura Institucional de #{@inventory.organization.title}'").last
   end
 
   def create_dataset_and_distribution
     dataset = build_dataset
     build_distribution(dataset)
-    build_sector(dataset) if @organization.sectors.present?
+    build_sector(dataset) if @inventory.organization.sectors.present?
     dataset.save
   end
 
-  def organization_catalog
-    @organization.catalog.present? ? @organization.catalog : create_catalog
-  end
-
-  def create_catalog
-    @organization.create_catalog(published: false)
-  end
-
   def build_dataset
-    @catalog.datasets.build do |dataset|
-      dataset.title = "Plan de Apertura Institucional de #{@organization.title}"
-      dataset.description = "Plan de Apertura Institucional de #{@organization.title}"
+    @inventory.organization.catalog.datasets.build do |dataset|
+      dataset.title = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      dataset.description = "Plan de Apertura Institucional de #{@inventory.organization.title}"
       dataset.keyword = 'plan de apertura'
       dataset.modified = Time.current.iso8601
       dataset.contact_position = ENV_CONTACT_POSITION_NAME
       dataset.mbox = organization_administrator.try(:email)
       dataset.temporal = Time.current.year
-      dataset.landing_page = @organization.landing_page
+      dataset.landing_page = @inventory.organization.landing_page
       dataset.accrual_periodicity = 'irregular'
       dataset.publish_date = DateTime.new(2015, 8, 28)
       dataset.editable = false
@@ -74,12 +63,12 @@ class OpeningPlanDatasetGenerator
   end
 
   def organization_administrator
-    @organization.administrator.try(:user)
+    @inventory.organization.administrator.try(:user)
   end
 
   def build_sector(dataset)
     dataset.build_dataset_sector do |dataset_sector|
-      dataset_sector.sector_id = @organization.sectors.first.id
+      dataset_sector.sector_id = @inventory.organization.sectors.first.id
     end
   end
 
@@ -87,12 +76,11 @@ class OpeningPlanDatasetGenerator
     "P3H33M/" + date.strftime("%FT%T%:z")
   end
 
-
   def build_distribution(dataset)
     dataset.distributions.build do |distribution|
-      distribution.title = "Plan de Apertura Institucional de #{@organization.title}"
-      distribution.description = "Plan de Apertura Institucional de #{@organization.title}"
-      distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@organization, format: :csv)}"
+      distribution.title = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      distribution.description = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@inventory.organization, format: :csv)}"
       distribution.media_type = 'csv'
       distribution.publish_date = DateTime.new(2015, 8, 28)
       distribution.temporal = build_temporal(dataset.modified)

@@ -10,6 +10,7 @@ class Dataset < ActiveRecord::Base
 
   has_one :dataset_sector, dependent: :destroy
   has_one :sector, through: :dataset_sector
+  has_one :organization, through: :catalog
 
   accepts_nested_attributes_for :dataset_sector
   accepts_nested_attributes_for :distributions, allow_destroy: true

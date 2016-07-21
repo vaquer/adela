@@ -7,5 +7,13 @@ class Ability
       can :manage, Organization
     end
     can :manage, Catalog if user.organization
+
+    can :manage, Dataset do |dataset|
+      dataset.organization == user.organization
+    end
+
+    can :manage, Distribution do |distribution|
+      distribution.organization == user.organization
+    end
   end
 end

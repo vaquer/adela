@@ -1,14 +1,21 @@
 module DistributionActions
   extend ActiveSupport::Concern
 
+  included do
+    load_and_authorize_resource except: [:new, :create]
+  end
+
   def new
     @dataset = Dataset.find(params['dataset_id'])
     @distribution = @dataset.distributions.build
+    authorize! :new, @distribution
   end
 
   def create
     @dataset = Dataset.find(params['dataset_id'])
-    @distribution = @dataset.distributions.create(distribution_params)
+    @distribution = @dataset.distributions.build(distribution_params)
+    authorize! :create, @distribution
+    @distribution.save
     create_customization if self.class.private_method_defined? :create_customization
   end
 

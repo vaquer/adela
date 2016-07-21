@@ -1,5 +1,7 @@
 # encoding: utf-8
 organization = FactoryGirl.create(:organization, title: 'México Abierto', landing_page: 'http://mxabierto.org/')
+organization.create_catalog
+
 FactoryGirl.create(:user, organization: organization)
 
 FactoryGirl.create(:sector, title: 'Educación')

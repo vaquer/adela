@@ -121,6 +121,7 @@ module Admin
         user.email = row['email']
         user.organization = first_or_initialize_organization_from_csv(row)
         user.organization.build_inventory
+        user.organization.build_catalog
       end
     end
 

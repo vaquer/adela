@@ -10,6 +10,7 @@ class Distribution < ActiveRecord::Base
   validates_uniqueness_of :download_url, allow_nil: true
 
   has_one :catalog, through: :dataset
+  has_one :organization, through: :dataset
 
   before_save :fix_distribution
   before_save :break_distibution

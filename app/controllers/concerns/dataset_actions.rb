@@ -3,6 +3,8 @@ module DatasetActions
 
   included do
     load_and_authorize_resource except: [:new, :create]
+    before_action :create_catalog, only: :create
+    helper_method :sort_column
   end
 
   def index
@@ -39,5 +41,15 @@ module DatasetActions
     @dataset = Dataset.find(params['id'])
     @dataset.destroy
     destroy_customization if self.class.private_method_defined? :destroy_customization
+  end
+
+  def sort_column
+    Dataset.column_names.include?(params[:sort]) ? params[:sort] : 'publish_date'
+  end
+
+  private
+
+  def create_catalog
+    current_organization.create_catalog unless current_organization.catalog
   end
 end

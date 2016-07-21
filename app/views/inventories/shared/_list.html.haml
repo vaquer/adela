@@ -3,10 +3,10 @@
     %thead
       %tr
         %th.center #
-        %th Nombre del conjunto y sus recursos
+        %th= sortable('title', 'Nombre del conjunto y sus recursos')
         %th.center Recursos del conjunto
         %th.center Acceso
-        %th.center Fecha estimada de publicación
+        %th.center= sortable('publish_date', 'Fecha estimada de publicación')
         %th.center Acciones
     %tbody
       = render partial: 'inventories/shared/dataset', collection: @datasets

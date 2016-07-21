@@ -10,7 +10,7 @@ class Inventories::DatasetsController < ApplicationController
   private
 
   def index_customization
-    @datasets.where(editable: true).order("#{params[:sort]} #{params[:direction]}")
+    @datasets = @datasets.where(editable: true).order("#{params[:sort]} #{params[:direction]}")
   end
 
   def create_customization

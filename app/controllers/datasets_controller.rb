@@ -2,11 +2,14 @@ class DatasetsController < ApplicationController
   include DatasetActions
   before_action :authenticate_user!
 
-  def index
-    @catalog = current_organization.catalog
-  end
-
   private
+
+  def index_customization
+    @catalog = current_organization.catalog
+    @datasets = @datasets.where(public_access: true)
+                         .order("#{params[:sort]} #{params[:direction]}")
+                         .select { |dataset| dataset.valid?(:catalog) }
+  end
 
   def edit_customization
     @dataset.dataset_sector || @dataset.build_dataset_sector

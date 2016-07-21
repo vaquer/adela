@@ -15,21 +15,17 @@
             %tr
               %th.center #
               %th
-                Conjuntos y recursos de datos
-                %i.fa.fa-caret-down
+                = sortable('title', 'Conjuntos y recursos de datos')
               %th.center
                 Estatus de publicación
-                %i.fa.fa-caret-down
               %th.center
                 Recursos documentados
-                %i.fa.fa-caret-down
               %th.center
-                Fecha de compromiso
-                %i.fa.fa-caret-down
+                = sortable('publish_date', 'Fecha de compromiso')
               %th.center
                 Acciones
           %tbody
-            - @catalog.catalog_datasets.sort_by(&:publish_date).each_with_index do |dataset, index|
+            - @datasets.each_with_index do |dataset, index|
               %tr.dataset.active
                 %td.center
                   %strong= index + 1

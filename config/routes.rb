@@ -29,8 +29,6 @@ Adela::Application.routes.draw do
         end
       end
     end
-
-    resources :inventories, only: [:index]
   end
 
   namespace :api, defaults: { format: 'json' } do

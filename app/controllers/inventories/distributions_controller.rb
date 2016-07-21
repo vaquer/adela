@@ -10,7 +10,7 @@ class Inventories::DistributionsController < ApplicationController
 
   def create_customization
     if @distribution.valid?
-      redirect_to inventories_path
+      redirect_to inventories_datasets_path
       return
     end
     render :new
@@ -19,7 +19,7 @@ class Inventories::DistributionsController < ApplicationController
 
   def update_customization
     if @distribution.valid?
-      redirect_to inventories_path
+      redirect_to inventories_datasets_path
       return
     end
     render :edit
@@ -27,7 +27,7 @@ class Inventories::DistributionsController < ApplicationController
   end
 
   def destroy_customization
-    redirect_to inventories_path
+    redirect_to inventories_datasets_path
     return
   end
 

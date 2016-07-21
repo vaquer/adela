@@ -29,7 +29,7 @@
           Campos obligatorios
       .form-group
         = f.button 'Guardar', type: 'submit', class: 'btn btn-primary btn-lg'
-        = link_to 'Cancelar', inventories_path, class: 'btn btn-alt btn-lg'
+        = link_to 'Cancelar', inventories_datasets_path, class: 'btn btn-alt btn-lg'
         = link_to 'Agregar otro recurso a este conjunto', new_inventories_dataset_distribution_path(@distribution.dataset), class: 'btn btn-primary btn-lg pull-right'
       .clearfix
 

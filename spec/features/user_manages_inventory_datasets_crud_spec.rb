@@ -20,7 +20,7 @@ feature User, 'manages inventory datasets crud:' do
     fill_distribution_nested_form(distribution_attributes)
     click_on('Guardar')
 
-    expect(current_path).to eq(inventories_path)
+    expect(current_path).to eq(inventories_datasets_path)
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
@@ -50,7 +50,7 @@ feature User, 'manages inventory datasets crud:' do
 
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
 
-    expect(current_path).to eq(inventories_path)
+    expect(current_path).to eq(inventories_datasets_path)
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 1)
 
@@ -76,7 +76,7 @@ feature User, 'manages inventory datasets crud:' do
     fill_public_dataset_form(dataset_attributes)
     click_on('Guardar')
 
-    expect(current_path).to eq(inventories_path)
+    expect(current_path).to eq(inventories_datasets_path)
     find('tr.dataset td a.accordion-toggle', text: dataset_attributes[:title]).click
     expect(page).to have_css('.table tbody tr.dataset', count: 1)
     expect(page).to have_css('.table tbody tr.distribution', count: 1)

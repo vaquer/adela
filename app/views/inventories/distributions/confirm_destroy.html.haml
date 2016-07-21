@@ -5,4 +5,4 @@
       %p
         ¿Estás seguro que deseas eliminar el recurso: <strong class='highlight'>#{@distribution.title}</strong>, que pertenece al conjunto: <strong class='highlight'>#{@distribution.dataset.title}</strong>?
       = link_to 'Eliminar Recurso', inventories_dataset_distribution_path(@distribution.dataset, @distribution), data: {}, method: :delete, class: 'btn btn-primary'
-      = link_to 'Cancelar', inventories_path, class: 'btn btn-default'
+      = link_to 'Cancelar', inventories_datasets_path, class: 'btn btn-default'

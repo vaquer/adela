@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :inventory do
-  link 'Plan de Apertura Institucional', inventories_path
+  link 'Plan de Apertura Institucional', inventories_datasets_path
   parent :root
 end
 

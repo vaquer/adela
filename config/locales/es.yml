@@ -90,6 +90,8 @@ es:
           attributes:
             title:
               taken: 'Existe otro conjunto de datos con el mismo nombre, verifica tu plan de apertura.'
+            distributions:
+              blank: 'Un conjunto de datos debe de contener al menos un Recurso de Datos.'
         distribution:
           attributes:
             title:

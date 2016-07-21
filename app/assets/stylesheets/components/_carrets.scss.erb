@@ -1,0 +1,24 @@
+//= depend_on_asset "down_arrow.gif"
+//= depend_on_asset "up_arrow.gif"
+//= depend_on_asset "sortable.gif"
+
+a.current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+a.sortable {
+  background-image: url(<%= asset_path('sortable.gif') %>);
+  padding-right: 20px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+a.asc {
+  background-image: url(<%= asset_path('down_arrow.gif') %>);
+}
+
+a.desc {
+  background-image: url(<%= asset_path('up_arrow.gif') %>);
+}

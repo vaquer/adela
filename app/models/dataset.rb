@@ -15,6 +15,7 @@ class Dataset < ActiveRecord::Base
   accepts_nested_attributes_for :distributions, allow_destroy: true
 
   validates_uniqueness_of :title
+  validates :distributions, presence: true
 
   with_options on: :inventory do |dataset|
     dataset.validates :title, :contact_position, :public_access, :publish_date, presence: true

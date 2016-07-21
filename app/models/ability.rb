@@ -11,5 +11,9 @@ class Ability
     can :manage, Dataset do |dataset|
       dataset.organization == user.organization
     end
+
+    can :manage, Distribution do |distribution|
+      distribution.organization == user.organization
+    end
   end
 end

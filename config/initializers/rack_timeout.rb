@@ -1,1 +1,1 @@
-Rack::Timeout.service_timeout = 12 if Rails.env.production?
+Rack::Timeout.service_timeout = ENV['RACK_TIMEOUT'] || 10 if Rails.env.production?

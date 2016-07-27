@@ -11,5 +11,6 @@ CarrierWave.configure do |config|
     config.ftp_passwd = ENV['FTP_PASSWD']
     config.ftp_folder = ENV['FTP_FOLDER']
     config.ftp_url = ENV['FTP_URL']
+    config.ftp_passive = true
   end
 end

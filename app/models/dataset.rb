@@ -1,5 +1,6 @@
 class Dataset < ActiveRecord::Base
   include Versionable
+  include Publishable
 
   belongs_to :catalog
 

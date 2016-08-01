@@ -15,19 +15,19 @@ module Publishable
       state :published
 
       event :document do
-        transition [:broke] => :documented, if: lambda { |resource| resource.compliant? }
+        transition [:broke] => :documented, if: lambda { |resource| resource.valid?(:ckan) }
       end
 
       event :break_resource do
-        transition [:documented] => :broke, unless: lambda { |resource| resource.compliant? }
+        transition [:documented] => :broke, unless: lambda { |resource| resource.valid?(:ckan) }
       end
 
       event :break_published_resource do
-        transition [:published] => :refining, unless: lambda { |resource| resource.compliant? }
+        transition [:published] => :refining, unless: lambda { |resource| resource.valid?(:ckan) }
       end
 
       event :refine_published_resource do
-        transition [:published, :refining] => :refined, if: lambda { |resource| resource.compliant? }
+        transition [:published, :refining] => :refined, if: lambda { |resource| resource.valid?(:ckan) }
       end
     end
   end

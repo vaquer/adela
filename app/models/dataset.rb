@@ -26,6 +26,12 @@ class Dataset < ActiveRecord::Base
     dataset.validates :description, :accrual_periodicity, :public_access, :publish_date, presence: true
   end
 
+  with_options on: :ckan do |dataset|
+    dataset.validates :title, :description, :accrual_periodicity, :publish_date,
+                      :contact_position, :mbox, :temporal, :sectors, :keyword,
+                      :landing_page, presence: true
+  end
+
   def identifier
     title.to_slug.normalize.to_s
   end

@@ -5,8 +5,6 @@ class Distribution < ActiveRecord::Base
   belongs_to :dataset
   audited associated_with: :dataset
 
-  validate :mandatory_fields
-
   validates_uniqueness_of :title
   validates_uniqueness_of :download_url, allow_nil: true
 
@@ -14,6 +12,11 @@ class Distribution < ActiveRecord::Base
   has_one :organization, through: :dataset
 
   after_commit :update_dataset_metadata
+
+  with_options on: :ckan do |distribution|
+    distribution.validates :title, :description, :download_url, :publish_date,
+                           :format, :modified, :temporal, presence: true
+  end
 
   def as_csv(options = {})
     if options[:style] == :inventory
@@ -33,13 +36,6 @@ class Distribution < ActiveRecord::Base
   end
 
   private
-
-  def mandatory_fields
-    fields = %i(download_url temporal modified)
-    fields.each do |field|
-      warnings.add(field) if send(field).blank?
-    end
-  end
 
   def update_dataset_metadata
     return unless dataset

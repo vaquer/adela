@@ -1,7 +1,7 @@
 module Concerns
   module PublishableHelper
     def can_publish?(catalog)
-      can_publish_datasets?(catalog) || can_publish_datasets?(catalog)
+      can_publish_datasets?(catalog) || can_publish_distributions?(catalog)
     end
 
     def can_publish_datasets?(catalog)

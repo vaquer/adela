@@ -31,6 +31,8 @@
                   %strong= index + 1
                 %td
                   %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
+                    - if dataset.documented? || dataset.refined?
+                      = check_box_tag('catalog[dataset_ids][]', dataset.id, true, class: 'cell-checkbox little-margin-right')
                     = dataset.title
                     %span.caret
                 %td.center= state_description(dataset)

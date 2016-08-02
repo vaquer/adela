@@ -2,10 +2,7 @@ module Publishable
   extend ActiveSupport::Concern
 
   included do
-    before_save :fix_resource
-    before_save :break_resource
-    before_save :break_published_resource
-    before_save :fix_published_resource
+    after_commit :run_transitions
 
     state_machine initial: :broke do
       state :broke
@@ -32,19 +29,12 @@ module Publishable
     end
   end
 
-  def fix_resource
+  private
+
+  def run_transitions
     document if can_document?
-  end
-
-  def break_resource
     break_resource if can_break_resource?
-  end
-
-  def break_published_resource
     refine_published_resource if can_refine_published_resource?
-  end
-
-  def fix_published_resource
     break_published_resource if can_break_published_resource?
   end
 end

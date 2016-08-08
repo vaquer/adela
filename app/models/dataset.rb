@@ -1,5 +1,6 @@
 class Dataset < ActiveRecord::Base
   include Versionable
+  include Publishable
 
   belongs_to :catalog
 
@@ -24,6 +25,12 @@ class Dataset < ActiveRecord::Base
 
   with_options on: :catalog do |dataset|
     dataset.validates :description, :accrual_periodicity, :public_access, :publish_date, presence: true
+  end
+
+  with_options on: :ckan do |dataset|
+    dataset.validates :title, :description, :accrual_periodicity, :publish_date,
+                      :contact_position, :mbox, :temporal, :sector, :keyword,
+                      :landing_page, presence: true
   end
 
   def identifier

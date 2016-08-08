@@ -1,94 +1,58 @@
-.container
-  - breadcrumb :catalog, @catalog
-  .card
-    .section.hidden-print
-      %p
-        A continuaci&oacute;n se muestra el comprobante con la informaci&oacute;n
-        que fue publicada en el portal de datos.gob.mx.
-
-    %h3.title= published_catalog_id(@catalog)
-    %h5.subtitle= "Publicado el #{l(@catalog.publish_date, format: '%d %B %Y')} por #{current_user.name}"
-
-    - @catalog.datasets.each do |dataset|
-      - next unless published_distributions?(dataset)
-      .section
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Nombre
-          .col-xs-12.col-sm-8
-            %p= dataset.title
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Descripci&oacute;n
-          .col-xs-12.col-sm-8
-            %p= dataset.description
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Identificador
-          .col-xs-12.col-sm-8
-            %p= dataset.identifier
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Cargo de responsable
-          .col-xs-12.col-sm-8
-            %p= dataset.contact_position
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Frecuencia de actualizaci&oacute;n
-          .col-xs-12.col-sm-8
-            %p= accrual_periodicity_translate(dataset.accrual_periodicity)
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Per&iacute;odo de tiempo que cubre
-          .col-xs-12.col-sm-8
-            %p= dataset.temporal
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Fecha de &uacute;ltima modificaci&oacute;n
-          .col-xs-12.col-sm-8
-            %p= dataset.modified
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Sector
-          .col-xs-12.col-sm-8
-            %p= sector_title(dataset)
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Palabras clave
-          .col-xs-12.col-sm-8
-            %p= dataset.keyword
-
-        .row
-          .col-xs-12.col-sm-4
-            %p.dark Direcci&oacute;n web de diccionario
-          .col-xs-12.col-sm-8
-            %p= dataset.landing_page
-
-      .row
-        %table.table.table-striped.table-condensed
-          %thead
-            %tr
-              %th Nombre del recurso
-              %th Fecha de &uacute;ltima modificaci&oacute;n
-              %th Per&iacute;odo de tiempo cubierto
-              %th URL de descarga
-          %tbody
+- breadcrumb :catalog, @catalog
+%h3= published_catalog_id(@catalog)
+%h5 Publicado el #{l(@catalog.publish_date, format: '%d %B %Y')}
+.row
+  .col-md-9
+    %p
+      A continuaci&oacute;n se muestra el comprobante con la informaci&oacute;n
+      que fue publicada en el portal de datos.gob.mx.
+.row
+  .col-md-12
+    .table-responsive
+      %table.table
+        %thead.catalog-header
+          %tr
+            %th.center #
+            %th Conjuntos y recursos de datos
+            %th.center Fecha de compromiso
+            %th.center
+              Acciones
+        %tbody
+          - @catalog.datasets.where.not(datasets: { issued: nil }).each_with_index do |dataset, index|
+            %tr.dataset.active
+              %td.center
+                %strong= index + 1
+              %td
+                %a
+                  = hidden_field_tag 'catalog[dataset_ids][]', dataset.id
+                  = dataset.title
+              %td.center
+                = dataset.publish_date.to_date.strftime('%F')
+              %td.col-md-3
+                %ul.nav.nav-pills.nav-justified
+                  %li{role: 'presentation'}
+                    = link_to edit_dataset_path(dataset) do
+                      %span.icon.icon-right
+                        = inline_svg 'edit.svg'
+                      Modificar
             - dataset.distributions.each do |distribution|
-              - next unless distribution.published?
-              %tr
-                %td= "#{distribution.title} en formato #{distribution.media_type}"
-                %td= distribution.modified
-                %td= distribution.temporal
-                %td= link_to truncate(distribution.download_url, length: 30), distribution.download_url
-
-    .section.hidden-print
-      %button.btn.btn-primary{ 'onClick'=> 'window.print();'} Imprimir
-      = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-default'
+              - next unless distribution.issued?
+              %tr.distribution
+                %td
+                %td.nested
+                  = hidden_field_tag 'catalog[dataset_ids][]', dataset.id
+                  = distribution.title
+                %td.center= distribution.publish_date&.strftime('%F')
+                %td
+                  %ul.nav.nav-pills.nav-justified
+                    %li{role: 'presentation'}
+                      = link_to edit_distribution_path(distribution) do
+                        %span.icon.icon-right
+                          = inline_svg 'edit.svg'
+                        Modificar
+.row.margin-top-20
+  .col-md-12
+    .pull-right
+      = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-alt btn-lg'
+      %button.btn.btn-primary.btn-lg{ 'onClick': 'window.print();'} Imprimir
+    .clearfix

@@ -24,8 +24,6 @@ GEM
       actionpack
     active_model_serializers (0.9.3)
       activemodel (>= 3.2)
-    active_model_warnings (0.2.0)
-      activerecord (>= 3.0.0)
     activejob (4.2.5.1)
       activesupport (= 4.2.5.1)
       globalid (>= 0.3.0)
@@ -383,7 +381,6 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   active_model_serializers
-  active_model_warnings
   as_csv (~> 2.0)
   audited-activerecord
   autosize-rails

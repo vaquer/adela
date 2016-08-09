@@ -1,6 +1,7 @@
 class Organization < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
+  validates :ranked, inclusion: { in: [true, false] }
   validates_presence_of :title
 
   has_one :administrator

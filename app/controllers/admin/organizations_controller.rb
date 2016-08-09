@@ -46,6 +46,7 @@ module Admin
         :description,
         :landing_page,
         :gov_type,
+        :ranked,
         administrator_attributes: [:user_id],
         liaison_attributes: [:user_id],
         organization_sectors_attributes: [:id, :sector_id, :_destroy])

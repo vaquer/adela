@@ -27,6 +27,11 @@
         = sector_form.select :sector_id, options_for_sectors_select, {}, { class: 'form-control' }
         = sector_form.link_to_remove 'Eliminar sector'
   .form-group
+    .checkbox
+      %label
+        = f.check_box :ranked
+        ¿Esta organización sera calificada?
+  .form-group
     = f.link_to_add 'Agregar un sector', :organization_sectors
   .form-group
     = link_to 'Cancelar', admin_organizations_path, class: 'btn btn-primary'

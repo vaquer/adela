@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404151820) do
+ActiveRecord::Schema.define(version: 20160510041806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20160404151820) do
     t.text     "description"
     t.text     "keyword"
     t.datetime "modified"
-    t.string   "contact_point"
     t.string   "mbox"
     t.string   "temporal"
     t.string   "spatial"
@@ -75,12 +74,22 @@ ActiveRecord::Schema.define(version: 20160404151820) do
     t.datetime "updated_at"
     t.datetime "publish_date"
     t.string   "contact_position"
-    t.boolean  "published",           default: false
     t.boolean  "public_access",       default: true
     t.boolean  "editable",            default: true
+    t.datetime "issued"
+    t.string   "contact_name"
   end
 
   add_index "datasets", ["catalog_id"], name: "index_datasets_on_catalog_id", using: :btree
+
+  create_table "designation_files", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "designation_files", ["organization_id"], name: "index_designation_files_on_organization_id", using: :btree
 
   create_table "distributions", force: :cascade do |t|
     t.text     "title"
@@ -95,6 +104,9 @@ ActiveRecord::Schema.define(version: 20160404151820) do
     t.datetime "updated_at"
     t.datetime "modified"
     t.string   "state"
+    t.datetime "issued"
+    t.datetime "publish_date"
+    t.string   "format"
   end
 
   add_index "distributions", ["dataset_id"], name: "index_distributions_on_dataset_id", using: :btree
@@ -118,6 +130,15 @@ ActiveRecord::Schema.define(version: 20160404151820) do
 
   add_index "liaisons", ["organization_id"], name: "index_liaisons_on_organization_id", using: :btree
   add_index "liaisons", ["user_id"], name: "index_liaisons_on_user_id", using: :btree
+
+  create_table "memo_files", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "memo_files", ["organization_id"], name: "index_memo_files_on_organization_id", using: :btree
 
   create_table "opening_plan_logs", force: :cascade do |t|
     t.integer  "organization_id"
@@ -200,5 +221,7 @@ ActiveRecord::Schema.define(version: 20160404151820) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "designation_files", "organizations"
+  add_foreign_key "memo_files", "organizations"
   add_foreign_key "opening_plan_logs", "organizations"
 end

@@ -3,6 +3,10 @@ module DistributionsHelper
     distribution.broke? ? 'Completar' : 'Actualizar'
   end
 
+  def options_for_media_type
+    options_for_select(I18n.t('media_type').invert)
+  end
+
   def state_description(distribution)
     if distribution.broke?
       'Falta información'

@@ -1,0 +1,105 @@
+.container
+  .card
+    %h3.title Planea
+    %h5.subtitle Plan de apertura
+    %p
+      El plan de apertura contiene el calendario de publicaci&oacute;n anual
+      de los datos abiertos de la instituci&oacute;n
+    - if current_organization.inventory.nil?
+      .card.padding-top.bg--grey
+        %p.primary.boldish
+          Publica el inventario de datos
+        %p
+          Antes de generar el Plan de apertura de la institución debes de subir el Inventario de Datos.
+    - else
+      = form_for current_organization.catalog, html: { class: 'form', id: 'opening-plan-form' } do |f|
+        %table.table.table-striped
+          %thead
+            %tr
+              %th.text-center #
+              %th ¿Publicar?
+              %th.col-md-4 Nombre del conjunto
+              %th.col-md-4 Descripci&oacute;n
+              %th Frecuencia con la que actualizan
+              %th Confirmar fecha de Publicaci&oacute;n
+          %tbody
+            - current_organization.catalog.inventory_datasets.each_with_index do |dataset, index|
+              = f.fields_for :datasets, dataset do |builder|
+                %tr
+                  %th.text-center= index + 1
+                  %th.text-center= builder.check_box :published, { checked: true, class: 'validable' }
+                  %th
+                    = builder.hidden_field :title, readonly: true, required: true
+                    = dataset.title
+                  %th= builder.text_area :description, required: true, class: 'fill'
+                  %th= builder.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(builder.object.accrual_periodicity), { class: 'form-control' }
+                  %th= builder.text_field :publish_date, value: dataset.publish_date.strftime('%F'), required: true, class: 'datepicker'
+        - unless current_organization.opening_plan_logs.blank?
+          = f.fields_for :catalog, ActivityLog.new do |log_form|
+            .form-group
+              = log_form.hidden_field :organization_id, class: 'form-control', value: "#{current_organization.id}"
+            .form-group
+              = log_form.hidden_field :message, class: 'form-control', value: 'activity_log.opening_plan.create'
+            .form-group
+              = log_form.label :description, 'Describe los cambios realizados'
+            .form-group
+              = log_form.text_area :description, required: true, class: 'autosize form-control'
+        = f.button 'Guardar Plan de Apertura', type: 'submit', class: 'btn btn-primary'
+
+:javascript
+  function updateValidations(event) {
+    function id() {
+      return event.target.id.match(/^catalog_datasets_attributes_(\d+)_published/)[1];
+    }
+
+    function description() {
+      return $("#catalog_datasets_attributes_" + id() + "_description");
+    }
+
+    function title() {
+      return $("#catalog_datasets_attributes_" + id() + "_name");
+    }
+
+    function publishDate() {
+      return $("#catalog_datasets_attributes_" + id() + "_publish_date");
+    }
+
+    function descriptionErrorLabel() {
+      return $("#catalog_datasets_attributes_" + id() + "_description-error");
+    }
+
+    function publishDateErrorLabel() {
+      return $("#catalog_datasets_attributes_" + id() + "_publish_date-error");
+    }
+
+    function removeRequiredAttribute() {
+      description().removeAttr("required");
+      title().removeAttr("required");
+      publishDate().removeAttr("required");
+    }
+
+    function addRequiredAttribute() {
+      description().attr("required", "");
+      title().attr("required", "");
+      publishDate().attr("required", "");
+    }
+
+    function removeErrors() {
+      description().removeClass("error");
+      publishDate().removeClass("error");
+      descriptionErrorLabel().remove();
+      publishDateErrorLabel().remove();
+    }
+
+    if ($(this).is(":checked")) {
+      addRequiredAttribute();
+    } else {
+      removeRequiredAttribute();
+      removeErrors();
+    }
+  };
+
+  $(function() {
+    $('textarea').autosize();
+    $( ".validable" ).change(updateValidations);
+  });

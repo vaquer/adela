@@ -17,6 +17,12 @@
   }
 }
 
+.form-group.required .control-label:after {
+  content: " *";
+  font-weight: 700;
+  color: #de6c6c;
+}
+
 .inline {
   display: inline-block !important;
 }
@@ -47,6 +53,10 @@ input.error {
 
 label.error {
   color: #A94442;
+  font-weight: 700;
+}
+
+label.strong {
   font-weight: 700;
 }
 

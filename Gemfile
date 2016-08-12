@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.3.0'
 
-gem 'rails', '4.2.5'
+gem 'rails', '~> 4.2.5'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'font-awesome-rails'
@@ -51,6 +51,9 @@ gem 'state_machines-activerecord'
 gem 'autosize-rails'
 gem 'babosa'
 gem 'tzinfo-data'
+gem 'momentjs-rails'
+gem 'active_link_to'
+gem 'as_csv', '~> 2.0'
 
 group :development, :test do
   gem 'spring'
@@ -78,8 +81,9 @@ group :doc do
 end
 
 group :production do
-  gem 'unicorn'
+  gem 'puma'
   gem 'rails_12factor'
+  gem 'rack-timeout'
 end
 
 # Dev tools and plugins

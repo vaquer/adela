@@ -12,3 +12,7 @@
 .navigation-right {
   @include navigation(right);
 }
+
+.accordion-toggle {
+  color: #333;
+}

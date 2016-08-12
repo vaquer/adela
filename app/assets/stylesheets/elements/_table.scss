@@ -6,15 +6,24 @@
 }
 
 .table {
+  & > thead > tr > th,
   & > tbody > tr > td {
     @extend .table-cell;
 
     &.nested {
       padding-left: 5em;
     }
+
+    &.center {
+      text-align: center;
+    }
   }
 
   & > thead > tr > th {
     @extend .table-cell;
   }
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
 }

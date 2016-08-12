@@ -1,28 +1,14 @@
 .container
   .card
-    %h3.title Planea
-    %h5.subtitle Inventario de datos
-    - if @inventory.error_message
-      .card.padding-top.bg--grey
-        %h5.primary.boldish Desafortunadamente no pudimos procesar tu último Inventario de Datos
-        %p
-          Revisa que tu archivo respete el formato original de la plantilla. Si el problema persiste, por favor contacta a escuadron@datos.gob.mx con una copia de tu inventario.
-        %p.primary
-          = "Mensaje de error: #{@inventory.error_message}"
-      %ul.list
-        %li.item
-          %span Sube el inventario de datos
+    %h3.title Inventario de Datos Abiertos
+    %p El Inventario de Datos Abiertos es un listado de todos los Conjuntos y Recursos de Datos Abiertos con las fechas comprometidas de publicación y actualización para cada uno de ellos.
+    %p Da click en el botón de “AGREGAR UN CONJUNTO” para comenzar a crear tu Inventario de Datos Abiertos.
+    = link_to 'Agregar un conjunto nuevo', new_inventories_dataset_path, { class: 'btn btn-primary pull-right' }
+    .clearfix
+    - if !(current_organization.inventory.designation_file.present? || current_organization.inventory.authorization_file.present?)
       = render 'inventories/shared/form'
-    - if @inventory.compliant? && inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present?
-      = render partial: 'inventories/shared/list', locals: { inventory: @inventory }
-      = link_to 'Descargar Inventario', @inventory.spreadsheet_file.url, class: 'btn btn-primary'
-      = link_to 'Actualizar Inventario', new_inventory_path, class: 'btn btn-primary'
-    - if !inventory_compliant_elements?(@inventory) && @inventory.inventory_elements.present? || !@inventory.compliant?
-      %ul.list
-        %li.item
-          %span Actualiza el inventario de datos
-      = render 'inventories/shared/form'
-      %p.danger Se encontraron las siguientes observaciones en el archivo de Inventario de Datos:
-      %ul.list__warnings
-        = render partial: 'inventories/shared/inventory_warnings_list', locals: { inventory: @inventory }
-        = render partial: 'inventories/shared/element_warnings_list', collection: @inventory.inventory_elements, as: :element
+    - if current_organization.catalog && current_organization.catalog.datasets.present?
+      .pull-right
+      = render partial: 'inventories/shared/list', locals: { inventory: current_organization.inventory }
+      = link_to 'Continua con el Plan de Apertura', new_opening_plan_path, { class: 'btn btn-primary' }
+      = link_to 'Descargar Inventario Actual', organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary' }

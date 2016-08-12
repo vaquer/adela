@@ -19,7 +19,7 @@ describe OrganizationsController do
     it "routes to organizations#opening_plan" do
       expect(:get => "/#{organization.slug}/plan.json").to route_to(
         :controller => "organizations",
-        :action => "opening_plan",
+        :action => "opening_plans",
         :slug   => organization.slug,
         :locale => "es",
         :format => "json",

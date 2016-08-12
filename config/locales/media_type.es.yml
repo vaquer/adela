@@ -1,0 +1,9 @@
+es:
+  media_type:
+    csv: 'csv'
+    excel: 'excel'
+    json: 'json'
+    kml: 'kml'
+    shp: 'shp'
+    kmz: 'kmz'
+    otro: 'otro'

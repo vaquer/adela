@@ -11,7 +11,9 @@ module Admin
     end
 
     def create
-      if Organization.create(organization_params)
+      @organization = Organization.new(organization_params)
+      @organization.build_inventory
+      if @organization.save
         flash[:notice] = I18n.t('flash.notice.organization.create')
       else
         flash[:alert] = I18n.t('flash.alert.organization.create')

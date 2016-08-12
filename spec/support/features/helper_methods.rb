@@ -7,6 +7,15 @@ module Features
       click_on("ENTRAR")
     end
 
+    def given_organization_with_catalog
+      create(:inventory, organization: @user.organization)
+      create(:catalog, :datasets, organization: @user.organization)
+    end
+
+    def given_organization_with_opening_plan
+      create(:catalog, :datasets, organization: @user.organization)
+    end
+
     def sees_success_message(message)
       within(".toast-success") do
         expect(page).to have_text(message)
@@ -27,27 +36,15 @@ module Features
 
     def generate_new_opening_plan
       visit new_opening_plan_path
-      fill_in 'organization_opening_plans_attributes_0_description', with: 'osom dataset'
-      select('anual', from: 'organization[opening_plans_attributes][0][accrual_periodicity]')
-      click_on('Generar Plan de Apertura')
+      fill_in 'catalog_datasets_attributes_0_description', with: 'osom dataset'
+      select('anual', from: 'catalog[datasets_attributes][0][accrual_periodicity]')
+      click_on('Guardar Plan de Apertura')
     end
 
     def given_organization_has_catalog_with(datasets)
-      create :inventory, :elements, organization: @user.organization
+      create :inventory, organization: @user.organization
       create :opening_plan, organization: @user.organization
       create :catalog, datasets: datasets, organization: @user.organization
-      @user.organization.reload
-    end
-
-    # TODO: rename method to something like given_user_generated_catalog
-    def given_organization_has_catalog
-      inventory = create(:inventory, :elements, organization: @user.organization)
-      InventoryXLSXParserWorker.new.perform(inventory.id)
-
-      org = @user.organization
-      generate_new_opening_plan
-
-      CatalogDatasetsGenerator.new(org).execute
       @user.organization.reload
     end
 

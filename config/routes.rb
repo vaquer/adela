@@ -8,7 +8,8 @@ Adela::Application.routes.draw do
     end
 
     get '/:slug/catalogo' => 'organizations#catalog', as: 'organization_catalog'
-    get '/:slug/plan' => 'organizations#opening_plan'
+    get '/:slug/plan' => 'organizations#opening_plans'
+    get '/:slug/inventario' => 'organizations#inventory', as: 'organization_inventory'
 
     root to: 'home#index'
 
@@ -16,7 +17,7 @@ Adela::Application.routes.draw do
       get 'profile', on: :member
       get 'search', on: :collection
 
-      resources :catalogs, only: [:index, :show], shallow: true do
+      resources :catalogs, only: [:index, :show, :update], shallow: true do
         get 'check', on: :collection
         put 'publish', on: :member
 
@@ -26,13 +27,9 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :inventories, except: [:edit, :update, :destroy] do
-      member do
-        get 'publish'
-      end
-    end
+    resources :inventories, only: [:index, :update]
 
-    resources :opening_plan, only: [:index, :new, :create] do
+    resources :opening_plans, only: [:index, :new, :create] do
       member do
         get 'organization'
         get 'export'
@@ -75,16 +72,12 @@ Adela::Application.routes.draw do
     resources :organizations, except: [:show, :destroy]
   end
 
-  namespace :mockups do
-    get '/469', to: 'templates#s469'
-    get '/473', to: 'templates#s473'
-    get '/475', to: 'templates#s475'
-
-    get '/501', to: 'templates#s501'
-    get '/502', to: 'templates#s502'
-    get '/503', to: 'templates#s502'
-    get '/504', to: 'templates#s504'
-    get '/505', to: 'templates#s505'
-    get '/506', to: 'templates#s506'
+  namespace :inventories do
+    resources :datasets do
+      get 'confirm_destroy', on: :member
+      resources :distributions do
+        get 'confirm_destroy', on: :member
+      end
+    end
   end
 end

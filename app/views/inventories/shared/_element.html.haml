@@ -1,8 +1,0 @@
-%tr
-  %th
-    - if element.private?
-      %span.glyphicon.glyphicon-eye-close{'aria-hidden' => true }
-    - else
-      %span.glyphicon.glyphicon-eye-open{'aria-hidden' => true }
-  %th= element.dataset_title
-  %th= element.publish_date

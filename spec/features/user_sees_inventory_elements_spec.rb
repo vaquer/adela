@@ -6,9 +6,9 @@ feature User, 'sees inventory elements:' do
     given_logged_in_as(@user)
   end
 
-  scenario 'when inventory file has been uploaded' do
+  xscenario 'when inventory file has been uploaded' do
     create :sector, title: "Custom sector"
-    given_organization_with_ready_catalog
+    given_organization_with_catalog
     click_link 'Catálogo de Datos'
 
     within set_row do
@@ -23,12 +23,6 @@ feature User, 'sees inventory elements:' do
       expect(page).to have_content "Listo para publicar"
       expect(page).to have_link "Actualizar"
     end
-  end
-
-  def upload_inventory_with_file(file_name)
-    spreadsheet_file = File.new("#{Rails.root}/spec/fixtures/files/#{file_name}")
-    @inventory = create(:inventory, organization: @user.organization, spreadsheet_file: spreadsheet_file)
-    InventoryXLSXParserWorker.new.perform(@inventory.id)
   end
 
   def edit_catalog_first_set
@@ -53,12 +47,5 @@ feature User, 'sees inventory elements:' do
     fill_in "distribution_modified", with: "2015-08-28"
     click_button "Guardar avance"
     click_link "Volver al catálogo"
-  end
-
-  def given_organization_with_ready_catalog
-    upload_inventory_with_file("inventario_general_de_datos.xlsx")
-    generate_new_opening_plan
-    edit_catalog_first_set
-    complete_first_resource_set
   end
 end

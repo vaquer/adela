@@ -1,8 +1,11 @@
-%table.table.table-striped
+%table.table{ 'style' => 'border-collapse:collapse;' }
   %thead
     %tr
+      %th #
       %th
-      %th Nombre del conjunto
-      %th Fecha estimada de publicación
+        Nombre del conjunto
+      %th.center Acceso
+      %th.center Fecha estimada de publicación
+      %th.center Acciones
   %tbody
-    = render partial: 'inventories/shared/element', collection: inventory.datasets
+    = render partial: 'inventories/shared/dataset', collection: current_organization.catalog.editable_datasets

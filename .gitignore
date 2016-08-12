@@ -27,6 +27,7 @@ config/database.yml
 .ruby-version
 .ruby-gemset
 .vagrant
+docker-compose.yml
 
 # Ignore application configuration
 /config/application.yml
@@ -34,3 +35,4 @@ config/database.yml
 .env
 dump.rdb
 .DS_Store
+*.swp

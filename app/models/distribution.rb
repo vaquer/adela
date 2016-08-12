@@ -20,6 +20,23 @@ class Distribution < ActiveRecord::Base
     end
   end
 
+  def as_csv(options = {})
+    if options[:style] == :inventory
+      {
+        'Responsable': dataset.contact_position,
+        'Nombre del conjunto': dataset.title,
+        'Nombre del recurso': title,
+        '¿De qué es?': description,
+        '¿Tiene datos privados?': dataset.public_access ? 'Publico' : 'Privado',
+        'Razón por la cual los datos son privados': nil,
+        '¿En qué plataforma, tecnología, programa o sistema se albergan?': media_type,
+        'Fecha estimada de publicación en datos.gob.mx': dataset.publish_date&.strftime('%F')
+      }
+    else
+      attributes
+    end
+  end
+
   private
 
   def fix_distribution
@@ -38,6 +55,7 @@ class Distribution < ActiveRecord::Base
   end
 
   def update_dataset_metadata
+    return unless dataset
     last_modified_distribution = dataset.distributions.map(&:modified).compact.sort.last
     dataset.update(modified: last_modified_distribution)
   end

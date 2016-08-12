@@ -95,7 +95,7 @@ es:
             resource_title:
               invalid: "El campo \"Nombre del recurso\" no puede ir en blanco."
             description:
-              invalid: "El campo \"¿De qué es?\" no puede ir en blanco."
+              invalid: "El campo \"Descripción del Recurso\" no puede ir en blanco."
             private:
               invalid: "El campo \"¿Tiene datos privados?\" no puede ir en blanco."
             media_type:
@@ -116,6 +116,17 @@ es:
         password: "Contraseña"
         password_confirmation: "Confirmación de contraseña"
         current_password: "Contraseña actual"
+      dataset:
+        title: 'Nombre del Conjunto de Datos'
+        description: 'Descripción'
+        contact_position: 'Cargo del funcionario responsable de publicar el Conjunto de Datos'
+        public_access: '¿Tiene datos privados?'
+        accrual_periodicity: 'Frecuencia con la que actualizan'
+        publish_date: 'Fecha de publicación'
+      distribution:
+        title: 'Nombre del Recurso'
+        description: 'Descripción del Recurso'
+        media_type: 'Formato del recurso'
       organization:
         title: "Nombre"
         description: "Descripción"
@@ -148,6 +159,8 @@ es:
       organization:
         create: "La organización se creó exitosamente."
         update: "Se ha actualizado la organización exitosamente."
+      inventory:
+        update: "Gracias por cargar tus oficios."
     alert:
       user:
         create: "Ocurrió un error al crear el usuario."
@@ -162,4 +175,3 @@ es:
     validated: "Confirmo que la información está validada por la institución"
   action:
     publish: "Publicar"
-

@@ -1,5 +1,5 @@
 class CatalogSerializer < ActiveModel::Serializer
-  has_many :datasets, root: :dataset, serializer: DatasetSerializer
+  has_many :datasets, root: :dataset, serializer: Catalog::DatasetSerializer
 
   def attributes
     data ||= {}

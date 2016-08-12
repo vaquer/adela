@@ -7,7 +7,7 @@ describe CatalogsController do
     before(:each) do
       @user = create(:user, :administrator)
       @organization = @user.organization
-      create(:catalog, :datasets, organization: @organization)
+      create(:catalog_with_documented_datasets, organization: @organization)
       sign_in(@user)
       distribution_ids = @organization.catalog.distributions.map(&:id)
 

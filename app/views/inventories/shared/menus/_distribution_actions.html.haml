@@ -1,12 +1,18 @@
-.dropdown
-  %button.btn.btn-default.dropdown-toggle{ 'type' => 'button', 'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'true' }
-    %span.caret
-  %ul.dropdown-menu
-    %li.dropdown-header
-      Recurso de Datos
-    %li
-      = link_to edit_inventories_dataset_distribution_path(distribution.dataset, distribution) do
-        Editar
-    %li
+%ul.nav.nav-pills.nav-justified
+  %li{role: 'presentation'}
+    = link_to edit_inventories_dataset_distribution_path(distribution.dataset, distribution) do
+      %span.icon.icon-right
+        = inline_svg 'edit.svg'
+      Editar
+  - if distribution.issued?
+    %li.disabled{role: 'presentation', 'data-toggle': 'tooltip', title: t('tooltip.distribution.actions.destroy')}
+      = link_to '#' do
+        %span.icon.icon-right
+          = inline_svg 'destroy.svg'
+        Eliminar
+  - else
+    %li{role: 'presentation'}
       = link_to confirm_destroy_inventories_dataset_distribution_path(distribution.dataset, distribution) do
+        %span.icon.icon-right
+          = inline_svg 'destroy.svg'
         Eliminar

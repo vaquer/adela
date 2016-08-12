@@ -1,14 +1,20 @@
-%nav.navbar.navbar-default
+%nav.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-header
-      = link_to home_path_helper do
-        = image_tag 'logoadela@2x.svg', width: '150px'
+      %button.navbar-toggle.collapsed{type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbar', 'aria-expanded': 'false'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to home_path_helper, class: 'navbar-brand' do
+        %span
+          = image_tag 'logoadela@2x.svg', height: '25px'
+        \/ Adela
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          = render partial: '/layouts/shared/signed_in_menu'
+        = render partial: '/layouts/shared/signed_in_menu' if user_signed_in?
   - if session[:from_admin]
-    .alert.alert-danger
+    .alert.alert-danger.main-alert
       %span.danger
       Estás en ADELA como
       %strong= "#{current_user.name} #{"de #{current_organization.title}" if current_organization}."

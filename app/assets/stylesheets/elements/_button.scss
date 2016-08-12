@@ -1,14 +1,16 @@
 .btn {
-  @extend .control_override;
-  padding: 10px;
-  border: 0;
-  text-transform: uppercase;
+  border: none;
+  font-size: 14px;
 }
 
-.btn-primary, .btn-primary.disabled {
-  @include button($cartoon_green, white);
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,  {
+  background-color: #00CC99;
 }
 
-.btn-default, .btn-default.disabled {
-  @include button($grey_150, $grey_600);
+.btn-alt,
+.btn-alt:hover,
+.btn-alt:focus,  {
+  background-color: #4A4A4A;
 }

@@ -1,66 +1,89 @@
-.container
-  - breadcrumb :datasets, @catalog
-  .card
-    %h3.title Cat&aacute;logo de datos
-    %h5.subtitle Publica a datos.gob.mx
-    .row
-      .col-xs-12.col-sm-6
-        %p
-          Aqu&iacute; puedes revisar el avance de cada conjunto y editar sus recursos
-          para finalizar el proceso.
-    = form_for @catalog, url: check_organization_catalogs_path(current_organization.catalog), method: :get do |f|
-      %table.table.table-striped
-        %thead.catalog-header
-          %tr
-            %th.text-center #
-            %th
-              Conjuntos y recursos de datos
-              %i.fa.fa-caret-down
-            %th
-              Estatus de publicación
-              %i.fa.fa-caret-down
-            %th
-              Recursos documentados
-              %i.fa.fa-caret-down
-            %th
-              Fecha de compromiso
-              %i.fa.fa-caret-down
-            %th
-              Acciones
-        %tbody
-          - @catalog.catalog_datasets.sort_by(&:publish_date).each_with_index do |dataset, index|
-            %tr.dataset
-              %td.text-center= index + 1
-              %td= dataset.title
-              %td
-              %td= "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
-              %td= l dataset.publish_date.to_date
-              %td.action= link_to 'Editar', edit_dataset_path(dataset)
-            - dataset.distributions.each do |distribution|
-              %tr.distribution
+- breadcrumb :catalog
+%h3 Documenta tus Conjuntos y Recursos de Datos Abiertos
+= form_for @catalog, url: check_organization_catalogs_path(current_organization.catalog), method: :get do |f|
+  .row
+    .col-md-9
+      %p
+        Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.
+      %p
+        Aquí puedes documentar los metadatos para los Conjuntos y Recursos de Datos Abiertos
+  .row
+    .col-md-12
+      .table-responsive
+        %table.table
+          %thead.catalog-header
+            %tr
+              %th.center #
+              %th
+                = sortable('title', 'Conjuntos y recursos de datos')
+              %th.center
+                Estatus de publicación
+              %th.center
+                Recursos documentados
+              %th.center
+                = sortable('publish_date', 'Fecha de compromiso')
+              %th.center
+                Acciones
+          %tbody
+            - @datasets.each_with_index do |dataset, index|
+              %tr.dataset.active
+                %td.center
+                  %strong= index + 1
                 %td
-                %td.nested
-                  - if distribution.documented?
-                    = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')
-                  = distribution.title
-                %td.status= state_description(distribution)
-                %th
-                %th
-                %td.action= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
-
-      = f.button 'Publicar', type: 'submit', id: 'publish', class: can_publish?(@catalog) ? 'btn btn-primary' : 'btn btn-primary disabled'
-      = link_to 'Ver último folio', catalog_path(@catalog), class: @catalog.publish_date ? 'btn btn-default' : 'btn btn-default disabled'
+                  %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
+                    - if dataset.documented? || dataset.refined?
+                      = check_box_tag('catalog[dataset_ids][]', dataset.id, true, class: 'cell-checkbox little-margin-right')
+                    = dataset.title
+                    %span.caret
+                %td.center= state_description(dataset)
+                %td.center
+                  = "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
+                %td.center
+                  = dataset.publish_date.to_date.strftime('%F')
+                %td.col-md-3
+                  %ul.nav.nav-pills.nav-justified
+                    %li{role: 'presentation'}
+                      = link_to edit_dataset_path(dataset) do
+                        %span.icon.icon-right
+                          = inline_svg 'edit.svg'
+                        Documentar
+              - dataset.distributions.each do |distribution|
+                %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
+                  %td
+                  %td.nested
+                    - if distribution.documented? || distribution.refined?
+                      = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')
+                    = distribution.title
+                  %td.center
+                    = state_description(distribution)
+                  %td
+                  %td.center
+                    = distribution.publish_date&.strftime('%F')
+                  %td
+                    %ul.nav.nav-pills.nav-justified
+                      %li{role: 'presentation'}
+                        = link_to edit_distribution_path(distribution) do
+                          %span.icon.icon-right
+                            = inline_svg 'edit.svg'
+                          Documentar
+  .row.margin-top-20
+    .col-md-12
+      .pull-right
+        - if @catalog.publish_date?
+          = link_to 'Ver último folio', catalog_path(@catalog), class: 'btn btn-alt btn-lg'
+        - else
+          = link_to 'Ver último folio', catalog_path(@catalog), class: 'btn btn-alt btn-lg disabled', disabled: true
+        - if can_publish?(@catalog)
+          = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary'
+        - else
+          = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary disabled', disabled: true
+      .clearfix
 
 = render "tour_index"
 
 :javascript
   $(function() {
     $('tr:contains("Listo para publicar")').addClass('success');
-    $("#tour").joyride({
-      autoStart : true,
-      'cookieMonster': true,
-      'cookieName': 'JoyRide'
-    });
     // Every time a checkbox is checked or unchecked we will...
     $("input:checked").click(function() {
       // activate the Publish button if there are some checkboxes activated

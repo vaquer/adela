@@ -1,48 +1,81 @@
-.container
-  .card
-    %h3.title Planea
-    %h5.subtitle Inventario de datos
-    %h5.subtitle Conjunto de Datos
-    = nested_form_for [:inventories, Dataset.new] do |f|
+- breadcrumb :inventory_new_dataset
+= nested_form_for [:inventories, @dataset] do |f|
+  .row
+    .col-md-9
+      %h3 Agrega un Conjunto de Datos
+      - if @dataset.errors.any?
+        = render partial: '/layouts/shared/errors', locals: { errors: @dataset.errors }
+  .row
+    .col-md-9
       .form-group.required
         = f.label :title, class: 'control-label'
-        = f.text_field :title, required: true, class: 'form-control'
+        = f.text_field :title, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.title')}"
       .form-group.required
         = f.label :description, class: 'control-label'
-        = f.text_area :description, required: true, class: 'autosize form-control'
+        = f.text_area :description, required: true, class: 'autosize form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.description')}"
       .form-group.required
         = f.label :contact_position, class: 'control-label'
-        = f.text_field :contact_position, required: true, class: 'form-control'
-      .form-group.required
-        = f.label :public_access, class: 'control-label'
-        = f.select :public_access, [['Público', true], ['Privado', false]], {}, required: true, class: 'form-control'
-      .form-group.required
-        = f.label :accrual_periodicity, class: 'control-label'
-        = f.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(f.object.accrual_periodicity), {}, required: true, class: 'form-control'
-      .form-group.required
-        = f.label :publish_date, class: 'control-label'
-        = f.text_field :publish_date, class: 'datepicker form-control'
-      = f.fields_for :distributions do |distribution_form|
-        %h5.subtitle Recurso
-        .form-group.required
-          = distribution_form.label :title, class: 'control-label'
-          = distribution_form.text_field :title, required: true, class: 'form-control'
-        .form-group.required
-          = distribution_form.label :description, class: 'control-label'
-          = distribution_form.text_area :description, required: true, class: 'autosize form-control'
-        .form-group.required
-          = distribution_form.label :media_type, class: 'control-label'
-          = select_tag :media_type_select, options_for_media_type, class: 'form-control media_type_select'
-        .form-group
-          = distribution_form.text_field :media_type, required: true, class: 'form-control media_type'
-        .form-group.required
-          %label.control-label
-            Campos obligatorios
-        .form-group.pull-right
-          = distribution_form.link_to_remove 'Eliminar Recurso', class: 'btn btn-primary'
-          = f.button 'Guardar', type: 'submit', class: 'btn btn-primary'
-      .form-group.required
-        %label.control-label
-          Campos obligatorios
-      .form-group
-        = f.link_to_add "Agregar Recurso", :distributions, class: 'btn btn-primary'
+        = f.text_field :contact_position, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.contact_position')}"
+      .row
+        .col-xs-4
+          .form-group.required
+            = f.label :public_access, class: 'control-label'
+            = f.select :public_access, [['Público', true], ['Privado', false]], {}, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.public_access')}"
+        .col-xs-4
+          .form-group.required
+            = f.label :accrual_periodicity, class: 'control-label'
+            = f.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(f.object.accrual_periodicity), {}, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.accrual_periodicity')}"
+        .col-xs-4
+          .form-group.required
+            = f.label :publish_date, class: 'control-label'
+            = f.text_field :publish_date, class: 'datepicker form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.publish_date')}"
+    .col-md-3
+      %p.margin-top
+        Un <strong>Conjunto de datos</strong> es un grupo de Recursos de Datos Abiertos que tienen un tema en común.
+      %p
+        Por ejemplo: El Conjunto de Calidad del Aire agrupa los Recursos de concentraciones de calidad del aire de los 32 estados en un periodo determinado de tiempo.
+  .row
+    .col-md-9
+      .bs-callout.bs-callout-default
+        %h3 Agrega un Recurso
+        = f.fields_for :distributions do |distribution_form|
+          .jumbotron
+            .form-group.required
+              = distribution_form.label :title, class: 'control-label'
+              = distribution_form.text_field :title, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.title')}"
+            .form-group.required
+              = distribution_form.label :description, class: 'control-label'
+              = distribution_form.text_area :description, required: true, class: 'autosize form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.description')}"
+            .row
+              .col-xs-6
+                .form-group.required
+                  = distribution_form.label :media_type, class: 'control-label'
+                  = select_tag :media_type_select, options_for_media_type, class: 'form-control media_type_select', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.media_type_select')}"
+              .col-xs-6
+                .form-group.required
+                  = distribution_form.label :format, class: 'control-label'
+                  = distribution_form.text_field :format, required: true, class: 'format form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.format')}"
+            .row
+              .col-xs-6
+                .form-group.required
+                  = distribution_form.label :publish_date, class: 'control-label'
+                  = distribution_form.text_field :publish_date, class: 'datepicker publish-date form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.publish_date')}", 'data-placement': 'bottom'
+              .col-xs-6
+                .form-group
+                  = distribution_form.hidden_field :media_type, class: 'form-control media_type'
+            .form-group
+              = distribution_form.link_to_remove class: 'btn btn-danger pull-right' do
+                %span.icon.icon-right
+                  = inline_svg 'remove.svg'
+                Eliminar
+              .clearfix
+        = f.link_to_add :distributions, class: 'btn btn-primary btn-lg' do
+          %span.icon.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+          Agregar un recurso nuevo
+    .col-md-3
+      %p.margin-top
+        Un <strong>Recurso de datos</strong> es un archivo de Datos Abiertos que pertenece a un Conjunto de Datos. Cada Recurso de Datos puede estar disponible en diferentes estructuras (cartográfico, tabular), temporalidades (años, meses), formatos (CSV, API, RSS), agregaciones espaciales (nivel país, estatal, municipal, etc).
+  .row
+    .col-md-3
+      = f.button 'Guardar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary'
+      = link_to 'Cancelar', inventories_datasets_path, class: 'btn btn-lg btn-alt'

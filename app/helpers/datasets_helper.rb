@@ -8,11 +8,11 @@ module DatasetsHelper
   end
 
   def documented_distributions(dataset)
-    dataset.distributions.select { |d| d.published? || d.documented? }
+    dataset.distributions.reject { |distribution| distribution.refining? || distribution.broke? }
   end
 
   def next_dataset(dataset)
-    datasets = current_organization.catalog.datasets.where(published: true).sort_by(&:publish_date)
+    datasets = current_organization.catalog.catalog_datasets.sort_by(&:publish_date)
     index = datasets.index { |ds| ds.id == dataset.id }
     datasets[index + 1]
   end

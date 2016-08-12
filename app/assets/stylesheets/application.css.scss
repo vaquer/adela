@@ -1,61 +1,160 @@
 /*
  *= require toastr
- *= require joyride-2.1
- *= require_self
  */
+
+@import url(https://fonts.googleapis.com/css?family=OpenSans:400,300,600,700);
+@font-face{
+ font-family:'Glyphicons Halflings';
+ src: image-url("bootstrap/glyphicons-halflings-regular.eot");
+ src: image-url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
+      image-url("bootstrap/glyphicons-halflings-regular.woff") format("woff"),
+      image-url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"),
+      image-url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
+}
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@font-face{
-  font-family:'Glyphicons Halflings';
-  src: image-url("bootstrap/glyphicons-halflings-regular.eot");
-  src: image-url("bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
-       image-url("bootstrap/glyphicons-halflings-regular.woff") format("woff"),
-       image-url("bootstrap/glyphicons-halflings-regular.ttf") format("truetype"),
-       image-url("bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
-}
-
 @import "jquery.ui.core";
 @import "jquery.ui.theme";
 @import "jquery.ui.datepicker";
-@import "font-awesome";
 
-// Defaults
-@import 'defaults/colors';
-@import 'defaults/utilities';
-@import 'defaults/mixins';
+@import "template/colors";
 
-// Elements
-@import "elements/text";
-@import "elements/input";
-@import "elements/button";
-@import "elements/link";
-@import "elements/table";
-@import "elements/textarea";
-
-// Components
+// components
 @import "components/alert";
-@import "components/carret";
-@import "components/navbar";
-@import "components/nav-pills";
-@import "components/footer";
-@import "components/landing";
-@import "components/forms";
-@import "components/newsletter";
 @import "components/breadcrumbs";
-@import "components/datepicker";
-@import "components/joyride";
+@import "components/callouts";
+@import "components/carrets";
+@import "components/forms";
+@import "components/icons";
+@import "components/jumbotron";
+@import "components/labels";
+@import "components/navbar";
+@import "components/toast";
 
-// Cards
-@import "components/cards";
+// elements
+@import "elements/a";
+@import "elements/button";
+@import "elements/headings";
+@import "elements/p";
+@import "elements/table";
 
 body {
-  background-color: $grey_100;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  padding-top: 50px; // navbar height
+  color: $gray_400;
+  margin-bottom: 20px;
 }
 
-.toast-top-right {
-  top: 90px;
+p {
+  margin-bottom: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+// dashboard opi
+
+.content-dashboard {
+  margin-top: 40px;
+}
+
+.content-sub-dashboard {
+  margin-top: 80px;
+}
+
+.calificacion-dashboard {
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.lugar-dashboard {
+    float: left;
+    margin-left: 15px;
+}
+
+.content-dashboard .title, .content-dashboard .subtitle {
+    color: #585858;
+    margin-bottom: 5px !important;
+}
+
+.content-dashboard p {
+    color: #777777;
+}
+
+.content-dashboard h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.content-dashboard h2 {
+    font-size: 34px;
+}
+
+.content-dashboard hr {
+    border-top: 1px solid #cccccc;
+}
+
+.content-dashboard table {
+    font-size: 12px
+}
+
+.high-light-dashboard{
+  color:#00cc99;
+}
+
+.calificacion-dashboard-gray  {
+    color: #b7b7b7;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.table-cell, .table > tbody > tr > td, .table > thead > tr > th {
+    color: #474747;
+    font-weight: 300;
+    padding: 15px;
+}
+
+#logo_org{
+  min-width: 200px;
+  width: 100%;
+  max-width: 245px;
+  margin-left: -18px;
+}
+
+svg { overflow: visible !important; }
+
+.gly-3x { font-size: 2.5em }
+.gly-warning { font-size: 3em; margin: 0 15px;  }
+
+.gray_back {
+  background-color: #F7F5F5;
+}
+
+.gray_back .container {
+  padding: 40px 0 15px;
+}
+
+.overlay-dashboard{
+  position: absolute;
+  right: 0;
+  width: 100%;
 }
 
 ///////// dashboard opi
@@ -79,12 +178,12 @@ body {
 }
 
 .content-dashboard .title, .content-dashboard .subtitle {
-  color: #585858 !important;
-  margin-bottom: 5px !important;
+    color: #585858 !important;
+    margin-bottom: 5px !important;
 }
 
 .content-dashboard p {
-  color: #777777 !important;
+    color: #777777 !important;
 }
 
 .content-dashboard h3 {
@@ -154,10 +253,9 @@ svg { overflow: visible !important; }
 }
 
 .overlay-dashboard{
-  position: relative;
+  position: absolute;
   right: 0;
   width: 100%;
-  background: #FFFFFF;
 }
 
 .table-500 { height: 500px; }

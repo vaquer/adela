@@ -2,57 +2,76 @@ require 'spec_helper'
 
 describe OpeningPlanDatasetGenerator do
   describe '#generate' do
-    let(:catalog) { create(:catalog) }
+    context 'a new inventory' do
+      let(:organization) { create(:organization) }
+      let(:inventory) { create(:inventory, organization: organization) }
 
-    before(:each) do
-      OpeningPlanDatasetGenerator.new(catalog).generate
-    end
-
-    context 'with a new opening plan' do
-      it 'should generate a dataset' do
-        expect(catalog.datasets.count).to eql(1)
+      before(:each) do
+        OpeningPlanDatasetGenerator.new(inventory).generate
       end
 
-      it 'should generate a dataset with one distribution' do
-        dataset = catalog.datasets.last
+      it 'should create an organization catalog' do
+        expect(organization.catalog).not_to be_nil
+      end
+
+      it 'should create a dataset' do
+        expect(organization.catalog.datasets.count).to eql(1)
+      end
+
+      it 'should create a dataset with one distribution' do
+        dataset = organization.catalog.datasets.last
         expect(dataset.distributions.count).to eql(1)
       end
 
-      it 'should generate a dataset with a documented distribution' do
-        dataset = catalog.datasets.last
-        distribution = dataset.distributions.last
-        expect(distribution.state).to eql('documented')
+      it 'should contain a dataset with the organization name in the title' do
+        dataset_title = organization.catalog.datasets.last.title
+        expected_title = "Plan de Apertura Institucional de #{organization.title}"
+
+        expect(dataset_title).to eql(expected_title)
       end
 
-      it 'should contain a dataset with an identifier containing the organization slug' do
-        organization_slug = catalog.organization.title.to_slug.normalize.to_s
-        dataset_identifier = catalog.datasets.last.identifier
+      it 'should contain a distribution with the organization name in the title' do
+        distribution_title = organization.catalog.datasets.last.distributions.last.title
+        expected_title = "Plan de Apertura Institucional de #{organization.title}"
+
+        expect(distribution_title).to eql(expected_title)
+      end
+
+      it 'should contain an identifier with the organization slug' do
+        organization_slug = organization.title.to_slug.normalize.to_s
+        dataset_identifier = organization.catalog.datasets.last.identifier
         expected_identifier = "plan-de-apertura-institucional-de-#{organization_slug}"
 
         expect(dataset_identifier).to eql(expected_identifier)
       end
 
-      it 'should contain a dataset containing the organization name in the title' do
-        dataset_title = catalog.datasets.last.title
-        expected_title = "Plan de Apertura Institucional de #{catalog.organization.title}"
-
-        expect(dataset_title).to eql(expected_title)
+      it 'should set the modified field for the distribution' do
+        dataset       = organization.catalog.datasets.last
+        distribution  = dataset.distributions.last
+        expect(distribution.modified).to eq(dataset.modified)
       end
 
-      it 'should contain a distribution containing the organization name in the title' do
-        distribution_title = catalog.datasets.last.distributions.last.title
-        expected_title = "Plan de Apertura Institucional de #{catalog.organization.title}"
-
-        expect(distribution_title).to eql(expected_title)
+      it 'should set a temporal range for the distributions' do
+        dataset       = organization.catalog.datasets.last
+        distribution  = dataset.distributions.last
+        timestring    = "P3H33M/#{dataset.modified.strftime("%FT%T%:z")}"
+        expect(distribution.temporal).to eq(timestring)
       end
     end
 
-    context 'updating an existing opening plan' do
+    context 'an existing inventory' do
       before(:each) do
-        @old_dataset = catalog.datasets.first.deep_clone(include: [:distributions])
+        @organization = create(:organization)
+        old_inventory = create(:inventory, organization: @organization)
+        InventoryDatasetsWorker.new.perform(old_inventory.id)
+
+        @old_dataset = @organization.catalog.datasets.first.deep_clone(include: [:distributions])
+
         Timecop.travel(Faker::Date.forward)
-        OpeningPlanDatasetGenerator.new(catalog).generate
-        @new_dataset = catalog.datasets.first.deep_clone(include: [:distributions])
+
+        new_inventory = create(:inventory, organization: @organization)
+        OpeningPlanDatasetGenerator.new(new_inventory).generate
+        @new_dataset = @organization.catalog.datasets.first.deep_clone(include: [:distributions])
       end
 
       after(:each) do
@@ -60,7 +79,7 @@ describe OpeningPlanDatasetGenerator do
       end
 
       it 'should not create a new dataset' do
-        expect(catalog.datasets.count).to eql(1)
+        expect(@organization.catalog.non_editable_datasets.count).to eq(1)
       end
 
       it 'should update the modified field from the existing dataset' do
@@ -73,6 +92,12 @@ describe OpeningPlanDatasetGenerator do
         old_distribution_modified = @old_dataset.distributions.first.modified
         new_distribution_modified = @new_dataset.distributions.first.modified
         expect(new_distribution_modified).not_to eql(old_distribution_modified)
+      end
+
+      it 'should update temporal range for the existing distribution' do
+        resource    = @new_dataset.distributions.first
+        timestring  = "P3H33M/#{resource.modified.strftime("%FT%T%:z")}"
+        expect(resource.temporal).to eq(timestring)
       end
     end
   end

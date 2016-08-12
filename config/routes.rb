@@ -8,7 +8,6 @@ Adela::Application.routes.draw do
     end
 
     get '/:slug/catalogo' => 'organizations#catalog', as: 'organization_catalog'
-    get '/:slug/plan' => 'organizations#opening_plans'
     get '/:slug/inventario' => 'organizations#inventory', as: 'organization_inventory'
 
     root to: 'home#index'
@@ -17,22 +16,17 @@ Adela::Application.routes.draw do
       get 'profile', on: :member
       get 'search', on: :collection
 
-      resources :catalogs, only: [:index, :show, :update], shallow: true do
+      resources :documents, controller: 'organizations/documents', only: [:index] do
+        put 'update', on: :collection, as: 'update'
+      end
+
+      resources :catalogs, only: [:index, :show], shallow: true do
         get 'check', on: :collection
         put 'publish', on: :member
 
         resources :datasets, shallow: true do
           resources :distributions
         end
-      end
-    end
-
-    resources :inventories, only: [:index, :update]
-
-    resources :opening_plans, only: [:index, :new, :create] do
-      member do
-        get 'organization'
-        get 'export'
       end
     end
   end
@@ -43,7 +37,12 @@ Adela::Application.routes.draw do
       get '/organizations' => 'organizations#organizations'
       get '/gov_types' => 'organizations#gov_types'
 
+      resources :datasets, only: [] do
+        get 'contact_point', on: :member
+      end
+
       resources :organizations, only: [:show] do
+        get 'inventory', on: :member
         collection do
           get 'catalogs'
           get 'organizations'

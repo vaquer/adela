@@ -26,19 +26,29 @@ $(function () {
 });
 
 $(document).on('nested:fieldAdded', function(event){
-    var updateMediaType;
+    var updateMediaType, datasetPublishDate;
+
     (updateMediaType = function() {
       var mediaType = event.field.find('.form-group .media_type_select');
       var inputText = event.field.find('.form-group input.media_type');
+      var format    = event.field.find('.form-group .media_type_select option:selected').text();
 
-      inputText.val(mediaType.val());
-      if (mediaType.val() == 'otro') {
-        inputText.val('');
-        inputText.show();
+      if (format == 'otro') {
+        event.field.find('.form-group input.media_type').val('');
+        event.field.find('.form-group input.format').val('');
+        event.field.find('.form-group input.format').parent().show();
       } else {
-        inputText.hide();
+        event.field.find('.form-group input.media_type').val(mediaType.val());
+        event.field.find('.form-group input.format').val(format);
+        event.field.find('.form-group input.format').parent().hide();
       }
     })();
 
+    // sets dataset publish-date into new distribution
+    datasetPublishDate = $('#dataset_publish_date').val();
+    event.field.find('.publish-date').val(datasetPublishDate);
+
     $('.media_type_select').on('change', updateMediaType);
+    $('.datepicker').datepicker();
+    $('[data-toggle="tooltip"]').tooltip();
 })

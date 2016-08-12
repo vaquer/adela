@@ -1,3 +1,4 @@
+
 <div class="overlay-dashboard">
   <!-- header organizacion -->
   <div class="container content-dashboard">
@@ -11,6 +12,7 @@
   </div>
 
   <div id="renderPDF">
+
   <div class="gray_back">
     <div class="container content-dashboard">
       <div class="row">
@@ -130,6 +132,7 @@
         <h3 class='title'>Indicadores generales</h3>
         <p>Los siguientes indicadores muestran el estado actual de tu inventario, recursos de datos, actualizaciones, solicitudes y URLs.</p><hr>
         <div class="row">
+
           <div class="col-xs-12">
             <h6 class='title'>Inventario</h6>
             <div id="bar-chart1"></div>
@@ -139,6 +142,7 @@
             <div id="bar-chart2"></div>
           </div>
         </div>
+
         <div class="row hidden" id="hiddenPDF">
           <div class="col-sm-6">
             <h6 class='title'>URLs</h6>
@@ -374,74 +378,74 @@ $('.code-color-dashboard').each(function() {
 (function ( $ ) {
 
     $.fn.rating = function( method, options ) {
-		method = method || 'create';
+    method = method || 'create';
         // This is the easiest way to have default options.
         var settings = $.extend({
             // These are the defaults.
-			limit: 5,
-			value: 0,
-			glyph: "glyphicon-star",
+      limit: 5,
+      value: 0,
+      glyph: "glyphicon-star",
       coloroff: "#D8D8D8",
-			//coloron: "#00CC99",
-			size: "2.5em",
-			cursor: "default",
-			onClick: function () {},
+      //coloron: "#00CC99",
+      size: "2.5em",
+      cursor: "default",
+      onClick: function () {},
             endofarray: "idontmatter"
         }, options );
-		var style = "";
-		style = style + "font-size:" + settings.size + "; ";
-		style = style + "color:" + settings.coloroff + "; ";
-		style = style + "cursor:" + settings.cursor + "; ";
-		style = style + "margin: 0 7px;";
+    var style = "";
+    style = style + "font-size:" + settings.size + "; ";
+    style = style + "color:" + settings.coloroff + "; ";
+    style = style + "cursor:" + settings.cursor + "; ";
+    style = style + "margin: 0 7px;";
 
-		if (method == 'create')
-		{
-			//this.html('');	//junk whatever was there
+    if (method == 'create')
+    {
+      //this.html('');  //junk whatever was there
 
-			//initialize the data-rating property
-			this.each(function(){
-				attr = $(this).attr('data-rating');
-				if (attr === undefined || attr === false) { $(this).attr('data-rating',settings.value); }
-			})
+      //initialize the data-rating property
+      this.each(function(){
+        attr = $(this).attr('data-rating');
+        if (attr === undefined || attr === false) { $(this).attr('data-rating',settings.value); }
+      })
 
-			//bolt in the glyphs
-			for (var i = 0; i < settings.limit; i++)
-			{
-				this.append('<span data-value="' + (i+1) + '" class="ratingicon glyphicon ' + settings.glyph + '" style="' + style + '" aria-hidden="true"></span>');
-			}
+      //bolt in the glyphs
+      for (var i = 0; i < settings.limit; i++)
+      {
+        this.append('<span data-value="' + (i+1) + '" class="ratingicon glyphicon ' + settings.glyph + '" style="' + style + '" aria-hidden="true"></span>');
+      }
 
-			//paint
-			this.each(function() { paint($(this)); });
+      //paint
+      this.each(function() { paint($(this)); });
 
-		}
-		if (method == 'set')
-		{
-			this.attr('data-rating',options);
-			this.each(function() { paint($(this)); });
-		}
-		if (method == 'get')
-		{
-			return this.attr('data-rating');
-		}
-		function paint(div)
-		{
-			rating = parseInt(div.attr('data-rating'));
-			div.find("input").val(rating);	//if there is an input in the div lets set it's value
-			div.find("span.ratingicon").each(function(){	//now paint the stars
+    }
+    if (method == 'set')
+    {
+      this.attr('data-rating',options);
+      this.each(function() { paint($(this)); });
+    }
+    if (method == 'get')
+    {
+      return this.attr('data-rating');
+    }
+    function paint(div)
+    {
+      rating = parseInt(div.attr('data-rating'));
+      div.find("input").val(rating);  //if there is an input in the div lets set it's value
+      div.find("span.ratingicon").each(function(){  //now paint the stars
 
-				var rating = parseInt($(this).parent().attr('data-rating'));
-				var value = parseInt($(this).attr('data-value'));
-				if (value > rating) { $(this).css('color',settings.coloroff).addClass('starDark'); }
-				else { $(this).addClass('starLight'); }
-			})
-		}
+        var rating = parseInt($(this).parent().attr('data-rating'));
+        var value = parseInt($(this).attr('data-value'));
+        if (value > rating) { $(this).css('color',settings.coloroff).addClass('starDark'); }
+        else { $(this).addClass('starLight'); }
+      })
+    }
 
     };
 
 }( jQuery ));
 
 $(document).ready(function(){
-	$("#stars-raiting").rating('create');
+  $("#stars-raiting").rating('create');
 });
 
 ///// BarChart
@@ -519,6 +523,21 @@ function drawChart() {
 //Download PDF
 
   function genPDF() {
+
+    /*var doc = new jsPDF('p', 'pt', 'letter');
+    var specialElementHandlers = {
+        '#hiddenPDF': function (element,renderer) {
+            return true;
+        }
+    };
+
+    doc.fromHTML( $('#renderPDF').get(0), 20,20,{
+      'width': 500,
+      'elementHandlers': specialElementHandlers
+    })
+    //doc.save('test.pdf');
+    doc.output("dataurlnewwindow");*/
+
 
     ///// canvas
     html2canvas(document.getElementById("renderPDF"),{

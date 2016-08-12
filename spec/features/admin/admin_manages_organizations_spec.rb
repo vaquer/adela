@@ -22,7 +22,6 @@ feature Admin, 'manages organizations:' do
     expect(current_path).to eq(new_admin_organization_path)
     fill_in('Nombre', with: organization.title)
     fill_in('Descripción', with: organization.description)
-    fill_in('URL Logo', with: organization.logo_url)
     fill_in('Sitio Web', with: organization.landing_page)
     select(organization.gov_type_i18n, from: 'organization_gov_type')
     click_on 'Guardar'
@@ -30,7 +29,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message "La organización se creó exitosamente."
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('FEDERAL')
+    expect(page).to have_text('Federal')
   end
 
   scenario "can edit an organization", js: true do
@@ -44,7 +43,6 @@ feature Admin, 'manages organizations:' do
     expect(current_path).to eq(edit_admin_organization_path(organization))
     fill_in('Nombre', with: new_attributes[:title])
     fill_in('Descripción', with: new_attributes[:description])
-    fill_in('URL Logo', with: new_attributes[:logo_url])
     fill_in('Sitio Web', with: new_attributes[:landing_page])
     select('Federal', from: 'organization_gov_type')
     click_on 'Guardar'
@@ -53,7 +51,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message 'Se ha actualizado la organización exitosamente.'
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('FEDERAL')
+    expect(page).to have_text('Federal')
   end
 
   scenario 'can edit an organization', js: true do
@@ -91,7 +89,7 @@ feature Admin, 'manages organizations:' do
     sees_success_message 'Se ha actualizado la organización exitosamente.'
     expect(current_path).to eq(admin_organizations_path)
     expect(page).to have_text(organization.title)
-    expect(page).to have_text('ESTATAL')
+    expect(page).to have_text('Estatal')
   end
 
   scenario "can add a sector", js: true do

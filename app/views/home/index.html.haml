@@ -1,13 +1,14 @@
-#intro
-  .overlay
-  .row.content
-    .col-xs-12.subtitle
-      %h3.bright
-        ADELA es la plataforma para publicar en datos.gob.mx y darle seguimiento al cumplimiento de la Política de Datos Abiertos en tu Institución
-  .container
-    .row.actions
-      - if !user_signed_in?
-        .col-xs-12.col-md-6.col-md-offset-3
-          %p.topic Ingresar
-          %hr
-          = render 'shared/forms/user', resource: User.new, resource_name: :user
+.overlay
+  .foo
+    .container
+      .jumbotron-home
+        .row
+          - if !user_signed_in?
+            .col-xs-12.col-md-6
+              %h3
+                <strong>Adela</strong> es la plataforma para publicar en datos.gob.mx y darle seguimiento al cumplimiento de la Política de Datos Abiertos en tu Institución
+            .col-xs-12.col-md-6
+              %h5 Ingresar
+              %hr
+              = render 'shared/forms/user', resource: User.new, resource_name: :user
+  %dgm-footer

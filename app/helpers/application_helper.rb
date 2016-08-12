@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def sortable(column, title)
+    css_class = (column == sort_column) ? "current #{sort_direction}" : 'sortable'
+    direction = (column == sort_column && sort_direction == 'asc') ? 'desc' : 'asc'
+    link_to title, { sort: column, direction: direction }, class: css_class
+  end
+
   def home_path_helper
     if user_signed_in? && current_organization
       organization_path(current_organization)

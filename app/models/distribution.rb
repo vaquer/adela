@@ -1,23 +1,21 @@
 class Distribution < ActiveRecord::Base
-  belongs_to :dataset
-  validate :mandatory_fields
+  include Versionable
+  include Publishable
 
-  before_save :fix_distribution
-  before_save :break_distibution
+  belongs_to :dataset
+  audited associated_with: :dataset
+
+  validates_uniqueness_of :title
+  validates_uniqueness_of :download_url, allow_nil: true
+
+  has_one :catalog, through: :dataset
+  has_one :organization, through: :dataset
+
   after_commit :update_dataset_metadata
 
-  state_machine initial: :broke do
-    state :broke
-    state :documented
-    state :published
-
-    event :document do
-      transition [:broke, :published] => :documented, if: lambda { |distribution| distribution.compliant? }
-    end
-
-    event :break_dist do
-      transition [:documented, :published] => :broke, unless: lambda { |distribution| distribution.compliant? }
-    end
+  with_options on: :ckan do |distribution|
+    distribution.validates :title, :description, :download_url, :publish_date,
+                           :format, :modified, :temporal, presence: true
   end
 
   def as_csv(options = {})
@@ -38,21 +36,6 @@ class Distribution < ActiveRecord::Base
   end
 
   private
-
-  def fix_distribution
-    document if can_document?
-  end
-
-  def break_distibution
-    break_dist if can_break_dist?
-  end
-
-  def mandatory_fields
-    fields = %i(download_url temporal modified)
-    fields.each do |field|
-      warnings.add(field) if send(field).blank?
-    end
-  end
 
   def update_dataset_metadata
     return unless dataset

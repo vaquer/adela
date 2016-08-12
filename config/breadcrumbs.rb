@@ -1,27 +1,48 @@
 crumb :root do
-  link "Inicio", organization_path(current_organization)
+  link 'Adela', organization_path(current_organization) if current_organization
 end
 
-crumb :planning do
-  link "Planea", new_inventory_path(:new_version => true)
+crumb :inventory do
+  link 'Plan de Apertura Institucional', inventories_datasets_path
   parent :root
 end
 
+crumb :inventory_new_dataset do
+  link 'Agregar un Conjunto de Datos'
+  parent :inventory
+end
+
+crumb :inventory_edit_dataset do
+  link 'Editar un Conjunto de Datos'
+  parent :inventory
+end
+
+crumb :inventory_edit_distribution do
+  link 'Editar un Recurso de Datos'
+  parent :inventory
+end
+
+crumb :inventory_new_distribution do
+  link 'Agregar un Recurso de Datos'
+  parent :inventory
+end
+
 crumb :catalog do
-  link "Último folio", catalog_path(current_organization)
-  parent :datasets
+  link 'Catálogo de Datos', organization_catalogs_path(current_organization)
+  parent :root
 end
 
-crumb :datasets do
-  link "Catálogo de datos", organization_catalogs_path(current_organization)
+crumb :catalog_dataset do
+  link 'Documentar un Conjunto de Datos'
+  parent :catalog
 end
 
-crumb :dataset do |d|
-  link d.title, edit_dataset_path(d)
-  parent :datasets
+crumb :catalog_distribution do
+  link 'Documentar un Recurso de Datos'
+  parent :catalog_dataset
 end
 
-crumb :distribution do |r|
-  link r.title, edit_distribution_path(r)
-  parent :dataset, r.dataset
+crumb :documents do
+  link 'Documentos', inventories_datasets_path
+  parent :root
 end

@@ -13,6 +13,7 @@ module Admin
     def create
       @organization = Organization.new(organization_params)
       @organization.build_inventory
+      @organization.build_catalog
       if @organization.save
         flash[:notice] = I18n.t('flash.notice.organization.create')
       else
@@ -43,9 +44,9 @@ module Admin
       params.require(:organization).permit(
         :title,
         :description,
-        :logo_url,
         :landing_page,
         :gov_type,
+        :ranked,
         administrator_attributes: [:user_id],
         liaison_attributes: [:user_id],
         organization_sectors_attributes: [:id, :sector_id, :_destroy])

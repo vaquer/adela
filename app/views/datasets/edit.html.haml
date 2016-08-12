@@ -1,102 +1,130 @@
-.container
-  - breadcrumb :dataset, @dataset
-  .card
-    .card.bg--grey.padding-top.margin-top
-      %h3 Documenta el Conjunto de Datos Abiertos
-      %p Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.
-      %p Aquí puedes documentar los metadatos según el estándar DCAT para:
-      %p <strong class='highlight'>Nombre del conjunto:</strong> #{@dataset.title}
-      %p <strong class='highlight'>Fecha compromiso de publicación:</strong> #{@dataset.publish_date.strftime('%F')}
-    .row
-      .col-xs-12.col-sm-6
-        %p.uppercase.dark Descripci&oacute;n
-        %p= @dataset.description
-        %p.uppercase.dark Identificador
-        %p.preloaded= @dataset.identifier
-
-        %p.uppercase.dark Frecuencia de actualizaci&oacute;n
-        %p= accrual_periodicity_translate(@dataset.accrual_periodicity)
-
-        %p.instructions
-          Para editar estos campos, vuelve a subir el inventario de datos con tu
-          modificaci&oacute;n o edita el plan de apertura.
-
-      .col-xs-12.col-sm-6
-        = form_for(@dataset, html: { class: 'form-horizontal' }, remote: true) do |f|
-          .form-group
-            .col-xs-12.col-sm-12
-              = f.label :contact_position, 'Cargo del responsable *'
-            .col-xs-12.col-sm-12
-              = f.text_field :contact_position, class: 'form-control auto_submit_item'
-
-          .form-group
-            .col-xs-12.col-sm-12
-              = f.label :mbox, 'Correo del responsable *'
-            .col-xs-12.col-sm-12
-              = f.email_field :mbox, class: 'form-control auto_submit_item'
-
-          .form-group
-            .col-xs-12.col-sm-12
-              = f.label :landing_page, 'URL para consultar diccionario de datos *'
-            .col-xs-12.col-sm-12
-              = f.url_field :landing_page, class: 'form-control auto_submit_item'
-
-          .form-group
-            .col-xs-12.col-sm-12
-              = f.label :dataset_sectors, 'Sector *'
-            .col-xs-12.col-sm-12
-              = f.fields_for :dataset_sector do |sector_form|
-                = sector_form.select :sector_id, options_for_sectors_select, { include_blank: true }, { class: 'form-control auto_submit_item' }
-
-          .form-group
-            .col-xs-12.col-sm-12
-              = f.label :keyword, 'Palabras clave (separadas por coma) *'
-            .col-xs-12.col-sm-12
-              = f.text_area :keyword, class: 'form-control auto_submit_item'
-
-    .row
-      %p.instructions
-        Continúa con la documentación de los recursos de este conjunto de datos
-
-    %table.table.table-striped.table-condensed
-      %thead
-        %tr
-          %th
-            Nombre del recurso
-            %i.fa.fa-caret-down
-          %th
-            Estatus de publicación
-            %i.fa.fa-caret-down
-          %th
-            Acciones
-            %i.fa.fa-caret-down
-      %tbody
-        - @dataset.distributions.each do |distribution|
-          %tr
-            %td= distribution.title
-            %td.status= state_description(distribution)
-            %td.action= link_to edit_link_to_text(distribution), edit_distribution_path(distribution)
-
-    = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-default', id: 'back'
-    = link_to 'Ver tour de ayuda', '#no-scroll-please', class: 'btn btn-default', id: 'get-tour'
+- breadcrumb :catalog_dataset
+.row
+  .col-md-9
+    %h3 Documentar un Conjunto de Datos
+    = form_for(@dataset) do |f|
+      = f.hidden_field :public_access
+      .form-group.required
+        = f.label :title, class: 'control-label'
+        = f.text_field :title, required: true, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.title')}"
+      .form-group.required
+        = f.label :description, class: 'control-label'
+        = f.text_area :description, required: true, class: 'form-control autosize', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.description')}"
+      .row
+        .col-xs-6
+          .form-group.required
+            = f.label :accrual_periodicity, class: 'control-label'
+            = f.select :accrual_periodicity, iso8601_repeating_interval_options_for_select(f.object.accrual_periodicity), {}, required: true, class: 'form-control ', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.accrual_periodicity')}"
+        .col-xs-6
+          .form-group.required
+            = f.label 'Fecha de publicación', class: 'control-label'
+            = f.text_field :publish_date, value: f.object.publish_date&.strftime('%F'), required: true, class: 'datepicker form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.publish_date')}"
+      .form-group
+        = f.label :contact_name, class: 'control-label'
+        = f.text_field :contact_name, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.contact_name')}"
+      .row
+        .col-xs-6
+          .form-group.required
+            = f.label :contact_position, 'Cargo del responsable', class: 'control-label'
+            = f.text_field :contact_position, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.contact_position')}", required: true
+        .col-xs-6
+          .form-group.required
+            = f.label :mbox, 'Correo del responsable', class: 'control-label'
+            = f.email_field :mbox, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.email_field')}", required: true
+      .row
+        = f.hidden_field(:temporal)
+        .col-xs-6
+          .form-group.required
+            = f.label :temporal, 'Inicio del período de tiempo cubierto', class: 'control-label'
+            %input#init-date.dcat-temporal.datepicker.form-control{ type: "text", placeholder: "Inicio", required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.temporal.init')}", 'data-placement': 'bottom' }
+        .col-xs-6
+          .form-group.required
+            = f.label :temporal, 'Fin del período de tiempo cubierto', class: 'control-label'
+            %input#term-date.dcat-temporal.datepicker.form-control{ type: "text", placeholder: "Fin", required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.temporal.term')}", 'data-placement': 'bottom' }
+      .row
+        .col-xs-6
+          .form-group.required
+            = f.label :spatial
+            = f.text_field :spatial, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.spatial')}"
+        .col-xs-6
+          .form-group.required
+            = f.label :dataset_sectors, 'Categoría en datos.gob.mx', class: 'control-label'
+            = f.fields_for :dataset_sector do |sector_form|
+              = sector_form.select :sector_id, options_for_sectors_select, { include_blank: true }, { class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.sector')}", required: true }
+      .form-group.required
+        = f.label :landing_page, 'URL para consultar diccionario de datos', class: 'control-label'
+        = f.url_field :landing_page, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.landing_page')}", required: true
+      .form-group.required
+        = f.label :keyword, 'Palabras clave (separadas por coma)', class: 'control-label'
+        = f.text_area :keyword, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.keyword')}", required: true
+      .form-group
+        = f.label :comments, 'Observaciones'
+        = f.text_area :comments, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.comments')}"
+      .form-group
+        = f.button 'Guardar', type: 'submit', class: 'btn btn-primary btn-lg'
+        = link_to 'Cancelar', organization_catalogs_path(current_organization), class: 'btn btn-alt btn-lg'
+  .col-md-3
+    %p.margin-top
+      Los metadatos ayudan a que los usuarios entiendan las características de la información que
+      se está publicando. La documentación es importante porque afecta la calidad de los datos y el
+      potencial de su uso e impacto.
+.row
+  .col-md-9
+    .bs-callout.bs-callout-default
+      %h3 Continúa con la documentación de los recursos de datos
+      .table-responsive
+        %table.table
+          %thead.catalog-header
+            %tr
+              %th Nombre
+              %th.center Estatus de publicación
+              %th.center Acciones
+          %tbody
+            - @dataset.distributions.each do |distribution|
+              %tr.distribution
+                %td= distribution.title
+                %td.center= state_description(distribution)
+                %td.center
+                  %ul.nav.nav-pills.nav-justified
+                    %li{role: 'presentation'}
+                      = link_to edit_distribution_path(distribution) do
+                        %span.icon.icon-right
+                          = inline_svg 'edit.svg'
+                        Documentar
+.row
+  .col-md-9.margin-top-20
+    = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-alt btn-default btn-lg'
     - if (next_dataset = next_dataset(@dataset))
-      = link_to 'Documentar siguiente conjunto', edit_dataset_path(next_dataset), class: 'btn btn-default pull-right', id: 'next'
-
-= render "tour_edit"
+      = link_to edit_dataset_path(next_dataset), { class: 'btn btn-alt btn-default btn-lg pull-right' } do
+        Siguiente conjunto
+        %span.icon.icon-left
+          = inline_svg 'next.svg'
+    .clearfix
+    %br
 
 :javascript
+  function onDistributionTemporalChange() {
+    var initDate, termDate, dcatTemporal;
+
+    initDate = $('#init-date').val();
+    termDate = $('#term-date').val();
+
+    dcatTemporal = initDate + "/" + termDate;
+    $('#dataset_temporal').val(dcatTemporal);
+  }
+
   $(function() {
-    $('.auto_submit_item').change(function() {
-      $('form').submit();
-      toastr.success("#{t('flash.notice.dataset.update')}");
-    });
+    (function () {
+      var initDate, termDate, dcatTemporal;
+
+      dcatTemporal = $('#dataset_temporal').val().split('/');
+      initDate = dcatTemporal[0];
+      termDate = dcatTemporal[1];
+
+      $('#init-date').val(initDate);
+      $('#term-date').val(termDate);
+    })();
+
+    $('.dcat-temporal').change(onDistributionTemporalChange);
     $('tr:contains("Listo para publicar")').addClass('success');
-    // Init
-    $("#tour").joyride({
-      autoStart: false
-    });
-    $('#get-tour').click(function() {
-      // Show on click
-      $("#tour").joyride({});
-    });
   });

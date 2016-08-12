@@ -1,0 +1,50 @@
+//= depend_on_asset "escuadron.jpg"
+
+$landing_image_background: url(<%= asset_path('escuadron.jpg') %>);
+$landing_container_height: 550px;
+
+
+.container .jumbotron {
+  background-color: $gray_800;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
+
+  &.green {
+    background-color: $dark_green;
+    color: $white;
+  }
+}
+
+
+.overlay {
+  position: absolute;
+  right: 0;
+
+  width: 100%;
+  background-image: $landing_image_background;
+  height: $landing_container_height;
+  background-size: cover;
+
+  .foo {
+    height: $landing_container_height;
+    .jumbotron-home {
+      @extend .jumbotron;
+      margin-top: 50px;
+      background-color: rgba(0, 0, 0, 0) !important;
+      color: $white;
+
+      h3 {
+        font-weight: 300;
+        font-size: 22px;
+        color: $white;
+      }
+      h5 {
+        font-weight: 700;
+        font-size: 16px;
+        color: $white;
+      }
+    }
+  }
+}

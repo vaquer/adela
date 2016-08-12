@@ -1,5 +1,6 @@
 class Catalog < ActiveRecord::Base
   include Loggable
+  has_associated_audits
 
   belongs_to :organization
 
@@ -16,13 +17,9 @@ class Catalog < ActiveRecord::Base
     end
   end
 
-  def opening_plan_datasets
-    datasets.where(public_access: true, published: true, editable: true)
-  end
-
   def catalog_datasets
-    datasets.where(public_access: true, published: true).select do |dataset|
-      dataset.valid?(:opening_plan)
+    datasets.where(public_access: true).select do |dataset|
+      dataset.valid?(:catalog)
     end
   end
 

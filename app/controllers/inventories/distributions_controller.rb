@@ -9,21 +9,29 @@ class Inventories::DistributionsController < ApplicationController
   private
 
   def create_customization
-    redirect_to inventories_path
+    if @distribution.valid?
+      redirect_to inventories_datasets_path
+      return
+    end
+    render :new
     return
   end
 
   def update_customization
-    redirect_to inventories_path
+    if @distribution.valid?
+      redirect_to inventories_datasets_path
+      return
+    end
+    render :edit
     return
   end
 
   def destroy_customization
-    redirect_to inventories_path
+    redirect_to inventories_datasets_path
     return
   end
 
   def distribution_params
-    params.require(:distribution).permit(:title, :description, :media_type)
+    params.require(:distribution).permit(:title, :description, :publish_date, :media_type, :format)
   end
 end

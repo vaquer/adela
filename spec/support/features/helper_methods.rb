@@ -4,7 +4,7 @@ module Features
       visit "/usuarios/ingresa"
       fill_in("Correo electrónico", :with => user.email)
       fill_in("Contraseña", :with => user.password)
-      click_on("ENTRAR")
+      click_on("Entrar")
     end
 
     def given_organization_with_catalog
@@ -28,19 +28,6 @@ module Features
       end
     end
 
-    def activity_log_created_with_msg(message)
-      @activity = ActivityLog.last
-      expect(@activity).not_to be_nil
-      expect(@activity.description).to eq(message)
-    end
-
-    def generate_new_opening_plan
-      visit new_opening_plan_path
-      fill_in 'catalog_datasets_attributes_0_description', with: 'osom dataset'
-      select('anual', from: 'catalog[datasets_attributes][0][accrual_periodicity]')
-      click_on('Guardar Plan de Apertura')
-    end
-
     def given_organization_has_catalog_with(datasets)
       create :inventory, organization: @user.organization
       create :opening_plan, organization: @user.organization
@@ -50,10 +37,6 @@ module Features
 
     def resource_checkbox
       find("input[type='checkbox']")
-    end
-
-    def checkboxes
-      all("input[type='checkbox']")
     end
 
     def set_rows
@@ -66,6 +49,10 @@ module Features
 
     def resource_rows
       all('table tbody tr.distribution')
+    end
+
+    def resource_row
+      resource_rows.first
     end
   end
 end

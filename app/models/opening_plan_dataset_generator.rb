@@ -1,12 +1,13 @@
 class OpeningPlanDatasetGenerator
-  attr_reader :catalog
+  include Rails.application.routes.url_helpers
+  attr_reader :inventory
 
-  def initialize(catalog)
-    @catalog = catalog
+  def initialize(inventory)
+    @inventory = inventory
   end
 
   def generate
-    if opening_plan_dataset.present?
+    if inventory_dataset.present?
       update_dataset_and_distribution
     else
       create_dataset_and_distribution
@@ -21,64 +22,69 @@ class OpeningPlanDatasetGenerator
   end
 
   def update_dataset
-    dataset = opening_plan_dataset
+    dataset = inventory_dataset
     dataset.modified = Time.current.iso8601
+    dataset.distributions.first
     dataset.save
   end
 
   def update_distribution
-    distribution = opening_plan_dataset.distributions.first
+    distribution = inventory_dataset.distributions.first
     distribution.modified = Time.current.iso8601
+    distribution.temporal = build_temporal(distribution.modified)
     distribution.save
+  end
+
+  def inventory_dataset
+    @inventory.organization.catalog.datasets.where("title LIKE 'Plan de Apertura Institucional de #{@inventory.organization.title}'").last
   end
 
   def create_dataset_and_distribution
     dataset = build_dataset
     build_distribution(dataset)
-    build_sector(dataset) if @catalog.organization.sectors.present?
+    build_sector(dataset) if @inventory.organization.sectors.present?
     dataset.save
   end
 
-  def opening_plan_dataset
-    @catalog.datasets.where("title LIKE 'Plan de Apertura Institucional de #{@catalog.organization.title}'").last
-  end
-
   def build_dataset
-    @catalog.datasets.build do |dataset|
-      dataset.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
-      dataset.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
-      dataset.keyword = 'plan-de-apertura'
+    @inventory.organization.catalog.datasets.build do |dataset|
+      dataset.title = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      dataset.description = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      dataset.keyword = 'plan de apertura'
       dataset.modified = Time.current.iso8601
       dataset.contact_position = ENV_CONTACT_POSITION_NAME
-      dataset.contact_point = organization_administrator.try(:name)
       dataset.mbox = organization_administrator.try(:email)
       dataset.temporal = Time.current.year
-      dataset.landing_page = @catalog.organization.landing_page
+      dataset.landing_page = @inventory.organization.landing_page
       dataset.accrual_periodicity = 'irregular'
-      dataset.publish_date = DateTime.new(2015, 9, 25)
+      dataset.publish_date = DateTime.new(2015, 8, 28)
       dataset.editable = false
-      dataset.published = true
-    end
-  end
-
-  def build_sector(dataset)
-    dataset.build_dataset_sector do |dataset_sector|
-      dataset_sector.sector_id = @catalog.organization.sectors.first.id
-    end
-  end
-
-  def build_distribution(dataset)
-    dataset.distributions.build do |distribution|
-      distribution.title = "Plan de Apertura Institucional de #{@catalog.organization.title}"
-      distribution.description = "Plan de Apertura Institucional de #{@catalog.organization.title}"
-      distribution.download_url = "http://adela.datos.gob.mx/plan-de-apertura/#{@catalog.organization.slug}/export.csv"
-      distribution.media_type = 'csv'
-      distribution.temporal = "#{Date.new(2015, 9, 25)}/#{Date.new(2016, 9, 26)}"
-      distribution.modified = Date.today
     end
   end
 
   def organization_administrator
-    @catalog.organization.administrator.try(:user)
+    @inventory.organization.administrator.try(:user)
+  end
+
+  def build_sector(dataset)
+    dataset.build_dataset_sector do |dataset_sector|
+      dataset_sector.sector_id = @inventory.organization.sectors.first.id
+    end
+  end
+
+  def build_temporal(date)
+    "P3H33M/" + date.strftime("%FT%T%:z")
+  end
+
+  def build_distribution(dataset)
+    dataset.distributions.build do |distribution|
+      distribution.title = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      distribution.description = "Plan de Apertura Institucional de #{@inventory.organization.title}"
+      distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@inventory.organization, format: :csv)}"
+      distribution.media_type = 'csv'
+      distribution.publish_date = DateTime.new(2015, 8, 28)
+      distribution.temporal = build_temporal(dataset.modified)
+      distribution.modified = dataset.modified
+    end
   end
 end

@@ -1,9 +1,23 @@
 %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
   %td
-  %td= distribution.title
-  %td.center
-    %span.label.label-default
-      = distribution.media_type
+  %td.nested
+    .distribution-title= distribution.title
+    %span.label.label-default.media-type
+      = distribution.format
+  %td
   %td
   %td.center
+    = distribution.publish_date&.strftime('%F')
+  %td.center
     = render partial: 'inventories/shared/menus/distribution_actions', locals: { distribution: distribution }
+- if distribution_iteration.last?
+  %tr.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
+    %td
+    %td
+    %td
+    %td
+    %td
+    %td.add-distribution
+      = link_to new_inventories_dataset_distribution_path(distribution.dataset), { class: 'btn btn-primary btn-block' } do
+        %span.icon.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+        Agregar un recurso nuevo

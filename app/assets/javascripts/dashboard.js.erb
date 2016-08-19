@@ -1,10 +1,13 @@
 //Dataset Buda
-var urlDatasetBuda = 'http://api.datos.gob.mx/v1/data-fusion?adela.inventory.slug=';
+//var urlDatasetBuda = 'http://api.datos.gob.mx/v1/data-fusion?adela.inventory.slug=';
+var urlDatasetBuda = '<%= ENV["DATASET_BUDA"] %>';
 var pageSize = '&pageSize=20000';
 
 //Repo de Logos
-var urlLogos = 'https://raw.githubusercontent.com/mxabierto/assets/master/img/logos/';
+//var urlLogos = 'https://raw.githubusercontent.com/mxabierto/assets/master/img/logos/';
+var urlLogos = '<%= ENV["LOGOS_URL"] %>';
 
 //Dataset OPI Dependencias
 //var urlDatasetOpi = "http://test.transparenciacuauhtemoc.com/partials/last_json.json";
-var urlDatasetOpi = 'http://10.15.9.13:8001/apicomparativa/';
+//var urlDatasetOpi = 'http://10.15.9.13:8001/apicomparativa/';
+var urlDatasetOpi = '<%= ENV["DATASET_OPI"] %>';

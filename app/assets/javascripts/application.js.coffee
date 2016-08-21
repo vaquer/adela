@@ -25,6 +25,7 @@
 //= require components/tooltip
 //= require components/agreement
 //= require webcomponentsjs/webcomponents-lite
+//= require components/chroma
 //= require_self
 //= require_directory .
 

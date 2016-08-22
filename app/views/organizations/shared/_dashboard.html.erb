@@ -166,15 +166,9 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-
 var orgCount = "<%= Organization.count %>";
-//var orgCount = 204;
-//console.log("orgCount--->>>> ",orgCount);
-//$("#orgTotal").text(orgCount);
-
 var strName = "<%= current_user.organization.title %>";
 var orgName = strName.toLowerCase();
-//var orgName = 'inegi';
 var issuedTotal = 0;
 var issuedPublish  = 0;
 var sumaRating  = 0;

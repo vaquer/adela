@@ -189,7 +189,7 @@ var valueDownloads = [];
 
 //Ajax Dataset Buda - Las variables del Endpoint se definen en app/assets/javascript/dashboard.js.erb
 $.ajax({
-  url: urlDatasetBuda + orgName + pageSize,
+  url: "<%= OPI_BUDA_URL_API %>" + orgName + pageSize,
   async: false,
   type: 'GET',
   success: function(data) {
@@ -199,8 +199,8 @@ $.ajax({
     console.log("error- ",data);
   }
 });
-console.log("dataApi --> ",dataApi.results);
-orgLogoUrl = urlLogos + orgName + '.png';
+
+orgLogoUrl = "<%= OPI_LOGOS_URL %>" + orgName + '.png';
 $('#logo_org').attr('src',orgLogoUrl);
 
 var monthNames = [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ];
@@ -346,10 +346,9 @@ if (totalRecommendations > 0) {
 }
 
 //Dependencias Opi
-console.log(urlDatasetOpi);
 
 $.ajax({
-  url: urlDatasetOpi,
+  url: "<%= OPI_DASHBOARD_URL_API %>",
   async: false,
   type: 'GET',
   success: function(json) {

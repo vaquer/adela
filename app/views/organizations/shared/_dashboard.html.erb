@@ -166,15 +166,10 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-
 var orgCount = "<%= Organization.count %>";
-//var orgCount = 204;
-//console.log("orgCount--->>>> ",orgCount);
-//$("#orgTotal").text(orgCount);
-
 var strName = "<%= current_user.organization.title %>";
 var orgName = strName.toLowerCase();
-//var orgName = 'inegi';
+var pageSize = '&pageSize=20000';
 var issuedTotal = 0;
 var issuedPublish  = 0;
 var sumaRating  = 0;
@@ -189,7 +184,7 @@ var valueDownloads = [];
 
 //Ajax Dataset Buda - Las variables del Endpoint se definen en app/assets/javascript/dashboard.js.erb
 $.ajax({
-  url: urlDatasetBuda + orgName + pageSize,
+  url: "<%= OPI_BUDA_URL_API %>" + orgName + pageSize,
   async: false,
   type: 'GET',
   success: function(data) {
@@ -199,8 +194,8 @@ $.ajax({
     console.log("error- ",data);
   }
 });
-console.log("dataApi --> ",dataApi.results);
-orgLogoUrl = urlLogos + orgName + '.png';
+
+orgLogoUrl = "<%= OPI_LOGOS_URL %>" + orgName + '.png';
 $('#logo_org').attr('src',orgLogoUrl);
 
 var monthNames = [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ];
@@ -346,10 +341,9 @@ if (totalRecommendations > 0) {
 }
 
 //Dependencias Opi
-console.log(urlDatasetOpi);
 
 $.ajax({
-  url: urlDatasetOpi,
+  url: "<%= OPI_DASHBOARD_URL_API %>",
   async: false,
   type: 'GET',
   success: function(json) {

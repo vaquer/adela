@@ -1,0 +1,201 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css);
+
+table td {
+  border-top: none !important;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  line-height: 1.42857143;
+  border-top: 1px solid #dddddd !important;
+}
+
+.danger-dashboard {
+    color: #FD4949;
+}
+
+.cantidades-tabla {
+    font-weight: bold;
+    font-size: 3em;
+    line-height: 2 !important;
+}
+
+.table-cell, .table > tbody > tr > td, .table > thead > tr > th {
+    color: #474747;
+    font-weight: 300;
+    padding: 15px;
+}
+
+hr {
+  border-top: 1px solid #D2D1D1;
+}
+
+.tabs-tablero{
+  margin: 20px 0;
+}
+
+.tabs-tablero span{
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.tabs-tablero span a {
+  color: #585858;
+  padding: 0 15px 12px;
+  border-bottom: 4px solid;
+  text-decoration: none;
+}
+
+.tabs-tablero span .active {
+  color: #00cc99;
+  border-color: #00cc99;
+}
+
+.dataTables_filter {
+     display: none;
+}
+
+#searchbox{
+  border: none;
+  margin: 0 12px;
+  width: 50%;
+  min-width: 250px;
+  height: 35px;
+  font-size: 1.5em;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}
+
+table.dataTable thead td {
+  border-bottom: none !important;
+  font-size: 16px;
+  padding: 10px 5px !important;
+}
+
+table.dataTable .starsTd {
+  background-color: #E0E0E0;
+  width: 10%;
+  text-transform: capitalize;
+}
+
+table.dataTable .lineTd {
+  line-height: 1.7;
+}
+
+table .list-inline>li {
+    display: inline-block;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+table.dataTable {
+    border-spacing: 0 12px !important;
+}
+
+table.dataTable tbody td {
+    padding-top: .5em !important;
+    padding-bottom: .3em !important;
+    background-color: #F1F1F1;
+    vertical-align: middle;
+}
+
+table .list-inline>li {
+    vertical-align: text-top;
+}
+
+.gly-2x { font-size: 1.5em }
+.gly-3x { font-size: 2.5em }
+
+.title {
+    color: #585858;
+    font-weight: 600;
+    margin-bottom: 5px !important;
+}
+
+.depenTitle {
+  text-transform: uppercase;
+  width: 33%;
+  line-height: 1.3 !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  max-width: 30px;
+  cursor: pointer;
+}
+
+.datosTitle {
+  width: 70%;
+  line-height: 1.3 !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  max-width: 50px;
+}
+
+table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+    background-color: #f1f1f1 !important;
+}
+
+table.dataTable.display tbody tr td {
+  border-top: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #00CC99 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #00CC99 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+/*** radio buttons with font ***/
+
+/*** Oculta input ***/
+input[type=radio].with-font,
+input[type=checkbox].with-font {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*** Estilo custom ***/
+input[type=radio].with-font ~ label:before,
+input[type=checkbox].with-font ~ label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    letter-spacing: 10px;
+    font-size: 1.5em;
+    width: 1.4em;
+    cursor: pointer;
+    color: #ff6666 !important;
+}
+
+input[type=radio].with-font:checked ~ label:before,
+input[type=checkbox].with-font:checked ~ label:before  {
+    content: "\f00c";
+    font-size: 1.5em;
+    color: #00cc99 !important;
+    letter-spacing: 5px;
+}
+/* No Check */
+input[type=checkbox].with-font ~ label:before {        
+    content: "\f057";
+    color: #ff6666;
+}
+/* Check */
+input[type=checkbox].with-font:checked ~ label:before {
+    content: "\f058";        
+    color: #00cc99;
+}

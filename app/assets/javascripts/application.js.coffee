@@ -24,6 +24,7 @@
 //= require components/table-checkbox
 //= require components/tooltip
 //= require components/agreement
+//= require components/jquery.dataTables.min
 //= require webcomponentsjs/webcomponents-lite
 //= require components/chroma
 //= require_self

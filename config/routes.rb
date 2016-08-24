@@ -68,7 +68,10 @@ Adela::Application.routes.draw do
       end
     end
 
-    resources :organizations, except: [:show, :destroy]
+    resources :organizations, except: [:show, :destroy] do
+      get :edit_multiple, on: :collection
+      put :update_multiple, on: :collection
+    end
   end
 
   namespace :inventories do

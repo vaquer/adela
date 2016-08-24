@@ -1,6 +1,6 @@
 module Admin
   class OrganizationsController < Admin::BaseController
-    load_and_authorize_resource
+    load_and_authorize_resource except: [:update_multiple]
 
     def index
       @organizations = Organization.includes(:users).title_sorted.paginate(page: params[:page])
@@ -36,6 +36,16 @@ module Admin
         flash[:alert] = I18n.t('flash.alert.organization.update')
       end
       redirect_to admin_organizations_path
+    end
+
+    def edit_multiple
+      @organizations = Organization.title_sorted
+    end
+
+    def update_multiple
+      authorize! :update, Organization
+      Organization.update(params[:organizations].keys, params[:organizations].values)
+      redirect_to edit_multiple_admin_organizations_path, notice: 'Cambios guardados'
     end
 
     private

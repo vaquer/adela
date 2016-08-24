@@ -1,0 +1,163 @@
+<div class="overlay-dashboard">
+
+  <div class="gray_back">
+    <div class="container">
+      <p>En este tablero podrás registrar el avance que las instituciones tienen en materia de datos abiertos de acuerdo a las guías de implementación. Si quieres conocer más de las guías da click en los siguientes íconos.</p>
+      <br>
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-3">
+          <a href="http://datos.gob.mx/guia/planea/paso-1-1.html" target="_blank">
+            <img src="<%= asset_path('icon_plan.png') %>" style="width: 100%;">
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="http://datos.gob.mx/guia/publica/paso-2-1.html" target="_blank">
+            <img src="<%= asset_path('icon_publish.png') %>" style="width: 100%;">
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="http://datos.gob.mx/guia/perfecciona/paso-3-1.html" target="_blank">
+            <img src="<%= asset_path('icon_perfect.png') %>" style="width: 100%;">
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="http://datos.gob.mx/guia/promueve/paso-4-1.html" target="_blank">
+            <img src="<%= asset_path('icon_promote.png') %>" style="width: 100%;">
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+
+
+  <div class="container">
+    <h2 class="title">Tablero de instituciones de la APF</h2>
+    <br>
+    <i class="fa fa-search fa-2x"></i><input type="text" id="searchbox" placeholder="Busca una institución">
+    <div class="table-responsive">
+      <%= form_tag update_multiple_admin_organizations_path, method: :put do %>
+      <table id="apf_table" class="table display" cellspacing="0" width="100%">
+        <thead>
+          <tr class="text-center">
+            <td>Institución</td>
+            <td>Planea</td>
+            <td>Publica</td>
+            <td>Perfecciona</td>
+            <td>Promueve</td>
+            <td>Plan de inv.</td>
+            <td>Designaciones</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @organizations.each do |organization| %>
+          <tr>
+            <%= fields_for "organizations[]", organization do |f| %>
+            <td class="depenTitle"><%= organization.title %></td>
+            <td align="center">
+              <%= f.check_box :planea, class: 'with-font' %>
+              <label for="organizations_<%= organization.slug %>_planea"></label>
+            </td>
+            <td align="center">
+              <%= f.check_box :publica, class: 'with-font' %>
+              <label for="organizations_<%= organization.slug %>_publica"></label>
+            </td>
+            <td align="center">
+              <%= f.check_box :perfecciona, class: 'with-font' %>
+              <label for="organizations_<%= organization.slug %>_perfecciona"></label>
+            </td>
+            <td align="center">
+              <%= f.check_box :promueve, class: 'with-font' %>
+              <label for="organizations_<%= organization.slug %>_promueve"></label>
+            </td>
+            <td align="center">
+              <%= f.check_box :plan_inventario, class: 'with-font' %>
+              <label for="organizations_<%= organization.slug %>_plan_inventario"></label>
+            </td>
+            <td align="center">
+              <%= f.check_box :designaciones, class: 'with-font' %>
+              <label for="organizations_<%= organization.slug %>_designaciones"></label>
+            </td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="actions hidden">
+        <%= submit_tag 'Update' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var newDataSet;
+
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    var tableR = $('#apf_table').dataTable({
+      "language": {
+        "paginate": {
+          "previous": "Anterior",
+          "next": "Siguiente"
+        }
+      },
+      "info": false,
+      "bLengthChange": false,
+      "columns": [
+      { "data": "institucion" },
+      {
+        "data": "planea",
+        'searchable':false,
+        'orderable':false
+      },
+      {
+        "data": "publica",
+        'searchable':false,
+        'orderable':false
+      },
+      {
+        "data": "perfecciona",
+        'searchable':false,
+        'orderable':false
+      },
+      {
+        "data": "promueve",
+        'searchable':false,
+        'orderable':false
+      },
+      {
+        "data": "plan_inv",
+        'searchable':false,
+        'orderable':false
+      },
+      {
+        "data": "designaciones",
+        'searchable':false,
+        'orderable':false
+      }
+      ]
+    });
+
+    $("#searchbox").keyup(function() {
+      $('#apf_table').dataTable().fnFilter(this.value);
+    });
+
+    var counter = 0;
+    var interval;
+
+    $('form .with-font').click(function(){
+      clearInterval(interval);
+      counter = 0;
+      interval = setInterval(function () {
+        counter++;
+        if (counter == 5) { $('form').submit(); }
+      }, 1000);
+    })
+
+  });
+</script>

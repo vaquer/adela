@@ -30,13 +30,12 @@
     <br>
   </div>
 
-
   <div class="container">
     <h2 class="title">Tablero de instituciones de la APF</h2>
     <br>
     <i class="fa fa-search fa-2x"></i><input type="text" id="searchbox" placeholder="Busca una institución">
     <div class="table-responsive">
-      <%= form_tag update_multiple_admin_organizations_path, method: :put do %>
+      <%= form_tag update_multiple_admin_organizations_path, method: :put, remote: true do %>
       <table id="apf_table" class="table display" cellspacing="0" width="100%">
         <thead>
           <tr class="text-center">
@@ -90,16 +89,21 @@
     </div>
   </div>
 
+  <div class='message-dashboard'>Cambios guardados</div>
+
 </div>
 
 <script type="text/javascript">
   $(document).ready(function() {
+
+    $('.message-dashboard').hide();
 
     var newDataSet;
 
     $('[data-toggle="tooltip"]').tooltip();
     
     var tableR = $('#apf_table').dataTable({
+      "pageLength": 2,
       "language": {
         "paginate": {
           "previous": "Anterior",
@@ -147,16 +151,8 @@
       $('#apf_table').dataTable().fnFilter(this.value);
     });
 
-    var counter = 0;
-    var interval;
-
-    $('form .with-font').click(function(){
-      clearInterval(interval);
-      counter = 0;
-      interval = setInterval(function () {
-        counter++;
-        if (counter == 5) { $('form').submit(); }
-      }, 1000);
+    $('form').on("click", ".with-font", function(){
+      $('form').submit();
     })
 
   });

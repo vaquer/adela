@@ -1,0 +1,12 @@
+	<% if @success %>
+		var counter = 0;
+		$('.message-dashboard').hide();
+		var interval = setInterval(function () {
+		  counter++;
+		  if (counter == 1) {
+		  	$('.message-dashboard').fadeIn('fast').delay(1000).fadeOut('slow');
+		  }
+		}, 200);
+	<% else %>
+	  alert('Error');
+	<% end %>

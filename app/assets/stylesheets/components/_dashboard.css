@@ -199,3 +199,13 @@ input[type=checkbox].with-font:checked ~ label:before {
     content: "\f058";        
     color: #00cc99;
 }
+
+.message-dashboard {
+  padding: 35px;
+  background: #00CC99;
+  color: #FFFFFF;
+  font-size: 18px;
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+}

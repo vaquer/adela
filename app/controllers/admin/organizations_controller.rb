@@ -44,8 +44,7 @@ module Admin
 
     def update_multiple
       authorize! :update, Organization
-      Organization.update(params[:organizations].keys, params[:organizations].values)
-      redirect_to edit_multiple_admin_organizations_path, notice: 'Cambios guardados'
+      @success = Organization.update(params[:organizations].keys, params[:organizations].values)
     end
 
     private

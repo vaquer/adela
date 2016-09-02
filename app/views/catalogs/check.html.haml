@@ -107,5 +107,11 @@
           %input#agreement-validated{ type: 'checkbox', 'onClick'=>'termsConfirmed()' }
             = t('agreement.validated')
 
+      .section
+        .alert.alert-warning{role: 'alert'}
+          Adela está cambiando para brindarte un mejor servicio. Durante este período la publicación de tus
+          datos podrá tomar hasta 24hrs. Para cualquier duda o soporte, favor de escribir a
+          = mail_to 'escuadron@datos.mx', nil, class: 'alert-link'
+
       = f.button t('action.publish'), type: 'submit', class: 'btn btn-primary disabled', id: 'publish'
       = link_to 'Volver al catálogo', catalog_datasets_path(current_organization.catalog), class: 'btn btn-default'

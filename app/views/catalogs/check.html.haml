@@ -107,7 +107,7 @@
           %input#agreement-validated{ type: 'checkbox', 'onClick'=>'termsConfirmed()' }
             = t('agreement.validated')
 
-      .section
+      .section.hidden#adela-message
         .alert.alert-warning{role: 'alert'}
           Adela está cambiando para brindarte un mejor servicio. Durante este período la publicación de tus
           datos podrá tomar hasta 24hrs. Para cualquier duda o soporte, favor de escribir a

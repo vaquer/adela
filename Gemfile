@@ -60,6 +60,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'thin'
   gem 'timecop'
+  gem 'pry'
 end
 
 group :test do

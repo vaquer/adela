@@ -5,8 +5,8 @@ class CatalogMailer < ActionMailer::Base
 
   def publish_email(catalog_id, user_id)
     @catalog = Catalog.find(catalog_id)
-    @user = User.find(user_id)
-    mail(to: @user.email, from: MAILER_FROM, subject: publish_email_subject(@catalog))
+    @user_email = User.find_by(id: user_id)&.email || BCC_EMAIL
+    mail(to: @user_email, from: MAILER_FROM, bcc: BCC_EMAIL, subject: publish_email_subject(@catalog))
   end
 
   private

@@ -1,4 +1,5 @@
 MAILER_FROM = ENV['MAILER_FROM'] || 'no-reply@adela.com'
+BCC_EMAIL = ENV['BCC_EMAIL'] || 'carlos.maya@datos.mx'
 
 if Rails.env.production?
   ActionMailer::Base.smtp_settings = {

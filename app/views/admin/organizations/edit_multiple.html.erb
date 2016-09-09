@@ -50,10 +50,6 @@
         </thead>
         <tbody>
           <% @organizations.each do |organization| %>
-            <script type="text/javascript">
-              var edit = '<%= organization.ranked %>';
-              console.log(edit);
-            </script>
             <% if organization.ranked %>
             <tr>
               <%= fields_for "organizations[]", organization do |f| %>

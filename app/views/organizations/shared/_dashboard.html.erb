@@ -194,6 +194,24 @@ $.ajax({
 orgLogoUrl = "<%= OPI_LOGOS_URL %>" + orgName + '.png';
 $('#logo_org').attr('src',orgLogoUrl);
 
+//Dependencias Opi
+$.ajax({
+  url: "<%= OPI_DASHBOARD_URL_API %>",
+  async: false,
+  type: 'GET',
+  success: function(json) {
+    $.each(json.dependencias,function(key, value){
+      var orgNameData = value.institucion.toLowerCase();
+      if (orgName == orgNameData) {
+        totalRaiting = value.apertura;
+        $("#califTotal").text(value.calificacion);
+        $("#rknTotal").text(value.ranking);
+      }
+    });
+    $("#orgTotal").text(json.dependencias.length);
+  }
+});
+
 var monthNames = [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ];
 
 $.each(dataApi.results,function(key, value){
@@ -257,28 +275,28 @@ $.each(dataApi.results,function(key, value){
   $('#issuedTotal').text('/'+issuedTotal.toLocaleString('en'));
   $('#issuedPublish').text(issuedPublish.toLocaleString('en'));
 
-  //Obtengo calificacion de apertura
-  rating = value.adela.dataset.openessRating;
+  //Obtengo calificacion de apertura -- No era correcto el calculo, ahora se obtiene de dataset OPI
+  /*rating = value.adela.dataset.openessrating;
+  console.log('rating',rating);
   sumaRating = sumaRating + rating;
-  totalRaiting = sumaRating / issuedTotal;
+  totalRaiting = sumaRating / issuedTotal;*/
 
   $("#stars-raiting").attr("data-rating",totalRaiting);
 
   //Obtengo publishDate
-  adelaPublishDate = value.adela.dataset.publishDate;
-
+  adelaPublishDate = value.adela.dataset.publishdate;
   var dateToday = new Date();
   var date = new Date(adelaPublishDate);
   var day = date.getDate();
   var monthIndex = date.getMonth();
   var year = date.getFullYear();
 
-  //Obtengo Tipo
+  //Obtengo Tipo -- NUNCA VIENE EN DATASET
   resourceType = value.adela.dataset.type;
   if (date > dateToday) {
     percentPubl = 0;
     var htmlPendientes = '';
-    htmlPendientes += '<tr><td class="text-center code-color-dashboard">' + day + ' ' + monthNames[monthIndex] + ' ' + year + '</td><td>' + resourceTitle + '</td><td>' + resourceType + '</td><td><a href="#">Notifica</a></td></tr>';
+    htmlPendientes += '<tr><td class="text-center code-color-dashboard">' + day + ' ' + monthNames[monthIndex] + ' ' + year + '</td><td>' + resourceTitle + '</td><td>-</td><td><a href="#">Notifica</a></td></tr>';
     $('#table-pendientes tr').first().after(htmlPendientes);
   } else {
     percentPubl = 15;
@@ -312,7 +330,7 @@ function getTopN(arr, prop, n) {
 var n = 5;
 var topScorers = getTopN(valueDownloads, "value", n);
 topScorers.forEach(function(item, index) {
-  var dateDownload = new Date(item.date_insert);
+  var dateDownload = new Date(item["date-insert"]);
   var day = dateDownload.getDate();
   var monthIndex = dateDownload.getMonth();
   var year = dateDownload.getFullYear();
@@ -335,23 +353,6 @@ if (totalRecommendations > 0) {
 } else {
   percentRecommen = 10;
 }
-
-//Dependencias Opi
-$.ajax({
-  url: "<%= OPI_DASHBOARD_URL_API %>",
-  async: false,
-  type: 'GET',
-  success: function(json) {
-    $.each(json.dependencias,function(key, value){
-      var orgNameData = value.institucion.toLowerCase();
-      if (orgName == orgNameData) {
-        $("#califTotal").text(value.calificacion);
-        $("#rknTotal").text(value.ranking);
-      }
-    });
-    $("#orgTotal").text(json.dependencias.length);
-  }
-});
 
 var count = 1;
 $('.code-color-dashboard').each(function() {

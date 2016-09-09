@@ -50,35 +50,37 @@
         </thead>
         <tbody>
           <% @organizations.each do |organization| %>
-          <tr>
-            <%= fields_for "organizations[]", organization do |f| %>
-            <td class="depenTitle"><%= organization.title %></td>
-            <td align="center">
-              <%= f.check_box :planea, class: 'with-font' %>
-              <label for="organizations_<%= organization.slug %>_planea"></label>
-            </td>
-            <td align="center">
-              <%= f.check_box :publica, class: 'with-font' %>
-              <label for="organizations_<%= organization.slug %>_publica"></label>
-            </td>
-            <td align="center">
-              <%= f.check_box :perfecciona, class: 'with-font' %>
-              <label for="organizations_<%= organization.slug %>_perfecciona"></label>
-            </td>
-            <td align="center">
-              <%= f.check_box :promueve, class: 'with-font' %>
-              <label for="organizations_<%= organization.slug %>_promueve"></label>
-            </td>
-            <td align="center">
-              <%= f.check_box :plan_inventario, class: 'with-font' %>
-              <label for="organizations_<%= organization.slug %>_plan_inventario"></label>
-            </td>
-            <td align="center">
-              <%= f.check_box :designaciones, class: 'with-font' %>
-              <label for="organizations_<%= organization.slug %>_designaciones"></label>
-            </td>
+            <% if organization.ranked %>
+            <tr>
+              <%= fields_for "organizations[]", organization do |f| %>
+              <td class="depenTitle"><%= organization.title %></td>
+              <td align="center" edit="<%= organization.ranked %>">
+                <%= f.check_box :planea, class: 'with-font' %>
+                <label for="organizations_<%= organization.slug %>_planea"></label>
+              </td>
+              <td align="center" edit="<%= organization.ranked %>">
+                <%= f.check_box :publica, class: 'with-font' %>
+                <label for="organizations_<%= organization.slug %>_publica"></label>
+              </td>
+              <td align="center" edit="<%= organization.ranked %>">
+                <%= f.check_box :perfecciona, class: 'with-font' %>
+                <label for="organizations_<%= organization.slug %>_perfecciona"></label>
+              </td>
+              <td align="center" edit="<%= organization.ranked %>">
+                <%= f.check_box :promueve, class: 'with-font' %>
+                <label for="organizations_<%= organization.slug %>_promueve"></label>
+              </td>
+              <td align="center" edit="<%= organization.ranked %>">
+                <%= f.check_box :plan_inventario, class: 'with-font' %>
+                <label for="organizations_<%= organization.slug %>_plan_inventario"></label>
+              </td>
+              <td align="center" edit="<%= organization.ranked %>">
+                <%= f.check_box :designaciones, class: 'with-font' %>
+                <label for="organizations_<%= organization.slug %>_designaciones"></label>
+              </td>
+              <% end %>
+            </tr>
             <% end %>
-          </tr>
           <% end %>
         </tbody>
       </table>
@@ -103,7 +105,6 @@
     $('[data-toggle="tooltip"]').tooltip();
     
     var tableR = $('#apf_table').dataTable({
-      "pageLength": 2,
       "language": {
         "paginate": {
           "previous": "Anterior",

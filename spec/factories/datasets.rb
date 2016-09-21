@@ -21,5 +21,9 @@ FactoryGirl.define do
     after(:build) do |dataset|
       dataset.distributions << build(:distribution, dataset: nil)
     end
+
+    factory :dataset_with_sector do
+      dataset_sector
+    end
   end
 end

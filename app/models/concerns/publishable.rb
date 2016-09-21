@@ -24,7 +24,7 @@ module Publishable
       end
 
       event :refine_published_resource do
-        transition [:published, :refining] => :refined, if: lambda { |resource| resource.valid?(:ckan) }
+        transition [:refining] => :refined, if: lambda { |resource| resource.valid?(:ckan) }
       end
     end
   end

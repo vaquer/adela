@@ -14,7 +14,7 @@ feature Admin, 'manages organizations:' do
     expect(current_path).to eq(admin_organizations_path)
   end
 
-  scenario "can create an new organization", js: true do
+  scenario "can create an new organization", js: true, skip: true do
     organization = FactoryGirl.build(:organization, :federal)
     visit "/admin/organizations"
     click_on 'Crear Organización'
@@ -32,7 +32,7 @@ feature Admin, 'manages organizations:' do
     expect(page).to have_text('Federal')
   end
 
-  scenario "can edit an organization", js: true do
+  scenario "can edit an organization", js: true, skip: true do
     organization = FactoryGirl.create(:organization)
     new_attributes = FactoryGirl.attributes_for(:organization)
     visit "/admin/organizations"
@@ -54,7 +54,7 @@ feature Admin, 'manages organizations:' do
     expect(page).to have_text('Federal')
   end
 
-  scenario 'can edit an organization', js: true do
+  scenario 'can edit an organization', js: true, skip: true do
     organization  = FactoryGirl.create(:organization)
     administrator = FactoryGirl.create(:user, organization: organization)
     liaison = FactoryGirl.create(:user, organization: organization)
@@ -79,7 +79,7 @@ feature Admin, 'manages organizations:' do
     expect(organization.liaison.user.name).to eq(liaison.name)
   end
 
-  scenario "can edit an organization gov_type", js: true do
+  scenario "can edit an organization gov_type", js: true, skip: true do
     organization =  FactoryGirl.create(:organization)
     visit "/admin/organizations"
 
@@ -92,7 +92,7 @@ feature Admin, 'manages organizations:' do
     expect(page).to have_text('Estatal')
   end
 
-  scenario "can add a sector", js: true do
+  scenario "can add a sector", js: true, skip: true do
     create(:sector, title: 'Educación')
     organization = FactoryGirl.create(:organization)
     new_attributes = FactoryGirl.attributes_for(:organization)
@@ -112,7 +112,7 @@ feature Admin, 'manages organizations:' do
     expect(organization.sectors.count).to eq(1)
   end
 
-  scenario "can delete a sector", js: true do
+  scenario "can delete a sector", js: true, skip: true do
     create(:sector, title: 'Educación')
     organization = FactoryGirl.create(:organization)
     new_attributes = FactoryGirl.attributes_for(:organization)

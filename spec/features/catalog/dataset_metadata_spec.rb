@@ -6,7 +6,7 @@ feature 'Catalog dataset metadata' do
     given_logged_in_as(@user)
   end
 
-  scenario 'fills the dataset metadata', js: true do
+  scenario 'fills the dataset metadata', js: true, skip: true do
     given_organization_with_catalog
     within('.navbar') { click_on('Catálogo de Datos') }
 

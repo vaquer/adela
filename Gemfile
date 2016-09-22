@@ -70,7 +70,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.53.4'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'json-schema'

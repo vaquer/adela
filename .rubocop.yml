@@ -27,7 +27,11 @@ Metrics/PerceivedComplexity:
   Max: 14 # TODO: Lower to 7
 
 Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
+  EnforcedStyle: indent
+
+Style/IndentationConsistency:
+  AllowProtectedAndPrivateMethodsBeIndented: true
+  EnforcedStyle: rails
 
 Style/CollectionMethods:
   PreferredMethods:

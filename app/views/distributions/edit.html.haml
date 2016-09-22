@@ -45,6 +45,11 @@
           .form-group.required
             = f.label :byte_size, 'Tamaño en Bytes'
             = f.text_field :byte_size,  class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.byte_size')}"
+      .row
+        .col-xs-6
+          .form-group
+            = f.label :spatial, 'Espacio geográfico', class: 'control-label'
+            = f.text_field :spatial, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.spatial')}"
     .col-md-3
       %p.margin-top
         Los metadatos ayudan a que los usuarios entiendan las características de la información que se está publicando. La documentación es importante porque afecta la calidad de los datos y el potencial de su uso e impacto.

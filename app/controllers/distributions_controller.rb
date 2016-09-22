@@ -23,7 +23,8 @@ class DistributionsController < ApplicationController
       :temporal,
       :byte_size,
       :media_type,
-      :format
+      :format,
+      :spatial
     )
   end
 end

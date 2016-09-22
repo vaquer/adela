@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin::UsersController do
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:admin) { create(:admin_user) }
 
   before :each do
     sign_in admin

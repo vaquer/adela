@@ -3,7 +3,7 @@ require 'sidekiq/testing'
 
 feature Admin, 'manages organizations:' do
   background do
-    @admin = FactoryGirl.create(:admin)
+    @admin = create(:admin_user)
     given_logged_in_as(@admin)
   end
 

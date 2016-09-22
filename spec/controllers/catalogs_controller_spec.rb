@@ -5,7 +5,7 @@ describe CatalogsController do
     before { ActionMailer::Base.deliveries = [] }
 
     before(:each) do
-      @user = create(:user, :administrator)
+      @user = create(:admin_user)
       @organization = @user.organization
       create(:catalog_with_documented_datasets, organization: @organization)
       sign_in(@user)

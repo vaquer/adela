@@ -9,11 +9,11 @@ module Features
 
     def given_organization_with_catalog
       create(:inventory, organization: @user.organization)
-      create(:catalog, :datasets, organization: @user.organization)
+      create(:catalog_with_datasets, organization: @user.organization)
     end
 
     def given_organization_with_opening_plan
-      create(:catalog, :datasets, organization: @user.organization)
+      create(:catalog_with_datasets, organization: @user.organization)
     end
 
     def sees_success_message(message)

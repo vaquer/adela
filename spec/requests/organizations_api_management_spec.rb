@@ -42,7 +42,7 @@ feature "organizations api management" do
   end
 
   it "gets the organizations with autonomous gov_type" do
-    organization = FactoryGirl.create(:organization, :sector)
+    organization = FactoryGirl.create(:organization_with_sector)
     @sector = organization.sectors.first
     get "/api/v1/organizations/?sector=#{@sector.slug}"
     json = JSON.parse(response.body)

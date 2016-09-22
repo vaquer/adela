@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CatalogMailer do
-  let(:catalog) { create(:catalog, :datasets) }
+  let(:catalog) { create(:catalog_with_datasets) }
   let(:user) { create(:user) }
   let(:mail) { CatalogMailer.publish_email(catalog.id, user.id) }
 

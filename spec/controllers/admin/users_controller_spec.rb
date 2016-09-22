@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin::UsersController do
-  let(:admin) { create(:admin_user) }
+  let(:admin) { create(:super_user) }
 
   before :each do
     sign_in admin

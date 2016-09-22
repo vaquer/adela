@@ -2,16 +2,15 @@ require 'spec_helper'
 
 describe CatalogsController do
   describe 'PUTS #publish' do
+    let(:user) { create(:organization_administrator) }
+    let(:catalog) { create(:catalog_with_datasets, organization: user.organization) }
+
     before { ActionMailer::Base.deliveries = [] }
 
     before(:each) do
-      @user = create(:admin_user)
-      @organization = @user.organization
-      create(:catalog_with_datasets, organization: @organization)
-      sign_in(@user)
-      distribution_ids = @organization.catalog.distributions.map(&:id)
-
-      put :publish, id: @organization.id, catalog: { distribution_ids: distribution_ids }, locale: :es
+      sign_in(user)
+      distribution_ids = catalog.distributions.map(&:id)
+      put :publish, id: user.organization.id, catalog: { distribution_ids: distribution_ids }, locale: :es
     end
 
     it 'sends an email to administrator' do
@@ -20,7 +19,6 @@ describe CatalogsController do
     end
 
     it 'enqueues the harvest job' do
-      catalog_url = "http://adela.datos.gob.mx/#{@organization.slug}/catalogo.json"
       expect(ShogunHarvestWorker.jobs.size).to eq(1)
     end
   end

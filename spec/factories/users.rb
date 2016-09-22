@@ -8,7 +8,11 @@ FactoryGirl.define do
     password_confirmation 'secretpassword'
     organization
 
-    factory :admin_user do
+    factory :organization_administrator do
+      after(:create) { |user| create(:administrator, user: user, organization: user.organization) }
+    end
+
+    factory :super_user do
       after(:create) { |user| user.add_role(:admin) }
     end
   end

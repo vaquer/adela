@@ -3,7 +3,7 @@ require 'sidekiq/testing'
 
 feature Admin, 'manages users:' do
   background do
-    @admin = create(:admin_user)
+    @admin = create(:super_user)
     given_logged_in_as(@admin)
   end
 

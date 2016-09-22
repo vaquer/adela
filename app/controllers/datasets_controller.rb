@@ -34,6 +34,7 @@ class DatasetsController < ApplicationController
       :spatial,
       :keyword,
       :comments,
+      :quality,
       dataset_sector_attributes: [:sector_id]
     )
   end

@@ -54,6 +54,9 @@
       .form-group.required
         = f.label :landing_page, 'URL para consultar diccionario de datos', class: 'control-label'
         = f.url_field :landing_page, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.landing_page')}", required: true
+      .form-group
+        = f.label :quality, 'URL para consultar el proceso de calidad de datos', class: 'control-label'
+        = f.url_field :quality, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.quality')}"
       .form-group.required
         = f.label :keyword, 'Palabras clave (separadas por coma)', class: 'control-label'
         = f.text_area :keyword, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.dataset.keyword')}", required: true

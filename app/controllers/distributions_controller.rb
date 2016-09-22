@@ -24,7 +24,8 @@ class DistributionsController < ApplicationController
       :byte_size,
       :media_type,
       :format,
-      :spatial
+      :spatial,
+      :tools
     )
   end
 end

@@ -20,6 +20,7 @@ feature 'Catalog distribution metadata' do
     expect(page).to have_field('distribution_modified', with: distribution_attributes[:modified].strftime('%F'))
     expect(page).to have_field('distribution_byte_size', with: distribution_attributes[:byte_size])
     expect(page).to have_field('distribution_spatial', with: distribution_attributes[:spatial])
+    expect(page).to have_field('distribution_tools', with: distribution_attributes[:tools])
   end
 
   def fill_catalog_distribution_metadata(distribution_attributes)
@@ -27,6 +28,7 @@ feature 'Catalog distribution metadata' do
     fill_in('distribution_modified', with: distribution_attributes[:modified].strftime('%F'))
     fill_in('distribution_byte_size', with: distribution_attributes[:byte_size])
     fill_in('distribution_spatial', with: distribution_attributes[:spatial])
+    fill_in('distribution_tools', with: distribution_attributes[:tools])
     # page.find('form').click # close the date picker by clicking anywhere
     click_on('Guardar')
   end

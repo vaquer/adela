@@ -14,6 +14,7 @@ FactoryGirl.define do
     issued { Faker::Time.forward }
     publish_date { Faker::Time.forward }
     comments { Faker::Lorem.paragraph }
+    quality { Faker::Internet.url }
     public_access true
     editable true
     catalog

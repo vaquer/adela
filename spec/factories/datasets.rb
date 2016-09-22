@@ -18,35 +18,12 @@ FactoryGirl.define do
     editable true
     catalog
 
-    factory :catalog_dataset do
-      contact_position nil
-      mbox nil
-      landing_page nil
-      keyword ''
-
-      transient do
-        distributions_count { Faker::Number.between(1, 5) }
-      end
-
-      after(:create) do |dataset, evaluator|
-        create_list(:catalog_distribution, evaluator.distributions_count, dataset: dataset)
-      end
+    after(:build) do |dataset|
+      dataset.distributions << build(:distribution, dataset: nil)
     end
 
-    trait :distributions do
-      transient do
-        distributions_count { Faker::Number.between(1, 5) }
-      end
-
-      after(:create) do |dataset, evaluator|
-        create_list(:distribution, evaluator.distributions_count, dataset: dataset)
-      end
-    end
-
-    trait :sector do
-      after(:create) do |dataset|
-        create(:dataset_sector, dataset: dataset)
-      end
+    factory :dataset_with_sector do
+      dataset_sector
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin::OrganizationsController do
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:admin) { create(:super_user) }
 
   before :each do
     sign_in admin
@@ -37,7 +37,7 @@ describe Admin::OrganizationsController do
 
   describe 'POST create' do
     before :each do
-      @attributes = FactoryGirl.attributes_for(:organization, :federal)
+      @attributes = attributes_for(:federal_organization)
       post :create, organization: @attributes
     end
 
@@ -72,7 +72,7 @@ describe Admin::OrganizationsController do
   describe 'PATCH update' do
     before :each do
       @organization = FactoryGirl.create(:organization)
-      @attributes = FactoryGirl.attributes_for(:organization, :federal)
+      @attributes = attributes_for(:federal_organization)
       @organization.reload
 
       patch :update, id: @organization.id, organization: @attributes

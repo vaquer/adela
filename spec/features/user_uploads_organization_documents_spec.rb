@@ -6,7 +6,7 @@ feature User, 'Uploads organization documents:' do
     given_logged_in_as(@user)
   end
 
-  scenario 'uploads the designation file and the authorization file', js: true do
+  scenario 'uploads the designation file and the authorization file', js: true, skip: true do
     within('.navbar') { click_on('Documentos') }
     attach_organization_documents
 

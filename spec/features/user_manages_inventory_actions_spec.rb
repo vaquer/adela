@@ -2,7 +2,9 @@ require 'spec_helper'
 
 feature User, 'manages inventory actions:' do
   background do
-    @user = FactoryGirl.create(:user)
+    @organization = create(:organization)
+    @catalog = create(:catalog, organization: @organization)
+    @user = create(:user, organization: @organization)
     given_logged_in_as(@user)
   end
 

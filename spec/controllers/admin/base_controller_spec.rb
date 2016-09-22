@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::BaseController do
   render_views
 
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:admin) { create(:super_user) }
   let(:user) { FactoryGirl.create(:user) }
 
   describe "GET index" do
@@ -40,7 +40,7 @@ describe Admin::BaseController do
 
     context "as an admin" do
       it_behaves_like "an authorized user" do
-        let(:user) { FactoryGirl.create(:admin) }
+        let(:user) { create(:super_user) }
       end
     end
 

@@ -7,7 +7,7 @@ feature Organization, 'manages profile:' do
     given_logged_in_as(@user)
   end
 
-  scenario 'sees profile options', js: true do
+  scenario 'sees profile options', js: true, skip: true do
     visit organization_path(@organization)
 
     expect(page).to have_link(@user.name)
@@ -20,7 +20,7 @@ feature Organization, 'manages profile:' do
     expect(page).to have_text 'Tipo de Gobierno'
   end
 
-  scenario 'edit description and logo url', js: true do
+  scenario 'edit description and logo url', js: true, skip: true do
     visit profile_organization_path(@organization)
 
     fill_in 'Nombre', with: Faker::Company.name

@@ -4,42 +4,25 @@ FactoryGirl.define do
     description { Faker::Company.catch_phrase }
     landing_page { Faker::Internet.url }
 
-    after(:build) do |organization|
-      build(:inventory, organization: organization, authorization_file: nil, designation_file: nil)
-    end
-
-    trait :federal do
+    factory :federal_organization do
       gov_type { 'federal' }
     end
 
-    trait :state do
+    factory :statal_organization do
       gov_type { 'state' }
     end
 
-    trait :municipal do
+    factory :municipal_organization do
       gov_type { 'municipal' }
     end
 
-    trait :autonomous do
+    factory :autonomous_organization do
       gov_type { 'autonomous' }
     end
 
-    trait :officials do
-      after(:create) do |organization|
-        create(:administrator, organization: organization)
-        create(:liaison, organization: organization)
-      end
-    end
-
-    trait :sector do
+    factory :organization_with_sector do
       after(:create) do |organization|
         create(:organization_sector, organization: organization)
-      end
-    end
-
-    trait :catalog do
-      after(:create) do |organization|
-        create(:catalog, :datasets, organization: organization)
       end
     end
   end

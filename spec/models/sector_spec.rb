@@ -1,17 +1,22 @@
 require 'spec_helper'
 
 describe Sector do
-  context 'with all mandatory fields' do
-    let(:sector) { create(:sector) }
+  let(:sector) { create(:sector) }
+
+  context 'validations' do
     it 'should be valid with all mandatory fields' do
       expect(sector).to be_valid
     end
+
+    it 'should not be valid without a title' do
+      sector.title = nil
+      expect(sector).not_to be_valid
+    end
   end
 
-  context 'without a title' do
-    let(:sector) { build(:sector, title: nil) }
-    it 'should not be valid ' do
-      expect(sector).not_to be_valid
+  context 'friendly_id' do
+    it 'should have an slug' do
+      expect(sector.slug).not_to be_nil
     end
   end
 end

@@ -13,6 +13,7 @@ class Organization < ActiveRecord::Base
   has_many :activity_logs
   has_many :designation_files
   has_many :memo_files
+  has_many :ministry_memo_files
   has_many :organization_sectors, dependent: :destroy
   has_many :sectors, through: :organization_sectors
 
@@ -20,6 +21,7 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :designation_files
   accepts_nested_attributes_for :liaison
   accepts_nested_attributes_for :memo_files
+  accepts_nested_attributes_for :ministry_memo_files
   accepts_nested_attributes_for :organization_sectors, allow_destroy: true
 
   scope :title_sorted, -> { order("organizations.title ASC") }

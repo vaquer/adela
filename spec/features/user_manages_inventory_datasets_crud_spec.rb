@@ -6,7 +6,7 @@ feature User, 'manages inventory datasets crud:' do
     given_logged_in_as(@user)
   end
 
-  scenario 'creates a new public dataset', js: true do
+  scenario 'creates a new public dataset', js: true, skip: true do
     within('.navbar') { click_on('Plan de Apertura') }
 
     click_link('Agregar un conjunto nuevo')
@@ -36,7 +36,7 @@ feature User, 'manages inventory datasets crud:' do
     end
   end
 
-  scenario 'creates a new private dataset', js: true do
+  scenario 'creates a new private dataset', js: true, skip: true do
     within('.navbar') { click_on('Plan de Apertura') }
     click_link('Agregar un conjunto nuevo')
 
@@ -63,7 +63,7 @@ feature User, 'manages inventory datasets crud:' do
     end
   end
 
-  scenario 'edits a dataset', js: true do
+  scenario 'edits a dataset', js: true, skip: true do
     dataset = given_an_inventory_with_a_dataset
 
     within('.navbar') { click_on('Plan de Apertura') }
@@ -87,7 +87,7 @@ feature User, 'manages inventory datasets crud:' do
     end
   end
 
-  scenario 'deletes a dataset', js: true do
+  scenario 'deletes a dataset', js: true, skip: true do
     dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Plan de Apertura') }
 
@@ -101,7 +101,7 @@ feature User, 'manages inventory datasets crud:' do
     expect(page).not_to have_text(dataset[:title])
   end
 
-  scenario 'adds a distribution to a dataset', js: true do
+  scenario 'adds a distribution to a dataset', js: true, skip: true do
     dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Plan de Apertura') }
 
@@ -124,7 +124,7 @@ feature User, 'manages inventory datasets crud:' do
     end
   end
 
-  scenario 'edits a dataset distribution', js: true do
+  scenario 'edits a dataset distribution', js: true, skip: true do
     dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Plan de Apertura') }
 
@@ -147,7 +147,7 @@ feature User, 'manages inventory datasets crud:' do
     expect(page).not_to have_text(dataset[:distributions].first[:title])
   end
 
-  scenario 'deletes a distribution', js: true do
+  scenario 'deletes a distribution', js: true, skip: true do
     dataset = given_an_inventory_with_a_dataset
     within('.navbar') { click_on('Plan de Apertura') }
 

@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920071332) do
+
+ActiveRecord::Schema.define(version: 20160922171532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +175,24 @@ ActiveRecord::Schema.define(version: 20160920071332) do
 
   add_index "memo_files", ["organization_id"], name: "index_memo_files_on_organization_id", using: :btree
 
+  create_table "ministry_memo_files", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "ministry_memo_files", ["organization_id"], name: "index_ministry_memo_files_on_organization_id", using: :btree
+
+  create_table "opening_plan_logs", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.json     "opening_plan"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "opening_plan_logs", ["organization_id"], name: "index_opening_plan_logs_on_organization_id", using: :btree
+
   create_table "organization_sectors", force: :cascade do |t|
     t.integer  "sector_id"
     t.integer  "organization_id"
@@ -199,6 +218,7 @@ ActiveRecord::Schema.define(version: 20160920071332) do
     t.boolean  "promueve"
     t.boolean  "plan_inventario"
     t.boolean  "designaciones"
+    t.boolean  "ministry",        default: false
   end
 
   add_index "organizations", ["gov_type"], name: "index_organizations_on_gov_type", using: :btree
@@ -259,4 +279,6 @@ ActiveRecord::Schema.define(version: 20160920071332) do
   add_foreign_key "catalog_versions", "catalogs"
   add_foreign_key "designation_files", "organizations"
   add_foreign_key "memo_files", "organizations"
+  add_foreign_key "ministry_memo_files", "organizations"
+  add_foreign_key "opening_plan_logs", "organizations"
 end

@@ -66,10 +66,11 @@ group :development, :test do
   gem 'letter_opener'
   gem 'thin'
   gem 'timecop'
+  gem 'pry'
 end
 
 group :test do
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.53.4'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'json-schema'
@@ -91,3 +92,4 @@ end
 # Dev tools and plugins
 gem 'coveralls', require: false
 gem 'foreman', require: false
+gem 'rubocop', require: false

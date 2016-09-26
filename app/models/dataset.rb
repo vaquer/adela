@@ -63,11 +63,11 @@ class Dataset < ActiveRecord::Base
 
   private
 
-  def sectors
-    catalog.organization.sectors.map(&:slug).join(',')
-  end
+    def sectors
+      catalog.organization.sectors.map(&:slug).join(',')
+    end
 
-  def gov_type
-    catalog.organization.gov_type
-  end
+    def gov_type
+      catalog.organization.gov_type
+    end
 end

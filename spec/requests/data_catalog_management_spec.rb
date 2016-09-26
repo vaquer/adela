@@ -24,7 +24,7 @@ feature 'data catalog management' do
   end
 
   scenario 'can see all the catalogs available through the api' do
-    catalog = create(:catalog, :datasets)
+    catalog = create(:catalog_with_datasets)
     dataset = create(:dataset, catalog: catalog)
     distribution = create(:distribution, dataset: dataset)
     distribution.update_column(:state, 'published')
@@ -63,7 +63,7 @@ feature 'data catalog management' do
   end
 
   scenario 'dataset keywords contain the organization gov_type' do
-    organization = create(:organization, :federal)
+    organization = create(:federal_organization)
     catalog = create(:catalog, organization: organization)
     dataset = create(:dataset, catalog: catalog)
     distribution = create(:distribution, dataset: dataset)

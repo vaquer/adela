@@ -11,32 +11,9 @@ FactoryGirl.define do
     issued {  Faker::Time.forward }
     publish_date { Time.current }
     format { Faker::App.name.downcase }
-    dataset
 
-    factory :catalog_distribution do
-      download_url nil
-      temporal nil
-      modified nil
-      byte_size nil
-    end
-
-    trait :broke do
-      download_url nil
-      temporal nil
-      modified nil
-      state 'broke'
-    end
-
-    trait :documented do
-      state 'documented'
-    end
-
-    trait :published do
-      state 'published'
-    end
-
-    trait :unpublished do
-      published false
+    factory :distribution_with_dataset do
+      dataset
     end
   end
 end

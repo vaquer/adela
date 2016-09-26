@@ -17,14 +17,14 @@ feature User, 'logs in:' do
     expect(page).to have_css("#user_password")
   end
 
-  scenario "fails to log in with an invalid account", :js => true do
+  scenario "fails to log in with an invalid account", js: true, skip: true do
     visit new_user_session_path
     fill_the_form_with(@user.email, "wrong_password")
     click_on('Entrar')
     sees_error_message "Correo o contraseña inválidos."
   end
 
-  scenario "succeed to log in with a valid account", :js => true do
+  scenario "succeed to log in with a valid account", js: true, skip: true do
     visit new_user_session_path
     fill_the_form_with(@user.email, @user.password)
     click_on('Entrar')

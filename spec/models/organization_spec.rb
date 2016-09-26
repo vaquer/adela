@@ -23,13 +23,42 @@ describe Organization do
     end
   end
 
-  context 'sector scope' do
-    let(:organization) { create(:organization, :sector) }
+  context 'defaults' do
+    let(:organization) { create(:organization) }
 
-    it 'should return the sector organizations' do
-      slug = organization.sectors.first.slug
-      organizations_count = Organization.sector(slug).count
-      expect(organizations_count).to eq(1)
+    it 'should not be a ministry' do
+      expect(organization.ministry?).to be false
+    end
+  end
+
+  context 'scopes' do
+    describe '::sector' do
+      let(:organization) { create(:organization_with_sector) }
+
+      it 'should return the collection of organization with a given sector' do
+        rand(1..10).times { create(:organization) }
+        sector = organization.sectors.first
+        organizations = Organization.sector(sector.slug)
+        expect(organizations.count).to eql(1)
+      end
+    end
+
+    describe '::gov_type' do
+      let!(:organization) { create(:federal_organization) }
+
+      it 'should return the collection of organization with a given gov_type' do
+        rand(1..10).times { create(:statal_organization) }
+        organizations = Organization.gov_type('federal')
+        expect(organizations.count).to eql(1)
+      end
+    end
+
+    describe '::title_sorted' do
+      it 'should return the collection of organization sorted by title' do
+        (1..3).each { |n| create(:organization, title: "organization-#{n}") }
+        organizations = Organization.title_sorted
+        expect(organizations.map(&:title)).to eql(['organization-1', 'organization-2', 'organization-3'])
+      end
     end
   end
 end

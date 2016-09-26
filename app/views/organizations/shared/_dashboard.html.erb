@@ -2,10 +2,12 @@
 <div class="overlay-dashboard">
   <!-- header organizacion -->
   <div class="container content-dashboard">
-    <div class="row">
-      <div class="col-sm-8">
-        <h3 class="title printHiden" id="title_org"></h3>
-        <img id="logo_org" class="noPrint">
+    <div class="row" style="margin-top: 4%;">
+      <div class="col-sm-4">
+        <img id="logo_org">            
+      </div>
+      <div class="col-sm-8 text-right" style="margin-top: 4%;">
+        <h2 class='title' id="title_org"></h2>
         <p>Este tablero de control se actualiza cada 24 horas.</p>
       </div>
     </div>
@@ -170,12 +172,9 @@ var issuedTotal = 0;
 var issuedPublish  = 0;
 var sumaRating  = 0;
 var sumaCalidad  = 0;
-var isPublicTrue  = 0;
-var isPublicFalse  = 0;
 var totalRecommendations  = 0;
-$("#title_org").text(strName.toUpperCase());
 
-var totalCalidad, percentRecommen, percentPubl, percentCalidad, dataApi, orgTitle, orgLogoUrl, downloads, adelaIssued, resourceId, rating, totalRaiting, adelaPublishDate, resourceTitle, resourceType;
+var totalCalidad, percentRecommen, percentPubl, percentCalidad, dataApi, orgTitle, orgLogoUrl, downloads, adelaIssued, resourceId, rating, totalRaiting, adelaPublishDate, resourceTitle, resourceType, resourceModified, dataDescargasOpi, dataPublicOpi, isPublicFalse, isPublicTrue;
 var valueDownloads = [];
 
 //Ajax Dataset Buda - Las variables del Endpoint se definen en app/assets/javascript/dashboard.js.erb
@@ -196,19 +195,41 @@ $('#logo_org').attr('src',orgLogoUrl);
 
 //Dependencias Opi
 $.ajax({
-  url: "<%= OPI_DASHBOARD_URL_API %>",
+  url: "<%= OPI_DASHBOARD_URL_API %>/" + orgName + "/",
   async: false,
   type: 'GET',
   success: function(json) {
+    dataPublicOpi = json.dependencias;
     $.each(json.dependencias,function(key, value){
-      var orgNameData = value.institucion.toLowerCase();
+      var orgNameData = value.slug;
       if (orgName == orgNameData) {
+        isPublicFalse = value.privados;
+        isPublicTrue = value.publicos;
         totalRaiting = value.apertura;
         $("#califTotal").text(value.calificacion);
         $("#rknTotal").text(value.ranking);
+        $("#title_org").text(value.institucion);
+        $('#issuedTotal').text('/'+value.total.toLocaleString('en'));
+        $('#issuedPublish').text(value.publicados.toLocaleString('en'));
       }
     });
-    $("#orgTotal").text(json.dependencias.length);
+    //$("#orgTotal").text(json.dependencias.length);
+  }
+});
+
+$("#orgTotal").text(orgCount);
+console.log(isPublicTrue);
+
+//Top 5 Descargas
+$.ajax({
+  url: "<%= OPI_DASHBOARD_URL_API %>" + "/recursos-mas-descargados/" + orgName + "/",
+  async: false,
+  type: 'GET',
+  success: function(data) {
+    dataDescargasOpi = data;
+  },
+  error: function(data){
+    console.log("error- ",data);
   }
 });
 
@@ -220,6 +241,7 @@ $.each(dataApi.results,function(key, value){
   resourceId = value.adela.dataset.id;
   //Obtengo Titulo
   resourceTitle = value.adela.dataset.title;
+  resourceModified = value.adela.resource.modified;
   //Calificación Calidad de Datos
   if (value.calificacion == "bronce") {
     sumaCalidad = sumaCalidad + 1;
@@ -252,14 +274,13 @@ $.each(dataApi.results,function(key, value){
       var urlError = "";
     }
     var html = '';
-    html += '<tr><td>' + recommendations.categoria + '</td><td><a href="/conjuntos/'+ resourceId +'/edit">' + resourceTitle + '</a></td><td><a href="'+urlError+'">' + nameError + '</a></td><td><a href="#">Notifica</a></td></tr>';
+    html += '<tr><td>' + recommendations.categoria.replace(/\b\w/g, function(l){ return l.toUpperCase() }) + '</td><td class="datosTitle" title="'+resourceTitle+'"><a href="/conjuntos/'+ resourceId +'/edit">' + resourceTitle + '</a></td><td>' + recommendations.name + '</td><td><a href="#">Notifica</a></td></tr>';
     $('#table-recommendations tr').first().after(html);
   });
 
   //Recorre descargas
   $.each(value.analytics,function(key, value){
     downloads = value.total;
-
     if (downloads != null) {
       valueDownloads.push(downloads);
     }
@@ -267,13 +288,14 @@ $.each(dataApi.results,function(key, value){
   });
 
   //Obtengo fecha de publicación (issued) para setear recursos publicados y total de recursos
-  adelaIssued = value.adela.dataset.issued;
+  // NUEVO DATASET OPI
+  /*adelaIssued = value.adela.dataset.issued;
   issuedTotal = issuedTotal+1
   if ( adelaIssued != null ) {
     issuedPublish = issuedPublish + 1;
   }
   $('#issuedTotal').text('/'+issuedTotal.toLocaleString('en'));
-  $('#issuedPublish').text(issuedPublish.toLocaleString('en'));
+  $('#issuedPublish').text(issuedPublish.toLocaleString('en'));*/
 
   //Obtengo calificacion de apertura -- No era correcto el calculo, ahora se obtiene de dataset OPI
   /*rating = value.adela.dataset.openessrating;
@@ -303,12 +325,13 @@ $.each(dataApi.results,function(key, value){
   }
 
   //Obtengo public
-  var isPublic = value.adela.dataset.public;
+  //DATASET OPI
+  /*var isPublic = value.adela.dataset.public;
   if (isPublic == true) {
     isPublicTrue = isPublicTrue + 1;
   } else {
     isPublicFalse = isPublicFalse + 1;
-  }
+  }*/
 
 });
 
@@ -328,14 +351,15 @@ function getTopN(arr, prop, n) {
 
 //Función para obtener el top 5 de descargas
 var n = 5;
-var topScorers = getTopN(valueDownloads, "value", n);
+//var topScorers = getTopN(valueDownloads, "value", n);
+var topScorers = dataDescargasOpi.recursos;
 topScorers.forEach(function(item, index) {
-  var dateDownload = new Date(item["date-insert"]);
+  var dateDownload = new Date(resourceModified);
   var day = dateDownload.getDate();
   var monthIndex = dateDownload.getMonth();
   var year = dateDownload.getFullYear();
   var htmlDown = '';
-  htmlDown += '<tr><td>' + resourceTitle + '</td><td>' + day + ' ' + monthNames[monthIndex] + ' ' + year + '</td><td class="text-center">' + item.value + '</td></tr>';
+  htmlDown += '<tr><td class="datosTitle" title="'+item.recurso+'">' + item.recurso + '</td><td>'+ item.actualizacion +'</td><td class="text-center">' + item.descargas + '</td></tr>';
   $('#table-downloads tr').last().after(htmlDown);
 });
 

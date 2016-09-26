@@ -209,3 +209,142 @@ input[type=checkbox].with-font:checked ~ label:before {
   bottom: 40px;
   right: 30px;
 }
+
+.content-dashboard {
+  margin-top: 40px;
+}
+
+.content-sub-dashboard {
+  margin-top: 80px;
+}
+
+.calificacion-dashboard {
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.lugar-dashboard {
+    float: left;
+    margin-left: 15px;
+}
+
+.content-dashboard .title, .content-dashboard .subtitle {
+    color: #585858 !important;
+    margin-bottom: 5px !important;
+}
+
+.content-dashboard p {
+    color: #777777 !important;
+}
+
+.content-dashboard h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.content-dashboard h2 {
+    font-size: 34px;
+}
+
+.content-dashboard hr {
+    border-top: 1px solid #cccccc;
+}
+
+.content-dashboard table {
+    font-size: 12px
+}
+
+.content-dashboard a {
+  text-decoration: underline;
+}
+
+.high-light-dashboard{
+  color:#00cc99 !important;
+}
+
+.calificacion-dashboard-gray  {
+    color: #b7b7b7 !important;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.table-cell, .table > tbody > tr > td, .table > thead > tr > th {
+    color: #474747 !important;
+    font-weight: 300;
+    padding: 15px;
+}
+
+.content-dashboard .table > thead > tr > th {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #dddddd !important;
+  font-weight: 600;
+}
+
+
+#logo_org{
+  margin-left: -18px;
+}
+
+svg { overflow: visible !important; }
+
+.gly-3x { font-size: 2.5em }
+.gly-warning { font-size: 3em; margin: 0 15px;  }
+
+.gray_back {
+  background-color: #F7F5F5 !important;
+}
+
+.gray_back .container {
+  padding: 40px 0 15px;
+}
+
+.overlay-dashboard{
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+
+.table-500 { height: 500px; }
+.table-400 { height: 400px; }
+
+.starLight {
+  color: #00CC99 !important;
+}
+
+.noPrint { display: inline-block }
+.printHiden { display: none }
+.title-print { margin-top: 45px }
+
+@media print {
+
+  .breakhere { page-break-after: always; }
+
+  .content-dashboard {
+    margin-top: -20px !important;
+  }
+
+  .content-sub-dashboard {
+    margin-top: -20px !important;
+  }
+
+  .starLight:before {
+    color: #00CC99 !important;
+  }
+
+  .starDark:before {
+    color: #D8D8D8 !important;
+  }
+
+  .noPrint { display: none }
+  .printHiden { display: block }
+  .table-500 { height: 400px; }
+  .table-400 { height: 300px; }
+
+  .logo-div { position: absolute; }
+  .datosTitle {
+    width: 50%;
+  }
+
+}

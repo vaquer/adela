@@ -23,6 +23,14 @@ describe Organization do
     end
   end
 
+  context 'defaults' do
+    let(:organization) { create(:organization) }
+
+    it 'should not be a ministry' do
+      expect(organization.ministry?).to be false
+    end
+  end
+
   context 'scopes' do
     describe '::sector' do
       let(:organization) { create(:organization_with_sector) }

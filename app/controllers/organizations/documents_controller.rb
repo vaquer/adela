@@ -14,7 +14,8 @@ class Organizations::DocumentsController < ApplicationController
   def organization_params
     params.require(:organization).permit(
       designation_files_attributes: [:file],
-      memo_files_attributes: [:file]
+      memo_files_attributes: [:file],
+      ministry_memo_files_attributes: [:file]
     )
   end
 end

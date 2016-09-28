@@ -27,7 +27,7 @@ feature 'data inventory management' do
     )
     dcat_distribution_keys = %w(
       id title description issued modified license downloadURL mediaType format
-      byteSize temporal spatial publishDate
+      byteSize temporal spatial publishDate tools
     )
 
     get "/api/v1/organizations/#{organization.slug}/inventory.json"

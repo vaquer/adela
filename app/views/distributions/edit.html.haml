@@ -31,11 +31,11 @@
         .col-xs-6
           .form-group.required
             = f.label :temporal, 'Inicio del período de tiempo cubierto', class: 'control-label'
-            %input#init-date.dcat-temporal.datepicker.form-control{ type: "text", placeholder: "Inicio", required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.temporal.init')}" }
+            %input#init-date.dcat-temporal.datepicker.form-control{ type: "text", placeholder: "Inicio", required: true, 'data-toggle': 'tooltip', 'data-placement':'bottom', title: "#{t('tooltip.distribution.temporal.init')}" }
         .col-xs-6
           .form-group.required
             = f.label :temporal, 'Fin del período de tiempo cubierto', class: 'control-label'
-            %input#term-date.dcat-temporal.datepicker.form-control{ type: "text", placeholder: "Fin", required: true, 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.temporal.term')}" }
+            %input#term-date.dcat-temporal.datepicker.form-control{ type: "text", placeholder: "Fin", required: true, 'data-toggle': 'tooltip', 'data-placement':'bottom', title: "#{t('tooltip.distribution.temporal.term')}" }
       .row
         .col-xs-6
           .form-group.required

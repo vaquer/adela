@@ -17,6 +17,11 @@ describe Distribution do
       new_distribution = build(:distribution, title: distribution.title)
       expect(new_distribution).not_to be_valid
     end
+
+    it 'should not be valid with higher modified that today' do
+      new_distribution = build(:distribution, modified: Date.today.next_day(1) )
+      expect( new_distribution).not_to be_valid
+    end
   end
 
   describe '#valid?(:ckan)' do

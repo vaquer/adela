@@ -8,6 +8,8 @@ class Distribution < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_uniqueness_of :download_url, allow_nil: true
 
+  validate :validate_modified_not_higher_today
+
   has_one :catalog, through: :dataset
   has_one :organization, through: :dataset
 
@@ -40,5 +42,9 @@ class Distribution < ActiveRecord::Base
     def update_dataset_metadata
       return unless dataset
       dataset.update_attribute(:modified, modified) if dataset.modified < modified
+    end
+
+    def validate_modified_not_higher_today
+      errors.add(:modified, "El valor del campo \"Fecha de última modificación de datos\" debe ser menor a la fecha actual.") if self.modified > Time.now
     end
 end

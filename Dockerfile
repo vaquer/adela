@@ -3,6 +3,7 @@ FROM ruby:2.3.0-alpine
 
 ENV \
   RAILS_ENV="production" \
+  RAILS_RELATIVE_URL_ROOT="/adela" \
   BUILD_PACKAGES="build-base curl-dev" \
   RAILS_PACKAGES="icu-dev zlib-dev libxml2-dev libxslt-dev tzdata postgresql-dev nodejs"
 

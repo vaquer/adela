@@ -44,7 +44,7 @@ class Distribution < ActiveRecord::Base
     end
 
     def validate_temporal
-        unless self.temporal.nil?
+        unless self.temporal.nil? ||  self.temporal.index('/').nil?
           tmps = self.temporal.split('/')
           inicio = Date.strptime(tmps[0], '%Y-%m-%d')
           final = Date.strptime(tmps[1], '%Y-%m-%d')

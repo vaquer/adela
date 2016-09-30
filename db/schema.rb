@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922230505) do
+ActiveRecord::Schema.define(version: 20160929235219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,8 @@ ActiveRecord::Schema.define(version: 20160922230505) do
     t.datetime "publish_date"
     t.string   "format"
     t.text     "tools"
+    t.text     "codelist"
+    t.string   "codelist_link"
   end
 
   add_index "distributions", ["dataset_id"], name: "index_distributions_on_dataset_id", using: :btree

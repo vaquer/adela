@@ -48,6 +48,12 @@
       .form-group
         = f.label :tools, 'Herramientas para visualizar los datos', class: 'control-label'
         = f.text_area :tools, class: 'autosize form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.tools')}"
+      .form-group
+        = f.label :codelist, class: 'control-label'
+        = f.text_area :codelist, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.codelist')}"
+      .form-group
+        = f.label :codelist_link, class: 'control-label'
+        = f.url_field :codelist_link, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.codelist_link')}"
       .row
         .col-xs-6
           .form-group

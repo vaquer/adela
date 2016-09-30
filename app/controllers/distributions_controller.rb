@@ -25,7 +25,9 @@ class DistributionsController < ApplicationController
       :media_type,
       :format,
       :spatial,
-      :tools
+      :tools,
+      :codelist,
+      :codelist_link
     )
   end
 end

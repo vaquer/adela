@@ -11,6 +11,8 @@ FactoryGirl.define do
     issued {  Faker::Time.forward }
     publish_date { Time.current }
     tools { Faker::Lorem.paragraph }
+    codelist { Faker::Lorem.paragraph }
+    codelist_link { Faker::Internet.url }
     format { Faker::App.name.downcase }
 
     factory :distribution_with_dataset do

@@ -13,6 +13,7 @@ FactoryGirl.define do
     tools { Faker::Lorem.paragraph }
     codelist { Faker::Lorem.paragraph }
     codelist_link { Faker::Internet.url }
+    copyright { Faker::Lorem.sentence }
     format { Faker::App.name.downcase }
 
     factory :distribution_with_dataset do

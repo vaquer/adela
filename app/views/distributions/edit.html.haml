@@ -54,6 +54,9 @@
       .form-group
         = f.label :codelist_link, class: 'control-label'
         = f.url_field :codelist_link, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.codelist_link')}"
+      .form-group
+        = f.label :copyright, class: 'control-label'
+        = f.url_field :copyright, class: 'form-control', 'data-toggle': 'tooltip', title: "#{t('tooltip.distribution.copyright')}"
       .row
         .col-xs-6
           .form-group

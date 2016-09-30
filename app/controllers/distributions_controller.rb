@@ -27,7 +27,8 @@ class DistributionsController < ApplicationController
       :spatial,
       :tools,
       :codelist,
-      :codelist_link
+      :codelist_link,
+      :copyright
     )
   end
 end

@@ -22,6 +22,7 @@ feature 'Catalog distribution metadata' do
     expect(page).to have_field('distribution_spatial', with: distribution_attributes[:spatial])
     expect(page).to have_field('distribution_codelist', with: distribution_attributes[:codelist])
     expect(page).to have_field('distribution_codelist_link', with: distribution_attributes[:codelist_link])
+    expect(page).to have_field('distribution_copyright', with: distribution_attributes[:copyright])
     expect(page).to have_field('distribution_tools', with: distribution_attributes[:tools])
   end
 
@@ -33,6 +34,7 @@ feature 'Catalog distribution metadata' do
     fill_in('distribution_tools', with: distribution_attributes[:tools])
     fill_in('distribution_codelist', with: distribution_attributes[:codelist])
     fill_in('distribution_codelist_link', with: distribution_attributes[:codelist_link])
+    fill_in('distribution_copyright', with: distribution_attributes[:copyright])
     # page.find('form').click # close the date picker by clicking anywhere
     click_on('Guardar')
   end

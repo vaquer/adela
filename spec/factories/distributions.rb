@@ -6,7 +6,7 @@ FactoryGirl.define do
     media_type { "application/#{Faker::App.name.downcase}" }
     byte_size { Faker::Number.number(8) }
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }
-    modified { Faker::Time.forward }
+    modified { Faker::Time.backward(365) }
     spatial { Faker::Address.state }
     issued {  Faker::Time.forward }
     publish_date { Time.current }

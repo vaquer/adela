@@ -44,6 +44,8 @@ class Distribution < ActiveRecord::Base
       dataset.update_attribute(:modified, modified) if dataset.modified < modified
     end
     def validate_modified_not_higher_today
-      errors.add(:modified, 'El valor del campo \"Fecha de última modificación de datos\" debe ser menor a la fecha actual.') if self.modified > Time.now
+      unless self.modified.nil?
+        errors.add(:modified, 'El valor del campo "Fecha de última modificación de datos" debe ser menor a la fecha actual.') if self.modified > Time.now
+      end
     end
 end

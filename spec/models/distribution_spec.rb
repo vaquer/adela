@@ -125,7 +125,7 @@ describe Distribution do
       dataset.modified = Date.yesterday
       dataset.save
 
-      distribution.modified = Date.tomorrow
+      distribution.modified = Date.today
       distribution.save
       dataset.reload
 

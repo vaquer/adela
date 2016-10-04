@@ -6,7 +6,7 @@ FactoryGirl.define do
     modified { Faker::Time.forward }
     contact_position { Faker::Company.profession }
     contact_name { Faker::Name.name }
-    mbox { Faker::Internet.email }
+    mbox { Faker::Internet.safe_email }
     temporal { "#{Faker::Date.backward.iso8601}/#{Faker::Date.forward.iso8601}" }
     spatial { "#{Faker::Address.latitude}/#{Faker::Address.longitude}" }
     landing_page { Faker::Internet.url }

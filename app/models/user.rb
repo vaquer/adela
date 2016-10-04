@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   scope :email, -> (email) { where('lower(email) LIKE ?', "%#{email.downcase}%") }
   scope :names, -> (name) { where('lower(name) LIKE ?', "%#{name.downcase}%") }
   scope :organization, -> (organization_id) { where(organization_id: organization_id) }
-
   validates_presence_of :name
   validates_presence_of :password
 

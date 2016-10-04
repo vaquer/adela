@@ -73,7 +73,7 @@ class OpeningPlanDatasetGenerator
   end
 
   def build_temporal(date)
-    "P3H33M/" + date.strftime("%FT%T%:z")
+    "2015-08-28/" + date.strftime("%Y-%m-%d")
   end
 
   def build_distribution(dataset)

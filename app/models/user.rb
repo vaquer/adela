@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   scope :organization, -> (organization_id) { where(organization_id: organization_id) }
 
   validates_presence_of :name
+  validates_presence_of :password
 
   has_many :catalogs, through: :organization
   belongs_to :organization

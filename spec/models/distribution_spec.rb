@@ -18,8 +18,8 @@ describe Distribution do
       expect(new_distribution).not_to be_valid
     end
 
-    it 'should not be valid with higher intial periodo that end periodo' do
-      new_distribution = build(:distribution, temporal: '2016-09-02/2016-09-01')
+    it 'should not be valid with higher initial perido that end periodo' do
+      new_distribution = build(:distribution, temporal: '2016-09-13/2016-09-05')
       expect(new_distribution).not_to be_valid
     end
   end

@@ -23,6 +23,12 @@ describe User do
       user.password_confirmation = 'short'
       expect(user).not_to be_valid
     end
+
+    it 'should not be valid with a empty password' do
+      user.password = ''
+      user.password_confirmation = ''
+      expect(user).not_to be_valid
+    end
   end
 
   context 'scopes' do

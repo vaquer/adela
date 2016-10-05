@@ -7,8 +7,8 @@ class Distribution < ActiveRecord::Base
 
   validates_uniqueness_of :title
   validates_uniqueness_of :download_url, allow_nil: true
-  #validate :validate_temporal
-  validate :validate_modified_not_mayor_today
+  
+  validate :validate_temporal
 
   has_one :catalog, through: :dataset
   has_one :organization, through: :dataset
@@ -44,18 +44,13 @@ class Distribution < ActiveRecord::Base
       dataset.update_attribute(:modified, modified) if dataset.modified < modified
     end
 
-    #Método valida existencia del valor asi como el periodo
-    #inico menor a  periodo final
+
     def validate_temporal
-        tmps = self.temporal.split('/')
-        inicio = Date.strptime(tmps[0], '%Y-%m-%d')
-        final = Date.strptime(tmps[1], '%Y-%m-%d')
-
-        errors.add(:temporal, "El valor del campo \"Inicio del período de tiempo cubierto\" debe ser menor al de \"Fin del período de tiempo cubierto\". ") if inicio > final
-    end
-
-    #
-    def validate_modified_not_mayor_today
-      errors.add(:modified, "El valor del campo \"Fecha de última modificación de datos\" debe ser menor a la fecha actual.") if self.modified > Time.now
+        unless self.temporal.nil? ||  self.temporal.index('/').nil?
+          tmps = self.temporal.split('/')
+          inicio = Date.strptime(tmps[0], '%Y-%m-%d')
+          final = Date.strptime(tmps[1], '%Y-%m-%d')
+          errors.add(:temporal, 'El valor del campo "Inicio del período de tiempo cubierto" debe ser menor al de "Fin del período de tiempo cubierto". ') if inicio > final
+        end
     end
 end

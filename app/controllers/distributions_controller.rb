@@ -23,7 +23,12 @@ class DistributionsController < ApplicationController
       :temporal,
       :byte_size,
       :media_type,
-      :format
+      :format,
+      :spatial,
+      :tools,
+      :codelist,
+      :codelist_link,
+      :copyright
     )
   end
 end

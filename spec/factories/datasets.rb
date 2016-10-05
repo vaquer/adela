@@ -14,6 +14,7 @@ FactoryGirl.define do
     issued { Faker::Time.forward }
     publish_date { Faker::Time.forward }
     comments { Faker::Lorem.paragraph }
+    quality { Faker::Internet.url }
     public_access true
     editable true
     catalog
@@ -24,6 +25,19 @@ FactoryGirl.define do
 
     factory :dataset_with_sector do
       dataset_sector
+    end
+
+    factory :opening_plan_dataset do
+      keyword nil
+      modified nil
+      contact_name nil
+      mbox nil
+      temporal nil
+      spatial nil
+      landing_page nil
+      issued nil
+      comments nil
+      quality nil
     end
   end
 end

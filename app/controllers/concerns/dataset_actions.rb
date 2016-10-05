@@ -3,7 +3,10 @@ module DatasetActions
 
   included do
     load_and_authorize_resource except: [:new, :create]
+
     before_action :create_catalog, only: :create
+    before_action :create_inventory, only: :create
+
     helper_method :sort_column, :sort_direction
   end
 
@@ -55,5 +58,9 @@ module DatasetActions
 
   def create_catalog
     current_organization.create_catalog unless current_organization.catalog
+  end
+
+  def create_inventory
+    current_organization.create_inventory unless current_organization.inventory
   end
 end

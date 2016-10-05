@@ -1,9 +1,10 @@
 class DatasetSerializer < ActiveModel::Serializer
   has_many :distributions, root: :distribution, serializer: DistributionSerializer
 
-  attributes :id, :title, :description, :issued, :modified, :identifier, :keyword, :language,
-             :contactPoint, :temporal, :spatial, :accrualPeriodicity, :landingPage, :openessRating,
-             :govType, :theme, :comments
+  attributes :id, :title, :description, :issued, :modified, :identifier, :theme,
+             :keyword, :language, :contactPoint, :temporal, :spatial, :govType,
+             :accrualPeriodicity, :landingPage, :openessRating, :comments,
+             :quality
 
   def attributes
     data = super

@@ -20,8 +20,15 @@ feature 'data inventory management' do
     create(:distribution, dataset: dataset)
 
     dcat_keys = %w(title dataset)
-    dcat_dataset_keys = %w(id title description issued modified identifier keyword language contactPoint temporal spatial accrualPeriodicity landingPage publisher public publishDate distribution openessRating govType theme comments)
-    dcat_distribution_keys = %w(id title description issued modified license downloadURL mediaType format byteSize temporal spatial publishDate)
+    dcat_dataset_keys = %w(
+      id title description issued modified identifier keyword language public
+      contactPoint temporal spatial accrualPeriodicity landingPage publisher
+      publishDate distribution openessRating govType theme comments quality
+    )
+    dcat_distribution_keys = %w(
+      id title description issued modified license downloadURL mediaType format
+      byteSize temporal spatial publishDate tools
+    )
 
     get "/api/v1/organizations/#{organization.slug}/inventory.json"
     json_response = JSON.parse(response.body)

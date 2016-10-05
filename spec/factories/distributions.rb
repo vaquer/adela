@@ -10,6 +10,10 @@ FactoryGirl.define do
     spatial { Faker::Address.state }
     issued {  Faker::Time.forward }
     publish_date { Time.current }
+    tools { Faker::Lorem.paragraph }
+    codelist { Faker::Lorem.paragraph }
+    codelist_link { Faker::Internet.url }
+    copyright { Faker::Lorem.sentence }
     format { Faker::App.name.downcase }
 
     factory :distribution_with_dataset do

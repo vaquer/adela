@@ -42,7 +42,9 @@ class Distribution < ActiveRecord::Base
 
     def update_dataset_metadata
       return unless dataset
-      dataset.update_attribute(:modified, modified) if dataset.modified.nil? || dataset.modified < modified
+      return unless modified
+      return unless dataset.modified
+      dataset.update_attribute(:modified, modified) if dataset.modified < modified
     end
 
     def validate_modified_not_higher_today

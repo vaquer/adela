@@ -18,6 +18,9 @@ describe Distribution do
       expect(new_distribution).not_to be_valid
     end
 
+    it 'should not be valid with higher modified that today' do
+      new_distribution = build(:distribution, modified:Date.today.next_day(1))
+    end
     it 'should not be valid with higher initial perido that end periodo' do
       new_distribution = build(:distribution, temporal: '2016-09-13/2016-09-05')
       expect(new_distribution).not_to be_valid
@@ -125,7 +128,7 @@ describe Distribution do
       dataset.modified = Date.yesterday
       dataset.save
 
-      distribution.modified = Date.tomorrow
+      distribution.modified = Date.today
       distribution.save
       dataset.reload
 

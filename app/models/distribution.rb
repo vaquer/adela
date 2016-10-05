@@ -7,7 +7,7 @@ class Distribution < ActiveRecord::Base
 
   validates_uniqueness_of :title
   validates_uniqueness_of :download_url, allow_nil: true
-  
+
   validate :validate_temporal
 
   has_one :catalog, through: :dataset
@@ -41,7 +41,7 @@ class Distribution < ActiveRecord::Base
 
     def update_dataset_metadata
       return unless dataset
-      dataset.update_attribute(:modified, modified) if dataset.modified < modified
+      dataset.update_attribute(:modified, modified) if dataset.modified.nil? || dataset.modified < modified
     end
 
 

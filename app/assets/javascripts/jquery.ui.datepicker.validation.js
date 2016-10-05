@@ -152,7 +152,8 @@ if ($.fn.validate) {
 
 	/* Normalise the comparison parameters to an array.
 	   @param  params  (array or object or string) the original parameters
-	   @return  (array) the normalised parameters */
+	   @return  (array) the normalised parameters
+	 */
 	function normaliseParams(params) {
 		if (typeof params == 'string') {
 			params = params.split(' ');
@@ -168,11 +169,12 @@ if ($.fn.validate) {
 		return params;
 	}
 
-	/* Determine the comparison date.
-	   @param  element  (element) the current datepicker element
-	   @param  source   (string or Date or jQuery or element) the source of the other date
-	   @param  noOther  (boolean) true to not get the date from another field
-	   @return  (Date) the date for comparison */
+	/*
+	Determine the comparison date.
+	@param  element  (element) the current datepicker element
+ 	@param  source   (string or Date or jQuery or element) the source of the other date
+	@param  noOther  (boolean) true to not get the date from another field
+	@return  (Date) the date for comparison */
 	function extractOtherDate(element, source, noOther) {
 		if (source.constructor == Date) {
 			return source;

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :recoverable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :trackable, :validatable, :lockable
   rolify
 
   scope :email, -> (email) { where('lower(email) LIKE ?', "%#{email.downcase}%") }

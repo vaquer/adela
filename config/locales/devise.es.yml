@@ -16,7 +16,7 @@ es:
       already_authenticated: 'Ya está dentro del sistema.'
       unauthenticated: 'Necesita ingresar o registrarse para continuar.'
       unconfirmed: 'Debe confirmar su cuenta para continuar.'
-      locked: 'Su cuenta está bloqueada.'
+      locked: 'Has superado el número de intentos y el acceso a esta cuenta ha sido bloqueado. Escríbenos a escuadron@datos.mx para solicitar que se reestablezca.'
       invalid: 'Correo o contraseña inválidos.'
       invalid_token: 'Ficha de autenticación invalida.'
       timeout: 'Su sesión ha expirado, por favor ingrese nuevamente para continuar.'

@@ -10,7 +10,6 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
 ActiveRecord::Schema.define(version: 20160930150124) do
 
   # These are extensions that must be enabled in order to support this database
@@ -188,15 +187,6 @@ ActiveRecord::Schema.define(version: 20160930150124) do
 
   add_index "ministry_memo_files", ["organization_id"], name: "index_ministry_memo_files_on_organization_id", using: :btree
 
-  create_table "opening_plan_logs", force: :cascade do |t|
-    t.integer  "organization_id"
-    t.json     "opening_plan"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "opening_plan_logs", ["organization_id"], name: "index_opening_plan_logs_on_organization_id", using: :btree
-
   create_table "organization_sectors", force: :cascade do |t|
     t.integer  "sector_id"
     t.integer  "organization_id"
@@ -263,11 +253,15 @@ ActiveRecord::Schema.define(version: 20160930150124) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
+    t.integer  'failed_attempts',        default: 0,  null: false
+    t.string   'unlock_token'
+    t.datetime 'locked_at'
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ['unlock_token'], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
@@ -280,5 +274,4 @@ ActiveRecord::Schema.define(version: 20160930150124) do
   add_foreign_key "designation_files", "organizations"
   add_foreign_key "memo_files", "organizations"
   add_foreign_key "ministry_memo_files", "organizations"
-  add_foreign_key "opening_plan_logs", "organizations"
 end

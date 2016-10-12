@@ -16,7 +16,7 @@ class DatasetsController < ApplicationController
   end
 
   def update_customization
-    redirect_to organization_catalogs_path(current_organization)
+    redirect_to edit_dataset_path(@dataset)
     return
   end
 

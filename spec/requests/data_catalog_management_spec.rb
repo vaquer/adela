@@ -53,7 +53,7 @@ feature 'data catalog management' do
 
     get "/#{organization.slug}/catalogo.json"
     json_response = JSON.parse(response.body)
-    expect(json_response.keys).to eq(dcat_keys)
+    expect(json_response.keys.sort).to eq(dcat_keys.sort)
     expect(json_response['dataset'].last.keys.sort).to eq(dcat_dataset_keys.sort)
     expect(json_response['dataset'].last['distribution'].last.keys.sort).to eq(dcat_distribution_keys.sort)
   end

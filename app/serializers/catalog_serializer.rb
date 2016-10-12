@@ -1,16 +1,23 @@
 class CatalogSerializer < ActiveModel::Serializer
   has_many :datasets, root: :dataset, serializer: Catalog::DatasetSerializer
+  attributes :issued, :modified
 
   def attributes
     data ||= {}
     data[:title] = "Catálogo de datos abiertos de #{object.organization.title}"
     data[:description] = ''
     data[:homepage] = ''
-    data[:issued] = "#{object.created_at}"
-    data[:modified] = "#{object.publish_date}"
     data[:language] = 'es'
     data[:license] = 'http://datos.gob.mx/libreusomx/'
     data.merge super
+  end
+
+  def issued
+    object.created_at
+  end
+
+  def modified
+    object.publish_date
   end
 
   def datasets

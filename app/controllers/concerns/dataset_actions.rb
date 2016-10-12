@@ -25,7 +25,11 @@ module DatasetActions
   def create
     @dataset = current_organization.catalog.datasets.build(dataset_params)
     authorize! :create, @dataset
-    @dataset.save
+    if @dataset.save
+      flash[:notice] = 'Se creó el conjunto de datos'
+    else
+      flash[:alert] = 'Ocurrio un error al guardar el conjunto de datos'
+    end
     create_customization if self.class.private_method_defined? :create_customization
   end
 
@@ -36,7 +40,11 @@ module DatasetActions
 
   def update
     @dataset = Dataset.find(params['id'])
-    @dataset.update(dataset_params)
+    if @dataset.update(dataset_params)
+      flash[:notice] = 'Se actualizó el conjunto de datos'
+    else
+      flash[:alert] = 'Ocurrio un error al actualizar el conjunto de datos'
+    end
     update_customization if self.class.private_method_defined? :update_customization
   end
 

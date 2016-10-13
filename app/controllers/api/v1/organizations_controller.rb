@@ -34,6 +34,10 @@ module Api
         @gov_types = @gov_types.paginate(:page => params[:page])
         render :json => @gov_types, serializer: GovTypesSerializer, root: false
       end
+
+      def documents
+        @organization = Organization.friendly.find(params[:id])
+      end
     end
   end
 end

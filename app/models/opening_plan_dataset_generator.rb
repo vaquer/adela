@@ -80,7 +80,7 @@ class OpeningPlanDatasetGenerator
     dataset.distributions.build do |distribution|
       distribution.title = "Plan de Apertura Institucional de #{@inventory.organization.title}"
       distribution.description = "Plan de Apertura Institucional de #{@inventory.organization.title}"
-      distribution.download_url = "http://adela.datos.gob.mx#{organization_inventory_path(@inventory.organization, format: :csv)}"
+      distribution.download_url = organization_inventory_url(@inventory.organization, format: :csv).to_s
       distribution.media_type = 'csv'
       distribution.publish_date = DateTime.new(2015, 8, 28)
       distribution.temporal = build_temporal(dataset.modified)

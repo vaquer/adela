@@ -89,13 +89,13 @@ es:
         dataset:
           attributes:
             title:
-              taken: 'Existe otro conjunto de datos con el mismo nombre, verifica tu plan de apertura.'
+              taken: 'Ya existe un conjunto con el mismo nombre, es posible que otra Institución lo tenga registrado y es necesario usar otro.'
             distributions:
               blank: 'Un conjunto de datos debe de contener al menos un Recurso de Datos.'
         distribution:
           attributes:
             title:
-              taken: 'Existe otro recurso con el mismo nombre, verifica tu plan de apertura.'
+              taken: 'Ya existe un recurso con el mismo nombre, es posible que otra Institución lo tenga registrado y es necesario usar otro.'
             download_url:
               taken: 'Existe otro recurso con la misma URL de descarga.'
     attributes:

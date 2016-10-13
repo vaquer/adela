@@ -26,7 +26,7 @@ $(function () {
 });
 
 $(document).on('nested:fieldAdded', function(event){
-    var updateMediaType, datasetPublishDate;
+    var updateMediaType, datasetPublishDate, showProprietaryFormatAlert;
 
     (updateMediaType = function() {
       var mediaType = event.field.find('.form-group .media_type_select');
@@ -44,11 +44,22 @@ $(document).on('nested:fieldAdded', function(event){
       }
     })();
 
+    (
+      showProprietaryFormatAlert = function () {
+      var mimeType = event.field.find('.form-group .media_type_select').val();
+      if (mimeType === "application/vnd.ms-excel") {
+        event.field.find(".proprietary-format").removeClass("hidden");
+      } else {
+        event.field.find(".proprietary-format").addClass("hidden");
+      }
+    })();
+
     // sets dataset publish-date into new distribution
     datasetPublishDate = $('#dataset_publish_date').val();
     event.field.find('.publish-date').val(datasetPublishDate);
 
     $('.media_type_select').on('change', updateMediaType);
+    $('.media_type_select').on('change', showProprietaryFormatAlert);
     $('.datepicker').datepicker();
     $('[data-toggle="tooltip"]').tooltip();
 })

@@ -43,5 +43,17 @@
     }
   }
 
+  var showProprietaryFormatAlert;
+  (
+    showProprietaryFormatAlert = function () {
+    var mimeType = $("#media_type_select").val();
+    if (mimeType === "application/vnd.ms-excel") {
+      $(".proprietary-format").removeClass("hidden");
+    } else {
+      $(".proprietary-format").addClass("hidden");
+    }
+  })();
+
   $('#media_type_select').change(updateMediaType);
+  $('#media_type_select').change(showProprietaryFormatAlert);
 });

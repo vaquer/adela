@@ -1,6 +1,10 @@
 $(function() {
+    var datepicker = $(".datepicker");
     $("form").validate();
-    $(".datepicker").rules("add", {
+
+    if (datepicker.length) {
+      datepicker.rules("add", {
         dateISO: true
-    });
+      });
+    }
 });

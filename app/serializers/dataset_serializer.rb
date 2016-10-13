@@ -27,7 +27,7 @@ class DatasetSerializer < ActiveModel::Serializer
   end
 
   def contactPoint
-    "http://adela.datos.gob.mx/api/v1/datasets/#{object.id}/contact_point.vcf"
+    contact_point_api_v1_dataset_url(object, format: :vcf).to_s
   end
 
   def accrualPeriodicity

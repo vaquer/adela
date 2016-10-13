@@ -65,8 +65,8 @@ class CatalogsController < ApplicationController
   end
 
   def harvest_catalog
-    slug = @catalog.organization.slug
-    ShogunHarvestWorker.perform_async("http://adela.datos.gob.mx/#{slug}/catalogo.json")
+    catalog_url = organization_catalog_url(@catalog.organization, format: :json).to_s
+    ShogunHarvestWorker.perform_async(catalog_url)
   end
 
   def require_opening_plan

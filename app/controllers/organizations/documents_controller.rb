@@ -1,5 +1,6 @@
 class Organizations::DocumentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :create_documents_dataset, only: :update
 
   def update
     if current_organization.update(organization_params)
@@ -11,11 +12,22 @@ class Organizations::DocumentsController < ApplicationController
 
   private
 
-  def organization_params
-    params.require(:organization).permit(
-      designation_files_attributes: [:file],
-      memo_files_attributes: [:file],
-      ministry_memo_files_attributes: [:file]
-    )
-  end
+    def organization_params
+      params.require(:organization).permit(
+        designation_files_attributes: [:file],
+        memo_files_attributes: [:file],
+        ministry_memo_files_attributes: [:file]
+      )
+    end
+
+    def create_documents_dataset
+      return if documents_count > 0
+      generator = OrganizationDocumentsDatasetGenerator.new(current_organization)
+      generator.generate!
+    end
+
+    def documents_count
+      organization = current_organization
+      organization.memo_files.count + organization.ministry_memo_files.count + organization.designation_files.count
+    end
 end

@@ -3,6 +3,9 @@ require 'spec_helper'
 feature User, 'Uploads organization documents:' do
   background do
     @user = FactoryGirl.create(:user)
+    @catalog = create(:catalog, organization: @user.organization)
+    create(:sector, title: 'Otros')
+    create(:inventory, organization: @user.organization)
     given_logged_in_as(@user)
   end
 
@@ -14,6 +17,14 @@ feature User, 'Uploads organization documents:' do
     expect(page).to have_text('designation_file.docx')
     expect(page).to have_text('memo_file.pdf')
     expect(page).not_to have_text('ministry_memo_file.pdf')
+  end
+
+  scenario 'after uploading the first document it creates de documents dataset' do
+    visit organization_documents_path(@user.organization)
+    attach_and_upload_organization_documents
+    visit catalog_datasets_path(@catalog)
+
+    expect(page).to have_text("Oficios y Documentos Institucionales de #{@user.organization.title}")
   end
 
   context 'ministry' do

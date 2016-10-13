@@ -35,7 +35,7 @@ class OrganizationDocumentsDatasetGenerator
         distribution.title = "Oficios y Documentos Institucionales de #{@organization.title}"
         distribution.description = "Contiene el Oficio de designación del Enlace y Administrador de Datos vigente, "\
         "así como las minutas celebradas por el Consejo Institucional de Datos Abierto de #{@organization.title}."
-        distribution.download_url = "http://datos.gob.mx#{documents_api_v1_organization_path(@organization)}"
+        distribution.download_url = documents_api_v1_organization_url(@organization).to_s
         distribution.media_type = 'application/json'
         distribution.format = 'json'
         distribution.modified = Time.current

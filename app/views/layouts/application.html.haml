@@ -19,7 +19,7 @@
       = breadcrumbs style: :ol, class: 'breadcrumb'
       = yield
     :javascript
-      var _sf_async_config = { uid: 62850, domain: 'adela.datos.gob.mx', useCanonical: true };
+      var _sf_async_config = { uid: 62850, domain: ENV['HOST'], useCanonical: true };
       (function() {
         function loadChartbeat() {
           window._sf_endpt = (new Date()).getTime();

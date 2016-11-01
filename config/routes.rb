@@ -20,7 +20,7 @@ Adela::Application.routes.draw do
         put 'update', on: :collection, as: 'update'
       end
 
-      resources :catalogs, only: [:index, :show], shallow: true do
+      resources :catalogs, only: [:index], shallow: true do
         get 'check', on: :collection
         put 'publish', on: :member
 

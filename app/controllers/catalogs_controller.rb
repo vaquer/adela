@@ -7,10 +7,6 @@ class CatalogsController < ApplicationController
     return
   end
 
-  def show
-    @catalog = current_organization.catalog
-  end
-
   def check
     @datasets = catalog_params['dataset_ids']&.map { |id| Dataset.find(id) } || []
     @distributions = catalog_params['distribution_ids']&.map { |id| Distribution.find(id) } || []
@@ -20,7 +16,7 @@ class CatalogsController < ApplicationController
   def publish
     @catalog = current_organization.catalog
     publish_catalog
-    redirect_to catalog_path(@catalog)
+    redirect_to catalog_versions_path
     return
   end
 

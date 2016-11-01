@@ -37,6 +37,16 @@ crumb :catalog_dataset do
   parent :catalog
 end
 
+crumb :catalog_dataset_versions do
+  link 'Folios de publicación', catalog_versions_path
+  parent :catalog
+end
+
+crumb :show_catalog_dataset_versions do |identifier|
+  link identifier
+  parent :catalog_dataset_versions
+end
+
 crumb :catalog_distribution do
   link 'Documentar un Recurso de Datos'
   parent :catalog_dataset

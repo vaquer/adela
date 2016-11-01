@@ -1,0 +1,52 @@
+- breadcrumb :show_catalog_dataset_versions, "#{current_organization.slug.upcase}-#{@issued.to_i}"
+%h3 Folio #{current_organization.slug.upcase}-#{@issued.to_i}
+.row
+  .col-md-9
+    %p
+      A continuación se muestra el comprobante con la información que fue publicada en el portal de datos.gob.mx.
+    %p
+      Catálogo publicado el <strong>#{l(@issued, format: '%d de %B de %Y')}</strong>.
+  .col-md-3
+    %p
+      %button.btn.btn-primary.btn-lg.pull-right{ 'onClick': 'window.print();'}
+        %span.icon.icon-right
+          = inline_svg 'download.svg'
+        Imprimir el historial de folios
+    .clearfix
+.row
+  .col-md-12
+    .table-responsive
+      %table.table
+        %thead.catalog-header
+          %tr
+            %th.center #
+            %th Conjuntos y recursos de datos
+            %th Fecha de compromiso
+            %th Fecha de publicación
+        %tbody
+          - @catalog.datasets.includes(:distributions).where('datasets.issued <= ?', @issued + 1.second).references(:distributions).each_with_index do |dataset, index|
+            %tr.dataset.active
+              %td.center
+                %strong= index + 1
+              %td
+                %a= dataset.title
+              %td
+                = l(dataset.publish_date, format: '%-d de %B de %Y')
+              %td
+                = l(dataset.issued, format: '%-d de %B de %Y')
+            - dataset.distributions.where('distributions.issued <= ?', @issued + 1.second).each do |distribution|
+              %tr.distribution
+                %td
+                %td.nested= distribution.title
+                %td
+                  = l(distribution.publish_date, format: '%-d de %B de %Y')
+                %td
+                  = l(distribution.issued, format: '%-d de %B de %Y')
+.row
+  .col-md-12
+    %hr
+      = link_to catalog_versions_path, { class: 'btn btn-alt btn-default btn-lg pull-right' } do
+        Folios de Publicación
+        %span.icon.icon-left
+          = inline_svg 'next.svg'
+    .clearfix

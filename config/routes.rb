@@ -31,6 +31,8 @@ Adela::Application.routes.draw do
     end
   end
 
+  resources :catalog_versions, path: 'catalog/versions', only: [:index, :show]
+
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       get '/catalogs' => 'organizations#catalogs'

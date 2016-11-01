@@ -1,0 +1,49 @@
+- breadcrumb :catalog_dataset_versions
+%h3 Folios de publicación
+.row
+  .col-md-9
+    %p
+      Los folios son los comprobantes de solicitudes para publicar los Conjuntos y Recursos de Datos Abiertos en el portal de datos.gob.mx.
+    %p
+      Cada folio contiene el Catálogo de Datos en el momento de solicitar la publicación.
+  .col-md-3
+    %p
+      %button.btn.btn-primary.btn-lg.pull-right{ 'onClick': 'window.print();'}
+        %span.icon.icon-right
+          = inline_svg 'download.svg'
+        Imprimir el historial de folios
+    .clearfix
+
+.row
+  .col-md-12
+    .table-responsive
+      %table.table{ 'style' => 'border-collapse:collapse;' }
+        %thead
+          %tr
+            %th.center #
+            %th Folio
+            %th.center Fecha de Publicación
+            %th.col-md-3.center Acciones
+        %tbody
+          - @catalog.audits.reverse.each_with_index do |audit, index|
+            - next unless audit.audited_changes['publish_date']
+            - publish_date = audit.audited_changes['publish_date'].last
+            %tr.active
+              %td.center= index + 2
+              %td= link_to "#{current_organization.slug.upcase}-#{publish_date.to_i}", catalog_version_path(id: publish_date.to_i), class: 'semibold green'
+              %td.center= l(publish_date, format: 'Publicado el %d de %B de %Y')
+              %td
+                %ul.nav.nav-pills.nav-justified
+                  %li{role: 'presentation'}
+                    = link_to catalog_version_path(id: publish_date.to_i) do
+                      %span.icon.icon-right
+                        = inline_svg 'edit.svg'
+                      Ver Catálogo
+.row
+  .col-md-12
+    %hr
+      = link_to organization_catalogs_path(current_organization), { class: 'btn btn-alt btn-default btn-lg pull-right' } do
+        Catálogo de Datos
+        %span.icon.icon-left
+          = inline_svg 'next.svg'
+    .clearfix

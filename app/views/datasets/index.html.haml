@@ -70,9 +70,9 @@
     .col-md-12
       .pull-right
         - if @catalog.publish_date?
-          = link_to 'Ver último folio', catalog_path(@catalog), class: 'btn btn-alt btn-lg'
+          = link_to 'Folios de Publicación', catalog_versions_path, class: 'btn btn-alt btn-lg'
         - else
-          = link_to 'Ver último folio', catalog_path(@catalog), class: 'btn btn-alt btn-lg disabled', disabled: true
+          = link_to 'Folios de Publicación', catalog_versions_path, class: 'btn btn-alt btn-lg disabled', disabled: true
         - if can_publish?(@catalog)
           = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary'
         - else

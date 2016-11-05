@@ -39,7 +39,11 @@ module DistributionActions
 
   def destroy
     @distribution = Distribution.find(params['id'])
-    @distribution.destroy
+    if @distribution.destroy
+      flash[:notice] = 'Se elimino el recurso de datos'
+    else
+      flash[:alert] = 'Ocurrio un error al eliminar el recurso de datos'
+    end
     destroy_customization if self.class.private_method_defined? :destroy_customization
   end
 end

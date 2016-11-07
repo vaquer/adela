@@ -50,7 +50,11 @@ module DatasetActions
 
   def destroy
     @dataset = Dataset.find(params['id'])
-    @dataset.destroy
+    if @dataset.destroy
+      flash[:notice] = 'Se elimino el conjunto de datos'
+    else
+      flash[:alert] = 'Ocurrio un error al eliminar el conjunto de datos'
+    end
     destroy_customization if self.class.private_method_defined? :destroy_customization
   end
 

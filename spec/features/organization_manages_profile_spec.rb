@@ -36,9 +36,6 @@ feature Organization, 'manages profile:' do
     @not_my_organization = FactoryGirl.create(:organization)
 
     visit profile_organization_path(@not_my_organization)
-
-    expect(page).not_to have_content 'Descripción'
-    expect(page).not_to have_content 'URL Logo'
     expect(current_path).to eq(organization_path(@not_my_organization))
   end
 end

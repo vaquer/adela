@@ -1,0 +1,1636 @@
+{
+  "dependencias": [
+    {
+      "calificacion": 7,
+      "institucion": "AFSEDF",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "agn",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 43,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "AGROASEMEX",
+      "calidad": "bronce",
+      "descargas": 69,
+      "total": 18,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "AICM",
+      "calidad": "bronce",
+      "descargas": 25,
+      "total": 9,
+      "apertura": 1
+    },
+    {
+      "calificacion": 0,
+      "institucion": "apbp",
+      "calidad": "N/A",
+      "descargas": 0,
+      "total": 0,
+      "apertura": 0
+    },
+    {
+      "calificacion": 6,
+      "institucion": "API-ATM",
+      "calidad": "bronce",
+      "descargas": 69,
+      "total": 55,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "API-COA",
+      "calidad": "bronce",
+      "descargas": 33,
+      "total": 16,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-DB",
+      "calidad": "bronce",
+      "descargas": 11,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-ESE",
+      "calidad": "bronce",
+      "descargas": 9,
+      "total": 12,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-GYM",
+      "calidad": "bronce",
+      "descargas": 18,
+      "total": 16,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-LZC",
+      "calidad": "bronce",
+      "descargas": 45,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-MZT",
+      "calidad": "bronce",
+      "descargas": 13,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-PCH",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-SCX",
+      "calidad": "bronce",
+      "descargas": 8,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-T",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-TAM",
+      "calidad": "bronce",
+      "descargas": 19,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "API-TUX",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "API-VER",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 40,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-VSA",
+      "calidad": "bronce",
+      "descargas": 6,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "API-ZLO",
+      "calidad": "bronce",
+      "descargas": 17,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Aeropuertos y Servicios Auxiliares",
+      "calidad": "bronce",
+      "descargas": 9,
+      "total": 10,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ASE Chihuahua",
+      "calidad": "bronce",
+      "descargas": 7,
+      "total": 8,
+      "apertura": 2
+    },
+    {
+      "calificacion": 0,
+      "institucion": "ase-guanajuato",
+      "calidad": "N/A",
+      "descargas": 0,
+      "total": 0,
+      "apertura": 0
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Ciudad Juárez",
+      "calidad": "bronce",
+      "descargas": 59,
+      "total": 24,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Minatitlán",
+      "calidad": "bronce",
+      "descargas": 88,
+      "total": 23,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Puebla",
+      "calidad": "bronce",
+      "descargas": 184,
+      "total": 107,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Reynosa",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 9,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de San Luis Potosí",
+      "calidad": "bronce",
+      "descargas": 228,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "Ayuntamiento de San Pedro Garza García",
+      "calidad": "bronce",
+      "descargas": 124,
+      "total": 104,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Torreón",
+      "calidad": "bronce",
+      "descargas": 19,
+      "total": 12,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Veracruz",
+      "calidad": "bronce",
+      "descargas": 209,
+      "total": 93,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Xalapa",
+      "calidad": "bronce",
+      "descargas": 907,
+      "total": 99,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Ayuntamiento de Zapopan",
+      "calidad": "bronce",
+      "descargas": 80,
+      "total": 21,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "BANCOMEXT",
+      "calidad": "bronce",
+      "descargas": 17,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "banjercito",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "bansefi",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 44,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "BIRMEX",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Canal 11",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Canal 22",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CAPUFE",
+      "calidad": "bronce",
+      "descargas": 57,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CDI",
+      "calidad": "bronce",
+      "descargas": 660,
+      "total": 20,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CEAV",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CENAM",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CENAPRED",
+      "calidad": "bronce",
+      "descargas": 118,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CENATRA",
+      "calidad": "bronce",
+      "descargas": 5,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 0,
+      "institucion": "censia",
+      "calidad": "N/A",
+      "descargas": 0,
+      "total": 0,
+      "apertura": 0
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Centro de Investigaciones y Estudios Superiores en Antropología Social",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 12,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CETI",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CFE",
+      "calidad": "bronce",
+      "descargas": 755,
+      "total": 11,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIAD",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 23,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CIATEC",
+      "calidad": "bronce",
+      "descargas": 35,
+      "total": 20,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIATEJ",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIBNOR",
+      "calidad": "bronce",
+      "descargas": 26,
+      "total": 12,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CICESE",
+      "calidad": "bronce",
+      "descargas": 16,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CICY",
+      "calidad": "bronce",
+      "descargas": 12,
+      "total": 21,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIDESI",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIDETEQ",
+      "calidad": "bronce",
+      "descargas": 19,
+      "total": 13,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIMAT",
+      "calidad": "bronce",
+      "descargas": 42,
+      "total": 46,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CIMAV",
+      "calidad": "bronce",
+      "descargas": 6,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CINETECA NACIONAL",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 9,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CINVESTAV",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CIO",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Correos de México",
+      "calidad": "bronce",
+      "descargas": 4691,
+      "total": 89,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CMM",
+      "calidad": "bronce",
+      "descargas": 19,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CNBV",
+      "calidad": "bronce",
+      "descargas": 46,
+      "total": 251,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CNEGSR",
+      "calidad": "bronce",
+      "descargas": 24,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CNH",
+      "calidad": "bronce",
+      "descargas": 456,
+      "total": 57,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CNSF",
+      "calidad": "bronce",
+      "descargas": 36,
+      "total": 96,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "COFAA",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 12,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "COFEPRIS",
+      "calidad": "bronce",
+      "descargas": 25,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "COLEF",
+      "calidad": "bronce",
+      "descargas": 6,
+      "total": 18,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "COLPOS",
+      "calidad": "bronce",
+      "descargas": 11,
+      "total": 43,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "COLSAN",
+      "calidad": "bronce",
+      "descargas": 5,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "COMIMSA",
+      "calidad": "bronce",
+      "descargas": 12,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONABIO",
+      "calidad": "bronce",
+      "descargas": 96,
+      "total": 21,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONACYT",
+      "calidad": "bronce",
+      "descargas": 2073,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONADESUCA",
+      "calidad": "bronce",
+      "descargas": 28,
+      "total": 10,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONADIS",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 3,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAFOR",
+      "calidad": "bronce",
+      "descargas": 267,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CONAGUA",
+      "calidad": "bronce",
+      "descargas": 1764,
+      "total": 108,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONALEP",
+      "calidad": "bronce",
+      "descargas": 14,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONALITEG",
+      "calidad": "bronce",
+      "descargas": 5,
+      "total": 9,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAMPROS",
+      "calidad": "bronce",
+      "descargas": 20,
+      "total": 11,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CONANP",
+      "calidad": "bronce",
+      "descargas": 165,
+      "total": 178,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAPESCA",
+      "calidad": "bronce",
+      "descargas": 37,
+      "total": 26,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAPO",
+      "calidad": "bronce",
+      "descargas": 3370,
+      "total": 138,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAPRED",
+      "calidad": "bronce",
+      "descargas": 11,
+      "total": 9,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONASAMI",
+      "calidad": "bronce",
+      "descargas": 14,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAVI",
+      "calidad": "bronce",
+      "descargas": 188,
+      "total": 9,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONAZA",
+      "calidad": "bronce",
+      "descargas": 14,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONDUSEF",
+      "calidad": "bronce",
+      "descargas": 11,
+      "total": 10,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CONEVAL",
+      "calidad": "bronce",
+      "descargas": 2222,
+      "total": 142,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONOCER",
+      "calidad": "bronce",
+      "descargas": 14,
+      "total": 6,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "CONSAR",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 22,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CONUEE",
+      "calidad": "bronce",
+      "descargas": 33,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CORETT",
+      "calidad": "bronce",
+      "descargas": 29,
+      "total": 13,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CRAE",
+      "calidad": "bronce",
+      "descargas": 5,
+      "total": 18,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CRE",
+      "calidad": "bronce",
+      "descargas": 93,
+      "total": 21,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "CSAEGRO",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 10,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "DICONSA",
+      "calidad": "bronce",
+      "descargas": 84,
+      "total": 38,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ECH",
+      "calidad": "bronce",
+      "descargas": 19,
+      "total": 9,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ELCCC",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 3,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Estado de Coahuila",
+      "calidad": "bronce",
+      "descargas": 11,
+      "total": 23,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Estado de Jalisco",
+      "calidad": "bronce",
+      "descargas": 931,
+      "total": 209,
+      "apertura": 2
+    },
+    {
+      "calificacion": 0,
+      "institucion": "estado-de-mexico",
+      "calidad": "N/A",
+      "descargas": 0,
+      "total": 0,
+      "apertura": 0
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Estado de Morelos",
+      "calidad": "bronce",
+      "descargas": 10,
+      "total": 12,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Estado de Puebla",
+      "calidad": "bronce",
+      "descargas": 1059,
+      "total": 12,
+      "apertura": 3
+    },
+    {
+      "calificacion": 0,
+      "institucion": "estado-de-sonora",
+      "calidad": "N/A",
+      "descargas": 0,
+      "total": 0,
+      "apertura": 0
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Estado de Veracruz",
+      "calidad": "bronce",
+      "descargas": 490,
+      "total": 44,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FIDENA",
+      "calidad": "bronce",
+      "descargas": 8,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FIFONAFE",
+      "calidad": "bronce",
+      "descargas": 23,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FIRA",
+      "calidad": "bronce",
+      "descargas": 12,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FIRCO",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 46,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FND",
+      "calidad": "bronce",
+      "descargas": 10,
+      "total": 11,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FOCIR",
+      "calidad": "bronce",
+      "descargas": 8,
+      "total": 11,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Instituto del Fondo Nacional para el Consumo de los Trabajadores",
+      "calidad": "bronce",
+      "descargas": 23,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "FONART",
+      "calidad": "bronce",
+      "descargas": 9,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Fondo de Cultura Económica",
+      "calidad": "bronce",
+      "descargas": 12,
+      "total": 28,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "FONHAPO",
+      "calidad": "bronce",
+      "descargas": 45,
+      "total": 16,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "GACM",
+      "calidad": "bronce",
+      "descargas": 71,
+      "total": 18,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "HGGEA",
+      "calidad": "bronce",
+      "descargas": 30,
+      "total": 30,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SALUD",
+      "calidad": "bronce",
+      "descargas": 48,
+      "total": 12,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "HRAEB",
+      "calidad": "bronce",
+      "descargas": 37,
+      "total": 36,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "HRAEO",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 8,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IEPSA",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 56,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ift",
+      "calidad": "bronce",
+      "descargas": 16,
+      "total": 3,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IIE",
+      "calidad": "bronce",
+      "descargas": 5,
+      "total": 7,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Instituto Mora",
+      "calidad": "bronce",
+      "descargas": 75,
+      "total": 27,
+      "apertura": 1
+    },
+    {
+      "calificacion": 0,
+      "institucion": "imer",
+      "calidad": "N/A",
+      "descargas": 0,
+      "total": 0,
+      "apertura": 0
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IMJUVE",
+      "calidad": "bronce",
+      "descargas": 21,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IMP",
+      "calidad": "bronce",
+      "descargas": 52,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IMPI",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IMSS",
+      "calidad": "bronce",
+      "descargas": 1896,
+      "total": 200,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "imt",
+      "calidad": "bronce",
+      "descargas": 118,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IMTA",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 55,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INACIPE",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 3,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INAES",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INAH",
+      "calidad": "bronce",
+      "descargas": 41,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INALI",
+      "calidad": "bronce",
+      "descargas": 7,
+      "total": 16,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INAOE",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 18,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INAPAM",
+      "calidad": "bronce",
+      "descargas": 11,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INAPESCA",
+      "calidad": "bronce",
+      "descargas": 88,
+      "total": 7,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INBA",
+      "calidad": "bronce",
+      "descargas": 50,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "INC",
+      "calidad": "bronce",
+      "descargas": 0,
+      "total": 3,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INCAN",
+      "calidad": "bronce",
+      "descargas": 18,
+      "total": 14,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INDAABIN",
+      "calidad": "bronce",
+      "descargas": 40,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INEA",
+      "calidad": "bronce",
+      "descargas": 15,
+      "total": 22,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INECC",
+      "calidad": "bronce",
+      "descargas": 549,
+      "total": 1180,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INECOL",
+      "calidad": "bronce",
+      "descargas": 24,
+      "total": 17,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INEGI",
+      "calidad": "bronce",
+      "descargas": 21552,
+      "total": 3585,
+      "apertura": 2
+    },
+    {
+      "calificacion": 6,
+      "institucion": "INFOTEC",
+      "calidad": "bronce",
+      "descargas": 37,
+      "total": 38,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INIFAP",
+      "calidad": "bronce",
+      "descargas": 3,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INIFED",
+      "calidad": "bronce",
+      "descargas": 47,
+      "total": 15,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INMEGEN",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 11,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INMUJERES",
+      "calidad": "bronce",
+      "descargas": 52,
+      "total": 61,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "INSP",
+      "calidad": "bronce",
+      "descargas": 88,
+      "total": 174,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IPAB",
+      "calidad": "bronce",
+      "descargas": 15,
+      "total": 50,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IPICYT",
+      "calidad": "bronce",
+      "descargas": 6,
+      "total": 8,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "IPN",
+      "calidad": "bronce",
+      "descargas": 17,
+      "total": 27,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ISSFAM",
+      "calidad": "bronce",
+      "descargas": 38,
+      "total": 10,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ISSSTE",
+      "calidad": "bronce",
+      "descargas": 190,
+      "total": 19,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "LOTENAL",
+      "calidad": "bronce",
+      "descargas": 14,
+      "total": 17,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "NAFIN",
+      "calidad": "bronce",
+      "descargas": 241,
+      "total": 17,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Notimex",
+      "calidad": "bronce",
+      "descargas": 1,
+      "total": 22,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "PEMEX",
+      "calidad": "bronce",
+      "descargas": 496,
+      "total": 202,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "PGR",
+      "calidad": "bronce",
+      "descargas": 398,
+      "total": 53,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Presidencia",
+      "calidad": "bronce",
+      "descargas": 41,
+      "total": 22,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Procuraduría Agraria",
+      "calidad": "bronce",
+      "descargas": 12,
+      "total": 10,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "PRODECON",
+      "calidad": "bronce",
+      "descargas": 14,
+      "total": 42,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "PROFECO",
+      "calidad": "bronce",
+      "descargas": 4,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "PROFEDET",
+      "calidad": "bronce",
+      "descargas": 5,
+      "total": 20,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Procuraduría Federal de Protección al Ambiente",
+      "calidad": "bronce",
+      "descargas": 60,
+      "total": 17,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "ProMéxico",
+      "calidad": "bronce",
+      "descargas": 75,
+      "total": 3,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "PRONABIVE",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 4,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEDESOL",
+      "calidad": "bronce",
+      "descargas": 396,
+      "total": 175,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "RAN",
+      "calidad": "bronce",
+      "descargas": 12904,
+      "total": 149,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SAE",
+      "calidad": "bronce",
+      "descargas": 22,
+      "total": 10,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SAGARPA",
+      "calidad": "bronce",
+      "descargas": 296,
+      "total": 176,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SALUD",
+      "calidad": "bronce",
+      "descargas": 1476,
+      "total": 185,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SAT",
+      "calidad": "bronce",
+      "descargas": 160,
+      "total": 63,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SCT",
+      "calidad": "bronce",
+      "descargas": 387,
+      "total": 99,
+      "apertura": 2
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SE",
+      "calidad": "bronce",
+      "descargas": 1000,
+      "total": 188,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SECTUR",
+      "calidad": "bronce",
+      "descargas": 562,
+      "total": 47,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEDATU",
+      "calidad": "bronce",
+      "descargas": 165,
+      "total": 12,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEDENA",
+      "calidad": "bronce",
+      "descargas": 771,
+      "total": 73,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEDESOL",
+      "calidad": "bronce",
+      "descargas": 10759,
+      "total": 1166,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEGOB",
+      "calidad": "bronce",
+      "descargas": 6487,
+      "total": 250,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Seguro Popular",
+      "calidad": "bronce",
+      "descargas": 43,
+      "total": 5,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEMARNAT",
+      "calidad": "bronce",
+      "descargas": 890,
+      "total": 434,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SENASICA",
+      "calidad": "bronce",
+      "descargas": 208,
+      "total": 67,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "Secretaría de Energía",
+      "calidad": "bronce",
+      "descargas": 492,
+      "total": 540,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SEP",
+      "calidad": "bronce",
+      "descargas": 10618,
+      "total": 331,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Servicio Geológico Mexicano",
+      "calidad": "bronce",
+      "descargas": 665,
+      "total": 47,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SEGOB",
+      "calidad": "bronce",
+      "descargas": 94,
+      "total": 25,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SFP",
+      "calidad": "bronce",
+      "descargas": 467,
+      "total": 53,
+      "apertura": 2
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SHCP",
+      "calidad": "bronce",
+      "descargas": 839,
+      "total": 89,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SHF",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 64,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SIAP",
+      "calidad": "bronce",
+      "descargas": 137,
+      "total": 153,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SNDIF",
+      "calidad": "bronce",
+      "descargas": 56,
+      "total": 16,
+      "apertura": 2
+    },
+    {
+      "calificacion": 7,
+      "institucion": "SNICS",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 7,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Sistema Público de Radiofusión del Estado Mexicano",
+      "calidad": "bronce",
+      "descargas": 2,
+      "total": 12,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "SRE",
+      "calidad": "bronce",
+      "descargas": 44,
+      "total": 82,
+      "apertura": 1
+    },
+    {
+      "calificacion": 6,
+      "institucion": "STPS",
+      "calidad": "bronce",
+      "descargas": 82,
+      "total": 85,
+      "apertura": 1
+    },
+    {
+      "calificacion": 7,
+      "institucion": "Telecomm",
+      "calidad": "bronce",
+      "descargas": 13,
+      "total": 13,
+      "apertura": 1
+    }
+  ]
+}

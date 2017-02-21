@@ -48,7 +48,7 @@
                           = inline_svg 'edit.svg'
                         Documentar
               - dataset.distributions.each do |distribution|
-                %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset.id}_distributions"}
+                %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset_id}_distributions"}
                   %td
                   %td.nested
                     - if distribution.documented? || distribution.refined?

@@ -37,4 +37,10 @@ Adela::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
   ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6389'
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.rails_logger = true
+  end
 end

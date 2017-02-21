@@ -58,6 +58,10 @@ gem 'polymer-rails'
 gem 'audited-activerecord'
 gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
 
+group :development do
+  gem 'bullet'
+end
+
 group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'

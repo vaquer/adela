@@ -10,4 +10,4 @@
   %td.center= dataset.publish_date.strftime('%F') if dataset.publish_date
   %td.col-md-3
     = render partial: 'inventories/shared/menus/dataset_actions', locals: { dataset: dataset }
-= render partial: 'inventories/shared/distribution', collection: dataset.distributions
+= render partial: 'inventories/shared/distribution', collection: dataset.distributions.includes(:dataset)

@@ -1,13 +1,6 @@
-adela
-=====
+# Adela [![Build Status](https://img.shields.io/travis/mxabierto/adela.svg)](https://travis-ci.org/mxabierto/adela) [![Coverage Status](https://img.shields.io/coveralls/mxabierto/adela.svg)](https://coveralls.io/r/mxabierto/adela) [![Code Climate](https://img.shields.io/codeclimate/github/mxabierto/adela.svg)](https://codeclimate.com/github/mxabierto/adela)
 
 La Administradora (y aceleradora) de la Apertura en México.
-
-[![Build Status](https://travis-ci.org/mxabierto/adela.png)](https://travis-ci.org/mxabierto/adela)
-[![Coverage Status](https://coveralls.io/repos/mxabierto/adela/badge.png)](https://coveralls.io/r/mxabierto/adela)
-[![Code Climate](https://codeclimate.com/github/mxabierto/adela.png)](https://codeclimate.com/github/mxabierto/adela)
-[![Join the chat at https://gitter.im/mxabierto/adela](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mxabierto/adela?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Stories in Ready](https://badge.waffle.io/mxabierto/adela.png?label=ready&title=Ready)](https://waffle.io/mxabierto/adela)
 
 ![adelitas](http://culturacolectiva.com/wp-content/uploads/2013/10/adelitas.gif)
 
@@ -22,3 +15,31 @@ Los administradores de datos abiertos pueden:
 3. Publicar en [datos.gob.mx](http://datos.gob.mx)
 
 ¿Tienes dudas? visita la [Wiki](https://github.com/mxabierto/adela/wiki)
+
+## Contribuir
+
+ADELA es software libre, estamos muy agradecidos con [todos][colaboradores] los 
+que han contribuido hasta ahora.
+
+Si deseas contribuir, echa un vistazo a nuestras [instrucciones](CONTRIBUTING.md) para 
+contribuir.
+
+## Versionado
+
+ADELA sigue Semantic Versioning 2.0 como se define en <http://semver.org>.
+
+## Licencia
+
+ADELA es software libre, y puede ser redistribuido bajo los términos
+especificados en nuestra [licencia](LICENSE).
+
+## Sobre México Abierto
+
+En México Abierto creamos mecanismos de innovación y colaboración 
+entre ciudadanos y gobierno con herramientas digitales, para 
+impulsar el desarrollo del país. 
+
+Para conocer más a detalle lo que estamos haciendo, visita [nuestros proyectos][nuestros-proyectos].
+
+[colaboradores]: https://github.com/mxabierto/adela/graphs/contributors
+[nuestros-proyectos]: https://github.com/mxabierto

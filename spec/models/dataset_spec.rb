@@ -17,6 +17,21 @@ describe Dataset do
       new_dataset = build(:dataset, title: dataset.title)
       expect(new_dataset).not_to be_valid
     end
+
+    it 'should not be valid with higher initial perido that end periodo' do
+      dataset.temporal = '2016-11-25/2015-11-01'
+      expect(dataset).not_to be_valid
+    end
+
+    it 'should not be valid without initial period' do
+      dataset.temporal = '/2015-11-01'
+      expect(dataset).not_to be_valid
+    end
+
+    it 'should not be valid without end period' do
+      dataset.temporal = '2015-11-01/'
+      expect(dataset).not_to be_valid
+    end
   end
 
   describe '#valid(:inventory)' do

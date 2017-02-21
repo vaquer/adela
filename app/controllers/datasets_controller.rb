@@ -16,8 +16,11 @@ class DatasetsController < ApplicationController
   end
 
   def update_customization
-    redirect_to edit_dataset_path(@dataset)
-    return
+    if @dataset.valid?
+      redirect_to edit_dataset_path(@dataset)
+      return
+    end
+    render 'edit'
   end
 
   def dataset_params

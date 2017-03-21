@@ -2,12 +2,10 @@
  *= require toastr
  *= require joyride-2.1
  *= require_self
+ *= require jquery-ui
  */
 
 @import "bootstrap";
-@import "jquery.ui.core";
-@import "jquery.ui.theme";
-@import "jquery.ui.datepicker";
 @import "font-awesome";
 
 // Defaults

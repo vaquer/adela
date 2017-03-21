@@ -1,4 +1,5 @@
 Adela::Application.routes.draw do
+  mount RailsAdmin::Engine => '/escuadron', as: 'rails_admin'
   localized do
     devise_for :users
 

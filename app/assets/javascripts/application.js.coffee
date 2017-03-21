@@ -1,8 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.sortable
-//= require jquery.ui.datepicker
-//= require jquery.ui.datepicker-es
 //= require jquery.autosize
 //= require jquery.expander
 //= require jquery.pjax
@@ -10,6 +7,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery_nested_form
 //= require jquery/validate/messages
+//= require jquery-ui
 //= require spin
 //= require jquery.spin
 //= require bootstrap

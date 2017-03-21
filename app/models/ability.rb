@@ -3,9 +3,9 @@ class Ability
 
   def initialize(user)
     if user.has_role? :admin
-      can :manage, User
-      can :manage, Organization
+      can :manage, :all
+    else
+      can :manage, Catalog if user.organization
     end
-    can :manage, Catalog if user.organization
   end
 end

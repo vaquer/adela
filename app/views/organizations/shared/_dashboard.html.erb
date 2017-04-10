@@ -316,7 +316,7 @@ $(".openModal").click(function(){
 });
 
 var orgCount = "<%= Organization.count %>";
-var strName = "<%= current_user.organization.title %>";
+var strName = "<%= current_user.organization.slug %>";
 var orgName = strName.toLowerCase();
 var pageSize = '&pageSize=20000';
 var issuedTotal = 0;

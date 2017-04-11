@@ -381,6 +381,9 @@ $.ajax({
   type: 'GET',
   success: function(data) {
     dataDescargasOpi = data;
+    if (dataDescargasOpi != "undefined") {
+      fillMoreDownloaded();
+    }
   },
   error: function(data){
     console.log("error- ",data);
@@ -461,26 +464,27 @@ function fillDataDashboard() {
   });
 }
 
-//Función para obtener el top 5 de descargas
-var n = 5;
-var topScorers = dataDescargasOpi.recursos;
-topScorers.forEach(function(item, index) {
-  var dateDownload = new Date(resourceModified);
-  var day = dateDownload.getDate();
-  var monthIndex = dateDownload.getMonth();
-  var year = dateDownload.getFullYear();
-  var htmlDown = '';
-  htmlDown += '<tr><td class="datosTitle" title="'+item.recurso+'">' + item.recurso + '</td><td>'+ item.actualizacion +'</td><td class="text-center">' + item.descargas + '</td></tr>';
-  $('#table-downloads tr').last().after(htmlDown);
-});
+  //Función para obtener el top 5 de descargas
+function fillMoreDownloaded() {
+  var n = 5;
+  var topScorers = dataDescargasOpi.recursos;
+  topScorers.forEach(function(item, index) {
+    var dateDownload = new Date(resourceModified);
+    var day = dateDownload.getDate();
+    var monthIndex = dateDownload.getMonth();
+    var year = dateDownload.getFullYear();
+    var htmlDown = '';
+    htmlDown += '<tr><td class="datosTitle" title="'+item.recurso+'">' + item.recurso + '</td><td>'+ item.actualizacion +'</td><td class="text-center">' + item.descargas + '</td></tr>';
+    $('#table-downloads tr').last().after(htmlDown);
+  });
 
-var count = 1;
-$('.code-color-dashboard').each(function() {
-  count = count+1;
-  var heatmapScale  = chroma.scale(['#FFFF00','#FFAA00','#FF0000','#E60000']).colors(count);
-  $(this).css('border-right','2px solid').css('border-right-color',heatmapScale[1]);
-});
-
+  var count = 1;
+  $('.code-color-dashboard').each(function() {
+    count = count+1;
+    var heatmapScale  = chroma.scale(['#FFFF00','#FFAA00','#FF0000','#E60000']).colors(count);
+    $(this).css('border-right','2px solid').css('border-right-color',heatmapScale[1]);
+  });
+}
 /////Raiting
 (function ( $ ) {
 

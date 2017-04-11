@@ -335,6 +335,9 @@ $.ajax({
   type: 'GET',
   success: function(data) {
     dataApi = data;
+    if (dataApi != "undefined" ) {
+      fillDataDashboard();
+    }
   },
   error: function(data){
     console.log("error- ",data);
@@ -364,6 +367,8 @@ $.ajax({
     $('#issuedTotal').text('/'+json.total.toLocaleString('en'));
     $('#issuedPublish').text(json.publicados.toLocaleString('en'));
     $("#calidadDatosHtml").text(toTitleCase(json.calidad));
+
+    $("#stars-raiting").attr("data-rating",totalRaiting);
   }
 });
 
@@ -384,77 +389,77 @@ $.ajax({
 
 var monthNames = [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic" ];
 
-$.each(dataApi.results,function(key, value){
+function fillDataDashboard() {
+  $.each(dataApi.results,function(key, value){
 
-  //Recorre IDs de recursos en Adela
-  resourceId = value.adela.dataset.id;
-  //Obtengo Titulo
-  resourceTitle = value.adela.resource.title;
-  resourceModified = value.adela.resource.modified;
-  //Calificación Calidad de Datos
-  if (value.calificacion == "bronce") {
-    sumaCalidad = sumaCalidad + 1;
-  } else if (value.calificacion == "plata") {
-    sumaCalidad = sumaCalidad + 2;
-  } else if (value.calificacion == "oro") {
-    sumaCalidad = sumaCalidad + 3;
-  }
+    //Recorre IDs de recursos en Adela
+    resourceId = value.adela.dataset.id;
+    //Obtengo Titulo
+    resourceTitle = value.adela.resource.title;
+    resourceModified = value.adela.resource.modified;
+    //Calificación Calidad de Datos
+    if (value.calificacion == "bronce") {
+      sumaCalidad = sumaCalidad + 1;
+    } else if (value.calificacion == "plata") {
+      sumaCalidad = sumaCalidad + 2;
+    } else if (value.calificacion == "oro") {
+      sumaCalidad = sumaCalidad + 3;
+    }
 
-  totalCalidad = sumaCalidad / issuedTotal;
-  if (totalCalidad > 0 && totalCalidad <= 1.5) {
-    var calidadDatos = "Bronce";
-  } else if (totalCalidad > 1.5 && totalCalidad <= 2.5) {
-    var calidadDatos = "Plata";
-  } else if (totalCalidad > 2.5 && totalCalidad <= 3) {
-    var calidadDatos = "Oro";
-  }
+    totalCalidad = sumaCalidad / issuedTotal;
+    if (totalCalidad > 0 && totalCalidad <= 1.5) {
+      var calidadDatos = "Bronce";
+    } else if (totalCalidad > 1.5 && totalCalidad <= 2.5) {
+      var calidadDatos = "Plata";
+    } else if (totalCalidad > 2.5 && totalCalidad <= 3) {
+      var calidadDatos = "Oro";
+    }
 
-  totalRecommendations = totalRecommendations + value.recommendations.length
+    totalRecommendations = totalRecommendations + value.recommendations.length
 
-  //Recorre recomendaciones
-  $.each(value.recommendations,function(key, value){
-    var recommendations = value;
-    if (recommendations["more-info"]) {
-      var nameError = recommendations.name;
-      var urlError = recommendations["more-info"];
+    //Recorre recomendaciones
+    $.each(value.recommendations,function(key, value){
+      var recommendations = value;
+      if (recommendations["more-info"]) {
+        var nameError = recommendations.name;
+        var urlError = recommendations["more-info"];
+      } else {
+        var nameError = "";
+        var urlError = "";
+      }
+      var html = '';
+      html += '<tr><td>' + recommendations.categoria.replace(/\b\w/g, function(l){ return l.toUpperCase() }) + '</td><td class="datosTitle" title="'+resourceTitle+'"><a href="/conjuntos/'+ resourceId +'/edit">' + resourceTitle + '</a></td><td>' + recommendations.name + '</td></tr>';
+      $('#table-recommendations tr').first().after(html);
+    });
+
+    //Recorre descargas
+    $.each(value.analytics,function(key, value){
+      downloads = value.total;
+      if (downloads != null) {
+        valueDownloads.push(downloads);
+      }
+
+    });
+
+    //Obtengo publishDate
+    adelaPublishDate = value.adela.dataset.publishdate;
+    var dateToday = new Date();
+    var date = new Date(adelaPublishDate);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    if (date > dateToday) {
+      percentPubl = 0;
+      var htmlPendientes = '';
+      htmlPendientes += '<tr><td class="text-center code-color-dashboard">' + day + ' ' + monthNames[monthIndex] + ' ' + year + '</td><td>' + resourceTitle + '</td><td>-</td></tr>';
+      $('#table-pendientes tr').first().after(htmlPendientes);
     } else {
-      var nameError = "";
-      var urlError = "";
-    }
-    var html = '';
-    html += '<tr><td>' + recommendations.categoria.replace(/\b\w/g, function(l){ return l.toUpperCase() }) + '</td><td class="datosTitle" title="'+resourceTitle+'"><a href="/conjuntos/'+ resourceId +'/edit">' + resourceTitle + '</a></td><td>' + recommendations.name + '</td></tr>';
-    $('#table-recommendations tr').first().after(html);
-  });
-
-  //Recorre descargas
-  $.each(value.analytics,function(key, value){
-    downloads = value.total;
-    if (downloads != null) {
-      valueDownloads.push(downloads);
+      percentPubl = 15;
     }
 
   });
-
-  $("#stars-raiting").attr("data-rating",totalRaiting);
-
-  //Obtengo publishDate
-  adelaPublishDate = value.adela.dataset.publishdate;
-  var dateToday = new Date();
-  var date = new Date(adelaPublishDate);
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
-
-  if (date > dateToday) {
-    percentPubl = 0;
-    var htmlPendientes = '';
-    htmlPendientes += '<tr><td class="text-center code-color-dashboard">' + day + ' ' + monthNames[monthIndex] + ' ' + year + '</td><td>' + resourceTitle + '</td><td>-</td></tr>';
-    $('#table-pendientes tr').first().after(htmlPendientes);
-  } else {
-    percentPubl = 15;
-  }
-
-});
+}
 
 //Función para obtener el top 5 de descargas
 var n = 5;

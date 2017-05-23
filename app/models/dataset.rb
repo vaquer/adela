@@ -19,7 +19,7 @@ class Dataset < ActiveRecord::Base
   validates_uniqueness_of :title
   validates :distributions, presence: true
 
-  validate :validate_initial_period, :validate_end_period, :validate_temporal, unless: 'temporal.nil? || temporal.index("/").nil?'
+  validate :validate_initial_period, :validate_end_period, unless: 'temporal.nil? || temporal.index("/").nil?'
 
   with_options on: :inventory do |dataset|
     dataset.validates :title, :contact_position, :public_access, :publish_date, presence: true
@@ -78,16 +78,5 @@ class Dataset < ActiveRecord::Base
 
     def validate_end_period
       errors.add(:temporal, 'No puede estar en blanco fin del período de tiempo cubierto.') if temporal[-1] == '/'
-    end
-
-    def validate_temporal
-      temporales = temporal.split('/')
-      unless temporales[1].nil? && temporales[0].nil?
-        inicial = temporales[0].blank? ? nil : Date.strptime(temporales[0], '%Y-%m-%d')
-        final = temporales[1].blank? ? nil : Date.strptime(temporales[1], '%Y-%m-%d')
-        if inicial && final
-          errors.add(:temporal, 'El valor del campo inicio del período debe ser menor al de fin del período de tiempo cubierto.') if  inicial >= final
-        end
-      end
     end
 end

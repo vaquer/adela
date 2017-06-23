@@ -9,7 +9,7 @@ class DatasetSerializer < ActiveModel::Serializer
   def attributes
     data = super
     data[:publisher] = {
-      name: object.contact_name,
+      name: object.organization.title,
       position: object.contact_position,
       mbox: object.mbox
     }

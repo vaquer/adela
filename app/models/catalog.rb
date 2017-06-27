@@ -19,7 +19,7 @@ class Catalog < ActiveRecord::Base
   end
 
   def catalog_datasets
-    datasets.where(public_access: true).select do |dataset|
+    datasets.includes(:distributions).where(public_access: true).select do |dataset|
       dataset.valid?(:catalog)
     end
   end

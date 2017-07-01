@@ -11,3 +11,13 @@
   %td.col-md-3
     = render partial: 'inventories/shared/menus/dataset_actions', locals: { dataset: dataset }
 = render partial: 'inventories/shared/distribution', collection: dataset.distributions.includes(:dataset)
+%tr.accordion-body.collapse{'class' => "dataset_#{dataset.id}_distributions"}
+  %td
+  %td
+  %td
+  %td
+  %td
+  %td.add-distribution
+    = link_to new_inventories_dataset_distribution_path(dataset), { class: 'btn btn-primary btn-block' } do
+      %span.icon.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+      Agregar un recurso nuevo

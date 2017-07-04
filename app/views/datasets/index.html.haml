@@ -51,7 +51,7 @@
                 %tr.distribution.accordion-body.collapse{'class' => "dataset_#{distribution.dataset_id}_distributions"}
                   %td
                   %td.nested
-                    - if distribution.documented? || distribution.refined?
+                    - if (distribution.documented? || distribution.refined?) && (dataset.documented? || dataset.refined? || dataset.published?)
                       = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right hidden')
                     = distribution.title
                   %td.center

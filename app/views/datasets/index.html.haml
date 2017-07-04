@@ -31,7 +31,7 @@
                   %strong= index + 1
                 %td
                   %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
-                    - if dataset.documented? || dataset.refined?
+                    - if (dataset.documented? || dataset.refined?) && dataset.distributions.where.not(state: ['broke', 'refining']).any?
                       = check_box_tag('catalog[dataset_ids][]', dataset.id, true, class: 'cell-checkbox little-margin-right hidden')
                     = dataset.title
                     %span.caret
@@ -73,24 +73,28 @@
           = link_to 'Folios de Publicación', catalog_versions_path, class: 'btn btn-alt btn-lg'
         - else
           = link_to 'Folios de Publicación', catalog_versions_path, class: 'btn btn-alt btn-lg disabled', disabled: true
-        - if can_publish?(@catalog)
-          = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary'
-        - else
-          = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary disabled', disabled: true
+        = f.button 'Publicar', type: 'submit', id: 'publish', class: 'btn btn-lg btn-primary disabled', disabled: true
       .clearfix
 
 = render "tour_index"
 
 :javascript
   $(function() {
-    $('tr:contains("Listo para publicar")').addClass('success');
-    // Every time a checkbox is checked or unchecked we will...
-    $("input:checked").click(function() {
-      // activate the Publish button if there are some checkboxes activated
-      // or disable otherwise
-      if ($("input:checked").length > 0)
+    var updatePublishButton;
+    (updatePublishButton = function() {
+      if ($("input:checked.cell-checkbox").length > 0) {
         $('#publish').removeClass('disabled');
-      else
+        $('#publish').removeAttr('disabled');
+      } else {
         $('#publish').addClass('disabled');
-    });
+        $('#publish').attr('disabled', true);
+      }
+    })();
+
+    $('tr:contains("Listo para publicar")').addClass('success');
+
+    // Every time a checkbox is checked or unchecked we will...
+    // activate the Publish button if there are some checkboxes activated
+    // or disable otherwise
+    $("input:checked").click(updatePublishButton);
   });

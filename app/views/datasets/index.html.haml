@@ -32,7 +32,7 @@
                 %td
                   %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
                     - if dataset.documented? || dataset.refined?
-                      = check_box_tag('catalog[dataset_ids][]', dataset.id, true, class: 'cell-checkbox little-margin-right')
+                      = check_box_tag('catalog[dataset_ids][]', dataset.id, true, class: 'cell-checkbox little-margin-right hidden')
                     = dataset.title
                     %span.caret
                 %td.center= state_description(dataset)
@@ -52,7 +52,7 @@
                   %td
                   %td.nested
                     - if distribution.documented? || distribution.refined?
-                      = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right')
+                      = check_box_tag('catalog[distribution_ids][]', distribution.id, true, class: 'cell-checkbox little-margin-right hidden')
                     = distribution.title
                   %td.center
                     = state_description(distribution)

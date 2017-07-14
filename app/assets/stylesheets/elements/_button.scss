@@ -1,16 +1,25 @@
 .btn {
-  border: none;
-  font-size: 14px;
+	border: none;
+	font-size: 14px;
 }
 
 .btn-primary,
 .btn-primary:hover,
-.btn-primary:focus,  {
-  background-color: #00CC99;
+.btn-primary:focus {
+ 	background-color: #00CC99;
 }
 
 .btn-alt,
 .btn-alt:hover,
-.btn-alt:focus,  {
-  background-color: #4A4A4A;
+.btn-alt:focus {
+ 	background-color: #4A4A4A;
+}
+.btn-home {
+	background-color: #ffffff;  
+	color: #00cc99;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+.btn-home:hover {
+ 	color: #00cc99 !important;
 }

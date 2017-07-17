@@ -1,4 +1,8 @@
 class FixInvalidDatasetsTitle < ActiveRecord::Migration
+  class Dataset < ActiveRecord::Base
+    include Publishable
+  end
+
   def change
     invalid_datasets = Dataset.select(&:invalid?).select do |dataset|
       dataset.errors.messages.has_key?(:title)

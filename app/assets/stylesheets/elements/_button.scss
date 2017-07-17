@@ -20,6 +20,8 @@
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 }
-.btn-home:hover {
- 	color: #00cc99 !important;
+.btn-home:hover,
+.btn-home:active, 
+.btn-home:focus {
+  color: #00cc99 !important;
 }

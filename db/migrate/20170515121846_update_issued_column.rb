@@ -5,6 +5,10 @@ class UpdateIssuedColumn < ActiveRecord::Migration
       response = HTTParty.get(url)
 
       JSON.parse(response.body)
+    rescue SocketError => e
+      puts e
+      sleep 10
+      retry
     end
 
     Dataset.find_each do |dataset|

@@ -1,4 +1,8 @@
 class FixInvalidDistributions < ActiveRecord::Migration
+  class Distribution < ActiveRecord::Base
+    include Publishable
+  end
+
   def change
     invalid_distributions = Distribution.select(&:invalid?)
     invalid_distributions.each do |distribution|

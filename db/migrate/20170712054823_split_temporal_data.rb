@@ -1,4 +1,10 @@
 class SplitTemporalData < ActiveRecord::Migration
+  class Dataset < ActiveRecord::Base
+  end
+
+  class Distribution < ActiveRecord::Base
+  end
+  
   def change
     Dataset.where.not(temporal: nil).map do |dataset|
       begin

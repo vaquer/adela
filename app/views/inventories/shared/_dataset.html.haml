@@ -9,7 +9,24 @@
   %td.center= dataset.public_access? ? 'Público' : 'Privado'
   %td.center= dataset.publish_date.strftime('%F') if dataset.publish_date
   %td.col-md-3
-    = render partial: 'inventories/shared/menus/dataset_actions', locals: { dataset: dataset }
+    %ul.nav.nav-pills.nav-justified
+      %li{role: 'presentation'}
+        = link_to edit_inventories_dataset_path(dataset) do
+          %span.icon.icon-right
+            = inline_svg 'edit.svg'
+          Editar
+      - if dataset.distributions.pluck(:issued).any?
+        %li.disabled{role: 'presentation', 'data-toggle': 'tooltip', title: t('tooltip.dataset.actions.destroy') }
+          = link_to '#' do
+            %span.icon.icon-right
+              = inline_svg 'destroy.svg'
+            Eliminar
+      - else
+        %li{role: 'presentation'}
+          = link_to confirm_destroy_inventories_dataset_path(dataset) do
+            %span.icon.icon-right
+              = inline_svg 'destroy.svg'
+            Eliminar
 = render partial: 'inventories/shared/distribution', collection: dataset.distributions.includes(:dataset)
 %tr.accordion-body.collapse{'class' => "dataset_#{dataset.id}_distributions"}
   %td

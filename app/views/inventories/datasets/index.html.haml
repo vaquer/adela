@@ -14,7 +14,18 @@
     .clearfix
 
 - if current_organization.catalog && current_organization.catalog.datasets.present?
-  = render partial: 'inventories/shared/list'
+  .table-responsive
+    %table.table{ 'style' => 'border-collapse:collapse;' }
+      %thead
+        %tr
+          %th.center #
+          %th= sortable('title', 'Nombre del conjunto y sus recursos')
+          %th.center Recursos del conjunto
+          %th.center Acceso
+          %th.center= sortable('publish_date', 'Fecha estimada de publicación')
+          %th.center Acciones
+      %tbody
+        = render partial: 'inventories/shared/dataset', collection: @datasets
   .row.margin-top-20
     .col-md-12
       = link_to organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary btn-default btn-lg' } do

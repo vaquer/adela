@@ -37,7 +37,7 @@
                     %span.caret
                 %td.center= state_description(dataset)
                 %td.center
-                  = "#{documented_distributions(dataset).count} de #{dataset.distributions.count}"
+                  = "#{documented_distributions(dataset).size} de #{dataset.distributions.size}"
                 %td.center
                   = dataset.publish_date.to_date.strftime('%F')
                 %td.col-md-3

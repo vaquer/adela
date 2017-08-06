@@ -70,7 +70,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'thin'
   gem 'timecop'
-  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do

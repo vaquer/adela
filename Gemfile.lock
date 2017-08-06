@@ -221,6 +221,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     puma (2.16.0)
     rack (1.6.4)
     rack-cors (0.4.0)
@@ -448,7 +451,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   polymer-rails
-  pry
+  pry-byebug
   puma
   rack-cors
   rack-pjax
@@ -484,4 +487,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.14.2
+   1.15.3

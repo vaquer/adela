@@ -6,10 +6,9 @@ class DatasetsController < ApplicationController
 
   def index_customization
     @catalog = current_organization.catalog
-    @datasets = @datasets.includes(:distributions)
-                         .where(public_access: true)
-                         .order("#{params[:sort]} #{params[:direction]}")
-                         .select { |dataset| dataset.valid?(:catalog) }
+    @datasets = @datasets.includes(:distributions).where(
+      public_access: true
+    ).order("#{params[:sort]} #{params[:direction]}")
   end
 
   def edit_customization

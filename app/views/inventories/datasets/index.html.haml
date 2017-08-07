@@ -43,7 +43,7 @@
                     %span.icon.icon-right
                       = inline_svg 'edit.svg'
                     Editar
-                - if dataset.distributions.pluck(:issued).any?
+                - if dataset.issued?
                   %li.disabled{role: 'presentation', 'data-toggle': 'tooltip', title: t('tooltip.dataset.actions.destroy') }
                     = link_to '#' do
                       %span.icon.icon-right

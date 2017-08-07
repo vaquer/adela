@@ -55,7 +55,36 @@
                       %span.icon.icon-right
                         = inline_svg 'destroy.svg'
                       Eliminar
-          = render partial: 'inventories/shared/distribution', collection: dataset.distributions.includes(:dataset)
+          - dataset.distributions.each do |distribution|
+            %tr.distribution.accordion-body.collapse{'class' => "dataset_#{dataset.id}_distributions"}
+              %td
+              %td.nested
+                .distribution-title= distribution.title
+                %span.label.label-default.media-type
+                  = distribution.format
+              %td
+              %td
+              %td.center
+                = distribution.publish_date&.strftime('%F')
+              %td.center
+                %ul.nav.nav-pills.nav-justified
+                  %li{role: 'presentation'}
+                    = link_to edit_inventories_dataset_distribution_path(dataset, distribution) do
+                      %span.icon.icon-right
+                        = inline_svg 'edit.svg'
+                      Editar
+                  - if distribution.issued?
+                    %li.disabled{role: 'presentation', 'data-toggle': 'tooltip', title: t('tooltip.distribution.actions.destroy')}
+                      = link_to '#' do
+                        %span.icon.icon-right
+                          = inline_svg 'destroy.svg'
+                        Eliminar
+                  - else
+                    %li{role: 'presentation'}
+                      = link_to confirm_destroy_inventories_dataset_distribution_path(dataset, distribution) do
+                        %span.icon.icon-right
+                          = inline_svg 'destroy.svg'
+                        Eliminar
           %tr.accordion-body.collapse{'class' => "dataset_#{dataset.id}_distributions"}
             %td
             %td

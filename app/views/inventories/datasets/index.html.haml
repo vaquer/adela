@@ -25,7 +25,7 @@
           %th.center= sortable('publish_date', 'Fecha estimada de publicación')
           %th.center Acciones
       %tbody
-        - @datasets.each_with_index do |dataset, index|
+        - @datasets.includes(:distributions).each_with_index do |dataset, index|
           %tr.active.dataset
             %td.center
               %strong= index + 1

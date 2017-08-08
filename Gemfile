@@ -28,7 +28,7 @@ gem 'route_translator'
 gem 'cancancan'
 gem 'rolify'
 gem 'charlock_holmes'
-gem 'haml'
+gem 'hamlit'
 gem 'httparty'
 gem 'factory_girl_rails'
 gem 'validate_url'
@@ -70,7 +70,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'thin'
   gem 'timecop'
-  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do

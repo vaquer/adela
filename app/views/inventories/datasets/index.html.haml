@@ -25,7 +25,76 @@
           %th.center= sortable('publish_date', 'Fecha estimada de publicación')
           %th.center Acciones
       %tbody
-        = render partial: 'inventories/shared/dataset', collection: @datasets
+        - @datasets.includes(:distributions).each_with_index do |dataset, index|
+          %tr.active.dataset
+            %td.center
+              %strong= index + 1
+            %td
+              %a.accordion-toggle{'data-toggle' => 'collapse', 'href' => ".dataset_#{dataset.id}_distributions"}
+                = dataset.title
+                %span.caret
+            %td.center= pluralize(dataset.distributions.length, 'recurso')
+            %td.center= dataset.public_access? ? 'Público' : 'Privado'
+            %td.center= dataset.publish_date.strftime('%F') if dataset.publish_date
+            %td.col-md-3
+              %ul.nav.nav-pills.nav-justified
+                %li{role: 'presentation'}
+                  = link_to edit_inventories_dataset_path(dataset) do
+                    %span.icon.icon-right
+                      = inline_svg 'edit.svg'
+                    Editar
+                - if dataset.issued?
+                  %li.disabled{role: 'presentation', 'data-toggle': 'tooltip', title: t('tooltip.dataset.actions.destroy') }
+                    = link_to '#' do
+                      %span.icon.icon-right
+                        = inline_svg 'destroy.svg'
+                      Eliminar
+                - else
+                  %li{role: 'presentation'}
+                    = link_to confirm_destroy_inventories_dataset_path(dataset) do
+                      %span.icon.icon-right
+                        = inline_svg 'destroy.svg'
+                      Eliminar
+          - dataset.distributions.each do |distribution|
+            %tr.distribution.accordion-body.collapse{'class' => "dataset_#{dataset.id}_distributions"}
+              %td
+              %td.nested
+                .distribution-title= distribution.title
+                %span.label.label-default.media-type
+                  = distribution.format
+              %td
+              %td
+              %td.center
+                = distribution.publish_date&.strftime('%F')
+              %td.center
+                %ul.nav.nav-pills.nav-justified
+                  %li{role: 'presentation'}
+                    = link_to edit_inventories_dataset_distribution_path(dataset, distribution) do
+                      %span.icon.icon-right
+                        = inline_svg 'edit.svg'
+                      Editar
+                  - if distribution.issued?
+                    %li.disabled{role: 'presentation', 'data-toggle': 'tooltip', title: t('tooltip.distribution.actions.destroy')}
+                      = link_to '#' do
+                        %span.icon.icon-right
+                          = inline_svg 'destroy.svg'
+                        Eliminar
+                  - else
+                    %li{role: 'presentation'}
+                      = link_to confirm_destroy_inventories_dataset_distribution_path(dataset, distribution) do
+                        %span.icon.icon-right
+                          = inline_svg 'destroy.svg'
+                        Eliminar
+          %tr.accordion-body.collapse{'class' => "dataset_#{dataset.id}_distributions"}
+            %td
+            %td
+            %td
+            %td
+            %td
+            %td.add-distribution
+              = link_to new_inventories_dataset_distribution_path(dataset), { class: 'btn btn-primary btn-block' } do
+                %span.icon.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+                Agregar un recurso nuevo
   .row.margin-top-20
     .col-md-12
       = link_to organization_inventory_path(current_organization, format: :csv), { class: 'btn btn-primary btn-default btn-lg' } do

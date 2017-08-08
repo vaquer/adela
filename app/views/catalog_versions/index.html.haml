@@ -29,7 +29,7 @@
             - next unless audit.audited_changes['publish_date']
             - publish_date = audit.audited_changes['publish_date'].last
             %tr.active
-              %td.center= index + 2
+              %td.center= index + 1
               %td= link_to "#{current_organization.slug.upcase}-#{publish_date.to_i}", catalog_version_path(id: publish_date.to_i), class: 'semibold green'
               %td.center= l(publish_date, format: 'Publicado el %d de %B de %Y')
               %td
